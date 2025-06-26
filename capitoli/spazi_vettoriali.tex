@@ -1,0 +1,200 @@
+\chapter{Spazi vettoriali}
+
+\thispagestyle{empty}
+
+Il cuore del corso di Geometria e Algebra Lineare è sicuramente lo studio degli spazi vettoriali. In questa sezione vedremo le definizioni, le proprietà e i teoriemi fondamentali che riguardano gli spazi vettoriali, i sottospazi, il concetto di base e di dimensione. \\
+
+\section{Definizioni e proprietà}
+La definizione di spazio vettoriale è strettamente legata alla definizione di campo, che può essere così definito
+\begin{definition}[Campo]
+    \label{def:campo}
+    Un \textbf{campo} è un insieme $\mathbb{K}$ dotato di due operazioni $+: \mathbb{K} \times \mathbb{K} \to \mathbb{K}$ e $\cdot: \mathbb{K} \times \mathbb{K} \to \mathbb{K}$ tali che:
+    \begin{itemize}
+        \item $(\mathbb{K}, +)$ è un gruppo abeliano, ovvero l'operazione $+$ gode delle seguenti proprietà:
+        \begin{enumerate}[label=\protect\circled{\arabic*}]
+            \item $\forall a, b, c \in \mathbb{K}, (a + b) + c = a + (b + c)$ (proprietà associativa);
+            \item $\forall a, b \in \mathbb{K}, a + b = b + a$ (proprietà commutativa);
+            \item $\exists 0_\mathbb{K} \in \mathbb{K} : \forall a \in \mathbb{K}, 0_\mathbb{K} + a = a + 0_\mathbb{K} = a$ (esistenza dell'elemento neutro);
+            \item $\forall a \in \mathbb{K}, \exists (-a) \in \mathbb{K} : a + (-a) = (-a) + a = 0$ (esistenza dell'elemento inverso).
+        \end{enumerate}
+        \item $(\mathbb{K} \setminus \{ 0_\mathbb{K} \}, \cdot)$ è un gruppo abeliano, ovvero l'operazione $\cdot$ gode delle seguenti proprietà:
+        \begin{enumerate}[label=\protect\circled{\arabic*}]
+            \item $\forall a, b, c \in \mathbb{K}, (a \cdot b) \cdot c = a\cdot(b \cdot c)$ (proprietà associativa);
+            \item $\forall a, b \in \mathbb{K}, a \cdot b = b \cdot a$ (proprietà commutativa);
+            \item $\exists \mathds{1}_{\mathbb{K}} \in \mathbb{K} : \mathds{1}_{\mathbb{K}} \cdot a = a \cdot \mathds{1}_{\mathbb{K}} = a$ (esistenza dell'elemento neutro);
+            \item $\forall a \in \mathbb{K} \setminus \{ 0_\mathbb{K} \}, \exists a^{-1} \in \mathbb{K} : a \cdot a^{-1} = a^{-1} \cdot a = 1$ (esistenza dell'elemento inverso).
+        \end{enumerate}
+    \end{itemize}
+\end{definition}
+\begin{remark}
+    Fare attenzione ai pedici sulle operazioni e sugli elementi: infatti, nel corso di questi appunti avremo a che fare spesso con delle operazioni che sono definite su insiemi diversi ma che vengono preservate dai morfismi; tuttavia, per evitare confusione, cercherò il più possibile di denotare le operazioni e gli elementi con pedici che tolgano ogni dubbio sull'insieme di appartenenza.
+\end{remark}
+\begin{example}
+    L'esempio più lampante e semplice di campo è chiaramente l'insieme dei numeri razionali $\mathbb{Q}$ e l'insieme dei numeri reali $\mathbb{R}$ (e chiaramente anche il campo dei numeri complessi $\mathbb{C}$). Un esempio di campo meno noto è sicuramente $\mathbb{Z}_2$, ovvero l'insieme dei numeri interi modulo $2$, che contiene solo due elementi, $0$ e $1$, e le operazioni di somma e prodotto sono definite come segue:
+    \begin{itemize}
+        \item $0 + 0 = 0$, $0 + 1 = 1$, $1 + 0 = 1$, $1 + 1 = 0$;
+        \item $0 \cdot 0 = 0$, $0 \cdot 1 = 0$, $1 \cdot 0 = 0$, $1 \cdot 1 = 1$.
+    \end{itemize}
+    e si può verificare che tale insieme è effettivamente un campo, in quanto le due operazioni possiedono tutte le proprietà richieste dalla definizione data in \ref{def:campo}.
+\end{example}
+\begin{definition}[Spazio vettoriale]
+    \label{def:sp_vett} Sia dato un insieme $V$, un campo $\mathbb{K}$ e siano date due operazioni $+: V \times V \to V$ e $\cdot: \mathbb{K} \times V \to V$. Diremo che $(V, \mathbb{K}, +, \cdot)$ è un $\mathbb{K}-$spazio vettoriale (o più semplicemente uno spazio vettoriale sul campo $\mathbb{K}$) se le due operazioni soddisfano le seguenti proprietà:
+    \begin{itemize}
+        \item $(V, +)$ è un gruppo abeliano, ovvero l'operazione $+$ gode delle seguenti proprietà:
+        \begin{enumerate}[label=\protect\circled{\arabic*}]
+            \item $\forall \underline{u}, \underline{v}, \underline{z} \in V, (\underline{u} + \underline{v}) + \underline{z} = \underline{u} + (\underline{v} + \underline{z})$ (proprietà associativa);
+            \item $\forall \underline{v}, \underline{w} \in V, \underline{v} + \underline{w} = \underline{w} + \underline{v}$ (proprietà commutativa);
+            \item $\exists \underline{0} \in V : \forall \underline{v} \in V, \underline{0} + \underline{v} = \underline{v} + \underline{0} = \underline{v}$ (esistenza dell'elemento neutro);
+            \item $\forall \underline{v} \in V, \exists (-\underline{v}) \in V : \underline{v} + (-\underline{v}) = (-\underline{v}) + \underline{v} = \underline{0}$ (esistenza dell'elemento inverso).
+        \end{enumerate}
+        \item l'operazione $\cdot: \mathbb{K} \times V \to V$ gode delle seguenti proprietà:
+        \begin{enumerate}[label=\protect\circled{\arabic*}]
+            \item $\forall \alpha \in \mathbb{K}, \forall \underline{v}, \underline{w} \in V, \alpha \cdot (\underline{v} + \underline{w}) = \alpha \cdot \underline{v} + \alpha \cdot \underline{w}$ (proprietà distributiva rispetto alla $+$);
+            \item $\forall \alpha, \beta \in \mathbb{K}, \forall \underline{v} \in V, (\alpha +_{\mathbb{K}} \beta) \cdot \underline{v} = \alpha \cdot \underline{v} + \beta \cdot \underline{v}$ (proprietà distributiva rispetto alla $+_\mathbb{K}$);
+            \item $\forall \alpha, \beta \in \mathbb{K}, \forall \underline{v} \in V, (\alpha \beta) \cdot \underline{v} = \alpha \cdot (\beta \underline{v})$ (proprietà associativa della $\cdot$);
+            \item $\exists \mathds{1} \in \mathbb{K} : \forall \underline{v} \in V, \mathds{1} \cdot \underline{v} = \underline{v}$ (esistenza dell'elemento neutro per $\cdot$).
+        \end{enumerate}
+        Le due operazioni $+$ e $\cdot$ vengono dette, rispettivamente, \textbf{somma} (o legge di composizione interna) e \textbf{prodotto per scalare} (o legge di composizione esterna).
+    \end{itemize}
+\end{definition}
+\begin{remark}
+    Concettualmente, sebbene siano simili, la definizione di spazio vettoriale è diversa da quella di campo: infatti, sul campo abbiamo due operazioni che sono definite sul prodotto cartesiano del campo con sé stesso e restituiscono un elemento del campo; mentre nel caso dello spazio vettoriale si ha un insieme $V$ su cui sono definite due operazioni, una che è definita sul prodotto cartesiano di $V$ con sé stesso e restituisce un elemento di $V$, e l'altra che è definita sul prodotto cartesiano del campo con l'insieme $V$ e restituisce un elemento di $V$.
+\end{remark}
+\begin{remark}
+    Si noti che uno spazio vettoriale è definito completamente solamente se definiamo le due operazioni $+$ e $\cdot$, oltre al campo. E' possibile, come vedremo in un esempio, andare a fornire la struttura di spazio vettoriale ad un medesimo insieme definendo le due operazioni in modo opportuno.
+\end{remark}
+Tramite questa definizione, possiamo andare a mostrare alcuni risultati validi nei campi che sono altrettanto validi negli spazi vettoriali.
+\begin{prop}[l'elemento neutro rispetto a $+$ è unico]
+    Sia $(V, \mathbb{K}, +, \cdot)$ uno spazio vettoriale sul campo $\mathbb{K}$. Allora l'elemento neutro rispetto all'operazione $+$ è unico, ovvero
+    $$
+    \exists! \underline{0} \in V : \forall \underline{v} \in V, \underline{0} + \underline{v} = \underline{v} + \underline{0} = \underline{v}.
+    $$
+\end{prop}
+\begin{proof}
+    Si procede a fare questa dimostrazione per assurdo: negando la tesi, si ha che esistono due elementi distinti $\underline{0}, \underline{0}' \in V$ tali che
+    $$
+    \forall \underline{v} \in V, \underline{0} + \underline{v} = \underline{v} + \underline{0} = \underline{v} = \underline{0}' + \underline{v} = \underline{v} + \underline{0}'.
+    $$
+    Ma, osservando che queste due relazioni devono valere per ogni $\underline{v}$, si ha che
+    \begin{align*}
+\underline{0}' &= \underline{0}' + \underline{0} & \text{(perché \underline{0} è l'elemento neutro)} \\
+&= \underline{0} + \underline{0}' & \text{(perché \underline{0}' è un elemento neutro rispetto a $+$)} \\
+&= \underline{0} & \text{(perché \underline{0} è un elemento neutro rispetto a $+$)}.
+\end{align*}
+Ma questo è una contraddizione, in quanto abbiamo assunto che $\underline{0}$ e $\underline{0}'$ fossero distinti. Segue la tesi.
+\end{proof}
+\begin{prop}
+    \label{prop:0v_equal_0} Sia $(V, \mathbb{K}, +, \cdot)$ uno spazio vettoriale sul campo $\mathbb{K}$. Allora
+    $$
+    \forall \underline{v} \in V, 0_{\mathbb{K}} \cdot \underline{v} = \underline{0}.
+    $$
+\end{prop}
+\begin{proof}
+    Sappiamo che
+    \begin{align*}
+    0_\mathbb{K} \cdot \underline{v} = (0_\mathbb{K} +_{\mathbb{K}} 0_\mathbb{K}) \cdot \underline{v} = 0_{\mathbb{K}} \cdot \underline{v} + 0_\mathbb{K} \cdot \underline{v}, 
+    \end{align*}
+    dove si è usato il fatto che $0_\mathbb{K} = 0_\mathbb{K} +_{\mathbb{K}} 0_\mathbb{K}$ (essendo l'elemento neutro rispetto all'operazione $+_\mathbb{K}$ definita sul campo $\mathbb{K}$) e la proprietà distributiva di cui gode $\cdot$ rispetto a $+_\mathbb{K}$. A questo punto, sappiamo che $\forall \underline{v} \in V, \exists (-\underline{v}) \in V$ tale che $\underline{v} + (-\underline{v}) = (-\underline{v}) + \underline{v} = \underline{0}$, dunque sappiamo che esiste un elemento inverso per $0_{\mathbb{K}} \cdot \underline{v}$ che possiamo aggiungere a destra di ogni membro\footnote{esplicito questa cosa di aggiungere a sinistra perché, a priori, queste dimostrazioni si potrebbero fare anche su spazi dove non è garantita la proprietà commutativa della somma, ottenendo dei risultati simili, ma in questo caso non sarebbe necessario. La faccio per pura pedanteria e perché alcune di queste dimostrazioni potrebbero esseri riviste a Teoria dei Gruppi}
+    $$
+    0_\mathbb{K} \cdot \underline{v} + (-0_\mathbb{K} \cdot \underline{v}) = 0_\mathbb{K} \cdot \underline{v} + 0_\mathbb{K} \cdot \underline{v} + (-0_\mathbb{K} \cdot \underline{v}).
+    $$
+    Ma, essendo $0_\mathbb{K} \cdot \underline{v} + (-0_\mathbb{K} \cdot \underline{v}) = \underline{0}$, si ha che
+    $$
+    \underline{0} = 0_\mathbb{K} \cdot \underline{v} + \underline{0} = 0_\mathbb{K} \cdot \underline{v},
+    $$
+    dove si è usato il fatto che $\underline{0}$ è l'elemento neutro rispetto all'operazione $+$ definita su $V$. Segue la tesi.
+\end{proof}
+\begin{prop}
+    Sia $(V, \mathbb{K}, +, \cdot)$ uno spazio vettoriale sul campo $\mathbb{K}$. Allora
+    $$
+    \forall \underline{v} \in V, (-1_\mathbb{K}) \cdot \underline{v} = (-\underline{v}).
+    $$
+\end{prop}
+\begin{proof}
+    Per quanto visto nella proposizione \ref{prop:0v_equal_0}, sappiamo che
+    $$
+        \underline{0} = 0_\mathbb{K} \cdot \underline{v} = (1_\mathbb{K} +_\mathbb{K} (-1_\mathbb{K})) \cdot \underline{v} = \underline{v} + (-1_\mathbb{K}) \cdot \underline{v},
+    $$
+    dove si è usata la proprietà distributiva di cui gode l'operazione $\cdot$ rispetto all'operazione $+_\mathbb{K}$. A questo punto, sappiamo che $\forall \underline{w} \in V, \exists (-\underline{w}) \in V$ tale che $\underline{w} + (-\underline{w}) = (-\underline{w}) + \underline{w} = \underline{0}$, dunque sappiamo che esiste un elemento inverso per $\underline{v}$ che denoteremo sempre con $(-\underline{v})$ e che possiamo aggiungere a sinistra di ogni membro
+    $$
+        (- \underline{v}) + \underline{0} = (-\underline{v}) + \underline{v} + (-1_\mathbb{K}) \cdot \underline{v} \implies (-\underline{v}) = \underline{0} + (-1_\mathbb{K}) \cdot \underline{v} = (-1_\mathbb{K}) \cdot \underline{v},
+    $$
+    dove abbiamo sempre usato il fatto che $\underline{0}$ è l'elemento neutro rispetto all'operazione $+$ definita su $V$. Segue la tesi
+\end{proof}
+Vediamo adesso qualche esempio di spazio vettoriale per fissare meglio i concetti.
+\begin{example}[$\mathbb{R}^2$ è uno spazio vettoriale sul campo $\mathbb{R}$]
+    Consideriamo l'insieme $\mathbb{R}^2 = \mathbb{R} \times \mathbb{R}$: gli elementi di questo insieme sono coppie ordinate di numeri reali, che possiamo denotare come $\underline{v} = (v_1, v_2)$ con $v_1, v_2 \in \mathbb{R}$. Possiamo definire le due operazioni $+$ e $\cdot$ come segue:
+    \begin{align*}
+        &\underline{v} + \underline{w} = (v_1, v_2) + (w_1, w_2) = (v_1 + w_1, v_2 + w_2)
+        &\alpha \cdot \underline{v} = \alpha \cdot (v_1, v_2) = (\alpha v_1, \alpha v_2)
+    \end{align*}
+    ed è possibile verificare che queste due operazioni soddisfano sempre le proprietà richieste dalla definizione \ref{def:sp_vett}
+\end{example}
+\begin{example}[$\mathbb{R}^n$ è uno spazio vettoriale sul campo $\mathbb{R}$]
+    Partendo dall'idea dell'esempio precedente, possiamo iterare il ragionamento e definire l'insieme $\mathbb{R}^n = \underbrace{\mathbb{R} \times \ldots \times \mathbb{R}}_{\text{n volte}}$: gli elementi di questo insieme sono $n$-tuple ordinate di numeri reali, che possiamo denotare come $\underline{v} = (v_1, \ldots, v_n)$ con $v_i \in \mathbb{R} \forall i \in \{ 1, \ldots, n \}$. Possiamo definire la somma e il prodotto per scalare come fatto prima, sommando componente per componente e moltiplicando componente per componente:
+    \begin{align*}
+        &\underline{v} + \underline{w} = (v_1, \ldots, v_n) + (w_1, \ldots, w_n) = (v_1 + w_1, \ldots, v_n + w_n) \\
+        &\alpha \cdot \underline{v} = \alpha \cdot (v_1, \ldots, v_n) = (\alpha v_1, \ldots, \alpha v_n).
+    \end{align*}
+\end{example}
+\begin{example}[$\mathbb{C}^n$ è uno spazio vettoriale sul campo $\mathbb{C}$]
+    Analogamente a quanto fatto per $\mathbb{R}^n$, possiamo riadattare il ragionamento fatto per $\mathbb{R}^n$ ammettendo che le componenti delle $n$-tuple ordinate siano numeri complessi, ovvero $\mathbb{C}^n \ni \underline{v} = (v_1, \ldots, v_n)$ con $v_i \in \mathbb{C} \forall i \in \{ 1, \ldots, n \}$.
+\end{example}
+\begin{example}[le soluzioni di un'equazione differenziale lineare sono uno spazio vettoriale]
+    Sia data un'equazione differenziale lineare di ordine $n$ del tipo
+    $$
+        \sum_i^n a_i y^{(i)}(x) = 0 \text{ con } a_i \in \mathbb{R}
+    $$
+    allora possiamo mostrare che l'insieme delle soluzioni di questa equazione, denotato con $V$ gode della struttura di spazio vettoriale sul campo $\mathbb{R}$ definendo le due operazioni come segue: prese due soluzioni $y_1, y_2 \in V$ allora poniamo
+    \begin{align*}
+        &(y_1 + y_2)(x) = y_1(x) + y_2(x) \, \, \forall x \in \mathbb{R}
+        &(\alpha y_1)(x) = \alpha y_1(x) \, \, \forall x \in \mathbb{R}
+    \end{align*}
+    e osserviamo che queste due operazioni sono chiuse, ovvero restituiscono un elemento che è ancora una soluzione dell'equazione differenziale lineare. Infatti
+    $$
+        \sum_i^n a_i (y_1 + y_2)^{(i)}(x) = \sum_i^n a_i y_1^{(i)} + \sum_i^n a_i y_2^{(i)} = 0 + 0 = 0,
+    $$
+    dove abbiamo usato il fatto che l'operazione di derivata è distributiva rispetto alla somma e il fatto che $y_1, y_2$ fossero soluzioni dell'equazione differenziale lineare, ovvero $\sum_i^n a_i y_j^{(i)} = 0$, con $j=1, 2$. Similmente, per quanto riguarda il prodotto per scalare, si usa il fatto che le costanti non sono coinvolte nel processo di derivazione, dunque
+    $$
+        \sum_i^n a_i(\alpha y_1)^{(i)}(x) = \sum_i^n a_i \alpha y_1^{(i)}(x) = \alpha \sum_i^n a_i y_1^{(i)}(x) = 0,
+    $$
+    dove si è sempre usato il fatto che $y_1$ fosse una soluzione dell'equazione differenziale lineare. Le proprietà richieste dalla definizione \ref{def:sp_vett} sono banalmente verificabili.
+\end{example}
+\begin{example}[spazio dei polinomi a coefficienti reali di grado $\leq n$ è uno spazio vettoriale]
+    Sia dato l'insieme dei polinomi a coefficienti reali con grado $\leq n$ $\mathbb{R}_{\leq n}[x]$ su $\mathbb{R}$, allora possiamo definire le due operazioni come segue: presi due polinomi $p_1, p_2 \in \mathbb{R}_{\leq n}[x]$ possiamo definire il seguente polinomio
+    \begin{align*}
+    &(p_1 + p_2)(x) = p_1(x) + p_2(x) \, \, \forall x \in \mathbb{R}
+    &(\alpha p_1)(x) = \alpha p_1(x) \, \, \forall x \in \mathbb{R}.
+    \end{align*}
+    Si può verificare che queste due operazioni sono chiuse, ovvero restituiscono sempre un polinomio a coefficienti reali di grado $\leq n$: infatti se $p_1(x) = \sum\limits_{i=1}^n a_i x^i$ e $p_2(x) = \sum\limits_{i=1}^n b_i x^i$ con $a_i, b_i \in \mathbb{R}$ allora
+    \begin{align*}
+        &(p_1 + p_2)(x) = \sum_{i=1}^n a_i x^i + \sum_{i=1}^n b_i x^i = \sum_{i=1}^n (a_i + b_i) x^i \\
+        &(\alpha p_1)(x) = \alpha \sum_{i=1}^n a_i x^i = \sum_{i=1}^n (\alpha a_i) x^i
+    \end{align*}
+\end{example}
+
+\section{Sottospazi}
+
+Siamo ora interessati a studiare dei sottoinsiemi di uno spazio vettoriali che siano a loro volta degli spazi vettoriali rispetto all'operazione di somma e di prodotto per scalare.
+\begin{definition}[sottospazio]
+    Sia $(V, \mathbb{K}, +, \cdot)$ uno spazio vettoriale sul campo $\mathbb{K}$ e sia $W \subseteq V$ un sottoinsieme di $V$. Diremo che $W$ è un \textbf{sottospazio vettoriale} se esso è uno spazio vettoriale sul campo $\mathbb{K}$ rispetto alle operazioni $+$ e $\cdot$ definite su $V$.
+\end{definition}
+\begin{remark}
+    Ogni spazio vettoriale è un sottospazio di sé stesso, siccome è chiaro che $V \subseteq V$.
+\end{remark}
+\begin{prop}
+    Sia $(V, \mathbb{K}, +, \cdot)$ uno spazio vettoriale sul campo $\mathbb{K}$. Allora $W \subseteq V$ è un sottospazio vettoriale se e solo se
+    \begin{enumerate}[label=\protect\circled{\arabic*}]
+        \item $\forall \underline{v}, \underline{w} \in V, (\underline{v}, \underline{w} \in W) \implies \underline{v} + \underline{w} \in W$;
+        \item $\forall \alpha \in \mathbb{K}, \forall \underline{v} \in V, (\underline{v} \in W) \implies (\alpha \underline{v} \in W)$.
+    \end{enumerate}
+\end{prop}
+\begin{proof} Mostriamo le due implicazioni. \\
+    $\boxed{\Rightarrow}$: se $W \subseteq V$ è un sottospazio vettoriale, allora per definizione esso è uno spazio vettoriale sul campo $\mathbb{K}$, dunque le due implicazioni
+    \begin{align*}
+        &\underline{v}, \underline{w} \in W \implies \underline{v} + \underline{w} \in W;
+        &\underline{v} \in W \implies \alpha \underline{v} \in W;
+    \end{align*}
+    sono sempre vere. \\
+    $\boxed{\Leftarrow}$: se valgono le due implicazioni, allora è chiaro che le due operazioni $+$ e $\cdot$ sono chiuse su $W$, dunque è sufficiente mostrare che valgono le proprietà richiesta dalla definizione \ref{def:sp_vett} di spazio vettoriale. Tuttavia, siccome queste valgono per ogni elemento di $V$, è chiaro che varranno anche per ogni elemento di $W$ siccome $W \subseteq V$; dunque possiamo concludere che $W$ è un sottospazio vettoriale di $V$.  
+\end{proof}
