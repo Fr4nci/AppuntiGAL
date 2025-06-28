@@ -1,0 +1,46 @@
+\chapter{Basi a dimensione infinita}
+
+Abbiamo dimostrato che ogni spazio vettoriale a dimensione finita possiede una base. La dimostrazione da noi effettuata non è, tuttavia, valida
+quando si passa a dimensione infinita. \\
+Si può recuperare, tramite l'assioma della scelta, il concetto di base che si ha a dimensione finita (ovvero di insieme di vettori linearmente indipendenti massimale) anche
+per spazi a dimensione infinita; sebbene sia poco pratica negli spazi infinito-dimensionali che solitamente si incontrano (ovvero spazi di Hilbert separabili). Enunciamo innanzitutto l'assioma della scelta
+
+\begin{axiom}[Assioma della scelta]
+    Sia $X$ un insieme non vuoto e $\mathcal{P}^*(X) = \mathcal{P}(X) \setminus \{ \emptyset \}$ l'insieme delle parti non vuote di $X$, allora esiste una funzione, detta funzione della scelta, $f: \mathcal{P}^*(X) \to X$ tale che $f(A) \in A \, \forall A \in \mathcal{P}^*(X)$ 
+\end{axiom}
+
+Questo è un assioma particolarmente controverso della matematica moderna, siccome comporta una serie di conseguenze paradossali come il paradosso di Banach-Tarski e la costruzioni di insiemi non misurabili secondo Lebesgue, ovvero l'insieme di Vitali; tuttavia, è necessario per 
+garantire la possibilità di costruire un insieme scegliendo un elemento da ciascuno degli insiemi: quando abbiamo una famiglia finita di insiemi, la possibilità di fare ciò è garantita dagli assiomi della teoria ZF\footnote{ZF, che sta per Zermelo-Frankel, è una sigla che si usa per indicare gli assiomi alla base della teoria degli insiemi, che necessiterebbero di un approfondimento
+troppo sostanzioso per essere inseriti in una mera appendice. Riassumendo parecchio, questi affermano che esiste l'insieme vuoto, è possibile effettuare l'unione e l'intersezione di insiemi ottenendo nuovamente degli insiemi, esiste l'insieme singoletto, ogni insieme non può contenere sé stesso e così via}; mentre quando abbiamo un numero infinito di insiemi nulla ci assicura, dal punto di vista
+assiomatico, la possibilità di farlo. Tale assioma, tuttavia, non crea alcuna contraddizione con gli altri che regolano la teoria insiemistica: è stato, infatti, dimostrato che tale assioma è indipendente da quelli di ZF. \\
+E' possibile dimostrare, ma non lo riporteremo, che l'assioma della scelta è equivalente al \emph{lemma di Zorn}
+
+\begin{lemma}[Lemma di Zorn]
+    Ogni insieme induttivo ha un elemento massimale
+\end{lemma}
+Per capire bene che cosa questo lemma rappresenta, dobbiamo chiaramente andare a sviscerare il concetto di insiema induttivo e di elemento massimale, quindi riporto una serie di definizioni necessarie
+\begin{definition}[relazione]
+    Sia $A, B$ due insiemi, definiamo relazione $\mathcal{R}$ un sottoinsieme di $A \times B$. Due elementi $x \in A$ e $y \in B$ sono messi in relazione da $\mathcal{R}$ se
+    $$
+        (x, y) \in \mathcal{R}
+    $$
+    e, in tal caso, si scrive $x \mathcal{R} y$.
+\end{definition}
+\begin{definition}[relazione d'ordine parziale]
+    Sia $A$ un insieme e sia $\leq \subseteq A \times A$ una relazione. Diremo che $\leq$ è una relazione d'ordine se
+    \begin{itemize}
+        \item $x \leq x \, \forall x \in A$ (proprietà riflessiva);
+        \item $x \leq y \wedge y \leq x \implies x = y$ (proprietà antisimmetrica);
+        \item $x \leq y \wedge y \leq z \implies x \leq z$ (proprietà transitiva).
+    \end{itemize}
+\end{definition}
+L'esempio più semplice di relazione d'ordine è il $\leq$ che abbiamo su $\mathbb{Q}$, tuttavia non è una relazione d'ordine totale, ovvero soddisfa una quarta proprietà (di totalità) secondo cui $\forall x, y \in A, x \leq y \vee y \leq x$.
+\begin{definition}[insieme parzialmente ordinato]
+    Un coppia $(A, \leq)$ si dice insieme parzialmente ordinato se $\leq$ è una relazione d'ordine parziale definita su $A$.
+\end{definition}
+\begin{definition}[catena]
+    Sia $(A, \leq)$ un insieme parzialmente ordinato, diremo che $C \in \mathcal{P}(A)$ è una catena se è totalmente ordinato dalla relazione d'ordine.
+\end{definition}
+\begin{definition}[elemento massimale]
+    Sia $(A, \leq)$ un insieme parzialmente ordinato, diremo che $x \in A$ è un elemento massimale se $\not\exists y \in A: y > x$.
+\end{definition}
