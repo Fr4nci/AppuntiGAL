@@ -6,3 +6,6 @@ main.toc
 main.out
 main.log
 main.synctex(busy).gz
+capitoli/*.aux
+capitoli/*.fdb_latexmk
+capitoli/*.fls

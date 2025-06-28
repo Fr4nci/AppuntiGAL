@@ -1,0 +1,78 @@
+\chapter{Soluzioni agli esercizi}
+
+In questo capitolo sono riportate le soluzioni agli esercizi proposti nei vari capitoli del libro. E' chiaro che ci possano essere dei modi alternativi per risolvere gli esercizi, ma le soluzioni che propongo qua sono quelle che mi sono sembrate più semplici e dirette.
+
+\section{Spazi vettoriali}
+\subsection*{Esercizio \ref{ex:1.1}}
+Per quanto riguarda la dimostrazione che il vettore nullo è unico, possiamo procedere per assurdo: negando la tesi, si ha che esistono due elementi distinti $\underline{0}, \underline{0}' \in V$ tali che
+    $$
+    \forall \underline{v} \in V, \underline{0} + \underline{v} = \underline{v} + \underline{0} = \underline{v} = \underline{0}' + \underline{v} = \underline{v} + \underline{0}'.
+    $$
+    Ma, osservando che queste due relazioni devono valere per ogni $\underline{v}$, si ha che
+    \begin{align*}
+\underline{0}' &= \underline{0}' + \underline{0} & \text{(perché \underline{0} è l'elemento neutro)} \\
+&= \underline{0} + \underline{0}' & \text{(perché \underline{0}' è un elemento neutro rispetto a $+$)} \\
+&= \underline{0} & \text{(perché \underline{0} è un elemento neutro rispetto a $+$)}.
+\end{align*}
+Ma questo è una contraddizione, in quanto abbiamo assunto che $\underline{0}$ e $\underline{0}'$ fossero distinti. Segue la tesi. \\
+Per quanto riguarda la dimostrazione che $\forall \underline{v} \in V$ il vettore nullo è $0 \cdot \underline{v}$, si osserva che
+\begin{align*}
+    0_\mathbb{K} \cdot \underline{v} = (0_\mathbb{K} +_{\mathbb{K}} 0_\mathbb{K}) \cdot \underline{v} = 0_{\mathbb{K}} \cdot \underline{v} + 0_\mathbb{K} \cdot \underline{v}, 
+    \end{align*}
+dove si è usato il fatto che $0_\mathbb{K} = 0_\mathbb{K} +_{\mathbb{K}} 0_\mathbb{K}$ (essendo l'elemento neutro rispetto all'operazione $+_\mathbb{K}$ definita sul campo $\mathbb{K}$) e la proprietà distributiva di cui gode $\cdot$ rispetto a $+_\mathbb{K}$. A questo punto, sappiamo che $\forall \underline{v} \in V, \exists (-\underline{v}) \in V$ tale che $\underline{v} + (-\underline{v}) = (-\underline{v}) + \underline{v} = \underline{0}$, dunque sappiamo che esiste un elemento inverso per $0_{\mathbb{K}} \cdot \underline{v}$ che possiamo aggiungere a destra di ogni membro\footnote{esplicito questa cosa di aggiungere a sinistra perché, a priori, queste dimostrazioni si potrebbero fare anche su spazi dove non è garantita la proprietà commutativa della somma, ottenendo dei risultati simili, ma in questo caso non sarebbe necessario. La faccio per pura pedanteria e perché alcune di queste dimostrazioni potrebbero esseri riviste a Teoria dei Gruppi}
+    $$
+    0_\mathbb{K} \cdot \underline{v} + (-0_\mathbb{K} \cdot \underline{v}) = 0_\mathbb{K} \cdot \underline{v} + 0_\mathbb{K} \cdot \underline{v} + (-0_\mathbb{K} \cdot \underline{v}).
+    $$
+Ma, essendo $0_\mathbb{K} \cdot \underline{v} + (-0_\mathbb{K} \cdot \underline{v}) = \underline{0}$, si ha che
+    $$
+    \underline{0} = 0_\mathbb{K} \cdot \underline{v} + \underline{0} = 0_\mathbb{K} \cdot \underline{v},
+    $$
+dove si è usato il fatto che $\underline{0}$ è l'elemento neutro rispetto all'operazione $+$ definita su $V$. Segue la tesi. \\
+Per quanto riguarda l'ultima proposizione da mostrare abbiamo, per quanto visto nella proposizione \ref{prop:0v_equal_0}, che
+$$
+    \underline{0} = 0_\mathbb{K} \cdot \underline{v} = (1_\mathbb{K} +_\mathbb{K} (-1_\mathbb{K})) \cdot \underline{v} = \underline{v} + (-1_\mathbb{K}) \cdot \underline{v},
+$$
+dove si è usata la proprietà distributiva di cui gode l'operazione $\cdot$ rispetto all'operazione $+_\mathbb{K}$. A questo punto, sappiamo che $\forall \underline{w} \in V, \exists (-\underline{w}) \in V$ tale che $\underline{w} + (-\underline{w}) = (-\underline{w}) + \underline{w} = \underline{0}$, dunque sappiamo che esiste un elemento inverso per $\underline{v}$ che denoteremo sempre con $(-\underline{v})$ e che possiamo aggiungere a sinistra di ogni membro
+$$
+    (- \underline{v}) + \underline{0} = (-\underline{v}) + \underline{v} + (-1_\mathbb{K}) \cdot \underline{v} \implies (-\underline{v}) = \underline{0} + (-1_\mathbb{K}) \cdot \underline{v} = (-1_\mathbb{K}) \cdot \underline{v},
+$$
+dove abbiamo sempre usato il fatto che $\underline{0}$ è l'elemento neutro rispetto all'operazione $+$ definita su $V$. Segue la tesi
+
+\subsection*{Esercizio \ref{ex:1.2}}
+Per quanto riguarda la dimostrazione che $\text{Span}(\underline{v_1}, \ldots, \underline{v_n})$ è un sottospazio vettoriale, osserviamo che possiamo usare la proposizione \ref{prop:ssp_vett_iff}, dunque è sufficiente mostrare che $\forall \underline{v}, \underline{w} \in V$ e $\forall \alpha \in \mathbb{K}$ valgono le implicazioni $\underline{v}, \underline{w} \in W \implies \underline{v}+\underline{w} \in W$ e $\underline{v} \in V \implies \alpha \underline{v} \in V$ (dove ho sottointeso il prodotto per scalare). \\
+Per quanto riguarda la prima implicazione, è chiaro che se $\underline{v},\underline{w} \in V$, allora per definizione esistono $\alpha_1, \ldots, \alpha_n, \beta_1, \ldots, \beta_n \in \mathbb{K}$ tali che $\underline{v} = \alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n}$ e $\underline{w} = \beta_1 \underline{v_1} + \ldots + \beta_n \underline{v_n}$, dunque se sommiamo i due vettori otteniamo che
+\begin{align*}
+    &\underline{v} + \underline{w} = (\alpha_1 +_\mathbb{K} \beta_1) \underline{v_1} + \ldots + (\alpha_n +_\mathbb{K} \beta_n) \underline{v_n} \implies \exists \gamma_1 = \alpha_1 + \beta_1, \ldots, \gamma_n = \alpha_n + \beta_n \in \mathbb{K} \text{ tali che } \\
+    &\underline{v} + \underline{w} = \gamma_1 \underline{v_1} + \ldots + \gamma_n \underline{v_n} \implies \underline{v} + \underline{w} \in W.
+\end{align*}
+Per quanto riguarda la seconda implicazione, è chiaro che se $\underline{v} \in V$, allora per definizione esistono $\alpha_1, \ldots, \alpha_n \in \mathbb{K}$ tali che $\underline{v} = \alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n}$, dunque
+\begin{align*}
+    &\alpha \underline{v} = \alpha (\alpha_1 \underline{v_1} +_\mathbb{K} \ldots +_\mathbb{K} \alpha_n \underline{v_n}) = (\alpha \alpha_1) \underline{v_1} + \ldots + (\alpha \alpha_n) \underline{v_n} \implies \exists \beta_1 = \alpha \alpha_1, \ldots, \beta_n = \alpha \alpha_n \in \mathbb{K} \\
+    &\text{ tali che } \alpha \underline{v} = \beta_1 \underline{v_1} + \ldots + \beta_n \underline{v_n} \implies \alpha \underline{v} \in W.
+\end{align*}
+Si osservi che in entrambe le implicazioni abbiamo usato il fatto che le operazioni $+$ e $\cdot$ godessero delle proprietà distributive rispetto a $+_{\mathbb{K}}$. Segue la tesi. \\
+Per quanto riguarda la dimostrazione che $\text{Span}(\underline{v_1}, \ldots, \underline{v_n})$ è il più piccolo sottospazio vettoriale contenente $\{\underline{v_1}, \ldots, \underline{v_n}\}$, osserviamo che, per definizione di spazio vettoriale, ogni sottospazio vettoriale $W$ di $V$ che contiene gli elementi $\underline{v_1}, \ldots, \underline{v_n}$, contiene anche le combinazioni lineari di questi elementi, ovvero contiene $\text{Span}(\underline{v_1}, \ldots, \underline{v_n})$. Segue la tesi.
+\subsection*{Esercizio \ref{ex:1.3}}
+Per quanto riguarda la dimostrazione che $\text{Span}(A)$ è un sottospazio vettoriale, osserviamo che possiamo sempre usare la proposizione \ref{prop:ssp_vett_iff}, dunque è sufficiente mostrare che valgono le due implicazioni come fatto nell'esercizio precedente. \\
+Osserviamo che preso $\underline{v} \in \text{Span}(A)$ allora sappiamo che $\exists \underline{v_1}, \ldots, \underline{v_n} \in A : \exists \alpha_1, \ldots, \alpha_n \in \mathbb{K} : \underline{v} = \alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n}$ e, similmente, se $\underline{w} \in \text{Span}(A)$ allora $\exists \underline{w_1}, \ldots, \underline{w_m} \in A : \exists \beta_1, \ldots, \beta_m \in \mathbb{K}$; dunque sommandoli insieme
+\begin{align*}
+    &\underline{v} + \underline{w} = (\sum_{i=1}^n \alpha_i \underline{v_i}) + (\sum_{i=1}^m \beta_i \underline{w_i}) = \alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n} + \beta_1 \underline{w_1} + \ldots + \beta_m \underline{w_m} \implies \\
+    &\exists \underline{v_1}, \ldots, \underline{v_n}, \underline{w_1}, \ldots, \underline{w_m} \in A : \exists \alpha_1, \ldots, \alpha_n, \beta_1, \ldots, \beta_m \in \mathbb{K} : \underline{v} = \sum_{i=1}^n \alpha_i \underline{v_i} + \sum_{i=1}^n \beta_i \underline{w_i} \implies \\
+    &\implies \underline{v} + \underline{w} \in \text{Span}(A).
+\end{align*}
+Mostriamo la seconda implicazione: come prima, se $\underline{v} \in \text{Span}(A)$ allora $\exists \underline{v_1}, \ldots, \underline{v_n} \in A : \exists \alpha_1, \ldots, \alpha_n \in \mathbb{K} : \underline{v} = \alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n}$, dunque preso $\alpha \in \mathbb{K}$ abbiamo che
+\begin{align*}
+&\alpha \underline{v} = \alpha (\alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n}) = (\alpha \alpha_1) \underline{v_1} + \ldots + (\alpha \alpha_n) \underline{v_n} \implies \\
+&\implies \exists \underline{v_1}, \ldots, \underline{v_n} \in A : \exists \beta_1 = \alpha \alpha_1, \ldots, \beta_n = \alpha \alpha_n \in \mathbb{K} : \alpha \underline{v} = \sum_{i=1}^n \beta_i \underline{v_i} \implies \alpha \underline{v} \in \text{Span}(A).
+\end{align*}
+Si osservi che in entrambe le implicazioni abbiamo usato il fatto che le operazioni $+$ e $\cdot$ godano delle proprietà distributive rispetto a $+_\mathbb{K}$. Segue la tesi. \\
+Per quanto riguarda il dimostrare che se $A$ è un sottospazio vettoriale allora $A = \text{Span}(A)$, è sufficiente mostrare che $A \subseteq \text{Span}(A)$ (che è banale) e che $\text{Span}(A) \subseteq A$, da cui segue che $A = \text{Span}(A)$. \\
+$\boxed{\subseteq}$: preso $\underline{v} \in A$, allora per definizione di $\text{Span}(A)$ dobbiamo mostrare $\exists \underline{v_1}, \underline{v_2}, \ldots, \underline{v_n} \in A : \exists \alpha_1, \ldots, \alpha_n \in \mathbb{K} : \underline{v} = \alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n}$, ma possiamo direttamente prendere $\underline{v_1} = \underline{v}$ e $\alpha_1 = 1_\mathbb{K}$ (la definizione di $\text{Span}$ non ci vieta di farlo). Dunque $\underline{v} \in \text{Span}(A)$ e, per l'arbitrarietà di $\underline{v}$, segue che $A \subseteq \text{Span}(A)$. \\
+$\boxed{\supseteq}$: preso $\underline{v} \in \text{Span}(A)$, abbiamo per definizione di $\text{Span}(A)$ che $\exists \underline{v_1}, \ldots, \underline{v_n} \in A : \exists \alpha_1, \ldots, \alpha_n \in \mathbb{K} : \underline{v} = \alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n}$ ma $\alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n} \in A$ (essendo un sottospazio vettoriale), dunque $\underline{v} \in A$ e, per l'arbitrarietà di $\underline{v}$, segue che $\text{Span}(A) \subseteq A$. \\
+Segue allora che $A = \text{Span}(A)$, ovvero la tesi. \\
+Mostriamo adesso che se $A \subseteq \text{Span}(B) \implies \text{Span}(A) \subseteq \text{Span}(B)$: è chiaro che se $A \subseteq \text{Span}(B)$, allora $\forall \underline{v} \in A, \exists \underline{v_1}, \ldots, \underline{v_n} \in B : \exists \alpha_1, \ldots, \alpha_n \in \mathbb{K} : \underline{v} = \alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n}$, dunque se consideriamo un vettore $\underline{w} \in \text{Span(A)}$ abbiamo per definizione che $\exists \underline{v_1'}, \ldots, \underline{v_n'} \in A : \exists \alpha_1', \ldots, \alpha_n' \in \mathbb{K}$ tali che
+$$
+    \underline{w} = \alpha_1' \underline{v_1'} + \ldots + \alpha_n' \underline{v_n'}.
+$$
+Ma, per quanto detto sopra, si ha che $\forall \underline{v_i'}, \exists \underline{v^{(i)}_1}, \ldots, \underline{v^{(i)}_m} \in A : \exists \beta^{(i)}_1, \ldots, \beta^{(i)}_n \in \mathbb{K} : \underline{v_i'} = \beta^{(i)}_1 \underline{v^{(i)}_1} + \ldots + \beta^{(i)}_n \underline{v^{(i)}_n}$, dunque sostituendo nella definizione di $\underline{w}$ si ottiene una combinazione lineare di vettori di $B$, dunque $\underline{w} \in \text{Span}(B)$. Segue la tesi. \\
+Per quanto riguarda l'ultima proposizione da mostrare, è sufficiente ricondursi a mostrare che se $A \subseteq B \implies A \subseteq \text{Span}(B)$ e, per quanto visto nella proposizione precedente, ciò implica che $\text{Span}(A) \subseteq \text{Span}(B)$. Ma è chiaro che $B \subseteq \text{Span}(B)$, dunque $A \subseteq B \subseteq \text{Span}(B) \implies A \subseteq \text{Span}(B) \implies \text{Span}(A) \subseteq \text{Span}(B)$.

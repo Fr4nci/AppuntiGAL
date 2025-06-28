@@ -44,7 +44,7 @@
 	\vfill
 	\begin{figure}[H]
 		\centering
-		%\includegraphics[scale=0.125]{immagini/grey_burningship.png}
+		\hfill* \includegraphics[width=0.65\textwidth]{immagini/dejong.png} \hfill*
 	\end{figure}
     	%\begin{tikzpicture}
 	% Definisco lo stile dei vettori
@@ -119,18 +119,26 @@
 	Riporto all'inizio del libro le notazioni adottate all'interno di questo documento:
 	\begin{itemize}[label=\hspace{-0.5em}]
 		\item $\underline{v}$ vettore
-		\item $||\cdot||, |\cdot|$ norma
+		\item $\underline{0}$ vettore nullo
+		\item $\times$ prodotto cartesiano
+		\item $\oplus$ somma diretta di sottospazi vettoriali
+		\item $+_V$ somma vettoriale su $V$ (il pedice è omesso solitamente)
+		\item $\cdot_V$ prodotto per scalare su $V$ (il pedice è omesso solitamente)
+		\item $\mathbb{K}$ campo generico
+		\item $+_{\mathbb{K}}$ operazione di "somma" sul campo $\mathbb{K}$
+		\item $0_\mathbb{K}$ elemento neutro rispetto a $+_\mathbb{K}$
+		\item $\cdot_{\mathbb{K}}$ operazione di "prodotto" sul campo $\mathbb{K}$
+		\item $\mathds{1}_\mathbb{K}$ elemento neutro rispetto a $\cdot_\mathbb{K}$
+		\item $\varprod\limits_i$ prodotto cartesiano multiplo
+		\item $\sum\limits_i$ sommatoria
 		\item $\innerprod{\cdot}{\cdot}$ prodotto scalare/hermitiano
+		\item $||\cdot||, |\cdot|$ norma
 		\item $a \times b, a \wedge b$ prodotto vettoriale
-		\item $|| A ||$ norma
-		\item $\sum_{n}$ gruppo (rispetto all'operazione di composizione di funzioni) delle permutazioni $\sigma: \{1, \ldots n \} \to \{1, \ldots n \}$ bigettive.
+		\item $(\iota_+, \iota_-, \iota_0)$ segnatura di un prodotto scalare/hermitiano
 		\item $\iota_+$ segnatura positiva di un prodotto scalare/hermitiano
 		\item $\iota_-$ segnatura negativa di un prodotto scalare/hermitiano
 		\item $\iota_0$ segnatura nulla di un prodotto scalare/hermitiano
-		\item $(\iota_+, \iota_-, \iota_0)$ segnatura di un prodotto scalare/hermitiano
-		\item $I(x_0, \delta) = (x_0 - \delta, x_0 + \delta) = B(x_0, \delta) \subset \mathbb{R}$ con $x_0 \in \mathbb{R}, \delta > 0$ intervallo centrato in $x_0$ di ampiezza $2\delta$
-		\item $\varprod\limits_i$ prodotto cartesiano multiplo
-		\item $\sum\limits_i$ sommatoria
+		\item $\sum_{n}$ gruppo (rispetto all'operazione di composizione di funzioni) delle permutazioni $\sigma: \{1, \ldots n \} \to \{1, \ldots n \}$ bigettive.
 		\item $\sim$ relazione d'equivalenza
 		\item $\sfrac{X}{\sim}$ insieme quoziente di $X$ rispetto alla relazione d'equivalenza
  
@@ -138,6 +146,7 @@
 	
 	\newpage
 	\include{capitoli/spazi_vettoriali}
+	\include{capitoli/soluzioni_esercizi}
 	\clearpage
 	\cleardoublepage
 	\pagestyle{plain}
@@ -166,6 +175,7 @@
 		% Personalizzazione della linea orizzontale
 		\renewcommand{\headrulewidth}{0.4pt}
 		\renewcommand{\footrulewidth}{0pt}
+		\include{capitoli/logica}
 	\end{appendices}
 	\cleardoublepage
 	\addcontentsline{toc}{chapter}{Bibliografia}
