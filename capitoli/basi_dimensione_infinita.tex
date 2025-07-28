@@ -34,7 +34,8 @@ Per capire bene che cosa questo lemma rappresenta, dobbiamo chiaramente andare a
         \item $x \leq y \wedge y \leq z \implies x \leq z$ (proprietà transitiva).
     \end{itemize}
 \end{definition}
-L'esempio più semplice di relazione d'ordine è il $\leq$ che abbiamo su $\mathbb{Q}$, tuttavia non è una relazione d'ordine totale, ovvero soddisfa una quarta proprietà (di totalità) secondo cui $\forall x, y \in A, x \leq y \vee y \leq x$.
+L'esempio più semplice di relazione d'ordine è il $\leq$ che abbiamo su $\mathbb{Q}$, tuttavia è una relazione d'ordine totale, ovvero soddisfa una quarta proprietà (di totalità) secondo cui $\forall x, y \in A, x \leq y \vee y \leq x$. Una relazione d'ordine parziale non necessariamente è definita per tutti gli elementi, ovvero presi $x, y \in A$ non è detto che risulti sempre che $x \leq y$ oppure $y \leq x$: un esempio di relazione d'ordine parziale ma non totale è la relazione $\subseteq$ che si può
+introdurre studiando i sottoinsiemi di un insime $X$: presi due elementi $x, y \in \mathcal{P}(X)$ \textbf{non} è detto che $x \subseteq y$ oppure $y \subseteq x$ (si pensi a $X = \{ 0, 1, 2 \}$ e ai sottoinsiemi $\{ 1 \}$ e $\{ 0 \}$).
 \begin{definition}[insieme parzialmente ordinato]
     Un coppia $(A, \leq)$ si dice insieme parzialmente ordinato se $\leq$ è una relazione d'ordine parziale definita su $A$.
 \end{definition}

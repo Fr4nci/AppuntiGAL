@@ -211,12 +211,14 @@ Possiamo generalizzare la definizione di $\text{Span}$ di vettori ad insiemi di 
     $$
         A \subseteq \text{Span}(B) \implies \text{Span}(A) \subseteq \text{Span}(B).
     $$
+    \label{prop:incl_sub}
 \end{prop}
 \begin{prop}
     Sia $(V, \mathbb{K}, +, \cdot)$ uno spazio vettoriale sul campo $\mathbb{K}$. Siano $A, B \subseteq V$ insiemi, allora
     $$
         A \subseteq B \implies \text{Span}(A) \subseteq \text{Span}(B).
     $$
+    \label{prop:incl_span}
 \end{prop}
 \begin{exercise}
     \label{ex:1.3} Mostrare le quattro proposizioni qua sopra.
@@ -232,6 +234,7 @@ Un concetto fondamentale che ci aiuterà a capire meglio gli spazi vettoriali è
 \end{definition}
 Perché siamo interessati a lavorare con i vettori linearmente indipendenti? La motivazione è semplice: le coordinate rispetto a tali vettori sono univoche, come mostriamo adesso
 \begin{prop}
+    \label{prop:uniqueness_coordinates}
     Sia $(V, \mathbb{K}, +, \cdot)$ uno spazio vettoriale sul campo $\mathbb{K}$ e siano $\underline{v_1}, \ldots, \underline{v_n}$ dei vettori linearmente indipedenti, allora se si ha che
     $$
         \alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n} = \alpha_1' \underline{v_1} + \ldots + \alpha_n' \underline{v_n} \implies \forall i \in \{ 1,\ldots, n \}, \, \alpha_i = \alpha_i'
@@ -252,5 +255,321 @@ Perché siamo interessati a lavorare con i vettori linearmente indipendenti? La 
     Essere vettori linearmente indipedenti \textbf{non} è una proprietà dei singoli vettori, ma una proprietà che hanno i vettori come insieme. Consiglio di guardare il prossimo esempio per chiarire meglio questo concetto
 \end{remark}
 \begin{example}[$\mathbb{R}^3$ "chiarificatore" di tutto il creato]
-    Fissiamo $V = \mathbb{R}^3$ e consideriamo i vettori $\underline{v_1}$
+    Fissiamo $V = \mathbb{R}^3$ e consideriamo i vettori $\underline{v_1} = \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}, \underline{v_2} = \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}$ e $\underline{v_3} = \begin{pmatrix} 1 \\ 1 \\ 0 \end{pmatrix}$: si osserva che i vettori $\underline{v_1}$ e $\underline{v_2}$ sono linearmente indipendenti siccome l'equazione
+    $$
+        \alpha_1 \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix} + \alpha_2 \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix} \iff \begin{cases} \alpha_1 + 0 = 0 \\ 0 + \alpha_2 = 0 \\ 0 + 0 = 0 \end{cases},
+    $$
+    dove abbiamo riscritto l'equazione trovata nel sistema di equazioni equivalente, da cui si vede che l'unica soluzione è $\alpha_1 = \alpha_2 = 0$. Similmente possiamo procedere osservando che $\underline{v_1}$ e $\underline{v_3}$ ha come unica soluzione $\alpha_1 = \alpha_3 = 0$: questo ci dice che $\underline{v_1}, \underline{v_2}$ sono linearmenti indipendenti fra loro, così come $\underline{v_1}$ e $\underline{v_3}$. Studiando anche $\underline{v_2}$ e $\underline{v_3}$ si osserva che anche questi sono linearmente indipendenti; deducendo così che i vettori $\underline{v_1}, \underline{v_2}, \underline{v_3}$
+    sono \emph{mutualmente} linearmente indipendenti (ovvero presi a due a due sono linearmente indipendenti). Tuttavia studiando la lineare indipendenza di tutti e tre i vettori assieme
+    $$
+        \alpha_1 \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix} + \alpha_2 \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix} + \alpha_3 \begin{pmatrix} 1 \\ 1 \\ 0 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix} \iff \begin{cases} \alpha_1 + 0 + \alpha_3 = 0 \\ 0 + \alpha_2 + \alpha_3 = 0 \\ 0 + 0 + 0 = 0 \end{cases},
+    $$
+    da cui si consegue che
+    $$
+    \begin{cases}
+        \alpha_3 = - \alpha_1 \\
+        \alpha_2 = \alpha_1
+    \end{cases}
+    $$
+    quindi se indichiamo l'incognita (ovvero i coefficienti $\alpha_1, \alpha_2, \alpha_3$) in maniera vettoriale, abbiamo che i vettori appartenenti allo Span di $\begin{pmatrix} 1 \\ 1 \\ - 1 \end{pmatrix}$ risolvono questa equazione (si parla di Span siccome anche $\begin{pmatrix} \alpha \\ \alpha \\ -\alpha \end{pmatrix}$ risolve l'equazione: inserite nell'equazione questi coefficienti se non ci credete!).
 \end{example}
+\begin{remark}
+    Un vettore $\underline{v} \in V$ è linearmente indipendente se e solo se $\underline{v} \neq \underline{0}$ siccome la relazione
+    $$
+        \alpha_1 \underline{0} = \underline{0}
+    $$
+    è una relazione non banale che è vera $\forall \alpha_1 \in \mathbb{K}$. Se $\underline{v} \neq \underline{0}$ allora è chiaro che
+    $$
+        \alpha \underline{v} = \underline{0} \implies \alpha = 0
+    $$
+    siccome se procediamo per assurdo supponendo che $\alpha \neq 0$ e $\alpha \underline{v} = \underline{0}$, allora possiamo vedere che $\underline{v} = 1_\mathbb{K} \underline{v} = (\alpha^{-1} \alpha) \underline{v} = \alpha^{-1} (\alpha \underline{v}) = \alpha^{-1} \underline{0} = \underline{0}$, che è un assurdo con l'ipotesi che $\underline{v} \neq \underline{0}$.
+\end{remark}
+Come fatto nel caso dell'insieme delle combinazioni lineari di un insieme, possiamo andare a parlare di insiemi linearmente indipendenti.
+\begin{definition}[insieme linearmente indipendente]
+    Sia $(V, \mathbb{K}, +, \cdot)$ uno spazio vettoriale sul campo $\mathbb{K}$ e sia $A \subseteq V$. Diremo che $A$ è un insieme linearmente indipendente se presi $\underline{v_1}, \ldots, \underline{v_n} \in A$, allora $\underline{v_1}, \ldots, \underline{v_n}$ sono linearmente indipendenti.
+    Diremo, invece, che $A$ è linearmente dipendente se $\exists \underline{v_1}, \ldots, \underline{v_n} \in A$ linearmente dipendenti.
+\end{definition}
+\begin{remark}
+    Questa definizione è estendibile anche a insiemi di vettori infiniti, oggetto che tratteremo brevemente nel momento in cui parleremo degli spazi a dimensione infinita.
+\end{remark}
+\section{Base di uno spazio vettoriale}
+
+\begin{definition}[insieme di generatori]
+    Sia $(V, \mathbb{K}, +, \cdot)$ uno spazio vettoriale sul campo $\mathbb{K}$, diremo che un insieme di vettori $\underline{v_1}, \ldots, \underline{v_n} \in V$ è un insieme di generatori se $\forall \underline{v} \in V \exists \alpha_1, \ldots, \alpha_n \in \mathbb{K}$ tali che
+    $$
+        \underline{v} = \alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n},
+    $$
+    oppure equivalentemente diremo che $\text{Span}(\{ \underline{v_1}, \ldots, \underline{v_n} \}) = V$.
+\end{definition}
+\begin{definition}[spazio vettoriale finatamente generato]
+    Sia $(V, \mathbb{K}, +, \cdot)$ uno spazio vettoriale sul campo $\mathbb{K}$, diremo che questo è finatamente generato se contiene un numero finito di generatori. 
+\end{definition}
+Come fatto prima possiamo estendere la nozione appena data ad insiemi infiniti di vettori.
+\begin{definition}
+    Sia $(V, \mathbb{K}, +, \cdot)$ uno spazio vettoriale sul campo $\mathbb{K}$, diremo che $A \subseteq V$ è un insieme di generatori di $V$ se $\text{Span}(A)=V$.
+\end{definition}
+Possiamo adesso parlare di basi di uno spazio vettoriale, che adesso andiamo a definire e, successivamente, andremo a mostrare che ogni spazio vettoriale finatamente generato possiede una base. Tutte le nozioni che abbiamo dato finora servono per poter arrivare a parlare di basi: queste ultime sono in grado di agevolare notevolmente lo studio degli spazi vettoriali
+siccome, fissandone una, vedremo che è sufficiente lavorare sulle coordinate dei vettori per trattare gli spazi vettoriali.
+\begin{definition}[Base di uno spazio vettoriale]
+    Sia $(V, \mathbb{K}, +, \cdot)$ uno spazio vettoriale sul campo $\mathbb{K}$, diremo che $\mathcal{B} \subseteq V$ è una base di $V$ se
+    \begin{enumerate}[label=\protect\circled{\arabic*}]
+        \item $\mathcal{B}$ è un insieme di generatori di $V$;
+        \item $\mathcal{B}$ è linearmente indipendente.
+    \end{enumerate}
+\end{definition}
+\begin{example}
+    Di notevole importanza sono le basi canoniche in $\mathbb{R}^n$ e $\mathbb{C}^n$ della forma
+    $$
+        \underline{e_1} = \begin{pmatrix} 1 \\ 0 \\ \vdots \\ 0 \end{pmatrix}, \, \, \underline{e_2} = \begin{pmatrix} 0 \\ 1 \\ \vdots \\ 0 \end{pmatrix}, \, \, \ldots, \, \, \underline{e_n} = \begin{pmatrix} 0 \\ 0 \\ \vdots \\ 1 \end{pmatrix}
+    $$
+\end{example}
+\begin{exercise}
+    Mostrare che $V = \mathbb{R}[x]$ non può avere una base finita (dove $\mathbb{R}[x]$ è lo spazio vettoriale dei polinomi a coefficienti reali dove la somma è definita come $(a+b)(x) = a(x) + b(x)$ e $(\alpha \cdot a)(x) = \alpha a(x)$)  
+    \label{ex:1.4}
+\end{exercise}
+
+Abbiamo visto nella proposizione \ref{prop:uniqueness_coordinates} che le coordinate rispetto a dei vettori linearmente indipendenti sono univoche, quindi rispetto ad una base possiamo dire che ogni vettore appartenente allo spazio vettoriale studiato
+ha delle coordinate univoche. Osserviamo nel dettaglio questo fatto: considerando $(V, \mathbb{K}, +, \cdot)$ e presa $\mathcal{B} = \{ \underline{v_1}, \ldots, \underline{v_n} \}$ base di $V$ abbiamo, per quanto detto, che $\exists! \alpha_1, \ldots, \alpha_n \in \mathbb{K} : \underline{v} = \alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n}$ quindi ad ogni vettore $\underline{v}$ possiamo assegnare \textbf{biunivocamente} il vettore $\begin{pmatrix} \alpha_1 \\ \alpha_2 \\ \vdots \\ \alpha_n
+\end{pmatrix} = [\underline{v}]_{\mathcal{B}} \in \mathbb{K}^n$ (si è introdotta la notazione $[\underline{v}]_{\mathcal{B}}$ per indicare il vettore contenente le coordinate) e notiamo che vale la seguente proposizione
+\begin{prop}
+    Le coordinate rispetto ad una base $\mathcal{B}$ di uno spazio vettoriale $V$ sul campo $\mathbb{K}$ si comportano "bene" rispetto alla legge interne ed esterna, ovvero
+    \begin{align*}
+        &\forall \underline{v}, \underline{w} \in V, [\underline{v} + \underline{w}]_{\mathcal{B}} = [\underline{v}]_\mathcal{B} + [\underline{w}]_\mathcal{B} \\
+        &\forall \alpha \in \mathbb{K}, \forall \underline{v} \in V, [\alpha \underline{v}]_{\mathcal{B}} = \alpha [\underline{v}]_{\mathcal{B}}
+    \end{align*}
+\end{prop}
+\begin{proof}
+    Siano $\underline{v} = x_1 \underline{v_1} + \ldots + x_n \underline{v_n}$ e $\underline{w} = y_1 \underline{v_1} + \ldots + y_n \underline{v_n}$ e osserviamo che
+    $$
+        \underline{v + w} = (x_1 + y_1) \underline{v_1} + \ldots + (x_n + y_n) \underline{v_n} \implies [\underline{v} + \underline{w}]_\mathcal{B} = \begin{pmatrix}
+            x_1 + y_1 \\
+            x_2 + y_2 \\
+            \vdots \\
+            x_n + y_n
+        \end{pmatrix} = \begin{pmatrix}
+            x_1 \\
+            x_2 \\
+            \vdots \\
+            x_n
+        \end{pmatrix} + \begin{pmatrix}
+            y_1 \\
+            y_2 \\
+            \vdots \\
+            y_n
+        \end{pmatrix} = [\underline{v}]_\mathcal{B} + [\underline{w}]_\mathcal{B}.
+    $$
+    Preso $\alpha \in \mathbb{K}$ allora osserviamo che $\alpha \underline{v} = \alpha x_1 \underline{e_1} + \ldots + \alpha x_n \underline{e_n} \implies [\alpha \underline{v}]_\mathcal{B} = \begin{pmatrix}
+        \alpha x_1 \\
+        \alpha x_2 \\
+        \vdots \\
+        \alpha x_n
+    \end{pmatrix} = \alpha \begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{pmatrix} = \alpha [\underline{v}]_\mathcal{B}$
+\end{proof}
+\begin{definition}[isomorfismo di spazi vettoriali]
+    Presi $(V, \mathbb{K}, +_V, \cdot_V)$ e $(W, \mathbb{K}, +_W, \cdot_W)$ spazi vettoriali sul campo $\mathbb{K}$, chiamiamo isomorfismo di spazio vettoriale $V, W$ una corrispondenza biunivoca $f: V \to W$ che sussiste fra i due spazi vettoriali che rispetta la legge di composizione interna ed esterna, ovvero
+    \begin{align*}
+        &\forall \underline{v}, \underline{w} \in V, f(\underline{v} +_V \underline{w}) = f(\underline{v}) +_W f(\underline{w}) \\
+        &\forall \alpha \in \mathbb{K}, \forall \underline{v} \in V, f(\alpha \cdot_V \underline{v}) = \alpha \cdot_W f(\underline{v}).
+    \end{align*}
+\end{definition}
+Con la proposizione precedente, possiamo affermare quindi che fissata una base $\mathcal{B}$ di $V$ esiste un isomorfismo di spazi vettoriali fra $V$ e $\mathbb{K}^n$. \\
+Come accennato, adesso mostreremo che per gli spazi vettoriali finatamente generati è sempre possibile trovare una base.
+\begin{theorem}[Esistenza di una base]
+    \label{thm:base} Ogni spazio vettoriale finitamente generato ha una base
+\end{theorem}
+E' necessario enunciare e dimostrare qualche risultato preparatorio: per snellire gli enunciati, assumeremo sempre di essere in un $\mathbb{K}-$spazio vettoriale $(V, \mathbb{K}, +, \cdot)$ finatamente generato.
+\begin{definition}[insieme linearmente indipendente massimale]
+    Sia $A \subset V$, diremo che $A$ è linearmente indipendente massimale se $\forall B \subseteq V$ con $A \subset B \implies B$ è linearmente dipendente.
+\end{definition}
+\begin{lemma}
+    $A \subseteq V$ è una base $\iff$ $A$ è un insieme linearmente massimale
+\end{lemma}
+\begin{proof} \hspace{1cm} \\
+    $\boxed{\Rightarrow}$: è chiaro che se $A$ è base allora preso $\underline{v} \in V = \text{Span}(A)$ (per definizione di base) ma $\underline{v} \not\in A$ allora sappiamo che $\exists! \alpha_1, \ldots, \alpha_n \in \mathbb{K} : \underline{v} = \alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n}$, ma allora
+    $$
+        \alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n} - \underline{v} = \underline{0},
+    $$
+    che si tratta di una relazione non banale dell'insieme $B = A \cup \{\underline{v} \}$, che pertanto è linearmente dipendente. Dall'arbitrarietà di $\underline{v}$ segue che ogni insieme $B$ tale che $A \subset B \subseteq V$ è linearmente dipendente, quindi $A$ è linearmente indipendente massimale. \\
+    $\boxed{\Leftarrow}$: supponiamo per assurdo che $A$ sia linearmente indipendente massimale ma non sia una base. In tal caso, siccome $A$ per ipotesi è linearmente indipendente, vuol dire che $\text{Span}(A) \neq V$, quindi $V \setminus \text{Span}(A) \neq \emptyset$: preso $\underline{v} \in V \setminus \text{Span}(A)$ allora se consideriamo l'insieme
+    $A \cup \{ \underline{v} \}$ si ha che dev'essere ancora linearmente indipendente, siccome altrimenti avrei una relazione non banale che mi porterebbe ad un assurdo: infatti, se studiamo l'equazione nel caso non banale
+    $$
+        \alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n} + \alpha \underline{v} = \underline{0}
+    $$
+    distinguiamo due possibili casi: \\
+    $\boxed{\alpha = 0}$: in tal caso
+    $$
+            \alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n} = \underline{0},
+    $$
+    ma ciò è un assurdo perché implicherebbe che $A$ è linearmente dipendente. \\
+    $\boxed{\alpha \neq 0}$: in tal caso
+    \begin{align*}
+        &\alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n} + \alpha \underline{v} = \underline{0} \iff \alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n} = - \alpha \underline{v} \iff \underline{v} = - \frac{\alpha_1}{\alpha} \underline{v_1} - \ldots - \frac{\alpha_n}{\alpha} \underline{v_n} \\
+        &\iff \underline{v} \in \text{Span}(\underline{v_1}, \ldots, \underline{v_n}).
+    \end{align*}
+    ma ciò è un assurdo siccome avevamo preso $\underline{v} \in V \setminus \text{Span}(A)$. \\
+    Segue allora che $A \cup \{ \underline{v} \}$ è ancora linearmente indipendente, quindi $A$ non era linearmente indipendente massimale, siccome abbiamo trovato un insieme $B = A \cup \{ \underline{v} \}$ tale che $A \subset B \subseteq V$ che è ancora linearmente indipendente.
+\end{proof}
+\begin{definition}[insieme di generatori minimale]
+    Sia $A \subseteq V$, diremo che $A$ è un insieme minimale di generatori se $\forall B \subseteq V$ con $B \subset A \implies \text{Span}(B) \neq V$.
+\end{definition}
+\begin{lemma}
+    $A$ è base $\iff$ $A$ è un insieme minimale di generatori
+    \label{lemma:min_generatori}
+\end{lemma}
+Per mostrare questo risultato avremo bisogno del seguente lemma
+\begin{lemma}
+    Se $\underline{v} \in A$ ma $\underline{v} \in \text{Span}(A) \setminus \{ \underline{v} \}$ (ovvero possiamo scrivere $\underline{v}$ come combinazione lineare di altri vettori di $A$ diversi da $\underline{v}$) allora
+    $$
+        \text{Span}(A) = \text{Span}(A \setminus \{ \underline{v} \})
+    $$
+\end{lemma}
+\begin{proof}
+    Come fatto per altre dimostrazioni, è suffiente mostrare che $\text{Span}(A) \subseteq \text{Span}(A \setminus \{\underline{v}\})$ e che $\text{Span}(A) \supseteq \text{Span}(A \setminus \underline{v})$. Ora l'inclusione $\boxed{\supseteq}$ è ovvia: è sufficiente usare la proposizione \ref{prop:incl_span} (lasciata per esercizio), osservando che $A \setminus \{ \underline{v} \} \subseteq A \implies \text{Span}(A \setminus \{ \underline{v} \}) \subseteq \text{Span}(A)$, mentre
+    per l'altra inclusione è sufficiente osservare che, per ipotesi, abbiamo che $\exists \underline{v_1}, \ldots, \underline{v_n} \in A : \exists \alpha_1, \ldots, \alpha_n \in \mathbb{K} : \underline{v} = \alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n}$, dunque preso $\underline{w} \in \text{Span}(A)$ abbiamo che $\exists w_1, \ldots, w_m \in A : \exists \beta_1, \ldots, \beta_m \in \mathbb{K} : \underline{w} = \beta_1 \underline{w_1} + \ldots + \beta_m \underline{w_m} + \beta \underline{v}$ (se $\underline{v}$ non è necessario per "generare" $\underline{w}$, si può chiaramente porre $\beta = 0$ nell'espressione qua di fianco, quindi la costruzione fatta per $\underline{w}$ rimane valida per ogni vettore in $\text{Span}(A)$). Ma allora
+    $$
+        \underline{w} = \beta_1 \underline{w_1} + \ldots + \beta_m \underline{w_m} + \beta \underline{v} = \beta_1 \underline{w_1} + \ldots + \beta_m \underline{w_m} + \beta (\alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n}) \in \text{Span}(A \setminus \{ v \}),
+    $$
+    e dall'arbitrarietà di $\underline{w} \in \text{Span}(A)$ segue che $\text{Span}(A) \subseteq \text{Span}(A \setminus \{ \underline{v} \})$
+\end{proof}
+\begin{proof}[Dimostrazione del lemma \ref{lemma:min_generatori}] \hspace{1cm} \\
+    $\boxed{\Leftarrow}$: per ipotesi abbiamo che $A$ è un insieme minimale di generatori, quindi è sufficiente mostrare che $A$ è linearmente indipendente: per fare questo procediamo per assurdo supponendo che $A$ non sia linearmente indipendente, pertanto sappiamo che $\exists \underline{v_1}, \ldots, \underline{v_n} \in A : \exists \alpha_1, \ldots, \alpha_n \in \mathbb{K}$ con $\alpha_1, \ldots, \alpha_n$ non tutti uguali a $0_\mathbb{K}$ tali che
+    $$
+        \alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n} = \underline{0} \implies \underline{v_n} = - \frac{\alpha_1}{\alpha_n} \underline{v_1} - \ldots - \frac{\alpha_{n-1}}{\alpha_n} \underline{v_{n-1}},
+    $$
+    dove abbiamo supposto, senza perdita di generalità\footnote{infatti è chiaro che ci deve essere un qualche vettore con coefficiente diverso da $0$ siccome stiamo supponendo che $A$ non sia linearmente indipendente}, che $\alpha_n \neq 0$. Ma allora abbiamo espresso $\underline{v_n} \in A$ in funzione di altri vettori di $A$, quindi usando il risultato del lemma precedente abbiamo che
+    $$
+        \text{Span}(A) = \text{Span}(A \setminus \{ v_n \}) \stackrel{\text{per ip.}}{=} V
+    $$
+    ma questo è un assurdo perché abbiamo trovato un insieme $B = A \setminus \{ v_n \} \subset A$ che genera tutto lo spazio vettoriale, quindi $A$ non è un insieme minimale di generatori e dunque otteniamo un assurdo. \\
+    $\boxed{\Rightarrow}$: dobbiamo mostrare che $A$ è un insieme minimale di generatori. Procedendo per assurdo, se neghiamo la definizione di insieme minimale di generatori abbiamo che $\exists B \subset A : \text{Span}(B) = V$, pertanto se consideriamo $\underline{v} \in A \setminus B$ abbiamo che $\underline{v} \in \text{Span}(B)$ (siccome $B$ insieme di generatori), quindi abbiamo che $\exists \underline{v_1}, \ldots, \underline{v_n} \in B : \exists \alpha_1, \ldots, \alpha_n \in \mathbb{K} : \underline{v} = \alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n}$, pertanto
+    $$
+        \underline{v} = \alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n} \implies \alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n} - \underline{v} = \underline{0}
+    $$
+    e questa si tratta di una relazione non banale di vettori appartenenti in $A \implies A$ non è linearmente indipendente, che rappresenta un assurdo!
+\end{proof}
+Siamo pronti per mostrare che ogni spazio vettoriale a dimensione finita possiede una base.
+\begin{proof}[Dimostrazione del teorema \ref{thm:base}]
+    Il caso banale della dimostrazione è chiaramente rappresentato da $V = \{ \underline{0} \}$. Supponendo che $V \neq \{ \underline{0} \}$, abbiamo che esiste $A = \{ v_1, \ldots, v_n \} \subseteq V$ tale che $\text{Span}(A) = V$. Consideriamo il seguente insieme
+    $$
+        \mathcal{M} = \{ B \subseteq A : B \text{ è linearmente indipendente }\},
+    $$
+    dove è chiaro che $\mathcal{M} \neq \emptyset$ siccome $A$ contiene sicuramente un vettore $\underline{v} \neq \underline{0}$ e chiaramente $\{ \underline{v} \}$ è un insieme linearmente indipendente. Consideriamo $B \in \mathcal{M}$ linearmente indipendente "massimale" (di fatto l'insieme in $\mathcal{M}$ con cardinalità massima) dentro $A$, ovvero preso $\underline{v'} \in A \setminus B$ abbiamo che $B \cup \{ \underline{v'} \}$ è linearmente dipendente. Mostriamo che $B$ genera lo spazio vettoriale: supponiamo, senza perdita di generalità\footnote{a meno di riarrangiare i vettori}, che $B = \{ \underline{v_1}, \ldots, \underline{v_k} \}$ con $k \leq n$ e 
+    facciamo vedere che tutti gli altri vettori in $A$ appartengono allo $\text{Span}(B)$, distinguendo due casi possibili che analizziamo separatamente. \\
+    $\boxed{k = n}$: in tal caso $B = A \implies \text{Span}(A) = \text{Span}(B) = V$. \\
+    $\boxed{k < n}$: in tal caso mostriamo che $\underline{v_i} \in \text{Span}(B)$, notando che se
+    \begin{itemize}
+        \item $i \leq k$: è ovvio;
+        \item $i > k$: sappiamo, per costruzione di $B$, che $\underline{v_1}, \ldots, \underline{v_k}$ è linearmente indipendente; mentre $\underline{v_1}, \ldots, \underline{v_k}, \underline{v_i}$ è linearmente dipendente, dunque $\exists \alpha_1, \ldots, \alpha_n, \alpha_i \in \mathbb{K}$ non tutti uguali a $0$ tali che
+        $$
+            \alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n} + \alpha_i \underline{v_i} = \underline{0} \iff \underline{\alpha_i} \underline{v_i} = - \alpha_1 \underline{v_1} - \ldots - \alpha_n \underline{v_n}.
+        $$
+        Osserviamo che si deve avere chiaramente che $\alpha_i \neq 0$: se così non fosse l'equazione risulterebbe
+        $$
+            \alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n} = \underline{0}
+        $$
+        ovvero una relazione non banale fra i vettori $\underline{v_1}, \ldots, \underline{v_n}$ che, per costruzione, sono linearmente indipendenti. Ne segue allora che
+        $$
+            \underline{v_i} = - \frac{\alpha_1}{\alpha_i} \underline{v_1} - \ldots - \frac{\alpha_n}{\alpha_i} \underline{v_n} \implies \underline{v_i} \in \text{Span}(\underline{v_1}, \ldots, \underline{v_n}),
+        $$
+        dunque $A \subseteq \text{Span}(B) \implies \text{Span}(A) \subseteq \text{Span}(B)$ (in virtù della proposizione \ref{prop:incl_sub}), dunque $\text{Span}(B) = V \implies B$ è una base.
+    \end{itemize}
+\end{proof}
+\begin{exercise}
+    \label{ex:1.5} Sia $A$ un insieme linearmente indipendente, mostrare che $\forall A' \subseteq A, A'$ è linearmente indipendente.
+\end{exercise}
+\begin{exercise}
+    \label{ex:1.6} Sia $A$ un insieme di generatori, allora $\forall A' \supseteq A, A'$ è insieme di generatori
+\end{exercise}
+Vogliamo adesso mostrare che due basi possiedono lo stesso numero di elementi, consentendoci quindi di caratterizzare la "finitezza" di uno spazio in base al numero di elementi che possiede una base\footnote{non è tanto diverso da come si procede a definire la cardinalità per insiemi finiti: preso un insieme $A$ diciamo che ha cardinalità $n$ se è possibile individuare una bigezione con $\mathbb{E}_n = \{ 1, \ldots, n \}$; in questo caso diremo che uno spazio ha dimensione $n$ se le sue basi hanno $n$ vettori.}
+\begin{theorem}
+    \label{thm:dim} Due basi $\mathcal{B}$ e $\mathcal{B'}$ hanno lo stesso numero di elementi
+\end{theorem}
+\begin{remark}
+    La dimostrazione proposta sotto è "valida" (con qualche piccolo riarrangiamento e prendendo per buono l'assioma della scelta, a cui si rimanda l'appendice B) anche per spazi vettoriali non finitamente generati, tuttavia la tesi è diversa: non si parla più di stesso numero di elementi, bensì diremo che le basi hanno la medesima cardinalità.
+\end{remark}
+Per effettuare questa dimostrazione abbiamo bisogno di qualche lemma preparatorio
+\begin{lemma}[algoritmo dello scambio]
+    Sia $A = \{ \underline{u_1}, \ldots, \underline{u_k} \}$ linearmente indipendente e sia $\underline{w} \in \text{Span}(A)$, dunque
+    $$
+        \underline{w} = \alpha_1 \underline{u_1} + \ldots + \alpha_n \underline{u_n},
+    $$
+    e, supponendo che $\alpha_n \neq 0$, poniamo l'insieme $A' = (A \setminus \{ \underline{u_n} \}) \cup \underline{w}$. Allora abbiamo che
+    \begin{enumerate}[label=\protect\circled{\arabic*}]
+        \item $A'$ è linearmente indipendente;
+        \item $\text{Span}(A) = \text{Span}(A')$.
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    Mostriamo la \circled{1}: per ipotesi abbiamo che
+    $$
+        \underline{w} = \alpha_1 \underline{u_1} + \ldots + \alpha_n \underline{u_n},
+    $$
+    dunque se studiamo l'equazione per l'indipendenza lineare fra i vettori $\underline{u_1}, \ldots, \underline{u_{n-1}}, \underline{w}$ abbiamo che
+    $$
+        \beta_1 \underline{u_1} + \ldots + \beta_{n-1} \underline{u_{n-1}} + \beta_n \underline{w} = \underline{0} \iff \beta_1 \underline{u_1} + \ldots + \beta_{n-1} \underline{u_{n-1}} + \beta_n (\alpha_1 \underline{u_1} + \ldots + \alpha_n \underline{u_n}) = \underline{0},
+    $$
+    ma allora abbiamo che
+    $$
+        (\beta_1 + \beta_n \alpha_1) \underline{u_1} + \ldots + (\beta_{n-1} + \beta_n \alpha_{n-1})\underline{u_{n-1}} + \beta_n \alpha_n \underline{u_n} = \underline{0},
+    $$
+    da cui la lineare indipendenza dei vettori $\underline{u_1}, \ldots, \underline{u_n}$ ci dice che tutti i coefficienti devono essere nulli, portandoci al seguente sistema
+    $$
+        \begin{cases}
+            \beta_i + \beta_n \alpha_i = 0_\mathbb{K} \, \forall i \in \{1, \ldots, n-1 \} \\
+            \beta_n \alpha_n = 0_\mathbb{K}
+        \end{cases}.
+    $$
+    Soffermandoci sull'ultima equazione del sistema, sappiamo per la legge di annullamento del prodotto, che gli unici casi possibili sono:
+    \begin{itemize}
+        \item $\boxed{\alpha_n = 0_\mathbb{K}}$, ma ciò va contro l'ipotesi che $\alpha_n$ fosse diverso da $0$;
+        \item $\boxed{\beta_n = 0_\mathbb{K}}$, e qua non abbiamo problemi.
+    \end{itemize}
+    Riprendendo il sistema, allora segue che
+    $$
+        \beta_i + \beta_n \alpha_i = \beta_i = 0_\mathbb{K} \forall i \in \{ 1, \ldots, n-1 \},
+    $$
+    quindi l'equazione
+    $$
+        \beta_1 \underline{u_1} + \ldots + \beta_{n-1} \underline{u_{n-1}} + \beta_n \underline{w} = \underline{0}
+    $$
+    ha solo soluzioni banali. \\
+    Mostriamo adesso la \circled{2}: è chiaro che $A' = (A \setminus \{ \underline{u_k} \}) \cup \{ \underline{w} \} \subseteq \text{Span}(A) \implies \text{Span}(A') \subseteq \text{Span}(A)$ e siccome $\underline{u_k} \in \text{Span}(A')$ allora $A \subseteq \text{Span}(A') \implies \text{Span}(A) \subseteq \text{Span}(A')$, dove abbiamo usato la proposizione \ref{prop:incl_sub}.
+\end{proof}
+\begin{lemma}
+    Sia $A = \{ \underline{u_1}, \ldots, \underline{u_k} \}$ linearmente indipendente e sia $B = \{ \underline{w_1}, \ldots, \underline{w_h} \}$ linearmente indipendente con $B \subseteq \text{Span}(A)$, allora $\exists \mathcal{B'} \subseteq A$ con $\# \mathcal{B'} = \# B = h$ tale che
+    \begin{enumerate}[label=\protect\circled{\arabic*}]
+        \item $A' = (A \setminus \mathcal{B'}) \cup B$ è ancora linearmente indipendente;
+        \item $\text{Span}(A) = \text{Span}(A')$
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    Posso applicare il lemma precedente a $\underline{w_1}$ (che sappiamo essere $\neq \underline{0}$ siccome $B$ è linearmente indipendente) visto che $B \subseteq \text{Span}(A)$: osserviamo che
+    $$
+        \underline{w_1} = \alpha_1 \underline{u_1} + \ldots + \alpha_k \underline{u_k} \text{ (dove chiaramente si deve avere che qualche $\alpha_i \neq 0$ siccome $\underline{w_1} \neq \underline{0}$)}.
+    $$
+    Per semplicità (e senza perdita di generalità\footnote{sempre a meno di riarrangiare i termini}) supponiamo che $\alpha_1 \neq 0 \implies $posso scambiare $\underline{u_1}$ con $\underline{w_1}$. Quindi $A \rightarrow A_1 = \{ \underline{w_1}, \underline{u_2}, \ldots, \underline{u_k} \}$ e itero nuovamente il procedimento, scambiando un vettore di $A_1$ con un altro di $B$ (diverso da $\underline{w_1}$ chiaramente): questo è possibile siccome
+    $$
+    \underline{w_2} = \alpha_1' \underline{w_1} + \alpha_2' \underline{u_2} + \ldots + \alpha_n' \underline{u_n},
+    $$
+    e deve risultare che almeno uno fra gli $\alpha_2', \ldots, \alpha_n'$ sia diverso da zero siccome altrimenti la relazione appena scritta diverebbe
+    $$
+    \underline{w_2} = \alpha_1' \underline{w_1} \implies \alpha_1' \underline{w_1} - \underline{w_2} = \underline{0}
+    $$
+    quindi i vettori $\underline{w_1}, \underline{w_2}$ sarebbero linearmente dipendenti, contro l'ipotesi che $B$ fosse linearmente indipendente. Sempre per semplicità e senza perdita di generalità, possiamo scambiare $\underline{w_2}$ con $\underline{u_2}$, ottengo così $A_2 = \{ \underline{w_1}, \underline{w_2}, \ldots, \underline{u_n} \}$: posso così iterare il ragionamento come fatto sopra con $\underline{w_1}$ e $\underline{w_2}$, sostituendo alcuni vettori ("opportuni") in $A$ con quelli di $B$. 
+\end{proof}
+\begin{cor}
+    Dalle ipotesi del lemma precedente segue che $\# B \leq \# A$.
+\end{cor}
+\begin{proof}[Dimostrazione del teorema \ref{thm:dim}]
+    Prese due basi $\mathcal{B}$ e $\mathcal{B'}$, se usiamo il corollario appena mostrato con $A = \mathcal{B}$ e $B = \mathcal{B'}$ abbiamo che $\# \mathcal{B'} \leq \# \mathcal{B}$ e, scambiando il ruolo di $\mathcal{B}$ e $\mathcal{B'}$, si ottiene che $\# \mathcal{B} \leq \# \mathcal{B'}$, da cui $\# \mathcal{B} = \# \mathcal{B'}$.
+\end{proof}
+\begin{remark}
+    Se le basi fossero infinite, l'ultimo passaggio appena effettuato (eguagliare le cardinalità) richiederebbe il teorema di Cantor-Bernstein-Schr{\"o}der che richiede l'assioma della scelta. 
+\end{remark}
+Possiamo adesso "caratterizzare" la dimensione di uno spazio, siccome abbiamo appena mostrato che tutte le basi hanno lo stesso numero di elementi.
+\begin{definition}[dimensione]
+    Sia $(V, \mathbb{K}, +, \cdot)$ uno spazio vettoriale sul campo $\mathbb{K}$. Chiamo dimensione di $V$ su $\mathbb{K}$ il numero di elementi posseduti da una base.
+\end{definition}
+\begin{remark}
+    La dimensione di uno spazio vettoriale dipende anche dal tipo di campo su cui viene definito (e da qui il motivo per cui sopra ho specificato "dimensione di $V$ su $\mathbb{K}$"). Per fare un esempio: $\mathbb{C}$ è uno spazio vettoriali $1-$dimensionale se visto come uno spazio vettoriale sul campo dei numeri complessi, se invece visto come uno spazio vettoriale sul campo reale è $2-$dimensionale.
+\end{remark}
