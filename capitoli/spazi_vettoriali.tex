@@ -600,3 +600,95 @@ In questa sezione ci soffermiamo nuovamente sui sottospazi: in particolar modo v
     Sia $(V, \mathbb{K}, +, \cdot)$ uno spazio vettoriale sul campo $\mathbb{K}$ di dimensione $n$ e sia $W \subseteq V$ uno spazio vettoriale. Mostrare che $\text{dim} (W) \leq \text{dim}(V)$ e $\text{dim}(W) = \text{dim}(V) \iff V = W$.
     \label{ex:1.9}
 \end{exercise}
+Dati $2$ sottospazi vettoriali $U$ e $W$ di $(V, \mathbb{K}, +, \cdot)$ spazio vettoriale ci poniamo due domande:
+\begin{enumerate}[label=\protect\circled{\arabic*}]
+    \item $U \cap W$ è un sottospazio vettoriale?
+    \item $U \cup W$ è un sottospazio vettoriale?
+\end{enumerate}
+Possiamo rispondere alla prima in maniera abbastanza semplice: si osserva che $\underline{0} \in U \cap W$ (quindi è sicuramente un insieme non vuoto), inoltre preso $\underline{v} \in U \cap W$ abbiamo che $\forall \alpha \in \mathbb{K}, \alpha \underline{v} \in U$ e $\alpha \underline{v} \in W$, quindi $\alpha \underline{v} \in U \cap W$; ragionando similmente abbiamo che $\forall \underline{v}, \underline{w} \in U \cap W, \underline{v} + \underline{w} \in U$ e $\underline{v} + \underline{w} \in W$, dunque $\underline{v} + \underline{w} \in U \cap W$.
+Si conclude, tramite la proposizione \ref{prop:ssp_vett_iff}, che $U \cap W$ è un sottospazio vettoriale. \\
+Per quanto riguarda la seconda cosa possiamo dire? Vale la seguente proposizione
+\begin{prop}
+    Sia $(V, \mathbb{K}, +, \cdot)$ spazio vettoriale sul campo $\mathbb{K}$ e siano $U$ e $W$ due sottospazi vettoriali di $V$, allora si ha che \\
+    $$
+    U \cup W \text{ è un sottospazio vettoriale } \iff U \subseteq W \text{ (o viceversa) }
+    $$
+\end{prop}
+\begin{proof} \hspace{1cm} \\
+    $\boxed{\Leftarrow}$: è chiaro siccome se $U \subseteq W$ allora $U \cup W = W$. \\
+    $\boxed{\Rightarrow}$: supponiamo per assurdo che uno non sia contenuto nell'altro, allora preso $\underline{u} \in U \setminus W$ e $\underline{w} \in W \setminus U$ poniamo $\underline{v} = \underline{u} + \underline{w}$. Mostriamo che tale vettore non può appartenere a $U \cup W$: si osserva che per definizione $\underline{v} \in U$ oppure $\underline{v} \in W$ ma se $\underline{v} \in U \implies \underline{v} - \underline{u} \in U$ (siccome stiamo usando la legge di composizione interna prendendo vettori di $U$), ma $\underline{v} - \underline{u} = \underline{w} \in W \implies$ assurdo! Se invece $\underline{v} \in W \implies \underline{v} - \underline{w} \in W$ (sempre per il solito motivo, ma stavolta usando
+    vettori di $W$), ma $\underline{v} - \underline{w} = \underline{u} \in U \implies$ assurdo!
+\end{proof}
+
+Quindi non ha senso lavorare su $U \cup W$ siccome gli strumenti che abbiamo sviluppato valgono solo per spazi vettoriali. Sappiamo però qual'è il più piccolo sottospazio che contiene $U \cup W$ (vedere esercizio \ref{ex:1.2}), ovvero $\text{Span}(U \cup W)$
+Per ovviare a questo problema, si definisce la "somma" di sottospazi nella seguente maniera
+\begin{definition}[Somma di sottospazi]
+    Sia $(V, \mathbb{K}, +, \cdot)$ uno spazio vettoriale sul campo $\mathbb{K}$ e sia $U$, $W$ due sottospazi vettoriali; definiamo la somma di $U$ e $W$ nella seguente maniera
+    $$
+        U + W = \{ V \ni \underline{v} = \underline{u} + \underline{w} \, \big| \, \underline{u} \in U, \underline{w} \in W \}
+    $$
+\end{definition}
+\begin{prop}
+    \label{prop:sum_is_ssp}
+    $U + W$ è un sottospazio vettoriale ed è uguale a $\text{Span}(U \cup W)$
+\end{prop}
+\begin{proof}
+    Prendiamo $\underline{v}, \underline{v'} \in U + W$: per ipotesi sappiamo che $\exists \underline{u}, \underline{u'} \in U, \underline{w}, \underline{w'} \in W$ tali che $\underline{v} = \underline{u} + \underline{w}, \underline{v'} = \underline{u'} + \underline{w'}$, da cui si ha che
+    $$
+        \underline{v} + \underline{v'} = (\underline{u} + \underline{w}) + (\underline{u'} + \underline{w'}) = \underset{\in U}{(\underline{u} + \underline{u'})} + \underset{\in W}{(\underline{w} + \underline{w'})} \in U + W
+    $$
+    dove l'appartenza a $U + W$ nell'ultimo passaggio è dovuta al fatto che abbiamo trovato $2$ vettori appartenenti, rispettivamente, a $U$ e $W$ che "danno" $\underline{v} + \underline{v'}$. Abbiamo mostrato che $\forall \underline{v}, \underline{v'}, (\underline{v}, \underline{v'} \in U + W) \implies \underline{v} + \underline{v'} \in U + W$ e, similmente, si mostra che
+    $\underline{v} = \underline{u} + \underline{w} \implies \alpha \underline{v} = \alpha \underline{u} + \alpha \underline{w} \in U + W$. Concludiamo allora, per la proposizione \ref{prop:ssp_vett_iff}, che $U + W$ è sottospazio. \\
+    Per quanto riguarda l'ultima cosa da mostrare, è chiaro che il sottospazio dato da $\text{Span}(U \cup W)$ deve contenere tutti i vettori della forma $\underline{u} + \underline{w}$, con $\underline{u} \in U$ e $\underline{w} \in W$, quindi è chiaro che contiene $U + W$, dunque abbiamo che $U + W \subseteq \text{Span}(U \cup W)$. Ma è altrettanto chiaro che $U \cup W \subseteq U + W$ (infatti ogni vettore di $U$ può essere scritto come $\underline{u} = \underset{\in U}{\underline{u}} + \underset{\in W}{\underline{0}}$) dunque, in virtù dell'esercizio \ref{ex:1.3}, abbiamo che $\text{Span}(U \cup W) \subseteq \text{Span}(U + W)$; quindi, in definitiva, si ha che
+    $\text{Span}(U \cup W) = \text{Span}(U + W)$. Sempre dall'esercizio \ref{ex:1.3} sappiamo che nel caso di un sottospazio $W$ abbiamo che $W = \text{Span}(W)$, pertanto $\text{Span}(U + W) = U + W = \text{Span}(U \cup W)$, ottenendo così l'asserto che intendevamo dimostrare. 
+\end{proof}
+\begin{definition}[Somma diretta di sottospazi]
+    Sia $(V, \mathbb{K}, +, \cdot)$ uno spazio vettoriale sul campo $\mathbb{K}$ e siano $U, W \subseteq V$ sottospazi vettoriali; diremo che il sottospazio $Z$ è la somma diretta di $U, W$ se
+    \begin{enumerate}[label=\protect\circled{\arabic*}]
+        \item $Z = U + W$
+        \item $U \cap W = \{ \underline{0} \}$
+    \end{enumerate}
+    e si scrive $Z = U \circled{+} W$.
+\end{definition}
+\begin{prop}
+    se $Z = U \circled{+} W$ allora ogni vettore $\underline{v} \in Z$ si scrive in maniera univoca, ovvero
+    $$
+        \forall \underline{v} \in Z, \exists! \underline{u}, \underline{w} : \underline{v} = \underline{v} + \underline{w}
+    $$
+\end{prop}
+\begin{proof}
+    Supponiamo per assurdo che esista un vettore $\underline{v}$ che non può essere scritto in maniera univoca, ovvero $\exists \underline{u}, \underline{u'} \in U, \underline{w}, \underline{w'} \in W$ tali che
+    $$
+        \underline{v} = \underline{u} + \underline{w} = \underline{u'} + \underline{w'}, \implies \underline{u} + \underline{w} = \underline{u'} + \underline{w'},
+    $$
+    ma allora
+    $$
+        \underset{\in U}{\underline{u} - \underline{u'}} = \underset{\in W}{\underline{w} - \underline{w'}},
+    $$
+    quindi abbiamo necessariamente (siccome a sinistra abbiamo "qualcosa" che appartiene a $U$ e a destra "qualcosa" che appartiene a $W$) che i due membri siano uguali ad un vettore appartenente a $U \cap W$, che sappiamo contenere solo il vettore nullo $\underline{0}$, permettendoci quindi di dire che
+    $$
+        \begin{cases}
+            \underline{u} - \underline{u'} = \underline{0} \\
+            \underline{w} - \underline{w'} = \underline{0}
+        \end{cases} \implies \begin{cases}
+            \underline{u} = \underline{u'} \\
+            \underline{w} = \underline{w'}
+        \end{cases},
+    $$
+    ottenendo così l'asserto.
+\end{proof}
+\begin{exercise}
+    \label{ex:1.10}
+    Vale anche il viceversa della proposizione, ovvero se $Z = U + W$ e $\forall \underline{v} \in Z, \exists! \underline{u} \in U, \underline{w} \in W : \underline{v} = \underline{u} + \underline{w}$ allora
+    $$
+        Z = U \circled{+} W
+    $$
+    \emph{Suggerimento}: è chiaro che la nostra tesi, siccome $Z$ è già somma di $U$ e $W$, è equivalente a far vedere che $U \cap W = \{ \underline{0} \}$, da cui si può procedere per assurdo facendo vedere che la scrittura non è più univoca.
+\end{exercise}
+\begin{exercise}
+    \label{ex:1.11}
+    Sia $(V, \mathbb{K}, +, \cdot)$ uno spazio vettoriale sul campo $\mathbb{K}$ e consideriamo $A = \{ \underline{v_1}, \ldots, \underline{v_n} \} \subseteq V$ linearmente indipendente. Mostrare che decomponendo $A = A' \cup A''$ con $A' \cap A'' = \emptyset$ allora
+    $$
+        \text{Span}(A) = \text{Span}(A') \circled{+} \text{Span}(A'')
+    $$
+\end{exercise}
