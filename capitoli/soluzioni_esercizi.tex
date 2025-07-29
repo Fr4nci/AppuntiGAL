@@ -76,16 +76,33 @@ $$
 $$
 Ma, per quanto detto sopra, si ha che $\forall \underline{v_i'}, \exists \underline{v^{(i)}_1}, \ldots, \underline{v^{(i)}_m} \in A : \exists \beta^{(i)}_1, \ldots, \beta^{(i)}_n \in \mathbb{K} : \underline{v_i'} = \beta^{(i)}_1 \underline{v^{(i)}_1} + \ldots + \beta^{(i)}_n \underline{v^{(i)}_n}$, dunque sostituendo nella definizione di $\underline{w}$ si ottiene una combinazione lineare di vettori di $B$, dunque $\underline{w} \in \text{Span}(B)$. Segue la tesi. \\
 Per quanto riguarda l'ultima proposizione da mostrare, è sufficiente ricondursi a mostrare che se $A \subseteq B \implies A \subseteq \text{Span}(B)$ e, per quanto visto nella proposizione precedente, ciò implica che $\text{Span}(A) \subseteq \text{Span}(B)$. Ma è chiaro che $B \subseteq \text{Span}(B)$, dunque $A \subseteq B \subseteq \text{Span}(B) \implies A \subseteq \text{Span}(B) \implies \text{Span}(A) \subseteq \text{Span}(B)$.
-\subsection{Esercizio \ref{ex:1.4}}
+\subsection*{Esercizio \ref{ex:1.4}}
 
 Possiamo far vedere che presa una collezione finita di polinomi non è possibile generare tutto lo spazio: consideriamo i polinomi $p_1(x), \ldots, p_n(x)$ e consideriamo lo Span di $p_1, \ldots, p_n$. Osserviamo che $\text{deg}(\alpha_1 p_1(x) + \ldots + \alpha_n p_n(x)) \leq \max (\text{deg}(p_1), \text{deg}(p_2), \ldots, \text{deg}(p_n))$ dove $\text{deg}$ indica il grado del polinomio; tuttavia è chiaro che $\mathbb{R}[x] \ni x^{1 + \max (\text{deg}(p_1), \text{deg}(p_2), \ldots, \text{deg}(p_n))} \not\in \text{Span}(p_1, \ldots, p_n)$.
 
-\subsection{Esercizio \ref{ex:1.5}}
+\subsection*{Esercizio \ref{ex:1.5}}
 Supponiamo per assurdo che $\exists A' \subseteq A: A'$ non è linearmente indipendente, allora sappiamo che $\exists \underline{v_1}, \ldots, \underline{v_n} \in A': \exists \alpha_1, \ldots, \alpha_n \in \mathbb{K}$ non tutti uguali a $0_\mathbb{K}$ tali che
 $$
 \alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n} = \underline{0},
 $$ 
 ma questa si tratta anche di una relazione di vettori appartenenti anche ad $A$, quindi $A$ sarebbe linearemente dipendente ottenendo così un assurdo.
 
-\subsection{Esercizio \ref{ex:1.6}}
-Preso $\underline{v} \in A' \setminus A$ abbiamo che, per ipotesi, $\underline{v} \in \text{Span}(A)$ (siccome $A$ insieme di generatori), dunque $A' \subseteq \text{Span}(A) \implies \text{Span}(A') \subseteq \text{Span}(A) = V$, ma è chiaro che $A \subseteq A' \implies \text{Span}(A) \subseteq \text{Span}(A')$ (dove si è usato, nei due casi, la proposizione \ref{prop:incl_sub} e \ref{prop:incl_span} rispettivamente). Concludiamo allora che $\text{Span}(A) = \text{Span}(A') = V$, dunque anche $A'$ è un insieme di generatori. 
+\subsection*{Esercizio \ref{ex:1.6}}
+Preso $\underline{v} \in A' \setminus A$ abbiamo che, per ipotesi, $\underline{v} \in \text{Span}(A)$ (siccome $A$ insieme di generatori), dunque $A' \subseteq \text{Span}(A) \implies \text{Span}(A') \subseteq \text{Span}(A) = V$, ma è chiaro che $A \subseteq A' \implies \text{Span}(A) \subseteq \text{Span}(A')$ (dove si è usato, nei due casi, la proposizione \ref{prop:incl_sub} e \ref{prop:incl_span} rispettivamente). Concludiamo allora che $\text{Span}(A) = \text{Span}(A') = V$, dunque anche $A'$ è un insieme di generatori.
+
+\subsection*{Esercizio \ref{ex:1.7}}
+Supponiamo che $A = \{ \underline{v_1}, \ldots, \underline{v_n} \}$ insieme di generatori e osserviamo che possiamo sempre procedere come fatto nella dimostrazione dell'esistenza di una base, ricavandoci un insieme linearmente indipendente massimale: se $A$ è linearmente indipendente, chiaramente, non c'è niente da fare. Se $A$ invece non lo è possiamo considerare la relazione non banale
+$$
+    \alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n} = \underline{0}
+$$
+e supponendo, senza perdita di generalità, che $\alpha_n \neq 0$ allora
+$$
+    \underline{v_n} = - \frac{\alpha_1}{\alpha_n} \underline{v_1} - \ldots - \frac{\alpha_{n-1}}{\alpha_n} \underline{v_{n-1}},
+$$
+quindi si ha, in virtù del lemma \ref{lemma:rim_superf}, che $\text{Span}(A) = \text{Span}(A \setminus \{ \underline{v_n} \})$, quindi possiamo limitarci a considerare l'insieme $A \setminus \{ \underline{v_n} \}$ e iterare il ragionamento finché non si ottiene un insieme linearmente indipendente: questo lemma ci assicura che lo Span rimane invariato.
+
+\subsection*{Esercizio \ref{ex:1.8}}
+Se considero un insieme di vettori linearmente indipendenti $B$ è chiaro che se generano $V$ non c'è niente da fare siccome rappresentano già una base dello spazio vettoriale. Se così non è, abbiamo mostrato che è sempre possibile trovare una base $\mathcal{B}$ nel nostro spazio vettoriale e, usando il lemma \ref{lemma:alg_scambio_pot}, sappiamo che è possibile trovare $\mathcal{B'} \subseteq \mathcal{B}$ tale che $(\mathcal{B} \setminus \mathcal{B'}) \cup B$ è ancora linearmente indipendente e ha lo stesso $\text{Span}$ dell'insieme iniziale, dunque è effettivamente una base del nostro spazio vettoriale.
+
+\subsection*{Esercizio \ref{ex:1.9}}
+Sappiamo che $W$ essendo sottospazio vettoriale, quindi pur sempre uno spazio vettoriale, ammette una base $\mathcal{W} = \{ \underline{w_1}, \ldots, \underline{w_m} \}$: tale insieme rimane comunque un insieme linearmente indipendente di vettori di $V$, pertanto possiamo applicare il lemma \ref{lemma:alg_scambio_pot} ad una base $\mathcal{B}$ di $V$ (che sappiamo esistere) per dedurre che $\# \mathcal{W} \leq \# \mathcal{B}$, ovvero $\text{dim}(W) \leq \text{dim}(V)$. Per quanto riguarda l'ultima richiesta dell'esercizio, osserviamo che l'implicazione verso sinistra $\boxed{\Leftarrow}$ è ovvia: se $V = W$ allora le dimensioni di $V$ e $W$ coincidono siccome una base di uno è base anche dell'altro; ma è altrettanto banale l'implicazione verso destra $\boxed{\Rightarrow}$ siccome si vede che se $\text{dim}(W) = \text{dim}(V)$ e $W \subseteq V$ allora una base di $n = \text{dim}(W)$ vettori di $W$ è anche una base di $V$ (siccome si parla di $n = \text{dim}(W) = \text{dim}(V)$ vettori linearmente indipendenti di $W$ e, dunque, di $V$).

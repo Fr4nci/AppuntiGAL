@@ -422,6 +422,7 @@ Per mostrare questo risultato avremo bisogno del seguente lemma
     $$
         \text{Span}(A) = \text{Span}(A \setminus \{ \underline{v} \})
     $$
+    \label{lemma:rim_superf}
 \end{lemma}
 \begin{proof}
     Come fatto per altre dimostrazioni, è suffiente mostrare che $\text{Span}(A) \subseteq \text{Span}(A \setminus \{\underline{v}\})$ e che $\text{Span}(A) \supseteq \text{Span}(A \setminus \underline{v})$. Ora l'inclusione $\boxed{\supseteq}$ è ovvia: è sufficiente usare la proposizione \ref{prop:incl_span} (lasciata per esercizio), osservando che $A \setminus \{ \underline{v} \} \subseteq A \implies \text{Span}(A \setminus \{ \underline{v} \}) \subseteq \text{Span}(A)$, mentre
@@ -541,6 +542,7 @@ Per effettuare questa dimostrazione abbiamo bisogno di qualche lemma preparatori
         \item $A' = (A \setminus \mathcal{B'}) \cup B$ è ancora linearmente indipendente;
         \item $\text{Span}(A) = \text{Span}(A')$
     \end{enumerate}
+    \label{lemma:alg_scambio_pot}
 \end{lemma}
 \begin{proof}
     Posso applicare il lemma precedente a $\underline{w_1}$ (che sappiamo essere $\neq \underline{0}$ siccome $B$ è linearmente indipendente) visto che $B \subseteq \text{Span}(A)$: osserviamo che
@@ -573,3 +575,28 @@ Possiamo adesso "caratterizzare" la dimensione di uno spazio, siccome abbiamo ap
 \begin{remark}
     La dimensione di uno spazio vettoriale dipende anche dal tipo di campo su cui viene definito (e da qui il motivo per cui sopra ho specificato "dimensione di $V$ su $\mathbb{K}$"). Per fare un esempio: $\mathbb{C}$ è uno spazio vettoriali $1-$dimensionale se visto come uno spazio vettoriale sul campo dei numeri complessi, se invece visto come uno spazio vettoriale sul campo reale è $2-$dimensionale.
 \end{remark}
+\begin{exercise}
+    Mostrare che da ogni insieme di generatori $A \subseteq V$ è possibile estrarre una base
+    \label{ex:1.7}
+\end{exercise}
+\begin{exercise}
+    Mostrare che ogni insieme di vettori linearmente indipendenti può essere esteso a base di $V$
+    \label{ex:1.8}
+\end{exercise}
+
+Alla luce di quanto mostrato, possiamo concludere che se lavoriamo in uno spazio vettoriale $V$ sul campo $\mathbb{K}$ di dimensione $n$ valgono i seguenti fatti:
+\begin{enumerate}[label=\protect\circled{\arabic*}]
+    \item $\underline{v_1}, \ldots, \underline{v_k}$ sono linearmente indipendenti $\iff k \leq n$;
+    \item ogni sistema di $n$ vettori linearmente indipendenti è una base;
+    \item ogni sistema con $\geq n$ vettori è linearmente dipendente;
+    \item $\underline{v_1}, \ldots, \underline{v_h}$ genera $V$ se $h \geq n$;
+    \item $n-1$ (o meno) vettori non generano $V$;
+    \item ogni sistema di $n$ vettori che generano $V$ è una base.
+\end{enumerate}
+\section{Somma di sottospazi}
+
+In questa sezione ci soffermiamo nuovamente sui sottospazi: in particolar modo vogliamo studiare come si comporta la "somma" (che dobbiamo ancora definire) di questi in termini di dimensioni e altre proprietà. L'esempio di sottospazio per eccellenza è chiaramente un piano: la bellezza di Geometria è che svilupperemo un modo per trattare ugualmente sia dei piani "veri e propri" (ovvero quelli euclidei, su cui insistiamo fin da quando siamo piccoli) fino a "piani" di polinomi. \\
+\begin{exercise}
+    Sia $(V, \mathbb{K}, +, \cdot)$ uno spazio vettoriale sul campo $\mathbb{K}$ di dimensione $n$ e sia $W \subseteq V$ uno spazio vettoriale. Mostrare che $\text{dim} (W) \leq \text{dim}(V)$ e $\text{dim}(W) = \text{dim}(V) \iff V = W$.
+    \label{ex:1.9}
+\end{exercise}
