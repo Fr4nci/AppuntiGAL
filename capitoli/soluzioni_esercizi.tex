@@ -108,12 +108,15 @@ Se considero un insieme di vettori linearmente indipendenti $B$ è chiaro che se
 Sappiamo che $W$ essendo sottospazio vettoriale, quindi pur sempre uno spazio vettoriale, ammette una base $\mathcal{W} = \{ \underline{w_1}, \ldots, \underline{w_m} \}$: tale insieme rimane comunque un insieme linearmente indipendente di vettori di $V$, pertanto possiamo applicare il lemma \ref{lemma:alg_scambio_pot} ad una base $\mathcal{B}$ di $V$ (che sappiamo esistere) per dedurre che $\# \mathcal{W} \leq \# \mathcal{B}$, ovvero $\text{dim}(W) \leq \text{dim}(V)$. Per quanto riguarda l'ultima richiesta dell'esercizio, osserviamo che l'implicazione verso sinistra $\boxed{\Leftarrow}$ è ovvia: se $V = W$ allora le dimensioni di $V$ e $W$ coincidono siccome una base di uno è base anche dell'altro; ma è altrettanto banale l'implicazione verso destra $\boxed{\Rightarrow}$ siccome si vede che se $\text{dim}(W) = \text{dim}(V)$ e $W \subseteq V$ allora una base di $n = \text{dim}(W)$ vettori di $W$ è anche una base di $V$ (siccome si parla di $n = \text{dim}(W) = \text{dim}(V)$ vettori linearmente indipendenti di $W$ e, dunque, di $V$).
 
 \subsection*{Esercizio \ref{ex:1.10}}
+Siccome $Z \subseteq V$ è un sottospazio vettoriale, dunque uno spazio vettoriale allora esiste una base $\mathcal{B} = \{ \underline{v_1}, \ldots, \underline{v_k} \}$ che possiamo completare a base di $\mathcal{B'} = \{ \underline{v_1}, \ldots, \underline{v_k}, \underline{v_{k+1}}, \ldots, \underline{v_n} \}$, dunque $k \leq n$. Se $k = n$ allora estendendo vettori non aggiungo nulla, quindi $V = W$.
+
+\subsection*{Esercizio \ref{ex:1.11}}
 Supponiamo per assurdo che $U \cap W \neq \{ \underline{0} \}$: preso $\underline{v} \in U \cap W$, si ha, per definizione di intersezione, che $\underline{v} \in U$ e $\underline{v} \in W$: preso a questo punto un vettore $\underline{z} \in Z$ sappiamo per ipotesi che $\exists! \underline{u'} \in U, \underline{w'} \in W$ tali che $\underline{z} = \underline{u'} + \underline{w'}$ ma
 $$
     \underline{z} = \underline{u'} + \underline{w'} = \underline{u'} + \underline{v} - \underline{v} + \underline{w'} = \underset{\in U}{(\underline{u'} + \underline{v})} + \underset{\in W}{(\underline{w'} - \underline{v})},
 $$
 dove abbiamo il fatto che la legge di composizione interna produce vettori appartenenti sempre al sottospazio considerato. Segue allora che ogni vettore non può più essere scritto in maniera univoca, ottenendo così un assurdo. Segue così la tesi.
-\subsection*{Esercizio \ref{ex:1.11}}
+\subsection*{Esercizio \ref{ex:1.12}}
 Supponiamo, senza perdita di generalità, che $A' = \{ \underline{v_1}, \ldots, \underline{v_k} \}$ e $A'' = \{ \underline{v_{k+1}}, \ldots, \underline{v_n} \}$ (a meno di riarrangiare i termini), osserviamo che preso $\underline{v} \in \text{Span}(A)$ allora $\exists! \alpha_1, \ldots, \alpha_n \in \mathbb{K}$ tali che
 \begin{align*}
     &\underline{v} = \alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n} = \underset{\in \text{Span}(A')}{(\alpha_1 \underline{v_1} + \ldots + \alpha_k \underline{v_k})} + \underset{\in \text{Span}(A'')}{(\alpha_{k+1} \underline{v_{k+1}} + \ldots + \alpha_n \underline{v_n})} \implies \\
@@ -124,3 +127,13 @@ $$
     \underline{v} = \alpha_1 \underline{v_1} + \ldots + \alpha_k \underline{v_n} = \alpha_{k+1} \underline{v_{k+1}} + \ldots + \alpha_n \underline{v_n} \implies \alpha_1 \underline{v_1} + \ldots - \alpha_n \underline{v_n} = \underline{0},
 $$
 che rappresenta una relazione non banale fra vettori $\underline{v_1}, \ldots, \underline{v_n}$ che si erano supposti linearmente indipendenti, ovvero un assurdo!
+
+\section*{Esercizio 2.*}
+Osserviamo che la dimensione dello spazio delle matrici simmetriche $U$ è pari a $\frac{n(n+1)}{2}$ e la dimensione delle spazio delle matrici antisimmetriche $Z$ è pari a $\frac{n(n-1)}{2}$. E' chiaro che $U \cap Z = \{ \emptyset \}$ e vediamo che
+$$
+    \text{dim}(U) + \text{dim}(Z) = \frac{n(n+1)}{2} + \frac{n(n-1)}{2} = \frac{n^2 + n + n^2 - n}{2} = \frac{2n^2}{2} = n^2 = \text{dim}(\mathcal{M}_n(\mathbb{R})),
+$$
+e da qua possiamo concludere. Possiamo trovare esplicitamente tali matrici: abbiamo infatti che $U = A + A^t$ è simmetrica, siccome $U^t = (A + A^t)^t = A^t + (A^t)^t = A^t + A = A + A^t = U$ mentre la matrice $Z = A - A^t$ è antisimmetrica, siccome $Z^t = (A - A^t)^t = A^t - (A^t)^t = A^t - A = - (A - A^t) = - Z$ e
+$$
+    U + Z = A + A^t + A - A^t = 2A \implies A = \frac{U}{2} + \frac{Z}{2} = \frac{1}{2}(A+A^t) + \frac{1}{2}(A - A^t).
+$$
