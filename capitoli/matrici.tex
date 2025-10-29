@@ -1,3 +1,32 @@
 \chapter{Matrici}
 
-Vogliamo adesso introdurre le matrici: queste risultano molto utili per le loro incredibili applicazioni. In primis, come possiamo caratterizzare le matrici? In primo luogo possiamo dire che sono un "modo" per organizzare dei numeri
+Vogliamo adesso introdurre le matrici: queste risultano molto utili per le loro incredibili applicazioni. In primis, come possiamo caratterizzare le matrici? In primo luogo possiamo dire che sono un "modo" per organizzare dei numeri: infatti se consideriamo la matrice
+$$
+\begin{pmatrix}
+  1 & 2 \\
+  6 & 10
+\end{pmatrix} 
+$$si può "visualizzare" come il vettore colonna $\begin{pmatrix} 1 \\ 2 \\ 6 \\ 10 \end{pmatrix}$. Andiamo tuttavia con ordine: soffermiamoci sulle matrici di dimensione $2 \times 2$ a coefficienti reali, osservando che possiamo introdurre sullo spazio delle matrici la struttura di spazio vettoriale introducendo la seguente legge di composizione interna
+$$
+  \begin{pmatrix}
+  \alpha_1 & \alpha_2 \\
+  \alpha_3 & \alpha_4
+  \end{pmatrix} + \begin{pmatrix}  
+  \beta_1 & \beta_2 \\
+  \beta_3 & \beta_4
+  \end{pmatrix} = \begin{pmatrix}
+    \alpha_1 + \beta_1 & \alpha_2 + \beta_2 \\
+    \alpha_3 + \beta_3 & \alpha_4 + \beta_4
+  \end{pmatrix}
+$$
+e la seguente legge di composizione esterna:
+$$
+  \alpha \begin{pmatrix}
+    \alpha_1 & \alpha_2 \\
+    \alpha_3 & \alpha_4
+  \end{pmatrix} = \begin{pmatrix}
+    \alpha \alpha_1 & \alpha \alpha_2 \\
+    \alpha \alpha_3 & \alpha \alpha_4
+  \end{pmatrix}.
+$$
+E' facile vedere che tutte le proprietà di spazio vettoriale sono rispettate in virtù del fatto che le stiamo definendo a partire dalle operazioni definite sui numeri reali.
