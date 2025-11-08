@@ -30,3 +30,35 @@ $$
   \end{pmatrix}.
 $$
 E' facile vedere che tutte le proprietà di spazio vettoriale sono rispettate in virtù del fatto che le stiamo definendo a partire dalle operazioni definite sui numeri reali.
+
+
+\section*{Esercizi proposti}
+
+\begin{enumerate}
+  \item Sia $\mathcal{L}(V)$ lo spazio degli endomorfismi di $V$, si consideri $\mathcal{F} = \{ f \in \mathcal{L}(V) : \text{Ker}(f) \subseteq \text{Im}(f) \}$ e sia $\mathcal{A} = \{ f \in \mathcal{L}(V) : V = \text{Ker}(f) \, \circled{+} \, \text{Im}(f) \}$.
+  \begin{enumerate}
+    \item Trovare un $A$ appartenente a $\mathcal{F}$ e $B$ non appartenente. Mostrare che $\mathcal{F}$ è un sottospazio oppure dimostrare che non lo è.
+    \item Trovare un $A$ appartenete a $\mathcal{A}$ e $B$ non appartenente.
+  \end{enumerate}
+  \begin{proof}[Svolgimento]
+    Ricordiamo che $\text{Ker}(f) = \{ \underline{v} \in V : f(\underline{v}) = \underline{0} \}$ e $\text{Im}(f) = \{ \underline{w} \in W \big| \exists \underline{v} \in V : f(\underline{v}) = \underline{w} \}$, quindi si ha
+    che una possibile funzione è isomorfa a questa matrice qua
+    \begin{equation*}
+      A = \begin{pmatrix}
+          0 & 1 \\
+          0 & 0
+      \end{pmatrix}
+    \end{equation*}
+    Vediamo che il kernel di questa matrice qua è rappresentata da vettori che appartengono a $\text{Span}(\underline{e_1})$, quindi preso un vettore $\underline{v} = \alpha \underline{e_1} + \beta \underline{e_2}$, quindi si ha che
+    $f(\underline{v}) = f(\alpha \underline{e_1} + \beta \underline{e_2}) = \alpha f(\underline{e_1}) + \beta f(\underline{e_2}) = \beta f(\underline{e_2}) = \beta \underline{e_1}$, dunque abbiamo che $\text{Ker}(f)  \subseteq \text{Im}(f)$.
+    La matrice $B$ che non appartiene invece a $\mathcal{F}$ è invece la matrice nulla, per esempio, siccome si ha che $\text{Ker}(f) = V$ e, chiaramente, $\text{Im}(f) = \{ \underline{0} \}$, dunque non abbiamo che $V = \text{Ker}(f) \not\subseteq \text{Im}(f)$. Segue necessariamente che $\mathcal{F}$ non è un sottospazio. \\
+    Un esempio di matrice $A$ che appartiene a $\mathcal{A}$ è invece pari a
+    $$
+      A = \begin{pmatrix}
+        1 & 0 \\
+        1 & 0
+      \end{pmatrix}
+    $$
+    siccome abbiamo che $\underline{e_2}$ in $\text{Ker}(A)$ e preso un vettore $\underline{v} \in \text{Im}(f)$ abbiamo che esso sarà della forma $\underline{v} = \alpha \underline{e_1} + \beta \underline{e_2}$
+  \end{proof}
+\end{enumerate}
