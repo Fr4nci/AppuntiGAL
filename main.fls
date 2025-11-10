@@ -915,6 +915,10 @@ OUTPUT capitoli/matrici.aux
 INPUT ./capitoli/matrici.tex
 INPUT ./capitoli/matrici.tex
 INPUT capitoli/matrici.tex
+INPUT /usr/share/texmf-dist/fonts/vf/public/newpx/zplmi.vf
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newpx/NewPXMI_gnu.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newpx/NewPXMI.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/stxscr.tfm
 INPUT ./capitoli/soluzioni_esercizi.tex
 INPUT ./capitoli/soluzioni_esercizi.tex
 OUTPUT capitoli/soluzioni_esercizi.aux
@@ -923,10 +927,6 @@ INPUT ./capitoli/soluzioni_esercizi.tex
 INPUT capitoli/soluzioni_esercizi.tex
 INPUT /usr/share/texmf-dist/fonts/tfm/public/libertinus-type1/LibertinusSerif-Regular-tlf-ot1.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/libertinus-type1/LibertinusSerif-Bold-tlf-ot1.tfm
-INPUT /usr/share/texmf-dist/fonts/vf/public/newpx/zplmi.vf
-INPUT /usr/share/texmf-dist/fonts/tfm/public/newpx/NewPXMI_gnu.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/newpx/NewPXMI.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/stxscr.tfm
 INPUT ./immagini/xi_graphic.png
 INPUT ./immagini/xi_graphic.png
 INPUT ./immagini/xi_graphic.png

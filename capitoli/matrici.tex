@@ -1,4 +1,4 @@
-\chapter{Matrici}
+\chapter{Matrici e applicazioni lineari}
 
 Vogliamo adesso introdurre le matrici: queste risultano molto utili per le loro incredibili applicazioni. In primis, come possiamo caratterizzare le matrici? In primo luogo possiamo dire che sono un "modo" per organizzare dei numeri: infatti se consideriamo la matrice
 $$
@@ -29,9 +29,284 @@ $$
     \alpha \alpha_3 & \alpha \alpha_4
   \end{pmatrix}.
 $$
-E' facile vedere che tutte le proprietà di spazio vettoriale sono rispettate in virtù del fatto che le stiamo definendo a partire dalle operazioni definite sui numeri reali.
-
-
+E' facile vedere che tutte le proprietà di spazio vettoriale sono rispettate in virtù del fatto che le stiamo definendo a partire dalle operazioni definite sui numeri reali. \\
+La domanda che ogni essere umano si chiede almeno una volta nella propria esistenza è, senza ombra di dubbio, "\emph{Perché viviamo?}" e, con grande dispiacere, vi annuncio che nemmeno Geometria è in grado di fornirci una risposta e, se ti sta venendo
+voglia di piangere leggendo queste risposte, sappi che non è nemmeno in grado di rispondere alla domanda "\emph{Perché mi sono iscritto a Fisica?}". Riesce però a rispondere alla domanda "\emph{Perché ci servono le matrici?}": in un certo senso, scrivere
+$A$ matrice $2 \times 2$ è, in un certo senso, equivalente a scrivere un vettore in $4$ dimensioni (non a caso, mostreremo che la dimensione dello spazio vettoriale delle matrici $2 \times 2$ è proprio $4$) e, a priori, le matrici ci consentono di studiare i sistemi lineari.
+\begin{definition}
+  Un sistema di $m$ equazioni lineari con $x_1, \ldots, x_m \in \mathbb{K}$ incognite del tipo
+  \begin{equation*}
+    \begin{cases}
+      \alpha_{11} x_1 + \ldots + \alpha_{1n} x_n = 0 \\
+      \alpha_{21} x_1 + \ldots + \alpha_{2n} x_n = 0 \\
+      \vdots \, \, \, \, \vdots \, \, \, \, \vdots \, \, \, \, \vdots \, \, \, \, \vdots \\
+      \alpha_{m1} x_1 + \ldots + \alpha_{mn} x_n = 0 \\
+    \end{cases} 
+  \end{equation*}
+  si dice sistema lineare.
+\end{definition}
+\begin{prop}
+  Verificare che l'insieme delle soluzioni di un sistema lineare è un sottospazio vettoriale.
+\end{prop}
+\begin{exercise}
+  Mostrare la proposizione qua sopra.
+\end{exercise}
+Questo sistema può essere rappresentato dalla matrice $A$ con $m$ righe e $n$ colonne:
+$$
+  A = \begin{pmatrix}
+    \alpha_{11} & \ldots & \alpha_{1n} \\
+    \alpha_{21} & \ldots & \alpha_{2n} \\
+    \vdots &  \ddots & \vdots \\
+    \alpha{m1} & \ldots & \alpha_{mn} 
+  \end{pmatrix}
+$$
+siccome il nostro sistema di equazioni può essere scritto come
+$$
+  A \begin{pmatrix}
+    x_1 \\
+    x_2 \\
+    \vdots \\
+    x_n
+  \end{pmatrix} = \begin{pmatrix} \alpha_{11} x_1 + \ldots + \alpha_{1n} x_n \\ \alpha_{21} x_1 + \ldots + \alpha_{2n} x_n \\ \vdots \\ \alpha_{m1} x_1 + \ldots + \alpha_{mn} x_n \end{pmatrix} = \begin{pmatrix}
+    0 \\
+    0 \\
+    \vdots \\
+    0
+  \end{pmatrix},
+$$
+dove si è introdotta un'operazione chiamata \emph{prodotto righe colonne}: presa una matrice $A \, n \times m$ e $B \, m \times l$ abbiamo che tale operazione produce una matrice $C$ (che indicheremo anche come $AB$) $n \times l$ il cui elemento $c_{ij}$ alla riga $i-$esima e colonna $j-$esima è pari a
+$$
+  c_{ij} = \sum_{k=0}^m a_{ik} b_{kj}.
+$$
+Per fissare meglio come funziona questo particolare prodotto, consideriamo le due matrici
+\begin{align*}
+  &A = \begin{pmatrix}
+    -3 & 2 \\
+    6 & 7
+  \end{pmatrix} & &B = \begin{pmatrix} 9 & 2 \\ -2 & 4 \end{pmatrix}
+\end{align*}
+abbiamo che il \emph{prodotto righe per colonne} per ricavare l'elemento nella matrice risultante alla prima riga e alla prima colonna consiste nel prendere la prima riga della matrice $A$ e moltiplicarla elemento per elemento ad ogni elemento della prima colonna della matrice $B$; per trovare
+invece l'elemento alla prima riga e nella seconda colonna dobbiamo prendere la prima riga della matrice $A$ e moltiplicarla elemento per elemento con la seconda colonna della matrice $B$; per trovare l'elemento alla seconda riga e alla prima colonna bisogna invece prendere la seconda riga della matrice
+$A$ e moltiplicarla elemento per elemento per la prima colonna della matrice $B$; infine per l'ultimo elemento (siccome questa operazione produce una matrice $2 \times 2$) dobbiamo prendere la seconda riga della matrice $A$ e moltiplicarla elemento per elemento per la seconda colonna della matrice $B$. Abbiamo quindi che
+$$
+C = AB = \begin{pmatrix} -31 & 2 \\ 40 & 40 \end{pmatrix}.
+$$
+Vedremo poi come le matrici abbiano un profondissimo legame con le applicazioni lineari. \\
+Ora, osserviamo che, se $A$ rappresenta un sistema lineare di equazioni, allora
+\begin{prop}[invarianza per mosse di riga] \hspace{1cm} \label{prop:inv_righe}
+  \begin{enumerate}[label=\protect\circled{\arabic*}]
+    \item Moltiplicare per un coefficiente $\alpha \neq 0_\mathbb{K}$ una riga del sistema non modifica l'insieme delle soluzioni;
+    \item Sommare ad una riga un'altra riga non modifica l'insieme delle soluzioni;
+    \item (corollario dalla \circled{1} e \circled{2}) Indicando con $r_i$ e $r_j$ due righe del sistema allora sostituire a $r_i$ la riga $\alpha r_i + \beta r_j$ con $\alpha \neq 0_{\mathbb{K}}$ non cambia l'insieme delle soluzioni.
+  \end{enumerate}
+\end{prop}
+\begin{exercise}
+  Mostrare la proposizione \ref{prop:inv_righe}
+\end{exercise}
+Come possiamo usare questa proposizione qua sopra per risolvere i sistemi lineari? Supponiamo di avere una matrice $A$ della forma
+$$
+\begin{pmatrix}
+  \alpha_{11} & \ldots & \alpha_{1n} \\
+  \alpha_{21} & \ldots & \alpha_{2n} \\
+  \vdots & \ddots & \alpha_{3n} \\
+  \alpha_{m1} & \ldots & \alpha_{mn}
+\end{pmatrix}
+$$
+allora effettuendo operazioni di righe possiamo fare in modo che la nostra matrice si riduca a
+$$
+\begin{pmatrix}
+  * & \ldots & \ldots & \ldots & * \\
+  0 & * & * & \ldots & * \\
+  0 & 0 & * & * & * \\
+  \vdots & \vdots & \vdots & \ddots & \vdots \\
+  0 & 0 & \ldots & 0 & *
+\end{pmatrix}
+$$
+dove gli elementi $*$ sulla diagonale sono detti \emph{pivot}. Se tutti i pivot sono non nulli e $m=n$ allora esiste solo una soluzione banale per il nostro sistema: questo perché il nostro sistema lineare
+\begin{align*}
+  &\begin{cases}
+    \alpha_{11} x_1 + \ldots + \alpha_{1n} x_n = 0 \\
+    \alpha_{21} + \ldots + \alpha_{2n} \\
+    \vdots \, \, \, \, \vdots \, \, \, \, \vdots \, \, \, \, \vdots \\
+    \alpha{m1} + \ldots + \alpha_{nn}
+  \end{cases} \stackrel{\text{è equivalente per mosse di riga}}{\rightarrow} \begin{cases}
+    \alpha'_{11} x_1 + \ldots + \alpha'_{1n} x_n = 0 \\
+    0 + \alpha'_{22} x_2 + \ldots + \alpha_{2n} x_n = 0 \\
+    \vdots \, \, \, \, \vdots \, \, \, \, \vdots \, \, \, \, \vdots \\
+    0 + \ldots + 0 + \alpha'_{nn} x_n = 0 \stackrel{\alpha'_{nn} \neq 0}{\implies} x_n = 0
+  \end{cases}
+\end{align*}
+e da qui procedere per mostrare che tutti gli altri $x_i = 0$. Altrimenti se i pivot sono nulli, allora abbiamo che ci sono delle variabili "libere". Per capire meglio questo concetto si consideri la seguente equazione (ovvero un sistema lineare con una sola equazione)
+$$
+  x + y - z = 0.
+$$
+Con la rappresentazione matriciale abbiamo che questo sistema è equivalente a
+$$
+  \begin{pmatrix}
+    1 & 1 & -1 \\
+  \end{pmatrix} \begin{pmatrix}
+  x \\
+  y \\
+  z
+  \end{pmatrix} = \begin{pmatrix}
+  0 \\
+  0 \\
+  0
+  \end{pmatrix}
+$$
+Vediamo che è già in forma "pivot", quindi abbiamo che $x = -y + z$, ovvero possiamo scrivere il nostro vettore $\begin{pmatrix}
+x \\
+y \\
+z
+\end{pmatrix}$ come
+$$
+  \begin{pmatrix}
+  x \\
+  y \\
+  z
+  \end{pmatrix} = \begin{pmatrix}
+    -y + z \\
+    y \\
+    z
+  \end{pmatrix} = \begin{pmatrix}
+    -y \\
+    y \\
+    0
+  \end{pmatrix} + \begin{pmatrix}
+    z \\
+    0 \\
+    z
+  \end{pmatrix} = y\begin{pmatrix}
+    -1 \\
+    1 \\
+    0
+  \end{pmatrix} + z\begin{pmatrix}
+    1 \\
+    0 \\
+    1
+  \end{pmatrix} \implies \begin{pmatrix}
+  x \\
+  y \\
+  z
+  \end{pmatrix} \in \text{Span}\left(\begin{pmatrix}
+    -1 \\
+    1 \\
+    0
+  \end{pmatrix}, \begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix} \right)
+$$
+Ovvero il vettore $\begin{pmatrix} x \\ y \\ z\end{pmatrix}$ appartiene al piano generato dai vettori $\begin{pmatrix} -1 \\ 1 \\ 0 \end{pmatrix}$ e $\begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix}$. Quindi possiamo vedere come tramite le matrici possiamo semplificare
+il problema dei sistemi lineari. Possiamo effettuare anche il procedimento "inverso" di quanto appena fatto: presi due vettori in $\mathbb{R}^3$ vogliamo trovare un'equazione cartesiana del piano generato da questi due passante per l'origine (altrimenti, se non passasse per l'origine, non sarebbe un sottospazio vettoriale ma un sottospazio affine di cui parleremo fra poco) dovrebbe
+coincidere con quella sopra: per fare questo osserviamo che se il vettore $\begin{pmatrix} x \\ y \\ z \end{pmatrix} \in \text{Span}\left(\begin{pmatrix} -1 \\ 1 \\ 0 \end{pmatrix}, \begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix}\right)$ allora l'equazione
+$$
+  \alpha \begin{pmatrix}
+    -1 \\ 1 \\ 0
+  \end{pmatrix} + \beta \begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix} = \begin{pmatrix} x \\ y \\ z \end{pmatrix}
+$$
+deve avere soluzione per $\alpha$ e $\beta \in \mathbb{R}$, quindi mettendo tutto in una bella matrice
+$$
+  \begin{pmatrix}
+    -1 & 1 & x \\
+    1 & 0 & y \\
+    0 & 1 & z
+  \end{pmatrix}
+$$
+dobbiamo trovare una condizione sui pivot. \textbf{Osservazione}: qua dobbiamo procedere per mosse di colonna e non di righe. Il motivo, anche se ancora non è stato definito, è che noi qua siamo interessati a preservare lo Span delle colonne, che non viene modificato dalle mosse di colonna. \\
+Osserviamo che
+$$
+  \begin{pmatrix}
+    -1 & 1 & x \\
+    1 & 0 & y \\
+    0 & 1 & z
+  \end{pmatrix} \rightarrow 
+  \begin{pmatrix}
+    0 & 1 & x \\
+    1 & 0 & y \\
+    0 & 1 & z
+  \end{pmatrix} \rightarrow \begin{pmatrix}
+    0 & 1 & 0 \\
+    1 & 0 & y \\
+    0 & 1 & z-x
+  \end{pmatrix} \rightarrow \begin{pmatrix}
+    1 & 0 & 0 \\
+    0 & 1 & 0 \\
+    1 & 0 & z-x-y
+  \end{pmatrix}
+$$
+affinché il sistema abbia soluzione è necessario che il pivot finale sia nullo: si ha allora che $z-x-y = 0 \implies x + y - z = 0$.
+\section{Applicazioni lineari}
+Arriviamo finalmente a trattare il cuore di Geometria, ovvero le applicazioni lineari. Queste sono molto importanti perché ci permettono di descrivere tutte le operazioni geometriche che possiamo fare in uno spazio.
+\begin{definition}
+  Siano $V$ e $W$ due spazi vettoriali sul medesimo campo $\mathbb{K}$, diremo che $f$ è una funzione $f: V \to W$ è detta applicazione lineare se
+  \begin{enumerate}[label=\protect\circled{\arabic*}]
+    \item $\forall \underline{v}, \underline{u} \in V, f(\underline{v} +_V \underline{u}) = f(\underline{v}) +_W + f(\underline{u})$;
+    \item $\forall \underline{v} \in V, \forall \alpha \in \mathbb{K}, f(\alpha \cdot_V \underline{v}) = \alpha \cdot_W f(\underline{v})$
+  \end{enumerate}
+\end{definition}
+\begin{prop}
+$\forall f$ applicazione lineare da $V \to W$, allora $f(\underline{0}_V) = \underline{0}_W$
+\end{prop}
+\begin{proof}
+  Si osserva infatti che $f(\underline{0}_V) = f(\underline{0}_V + \underline{0}_V) = f(\underline{0}_V) + f(\underline{0}_V) \implies f(\underline{0}_V) = \underline{0}_W$.
+\end{proof}
+Visto che le applicazioni lineari rimangono comunque delle funzioni, vogliamo vedere se possiamo riscrivere in termini "geometrici" il concetto di iniettività di una funzione. A questo scopo, introduciamo i due seguenti sottospazi
+\begin{definition}[kernel di un'applicazione lineare]
+  Siano $V$ e $W$ due spazi vettoriali sul medesimo campo $\mathbb{K}$, definiamo il kernel di $f$, che denoteremo con $\text{Ker}(f)$, come
+  $$
+    \text{Ker}(f) = \{ \underline{v} \in V : f(v) = \underline{0}_W \}
+  $$
+\end{definition}
+\begin{remark}
+  Dalla proposizione precedente abbiamo che sicuramente $\underline{0}_V \in \text{Ker}(f)$.
+\end{remark}
+\begin{definition}[immagine di un'applicazione lineare]
+  Siano $V$ e $W$ due spazi vettoriali sul medesimo campo $\mathbb{K}$, definiamo l'immagine di $f$, che denoteremo con $\text{Im}(f)$, come
+  $$
+    Im(f) = \{ \underline{w} \in W \big| \exists \underline{v} \in V : f(\underline{v}) = \underline{w} \}.
+  $$
+\end{definition}
+\begin{exercise}
+  Mostrare che $\text{ker}(f)$ e $\text{Im}(f)$ sono effettivamente due sottospazi vettoriali.
+\end{exercise}
+Mostriamo che vale la seguente
+\begin{prop}
+  Siano $V$ e $W$ due spazi vettoriali, sia $f: V \to W$ un'applicazione lineare, allora si ha che
+  \begin{align*}
+    &f \text{ è iniettiva} \iff \text{Ker}(f) = \{ \underline{0} \}.
+  \end{align*}
+\end{prop}
+\begin{proof} \hspace{1cm} \\
+  $\boxed{\Rightarrow}$: se f è iniettiva, allora si ha che $f(\underline{x}) = f(\underline{y}) \implies \underline{x} = \underline{y}$, quindi se $f(\underline{v}) = f(\underline{0}) \implies \underline{v} = \underline{0}$, quindi $\text{ker}(f) = \{ \underline{0}_V \}$. \\
+  $\boxed{\Leftarrow}$: si ha che $f(\underline{x}) = f(\underline{y}) \iff f(\underline{x}) - f(\underline{y}) = \underline{0}_W \iff f(\underline{x}-\underline{y}) = \underline{0}_W$ (dove abbiamo usato la linearità), ma allora, siccome il $\text{Ker}(f) = \{ \underline{0}_V \}$, cio è vero se
+  $\underline{x}-\underline{y} = \underline{0}_V \iff \underline{x} = \underline{y}$. Abbiamo quindi mostrato che $f(\underline{x}) = f(\underline{y}) \implies \underline{x} = \underline{y}$, quindi $f$ è iniettiva.
+\end{proof}
+Vale il seguente risultato
+\begin{theorem}[delle dimensioni]
+  Siano $V, W$ due spazi vettoriali sul medesimo campo $\mathbb{K}$ e sia $f: V \to W$, allora abbiamo che
+  $$
+    \text{dim}(V) = \text{dim}(\text{Ker}(f)) + \text{dim}(\text{Im}(f))
+  $$
+\end{theorem}
+\begin{proof}
+  Sappiamo che $\text{Ker}(f)$ è un sottospazio vettoriale contenuto in $V$ e, dunque, sappiamo che possiede una base $\mathcal{B}' = \{ \underline{v_1}, \ldots, \underline{v_m} \}$ che può essere estesa a base di $V$: indichiamo quindi $\mathcal{B}'' = \{\underline{v_{m+1}}, \underline{v_{m+2}}, \ldots, \underline{v_n}\}$ l'insieme che contiene che vanno aggiunti a $\mathcal{B}$ per ottenere una base di $V$ e poniamo $\mathcal{B} = \mathcal{B}' \cup \mathbb{B}''$ base di $V$.
+  Dobbiamo mostrare allora che $f(\underline{v_{m+1}}), \ldots, f(\underline{v_{n}})$ è una base di $\text{Im}(f)$: per fare ciò osserviamo che preso $\underline{w} \in \text{Im}(f)$ per definizione $\exists \underline{v} \in V : f(\underline{v}) = \underline{w}$, ma allora
+  \begin{align*}
+  \underline{w} &= f(\underline{v}) = f(\alpha_1 \underline{v_1} +_V \ldots +_V \alpha_n \underline{v_n}) = \\
+                &=\alpha_1 \cdot_W f(\underline{v_1}) +_W \ldots +_W \alpha_m \cdot_W f(\underline{v_m}) +_W \alpha_{m+1} \cdot_W f(\underline{v_{m+1}}) +_W \ldots +_W \alpha_n \cdot_W f(\underline{v_{n}}) = \\
+                &=\alpha_1 \cdot_W \underline{0}_W +_W \ldots + \alpha_m \cdot_W \underline{0}_W +_W \alpha_{m+1} \cdot_W f(\underline{v_{m+1}}) +_W \ldots +_W \alpha_n \cdot_W f(\underline{v_n}) = \\
+                &=\alpha_{m+1} \cdot_W f(\underline{v_{m+1}}) +_W \ldots +_W \alpha_n \cdot_W f(\underline{v_n})
+  \end{align*}
+  quindi si ha che se $\underline{w} \in \text{Im}(f) \implies \underline{w} \in \text{Span}(f(\underline{v_{m+1}}), \ldots, f(\underline{v_{n}}))$. Mostriamo che questi vettori sono linearmente indipendenti: osserviamo che dobbiamo verificare che l'equazione
+  \begin{align*}
+    &\alpha_{m+1} \cdot_W f(\underline{v_{m+1}}) +_W \ldots +_W \alpha_{n} \cdot_W f(\underline{v_n}) = \underline{0_W} \stackrel{\text{usando la lin.}}{\iff} \\
+    &\iff f(\alpha_{m+1} \cdot_V \underline{v_{m+1}} +_V \ldots +_V \alpha_n \cdot_V \underline{v_n}) = \underline{0_W},
+  \end{align*}
+  ma allora abbiamo che tutto ciò che si trova all'interno delle parentesi di $f$ deve appartenere al $\text{Ker}(f)$ per definizione: si ha allora che $\exists \alpha_1, \ldots, \alpha_n \in \mathbb{K}$ tali che
+  \begin{align*}
+    &\alpha_{m+1} \cdot_V \underline{v_{m+1}} +_V \ldots +_V \alpha_n \cdot_V \underline{v_n} = \alpha_1 \cdot_V \underline{v_1} + \ldots + \alpha_m \cdot_V \underline{v_m} \iff \\ &\iff -\alpha_1 \cdot_V \underline{v_1} - \ldots - \alpha_m \cdot_V \underline{v_m} + \alpha_{m+1} \cdot_V \underline{v_{m+1}} + \ldots + \alpha_n \cdot_V \underline{v_n} = \underline{0_V},
+  \end{align*}
+  tuttavia essendo i vettori $\underline{v_1}, \ldots, \underline{v_n}$ una base di $V$, si ha che questa equazione ha soluzione solo banale; pertanto $\alpha_i = 0_\mathbb{K} \, \forall i \in \{ 1, \ldots, n \}$, dunque i vettori $f(\underline{v_{m+1}}), \ldots, f(\underline{v_{n}})$ sono linearmente indipendenti.
+\end{proof}
+\newpage
 \section*{Esercizi proposti}
 
 \begin{enumerate}
@@ -59,6 +334,23 @@ E' facile vedere che tutte le proprietà di spazio vettoriale sono rispettate in
         1 & 0
       \end{pmatrix}
     $$
-    siccome abbiamo che $\underline{e_2}$ in $\text{Ker}(A)$ e preso un vettore $\underline{v} \in \text{Im}(f)$ abbiamo che esso sarà della forma $\underline{v} = \alpha \underline{e_1} + \beta \underline{e_2}$
+    siccome abbiamo che $\underline{e_2}$ in $\text{Ker}(A)$ e preso un vettore $\underline{v} \in \text{Im}(f)$ abbiamo che esso sarà della forma $\underline{v} = \alpha \underline{e_1} + \beta \underline{e_2}$.
+    Per quanto riguarda $B$ abbiamo che la matrice
+    $$
+      B = \begin{pmatrix}
+        1 & -1 \\
+        1 & -1
+      \end{pmatrix}
+    $$
+    non appartiene a $\mathcal{A}$ siccome si ha che $\text{ker}(B) = \text{Span}(\begin{pmatrix} 1 \\ 1 \end{pmatrix})$ mentre, presa la base $\mathcal{B} = \{ \begin{pmatrix} 1 \\ -1 \end{pmatrix}, \begin{pmatrix} 1 \\ 1 \end{pmatrix} \}$ abbiamo che
+    $$
+      B(\underline{v}) = B(\alpha \begin{pmatrix} 1 \\ -1 \end{pmatrix} + \beta \begin{pmatrix} 1 \\ 1 \end{pmatrix}) = \alpha B\begin{pmatrix} 1 \\ -1 \end{pmatrix} + \underline{0} = \alpha \begin{pmatrix} 1 \\ 1 \end{pmatrix} \in \text{Ker}(B). 
+    $$
+    Si ha quindi che $\text{Im}(f) = \text{Ker}(B)$, dunque abbiamo che non possono essere in somma diretta, dunque $B \not\in \mathcal{A}$. Questo insieme non è un sottospazio: infatti, se prendiamo due applicazioni "invertite" (ovvero prese $A, B$ se $B$ mi manda tutti i vettori nel kernel di $A$ in loro stessi allora $A+B$ mi rompe la somma diretta), siccome
+    $$
+      A + \begin{pmatrix} 0 & -1 \\ 0 & -1 \end{pmatrix} = B,
+    $$
+    quindi questo insieme non è chiuso rispetto alla somma.
   \end{proof}
+  \item Trovare la matrice inversa
 \end{enumerate}
