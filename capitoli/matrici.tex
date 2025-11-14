@@ -122,7 +122,7 @@ $$
   0 & 0 & \ldots & 0 & *
 \end{pmatrix}
 $$
-dove gli elementi $*$ sulla diagonale sono detti \emph{pivot}. Se tutti i pivot sono non nulli e $m=n$ allora esiste solo una soluzione banale per il nostro sistema: questo perché il nostro sistema lineare
+dove gli elementi $*$ sulla diagonale sono detti \textbf{pivot}. Se tutti i pivot sono non nulli e $m=n$ allora esiste solo una soluzione banale per il nostro sistema: questo perché il nostro sistema lineare
 \begin{align*}
   &\begin{cases}
     \alpha_{11} x_1 + \ldots + \alpha_{1n} x_n = 0 \\
@@ -232,7 +232,273 @@ $$
     1 & 0 & z-x-y
   \end{pmatrix}
 $$
-affinché il sistema abbia soluzione è necessario che il pivot finale sia nullo: si ha allora che $z-x-y = 0 \implies x + y - z = 0$.
+affinché il sistema abbia soluzione è necessario che il pivot finale sia nullo: si ha allora che $z-x-y = 0 \implies x + y - z = 0$. \\
+Nel procedimento sopra esposto c'è però un piccolo problema: io per ora vi ho parlato di sistemi del tipo
+$$
+  A \underline{x} = \underline{0},
+$$
+ma nel procedimento sopra utilizzato per trovare le equazioni del piano ho in realtà considerato un sistema del tipo
+$$
+  A\underline{x} = \underline{b},
+$$
+dove nel caso sovraesposto avevamo che $\underline{b} = \begin{pmatrix} x \\ y \\ z \end{pmatrix}$. Come si risolve la situazione? Chi ci assicura che il procedimento attuato 
+è ancora valido? Il seguente teorema
+\begin{theorem}[di Rouché-Capelli] \label{thm:rouche_capelli}
+  Sia dato un sistema lineare della forma a coefficienti nel campo $\mathbb{K}$
+  \begin{align*}
+    \begin{cases}
+      \alpha_{1, 1} x_1 + \ldots + \alpha_{1, n} = b_1 \\
+      \alpha_{2, 1} x_1 + \ldots + \alpha_{2, n} = b_2 \\
+      \vdots \\
+      \alpha_{m, 1} x_1 + \ldots + \alpha_{m, n} = b_m
+    \end{cases}.
+  \end{align*}
+  con $b_i \in \mathbb{K} \, \forall i \in \{ 1, \ldots, m \}$. Tale sistema è rappresentato dalla matrice
+  $$
+    (A | \underline{b}) = \begin{pmatrix}
+      \alpha_{1, 1} & \alpha_{1, 2} & \ldots & \alpha_{1, n} & | & b_1 \\
+      \alpha_{2, 1} & \alpha_{2, 2} & \ldots & \alpha_{2, n} & | & b_2 \\
+      \vdots & \vdots & \ddots & \vdots & | & b_3 \\
+      \alpha_{m, 1} & \alpha_{m, 2} & \ldots & \alpha_{m,n} & | & b_m
+    \end{pmatrix}
+  $$
+  e si ha che il sistema lineare ha soluzione se la dimensione dello spazio generato dalle colonne (o dalle righe, siccome coincide) della matrice $A$ è uguale alla dimensione dello spazio generato dalle colonne (o dalle righe) della matrice $(A | \underline{b})$. In tal caso le soluzioni all'equazione
+  $$
+    A \underline{x} = \underline{b} \text{ dove } \underline{b} = \begin{pmatrix} b_1 \\ b_2 \\ \vdots \\ b_m \end{pmatrix}
+  $$
+  formano uno spazio affine di $\mathbb{K}^n$ di dimensione $n - \text{dim}(\text{Col}(A))$ (dove con $\text{Col}(A)$ si intende lo spazio delle colonne di $A$). In particolare si ha che se $\mathbb{K}$ è un campo infinito e $\text{dim}(\text{Col}(A)) = n$ allora la soluzione è unica, altrimenti ve ne sono infinite e sono delle forma
+  $$
+    \underline{x_0} + \underline{v}
+  $$
+  dove $\underline{x_0}$ è una possibile soluzione all'equazione, mentre $\underline{v}$è un generico vettore nel kernel di A.
+\end{theorem}
+\begin{remark}
+  Per capire bene il significato di questo teorema, si pensi ad un piano non passante per l'origine, ma passante in $P = (0, 1, 0)$ per esempio. Ogni punto del piano può essere scritto come somma del vettore $\vec{OP}$ e un vettore di un sottospazio vettoriale (immaginate di ritraslare il piano non passante nell'origine, riportandolo nell'origine: abbiamo che ogni punto del piano è identificato da un vettore, siccome riportandolo nell'origine lo abbiamo reso nuovamente uno spazio vettoriale, quindi prendendo un vettore qualunque e sommandolo al vettore $\vec{OP}$ si descrive il generico punto del piano non passante per l'origine).
+\end{remark}
+Per effettuare la dimostrazione bisogna prima soffermarci su una piccola questione: rappresentare un sistema lineare come
+$$
+  A \underline{x} = \underline{0}
+$$
+è equivalente a scrivere
+$$
+  x_1 A^1 + \ldots + x_n A^n = \underline{0}
+$$
+dove $A^i$ è la colonna $i-$esima della matrice $A$. Questo si vede col prodotto matriciale siccome
+$$
+  A\underline{x} = \begin{pmatrix}
+  \alpha_{1,1} & \ldots & \alpha_{1, n} \\
+  \alpha_{2, 1} & \ldots & \alpha_{2, n} \\
+  \vdots & \ddots & \vdots \\
+  \alpha_{m, 1} & \ldots & \alpha_{m,n}
+  \end{pmatrix} \begin{pmatrix}
+    x_1 \\
+    \vdots \\
+    x_n
+  \end{pmatrix} = x_1 \begin{pmatrix}
+    \alpha_{1, 1} \\
+    \vdots \\
+    \alpha_{m, 1}
+  \end{pmatrix} + \ldots + x_n \begin{pmatrix}
+    \alpha_{1, n} \\
+    \vdots \\
+    \alpha_{m, n}
+  \end{pmatrix}.
+$$
+Se queste colonne sono linearmente indipendenti (infatti possono essere immaginate come vettori in $\mathbb{K}^m$), allora l'unica soluzione possibile è per $\underline{x} = \underline{0}$. Ragionando come fatto in precedenza, è facile convincersi che ciò è possibile \textbf{solo} se la matrice può essere messa in forma di pivot con questi ultimi tutti non nulli (infatti se avessimo un pivot nullo, per assurdo, avremmo che una delle $x_i$ soddisfa un'equazione del tipo $0 \cdot x_i = 0$ che è vera per qualunque valore di $x_i$). Anche nel caso in cui stessimo studiando il sistema
+$$
+  A \underline{x} = \underline{b}
+$$
+possiamo sempre procedere come sopra e vedere che
+$$
+  x_1 A^1 + \ldots + x_n A^n = \underline{b},
+$$
+dunque $\underline{b}$ è combinazione lineare delle colonne.
+\begin{proof}[Dimostrazione del teorema \ref{thm:rouche_capelli}]
+  Affinché $\underline{b}$ sia soluzione del sistema si deve avere che appartiene allo $\text{Span}$ delle colonne della matrice siccome il sistema
+  $$
+    A \underline{x} = \underline{b}
+  $$
+  è equivalente a scrivere
+  $$
+    x_1 A^1 + \ldots + x_n A^n = \underline{b}
+  $$
+  dove $A^i$ è l'$i-$esima colonna di $A$. Ma se appartiene allo Span delle colonne, l'aggiunta del vettore $\underline{b}$ non modifica la dimensione dello Span delle colonne (siccome è ridondante), dunque la dimensione dello spazio delle colonne della matrice $(A | \underline{b} )$ è la stessa. Per mostrare l'ultima affermazione, sul fatto che le soluzioni formano uno spazio affine, possiamo osservare che se $\underline{x_0}$ è una soluzione del sistema $A \underline{x} = \underline{b}$, allora si ha
+  che $\underline{x_0} + \underline{v}$ è ancora soluzione del sistema $A\underline{x} = \underline{b}$ siccome
+  $$
+    A(\underline{x_0} + \underline{v}) = A\underline{x_0} + A \underline{v} = \underline{b} + \underline{0} = \underline{b}.
+  $$
+  Si vede che se le dimensioni dello spazio delle colonne è uguale a $n$, allora il sistema omogeneo ($A\underline{x} = \underline{0}$) ha solo soluzione nulla (ovvero si può ridurre in forma triangolare con pivot tutti non nulli), quindi avremo che la soluzione è unica.
+\end{proof}
+Questo metodo di risoluzione si chiama \emph{eliminazione di Gauss-Jordan}. Dal punto di vista matriciale la proposizione \ref{prop:inv_righe} si interpreta nella seguente maniera:
+ad ogni operazione di riga sancita da questa proposizione, stiamo moltiplicando la matrice per una \emph{matrice elementare}. Illustriamo quali sono queste matrici:
+\begin{enumerate}
+  \item \textbf{Scambio di righe}. In questo caso se stiamo scambiando l'$i-$esima riga con la $j-$esima riga stiamo moltiplicando la nostra matrice per
+  \begin{align*}
+    E_{i,j} = \begin{pmatrix}
+      1 & 0 & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & 0 \\
+      0 & 1 & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & 0 \\
+      0 & 0 & \ddots & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & 0 \\
+      0 & \ldots & \ldots & 0 & \ldots & 1 & \ldots & \ldots & \ldots & 0 \\
+      0 & \ldots & \ldots & \vdots & \ddots & \vdots & \ldots & \ldots & \ldots & 0 \\
+      0 & \ldots & \ldots & 1 & \ldots & 0 & \ldots & \ldots & \ldots & 0 \\
+      0 & \ldots & \ldots & 0 & \ldots & 0 & 1 & \ldots & \ldots & 0 \\
+      0 & \ldots & \ldots & 0 & \ldots & 0 & 0 & 1 & \ldots & 0 \\
+      0 & \ldots & \ldots & 0 & \ldots & 0 & 0 & 0 & \ddots & 0 \\
+      0 & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & 1
+    \end{pmatrix}
+  \end{align*}
+  che equivale ad una matrice identità dove al posto del termine $i-$esimo sulla diagonale mettiamo uno $0$ e mettiamo un $1$ invece alla posizione $j-$esima della stessa riga $i-$esima, mentre al termine $j-$esima della diagonale mettiamo uno $0$ e mettiamo un $1$ nella posizione $i-$esima della stessa riga $i-$esima. Per fissare le idee (siccome questo matricione non rende benissimo l'idea), consideriamo la seguente matrice
+  $$
+    A = \begin{pmatrix}
+      1 & 2 & -1 \\
+      0 & 1 & -3 \\
+      -1 & 4 & 5 
+    \end{pmatrix}
+  $$
+  e osserviamo che moltiplicare per la matrice
+  $$
+    E_{1, 3} = \begin{pmatrix}
+      0 & 0 & 1 \\
+      0 & 1 & 0 \\
+      1 & 0 & 0
+    \end{pmatrix}
+  $$
+  scambia la prima riga con la terza, siccome
+  $$
+    \begin{pmatrix}
+      0 & 0 & 1 \\
+      0 & 1 & 0 \\
+      1 & 0 & 0
+    \end{pmatrix} \begin{pmatrix}
+      1 & 2 & -1 \\
+      0 & 1 & -3 \\
+      -1 & 4 & 5 
+    \end{pmatrix} = \begin{pmatrix}
+      -1 & 4 & 5 \\
+      0 & 1 & -3 \\
+      1 & 2 & -1
+    \end{pmatrix}
+  $$
+  \item \textbf{Moltiplicazione per uno scalare $\lambda \neq 0$}. Se stiamo moltiplicando la $i-$esima riga, stiamo moltiplicando la nostra matrice $A$ per una matrice di questo tipo
+  $$
+      E_{\lambda, i} = \begin{pmatrix}
+        1 & \ldots & \ldots & \ldots & \ldots & \ldots & 0\\
+        0 & 1 & \ldots & \ldots & \ldots & \ldots & 0\\
+        0 & 0 & \ddots & \ldots & \ldots & \ldots & 0\\
+        0 & \ldots & \ldots & \lambda & \ldots & \ldots & 0 \\
+        0 & \ldots & \ldots & 0 & \ddots & \ldots  & 0 \\
+        0 & \ldots & \ldots & \ldots & \ldots & 1 & 0 \\
+        0 & \ldots & \ldots & \ldots & \ldots & 0 & 1 \\
+      \end{pmatrix}
+  $$
+  \item \textbf{Somma di una riga per $\lambda$ volte una riga distinta}. Se stiamo sommando alla riga $i-$esima la riga $j-$esima moltiplicata per uno scalare $\lambda$ si ha che la matrice elementare è del tipo
+  $$
+      E_{\lambda, i, j} = \begin{pmatrix}
+      1 & 0 & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & 0 \\
+      0 & 1 & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & 0 \\
+      0 & 0 & \ddots & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & 0 \\
+      0 & \ldots & \ldots & 1 & \ldots & 0 & \ldots & \ldots & \ldots & 0 \\
+      0 & \ldots & \ldots & \vdots & \ddots & \vdots & \ldots & \ldots & \ldots & 0 \\
+      0 & \ldots & \ldots & \lambda & \ldots & 1 & \ldots & \ldots & \ldots & 0 \\
+      0 & \ldots & \ldots & 0 & \ldots & 0 & 1 & \ldots & \ldots & 0 \\
+      0 & \ldots & \ldots & 0 & \ldots & 0 & 0 & 1 & \ldots & 0 \\
+      0 & \ldots & \ldots & 0 & \ldots & 0 & 0 & 0 & \ddots & 0 \\
+      0 & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & 1
+    \end{pmatrix}
+  $$
+  che equivale ad una matrice elementare dove alla riga $i-$esima mettiamo $\lambda$ all'entrata $j-$esima. Per fissare le idee consideriamo sempre la solita matrice di prima $$
+    A = \begin{pmatrix}
+      1 & 2 & -1 \\
+      0 & 1 & -3 \\
+      -1 & 4 & 5 
+    \end{pmatrix}
+  $$
+  e osserviamo che se voglio sommare alla terza riga (quindi $i=3$) la prima riga (quindi $j = 1$ e $\lambda = 1$) in questo caso devo considerare la matrice elementare
+  $$
+    E_{1, 3, 1} = \begin{pmatrix}
+      1 & 0 & 0 \\
+      0 & 1 & 0 \\
+      1 & 0 & 1
+    \end{pmatrix}
+  $$
+  e infatti facendo il conto si vede che
+  $$
+    \begin{pmatrix}
+      1 & 0 & 0 \\
+      0 & 1 & 0 \\
+      1 & 0 & 1
+    \end{pmatrix} \begin{pmatrix}
+      1 & 2 & -1 \\
+      0 & 1 & -3 \\
+      -1 & 4 & 5 
+    \end{pmatrix} = \begin{pmatrix}
+      1 & 2 & -1 \\
+      0 & 1 & -3 \\
+      0 & 6 & 4
+    \end{pmatrix}
+  $$
+\end{enumerate}
+
+Se consideriamo sempre la solita matrice $A$ vorremmo trovare la \emph{matrice inversa}, così definita
+\begin{definition}[matrice inversa]
+  Sia $A \in \mathcal{M}_n(\mathbb{K})$ (ovvero le matrici quadrate $n \times n$ a coefficienti sul campo $\mathbb{K}$), la matrice inversa $A^{-1} \in \mathcal{M}_n(\mathbb{K})$ è quella matrice tale che
+  $$
+    AA^{-1} = A^{-1} A = I
+  $$
+  dove $I$ è la matrice identità $n \times n$.
+\end{definition}
+Tramite il metodo di Gauss-Jordan è possibile descrivere un algoritmo con cui individuarla: se consideriamo la matrice ottenuta aggiungendo ad $A$ la matrice identità, ovvero
+$$
+  (A | I)
+$$
+se effettuiamo delle mosse di riga contemporaneamente su questa nuova matrice e riusciamo a trasformare la parte sinistra (dove inizialmente c'è la matrice $A$) nella matrice diagonale, abbiamo trovato una serie di matrici elementari (tutte moltiplicate fra loro) per cui risulta che
+$$
+  E_n \dots E_1 A = I
+$$
+quindi le $E_n \ldots E_1 = A^{-1}$, tuttavia avendo moltiplicato anche la parte destra (che è la diagonale) per queste matrici si ha che sulla destra abbiamo proprio la matrice inversa di A! \\
+Per fissare le idee consideriamo sempre la matrice $A$ di prima: vi garantisco io che questa matrice è invertibile (e nella prossima sezione affronteremo anche la questione su quando è possibile invertire una matrice) e costruiamo la matrice come spiegato qua sopra
+\begin{align*}
+  &\begin{pmatrix}
+      1 & 2 & -1 & | & 1 & 0 & 0 \\
+      0 & 1 & -3 & | & 0 & 1 & 0 \\
+      0 & 6 & 4 &  | & 0 & 0 & 1
+    \end{pmatrix} \rightarrow 
+    \begin{pmatrix}
+      1 & 0 & 5 & | & 1 & -2 & 0 \\
+      0 & 1 & -3 & | & 0 & 1 & 0 \\
+      0 & 6 & 4 &  | & 0 & 0 & 1
+    \end{pmatrix} \rightarrow
+    \begin{pmatrix}
+      1 & 0 & 5 & | & 1 & -2 & 0 \\
+      0 & 1 & -3 & | & 0 & 1 & 0 \\
+      0 & 0 & 22 &  | & 0 & -6 & 1
+    \end{pmatrix} \rightarrow \\
+    &\begin{pmatrix}
+      1 & 0 & 5 & | & 1 & -2 & 0 \\
+      0 & 1 & -3 & | & 0 & 1 & 0 \\
+      0 & 0 & 1 &  | & 0 & -\frac{6}{22} & \frac{1}{22}
+    \end{pmatrix} \rightarrow
+    \begin{pmatrix}
+      1 & 0 & 5 & | & 1 & -2 & 0 \\
+      0 & 1 & 0 & | & 0 & \frac{4}{22} & \frac{3}{22} \\
+      0 & 0 & 1 &  | & 0 & -\frac{6}{22} & \frac{1}{22}
+    \end{pmatrix} \rightarrow
+    \begin{pmatrix}
+      1 & 0 & 0 & | & 1 & -\frac{14}{22} & -\frac{5}{22} \\
+      0 & 1 & 0 & | & 0 & \frac{4}{22} & \frac{3}{22} \\
+      0 & 0 & 1 &  | & 0 & -\frac{6}{22} & \frac{1}{22}
+    \end{pmatrix}
+\end{align*}
+Segue che la matrice inversa di $A$ è pari a
+$$
+  A^{-1} = \frac{1}{22} \begin{pmatrix}
+    22 & -14 & -5 \\
+    0 & 4 & 3 \\
+    0 & -6 & 1
+  \end{pmatrix}
+$$
+dove ho raccolto $\frac{1}{22}$ dalla matrice. \\
+Un altro modo per intepretare il metodo di Gauss-Jordan per l'inversa è il seguente
 \section{Applicazioni lineari}
 Arriviamo finalmente a trattare il cuore di Geometria, ovvero le applicazioni lineari. Queste sono molto importanti perché ci permettono di descrivere tutte le operazioni geometriche che possiamo fare in uno spazio.
 \begin{definition}
@@ -261,11 +527,14 @@ Visto che le applicazioni lineari rimangono comunque delle funzioni, vogliamo ve
 \begin{definition}[immagine di un'applicazione lineare]
   Siano $V$ e $W$ due spazi vettoriali sul medesimo campo $\mathbb{K}$, definiamo l'immagine di $f$, che denoteremo con $\text{Im}(f)$, come
   $$
-    Im(f) = \{ \underline{w} \in W \big| \exists \underline{v} \in V : f(\underline{v}) = \underline{w} \}.
+    \text{Im}(f) = \{ \underline{w} \in W \big| \exists \underline{v} \in V : f(\underline{v}) = \underline{w} \}.
   $$
 \end{definition}
+\begin{prop}
+  $\text{ker}(f)$ e $\text{Im}(f)$ sono due sottospazi vettoriali.
+\end{prop}
 \begin{exercise}
-  Mostrare che $\text{ker}(f)$ e $\text{Im}(f)$ sono effettivamente due sottospazi vettoriali.
+  Mostrare la proposizione qua sopra.
 \end{exercise}
 Mostriamo che vale la seguente
 \begin{prop}
@@ -306,6 +575,10 @@ Vale il seguente risultato
   \end{align*}
   tuttavia essendo i vettori $\underline{v_1}, \ldots, \underline{v_n}$ una base di $V$, si ha che questa equazione ha soluzione solo banale; pertanto $\alpha_i = 0_\mathbb{K} \, \forall i \in \{ 1, \ldots, n \}$, dunque i vettori $f(\underline{v_{m+1}}), \ldots, f(\underline{v_{n}})$ sono linearmente indipendenti.
 \end{proof}
+Due altre proprietà molto importanti delle applicazioni lineari sono le seguenti
+\begin{prop}
+  Siano $f: V \to W$ un'applicazione lineare con $V$ e $W$ due spazi lineari sul campo $\mathbb{K}$, allora si ha che
+\end{prop}
 \newpage
 \section*{Esercizi proposti}
 

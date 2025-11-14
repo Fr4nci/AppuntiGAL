@@ -8,8 +8,8 @@
 \contentsline {section}{\numberline {1.4}Base di uno spazio vettoriale}{18}{section.1.4}%
 \contentsline {section}{\numberline {1.5}Somma di sottospazi}{25}{section.1.5}%
 \contentsline {chapter}{\numberline {2}Matrici e applicazioni lineari}{29}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Applicazioni lineari}{32}{section.2.1}%
-\contentsline {chapter}{\numberline {3}Soluzioni agli esercizi}{37}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Spazi vettoriali}{37}{section.3.1}%
-\contentsline {chapter}{\numberline {A}Logica}{45}{chapter.1}%
-\contentsline {chapter}{\numberline {B}Basi a dimensione infinita}{47}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Applicazioni lineari}{36}{section.2.1}%
+\contentsline {chapter}{\numberline {3}Soluzioni agli esercizi}{41}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Spazi vettoriali}{41}{section.3.1}%
+\contentsline {chapter}{\numberline {A}Logica}{49}{chapter.1}%
+\contentsline {chapter}{\numberline {B}Basi a dimensione infinita}{51}{chapter.2}%
