@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2026/dev/Arch Linux) (preloaded format=pdflatex 2025.11.10)  14 NOV 2025 01:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2026/dev/Arch Linux) (preloaded format=pdflatex 2025.11.10)  16 NOV 2025 00:13
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1658,6 +1658,11 @@ Overfull \hbox (8.30435pt too wide) in paragraph at lines 700--701
  (./capitoli/matrici.tex
 Capitolo 2.
 
+Underfull \hbox (badness 10000) in paragraph at lines 31--33
+
+ []
+
+
 
 [29
 
@@ -1669,32 +1674,105 @@ Capitolo 2.
 [30]
 
 [31]
+Overfull \hbox (1.1666pt too wide) detected at line 251
+[]
+ []
+
+
 
 [32]
 
 [33]
 
 [34]
-Overfull \hbox (7.72742pt too wide) in paragraph at lines 408--409
+
+[35]
+Overfull \hbox (7.72742pt too wide) in paragraph at lines 439--440
 \OT1/LibertinusSerif-TLF/m/n/12 che equi-va-le ad una ma-tri-ce ele-men-ta-re do-ve al-la ri-ga $\OML/npxmi/m/it/12 i\LMS/npxsy/m/n/12 ^^@$\OT1/LibertinusSerif-TLF/m/n/12 esima met-tia-mo $\OML/npxmi/m/it/12 ^^U$ \OT1/LibertinusSerif-TLF/m/n/12 al-l'en-tra-ta $\OML/npxmi/m/it/12 j\LMS/npxsy/m/n/12 ^^@$\OT1/LibertinusSerif-TLF/m/n/12 esima.
  []
 
 
 
-[35]
-
 [36]
 
 [37]
 
-[38])
+[38]
 
 [39]
+Underfull \hbox (badness 10000) in paragraph at lines 692--693
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 694--695
+
+ []
+
+
+Overfull \hbox (9.45645pt too wide) in paragraph at lines 743--746
+\OT1/LibertinusSerif-TLF/m/n/12 da cui se-gue che le ma-tri-ci sim-me-tri-che ap-par-ten-go-no al-lo Span del-le ma-tri-ci $[] \OML/npxmi/m/it/12 ; [] ; []$\OT1/LibertinusSerif-TLF/m/n/12 .
+ []
+
+
+
+[40]
+
+[41]
+
+[42]
+
+[43]
+Overfull \hbox (2.01622pt too wide) in paragraph at lines 914--915
+[]\OT1/LibertinusSerif-TLF/m/n/12 se $\OML/npxmi/m/it/12 f \OT1/LibertinusSerif-TLF/m/n/12 : \OML/npxmi/m/it/12 V \LMS/npxsy/m/n/12 ! \OML/npxmi/m/it/12 W$ []\OT1/LibertinusSerif-TLF/m/n/12 e li-nea-re, al-lo-ra es-sa []e de-ter-mi-na-ta dal-la co-no-scen-za dei $[] \U/npxmia/m/it/12 = \OML/npxmi/m/it/12 f\LMS/npxsy/m/n/12 ¹[]º\OML/npxmi/m/it/12 ; [] ; [] \U/npxmia/m/it/12 =
+ []
+
+
+
+[44]
+
+[45]
+
+[46]
+LaTeX Font Info:    Font shape `OT1/LibertinusSerif-TLF/m/n' will be
+(Font)              scaled to size 8.0pt on input line 1034.
+LaTeX Font Info:    Font shape `OT1/LibertinusSerif-TLF/m/n' will be
+(Font)              scaled to size 6.2pt on input line 1034.
+LaTeX Font Info:    Font shape `OT1/LibertinusSerif-TLF/b/n' will be
+(Font)              scaled to size 8.0pt on input line 1034.
+LaTeX Font Info:    Font shape `OT1/LibertinusSerif-TLF/b/n' will be
+(Font)              scaled to size 6.2pt on input line 1034.
+
+Underfull \hbox (badness 10000) in paragraph at lines 1047--1048
+
+ []
+
+
+
+[47
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1078   $$
+           ]
+
+[48
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1166   $$
+           ]
+
+[49]
+
+[50])
+
+[51]
 \openout2 = `capitoli/soluzioni_esercizi.aux'.
 
  (./capitoli/soluzioni_esercizi.tex
 
-[40
+[52
 
 
 
@@ -1707,7 +1785,7 @@ LaTeX Font Info:    Font shape `OT1/LibertinusSerif-TLF/b/n' will be
 (Font)              scaled to size 14.4pt on input line 6.
 
 
-[41]
+[53]
 Overfull \hbox (8.19202pt too wide) detected at line 47
 []
  []
@@ -1719,16 +1797,16 @@ Overfull \hbox (2.6187pt too wide) detected at line 52
 
 
 
-[42]
+[54]
 
-[43]
+[55]
 
-[44]
+[56]
 
-[45])
+[57])
 
-[46]
-<immagini/xi_graphic.png, id=454, 301.125pt x 301.125pt>
+[58]
+<immagini/xi_graphic.png, id=567, 301.125pt x 301.125pt>
 File: immagini/xi_graphic.png Graphic file (type png)
 <use immagini/xi_graphic.png>
 Package pdftex.def Info: immagini/xi_graphic.png  used on input line 181.
@@ -1740,14 +1818,14 @@ Overfull \hbox (40.92422pt too wide) in paragraph at lines 180--182
 
 
 
-[47
+[59
 
 
 
 
  <./immagini/xi_graphic.png>]
 
-[48
+[60
 
 
 ]
@@ -1762,7 +1840,7 @@ l.1 \chapter{Logica}
 Appendice A.
 )
 
-[49
+[61
 
 
 ]
@@ -1770,7 +1848,7 @@ Appendice A.
 
  (./capitoli/basi_dimensione_infinita.tex
 
-[50
+[62
 
 
 
@@ -1789,7 +1867,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{definition.2.1
 l.23     S
           ia $A, B$ due insiemi, definiamo relazione $\mathcal{R}$ un sottoi...
 
-[51]
+[63]
 pdfTeX warning (ext4): destination with the same identifier (name{definition.2.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
@@ -1811,7 +1889,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{definition.2.5
 l.46     S
           ia $(A, \leq)$ un insieme parzialmente ordinato, diremo che $x \in...)
 
-[52]
+[64]
 No file main.bbl.
 (./main.aux (./capitoli/spazi_vettoriali.aux) (./capitoli/matrici.aux) (./capitoli/soluzioni_esercizi.aux) (./capitoli/logica.aux) (./capitoli/basi_dimensione_infinita.aux))
  ***********
@@ -1820,18 +1898,18 @@ L3 programming layer <2025-01-18>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 51491 strings out of 475160
- 1153567 string characters out of 5766666
- 1896538 words of memory out of 6000000
- 73334 multiletter control sequences out of 15000+600000
- 726590 words of font info for 353 fonts, out of 8000000 for 9000
+ 51761 strings out of 475160
+ 1157657 string characters out of 5766666
+ 1894537 words of memory out of 6000000
+ 73542 multiletter control sequences out of 15000+600000
+ 744857 words of font info for 392 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 122i,17n,124p,1163b,1029s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 122i,23n,124p,1163b,1029s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/type1/public/libertinus-type1/LibertinusSans-Regular.pfb></usr/share/texmf-dist/fonts/type1/public/libertinus-type1/LibertinusSerif-Bold.pfb></usr/share/texmf-dist/fonts/type1/public/libertinus-type1/LibertinusSerif-Italic.pfb></usr/share/texmf-dist/fonts/type1/public/libertinus-type1/LibertinusSerif-Regular.pfb></usr/share/texmf-dist/fonts/type1/public/newpx/NewPXMI.pfb></usr/share/texmf-dist/fonts/type1/public/newpx/NewPXMI_gnu.pfb></usr/share/texmf-dist/fonts/type1/public/doublestroke/dsrom12.pfb></usr/share/texmf-dist/fonts/type1/public/newpx/pxmiaX.pfb></usr/share/texmf-dist/fonts/type1/public/newpx/pxsys.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txexas.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txsym.pfb>
-Output written on main.pdf (52 pages, 1094246 bytes).
+Output written on main.pdf (64 pages, 1146887 bytes).
 PDF statistics:
- 632 PDF objects out of 1000 (max. 8388607)
- 519 compressed objects within 6 object streams
- 196 named destinations out of 1000 (max. 500000)
- 279 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 766 PDF objects out of 1000 (max. 8388607)
+ 640 compressed objects within 7 object streams
+ 249 named destinations out of 1000 (max. 500000)
+ 303 words of extra memory for PDF output out of 10000 (max. 10000000)
 

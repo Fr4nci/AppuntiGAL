@@ -30,6 +30,7 @@ $$
   \end{pmatrix}.
 $$
 E' facile vedere che tutte le proprietà di spazio vettoriale sono rispettate in virtù del fatto che le stiamo definendo a partire dalle operazioni definite sui numeri reali. \\
+\section{Sistemi lineari e metodo di Gauss-Jordan}
 La domanda che ogni essere umano si chiede almeno una volta nella propria esistenza è, senza ombra di dubbio, "\emph{Perché viviamo?}" e, con grande dispiacere, vi annuncio che nemmeno Geometria è in grado di fornirci una risposta e, se ti sta venendo
 voglia di piangere leggendo queste risposte, sappi che non è nemmeno in grado di rispondere alla domanda "\emph{Perché mi sono iscritto a Fisica?}". Riesce però a rispondere alla domanda "\emph{Perché ci servono le matrici?}": in un certo senso, scrivere
 $A$ matrice $2 \times 2$ è, in un certo senso, equivalente a scrivere un vettore in $4$ dimensioni (non a caso, mostreremo che la dimensione dello spazio vettoriale delle matrici $2 \times 2$ è proprio $4$) e, a priori, le matrici ci consentono di studiare i sistemi lineari.
@@ -242,7 +243,34 @@ $$
   A\underline{x} = \underline{b},
 $$
 dove nel caso sovraesposto avevamo che $\underline{b} = \begin{pmatrix} x \\ y \\ z \end{pmatrix}$. Come si risolve la situazione? Chi ci assicura che il procedimento attuato 
-è ancora valido? Il seguente teorema
+è ancora valido? Per rispondere a questa domanda bisogna introdurre il concetto di rango
+\begin{definition}[rango per righe e per colonne]
+  Sia $A$ una matrice $m \times n$ a coefficienti in $\mathbb{K}$, definiamo rango per colonne di $A$ come
+  \begin{align*}
+    &\rank_C{A} = \text{dim}(\text{Span}(A^1, \ldots, A^n)) \text{ dove } A^i \text{ è la colonna $i$-esima di $A$ e } \text{Span}(A^1, \ldots, A^n) \subseteq \mathbb{K}^n,
+  \end{align*}
+  mentre il rango per colonne di $A$ come
+  \begin{align*}
+    &\rank_B{A} = \text{dim}(\text{Span}(A_1, \ldots, A_n)) \text{ dove } A_i \text{ è la riga $i$-esima di $A$ e } \text{Span}(A^1, \ldots, A^n) \subseteq \mathbb{K}^m.
+  \end{align*}
+\end{definition}
+
+Si può mostrare che vale il seguente teorema
+\begin{theorem}
+  Sia $A$ una matrice $m \times n$ allora
+  $$
+    \rank{(A)} = \rank_C{(A)} = \rank_R{(A)} = \text{ numero di pivot non nulli riducendo la matrice}
+  $$
+\end{theorem}
+\begin{cor}
+  $$
+    \rank{A^T} = \rank{A}
+  $$
+\end{cor}
+\begin{remark}
+  Siccome le operazioni di riga non modificano lo Span delle righe, possiamo concludere che il rango della matrice non viene modficato facendo operazioni di riga (anche se cambia lo Span delle colonne!). Siamo adesso pronti a rispondere al problema iniziale tramite il seguente teorema
+\end{remark}
+
 \begin{theorem}[di Rouché-Capelli] \label{thm:rouche_capelli}
   Sia dato un sistema lineare della forma a coefficienti nel campo $\mathbb{K}$
   \begin{align*}
@@ -262,19 +290,21 @@ dove nel caso sovraesposto avevamo che $\underline{b} = \begin{pmatrix} x \\ y \
       \alpha_{m, 1} & \alpha_{m, 2} & \ldots & \alpha_{m,n} & | & b_m
     \end{pmatrix}
   $$
-  e si ha che il sistema lineare ha soluzione se la dimensione dello spazio generato dalle colonne (o dalle righe, siccome coincide) della matrice $A$ è uguale alla dimensione dello spazio generato dalle colonne (o dalle righe) della matrice $(A | \underline{b})$. In tal caso le soluzioni all'equazione
+  e si ha che il sistema lineare ha soluzione unica se $\rank{(A)}$ è uguale a $\rank{(A | \underline{b})}$. In tal caso le soluzioni all'equazione
   $$
     A \underline{x} = \underline{b} \text{ dove } \underline{b} = \begin{pmatrix} b_1 \\ b_2 \\ \vdots \\ b_m \end{pmatrix}
   $$
-  formano uno spazio affine di $\mathbb{K}^n$ di dimensione $n - \text{dim}(\text{Col}(A))$ (dove con $\text{Col}(A)$ si intende lo spazio delle colonne di $A$). In particolare si ha che se $\mathbb{K}$ è un campo infinito e $\text{dim}(\text{Col}(A)) = n$ allora la soluzione è unica, altrimenti ve ne sono infinite e sono delle forma
+  formano uno spazio affine di $\mathbb{K}^n$ di dimensione $n - \rank{(A)}$. In particolare si ha che se $\rank{(A)} = n$ allora la soluzione è unica, altrimenti ve ne sono infinite e sono delle forma
   $$
     \underline{x_0} + \underline{v}
   $$
   dove $\underline{x_0}$ è una possibile soluzione all'equazione, mentre $\underline{v}$è un generico vettore nel kernel di A.
 \end{theorem}
+
 \begin{remark}
   Per capire bene il significato di questo teorema, si pensi ad un piano non passante per l'origine, ma passante in $P = (0, 1, 0)$ per esempio. Ogni punto del piano può essere scritto come somma del vettore $\vec{OP}$ e un vettore di un sottospazio vettoriale (immaginate di ritraslare il piano non passante nell'origine, riportandolo nell'origine: abbiamo che ogni punto del piano è identificato da un vettore, siccome riportandolo nell'origine lo abbiamo reso nuovamente uno spazio vettoriale, quindi prendendo un vettore qualunque e sommandolo al vettore $\vec{OP}$ si descrive il generico punto del piano non passante per l'origine).
 \end{remark}
+
 Per effettuare la dimostrazione bisogna prima soffermarci su una piccola questione: rappresentare un sistema lineare come
 $$
   A \underline{x} = \underline{0}
@@ -323,13 +353,14 @@ dunque $\underline{b}$ è combinazione lineare delle colonne.
     x_1 A^1 + \ldots + x_n A^n = \underline{b}
   $$
   dove $A^i$ è l'$i-$esima colonna di $A$. Ma se appartiene allo Span delle colonne, l'aggiunta del vettore $\underline{b}$ non modifica la dimensione dello Span delle colonne (siccome è ridondante), dunque la dimensione dello spazio delle colonne della matrice $(A | \underline{b} )$ è la stessa. Per mostrare l'ultima affermazione, sul fatto che le soluzioni formano uno spazio affine, possiamo osservare che se $\underline{x_0}$ è una soluzione del sistema $A \underline{x} = \underline{b}$, allora si ha
-  che $\underline{x_0} + \underline{v}$ è ancora soluzione del sistema $A\underline{x} = \underline{b}$ siccome
+  che, preso un $\underline{v}$ soluzione del sistema $A\underline{x} = \underline{0}$, il vettore $\underline{x_0} + \underline{v}$ è ancora soluzione del sistema $A\underline{x} = \underline{b}$ siccome
   $$
     A(\underline{x_0} + \underline{v}) = A\underline{x_0} + A \underline{v} = \underline{b} + \underline{0} = \underline{b}.
   $$
   Si vede che se le dimensioni dello spazio delle colonne è uguale a $n$, allora il sistema omogeneo ($A\underline{x} = \underline{0}$) ha solo soluzione nulla (ovvero si può ridurre in forma triangolare con pivot tutti non nulli), quindi avremo che la soluzione è unica.
 \end{proof}
-Questo metodo di risoluzione si chiama \emph{eliminazione di Gauss-Jordan}. Dal punto di vista matriciale la proposizione \ref{prop:inv_righe} si interpreta nella seguente maniera:
+Dal teorema qua sopra si evince subito che è sempre utile sapere le soluzioni del sistema $A \underline{x} = \underline{0}$, anche quando si sta studiando il sistema $A \underline{x} = \underline{b}$ (siccome le soluzioni a questo sistema sono date da una soluzione $\underline{x_0}$ che risolve il sistema a cui possiamo aggiungere un qualunque vettore che invece soddisfa il sistema omogeneo $A \underline{x} = \underline{0}$).
+Il metodo di risoluzione che sfrutta le mosse di riga per semplificare le matrici si chiama \emph{eliminazione di Gauss-Jordan}. Dal punto di vista matriciale la proposizione \ref{prop:inv_righe} si interpreta nella seguente maniera:
 ad ogni operazione di riga sancita da questa proposizione, stiamo moltiplicando la matrice per una \emph{matrice elementare}. Illustriamo quali sono queste matrici:
 \begin{enumerate}
   \item \textbf{Scambio di righe}. In questo caso se stiamo scambiando l'$i-$esima riga con la $j-$esima riga stiamo moltiplicando la nostra matrice per
@@ -497,8 +528,309 @@ $$
     0 & -6 & 1
   \end{pmatrix}
 $$
+\begin{remark}
+  Per formalizzare il motivo per cui questo metodo funziona bisognerebbe mostrare (ma non è stato fatto nel corso) che ogni matrice invertibile
+  possa essere scritta come prodotto di matrici elementari. Si può facilmente mostrare (esercizio!) che il prodotto di due matrici invertibili è invertibile.
+\end{remark}
 dove ho raccolto $\frac{1}{22}$ dalla matrice. \\
-Un altro modo per intepretare il metodo di Gauss-Jordan per l'inversa è il seguente
+Un altro modo per intepretare il metodo di Gauss-Jordan per l'inversa è il seguente: se consideriamo il sistema non omogeneo
+$$
+  A\underline{x_1} = \begin{pmatrix}
+    1 \\ 0 \\ 0
+  \end{pmatrix}
+$$
+e anche gli altri due sistemi non omogenei
+\begin{align*}
+  &A\underline{x_2} = \begin{pmatrix}
+    0 \\ 1 \\ 0
+  \end{pmatrix} & &A\underline{x_3} = \begin{pmatrix}
+    0 \\ 0 \\ 1
+  \end{pmatrix}
+\end{align*}
+
+abbiamo che accorpando i vettori $\underline{x_1}$, $\underline{x_2}$ e $\underline{x_3}$ per formare una matrice le cui colonne sono questi vettori, si ottiene che
+$$
+  A(\underline{x_1} | \underline{x_2} | \underline{x_3}) = \begin{pmatrix}
+    1 & 0 & 0 \\
+    0 & 1 & 0 \\
+    0 & 0 & 1
+  \end{pmatrix},
+$$
+quindi possiamo interpretare
+$$
+  (A | I)
+$$
+come un sistema lineare "multiplo" la cui soluzione è rappresentata dalla matrice $A^{-1}$. Tramite questo procedimento è possibile mostrare la seguente proposizione
+\begin{prop}
+  Sia $A$ una matrice $n \times n$ a coefficienti in $\mathbb{K}$, allora
+  $$
+    A \text{ è invertibile } \iff \rank{(A)} = n
+  $$
+\end{prop}
+Per fare questa dimostrazione è necessario questo lemma particolarmente rognoso da mostrare
+\begin{lemma}
+  Se $A$ e $B$ sono matrici allora
+  $$
+    \text{rank}(AB) \leq \min{\{\text{rank}(A), \text{rank}(B) \}}
+  $$
+\end{lemma}
+\begin{proof}
+  Osserviamo che se $A \in \mathcal{M}_{m \times n}(\mathbb{K})$ e $B \in \mathcal{M}_{n \times s}(\mathbb{K})$, allora si ha che $(AB)_i = A_i B$, da cui facendo il conto
+  \begin{align*}
+    &(AB)_i = \\ 
+    &=(a_{i1}b_{11} + a_{i2}b_{21} + \ldots + a_{in}b_{n1}, a_{i1}b_{12} + a_{i2}b_{22} + \ldots + a_{in}b_{n2}, \ldots, a_{i1}b_{1s} + \ldots + a_{in}b_{ns}) = \\
+    &= (a_{i1}b_{11}, a_{i1}b_{12}, \ldots, a_{i1}b_{1s}) + (a_{i2}b_{21}, a_{i2}b_{22}, a_{i2}b_{23}, \ldots, a_{i2}b_{2s}) + \ldots + \\
+    &+ (a_{in}b_{n1}, a_{in}b_{n2}, \ldots, a_{in}b_{ns}) =a_{i1} B^1 + a_{i2} B^2 + \ldots + a_{in} B^n
+  \end{align*}
+  quindi ogni riga di $(AB)$ è combinazione lineare delle righe di $B$, quindi è chiaro che lo $\text{Span}$ delle righe di $AB$ è contenuto nello Span delle righe di $B$, dunque
+  $$
+    \rank{(AB)} \leq \rank{B},
+  $$
+  ma siccome il rango è invariante per trasposizione, abbiamo che
+  $$
+    \rank{(AB)} = \rank{(AB)^T} = \rank{B^T A^T}
+  $$
+  e ragionando come fatto prima abbiamo che le righe di $B^T A^T$ sono combinazioni lineari delle righe di $A$, dunque si ha che
+  $$
+    \rank{(AB)} = \rank{B^T A^T} \leq \rank{A^T} = \rank{A},
+  $$
+  dunque
+  $$
+    \rank{(AB)} \leq \min{\{ \rank{(A)}, \rank{(B)}\} }.
+  $$
+\end{proof}
+\begin{proof} \hspace{1cm} \\
+  $\boxed{\Rightarrow}$: se $A$ è invertibile, allora abbiamo, usando il lemma di prima, che
+  $$
+    n = \rank{I_n} = \rank{(AA^{-1})} \leq \rank{(A)},
+  $$
+  tuttavia è chiaro che $\rank{A} \leq n$ per definizione, quindi $\rank{A} = n$. \\
+  $\boxed{\Leftarrow}$: se la matrice $A$ ha rango pari a $n$, le righe formano una base di $\mathbb{K}^n$ e, dunque, abbiamo che esistono dei coefficienti $(x_{i1}, x_{i2}, \ldots, x_{in})$ per cui
+  $$
+    \underline{e_j} = x_{i1} A_1 + x_{i2} A_2 + \ldots + x_{in} A_n
+  $$
+  dunque costruendo la matrice $B = \{x_{ij}\}$ si ottiene che
+  $$
+    BA = I,
+  $$
+  dunque $A$ è invertibile.
+\end{proof}
+\section{Matrici simmetriche e antisimmetriche}
+Vogliamo introdurre un'altra classe di matrici molto importanti: per fare questo è necessario introdurre l'operazione di trasposta
+\begin{definition}[traspozione di una matrice]
+  Sia $A \in \mathcal{M}_{m \times n}(\mathbb{K})$ una matrice, la trasposta della matrice $A$, che indicheremo con $A^T$, è la matrice $C$ tale che
+  $$
+    (C)_{ij} = A_{ji}
+  $$
+\end{definition}
+\begin{example}
+  Per fissare le idee, consideriamo la matrice
+  $$
+    \begin{pmatrix}
+      1 & 2 \\
+      0 & 3 \\
+      5 & 7
+    \end{pmatrix},
+  $$
+  la matrice trasposta ha dimensioni invertite (dunque siccome $A$ è una matrice $3 \times 2$ avremo che la tua trasposta è la matrice $2 \times 3$) ed è la seguente matrice
+  $$
+    \begin{pmatrix}
+      1 & 0 & 5 \\
+      2 & 3 & 7
+    \end{pmatrix}
+  $$
+  quindi per costruire la matrice trasposta basta scambiare le righe con le colonne: le righe della matrice originale diventeranno le colonne e viceversa.
+\end{example}
+Notiamo, tuttavia, che esistono delle matrici che sono uguali alla loro simmetrica: l'esempio per eccellenza è la matrice identità, siccome
+$$
+  \begin{pmatrix}
+    1 & 0 & 0 \\
+    0 & 1 & 0 \\
+    0 & 0 & 1
+  \end{pmatrix}
+$$
+che si vede essere uguale alla sua trasposta, tuttavia anche la seguente matrice
+$$
+  \begin{pmatrix}
+    1 & 2 & 3 \\
+    2 & 7 & 0 \\
+    3 & 0 & 9
+  \end{pmatrix}
+$$
+è uguale alla sua trasposta. La classe di matrici che hanno questa proprietà sono dette matrici simmetriche
+\begin{definition}[matrici simmetriche]
+  Sia $A \in \mathcal{M}_n(\mathbb{K})$, diremo che è simmetrica se
+  $$
+    A = A^T
+  $$
+\end{definition}
+\begin{remark}
+  Osserviamo che questa definizione ha senso solamente se consideriamo lo spazio delle matrici quadrate, altrimenti non è in alcun modo possibile che una matrice non quadrata sia uguale alla sua trasposta (siccome le dimensioni vengono invertite).
+\end{remark}
+Un'altra classe di matrici molto importanti sono le matrici antisimmetriche, così definite
+\begin{definition}[matrici antisimmetriche]
+  Sia $A \in \mathcal{M}_n(\mathbb{K})$, diremo che è antisimmetrica se
+  $$
+  A = -A^T
+  $$
+\end{definition}
+\begin{remark}
+  Un esempio di matrice antisimmetrica è la seguente
+  $$
+    \begin{pmatrix}
+      0 & 1 & 6 \\
+      -1 & 0 & 5 \\
+      -6 & -5 & 0 
+    \end{pmatrix}
+  $$
+\end{remark}
+Dall'esempio qua sopra possiamo vedere che gli elementi della diagonali li ho messi a zero. Perché? La risposta è semplice: passando alle componenti della matrice, abbiamo che una matrice antisimmetrica $A$ deve soddisfare sulla diagonale la relazione
+$$
+  A_{ii} = -A_{ii} \implies 2A_{ii} = 0 \implies A_{ii} = 0.
+$$
+Possiamo mostrare che questi due spazi sono, rispettivamente, dei sottospazi vettoriali. Per far vedere ciò bisogna far vedere che
+\begin{lemma} \hspace{1cm} \\
+  \begin{enumerate}[label=\protect\circled{\arabic*}]
+    \item $(A+B)^T = A^T + B^T \, \forall A, B \in \mathcal{M}_{m \times n}(\mathbb{K})$ \\
+    \item $(\alpha A)^T = \alpha A^T \, \forall A \in \mathcal{M}_{m \times n}(\mathbb{K}), \forall \alpha \in \mathbb{K}$
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  Per la \circled{1} abbiamo che $((A+B)^T)_{ij} = (A + B)_{ji} = (A)_{ji} + (B)_{ji} = (A^T)_{ij} + (B^T)_{ij} \implies (A + B)^T = A^T + B^T$. Per la \circled{2} si ha che $((\alpha A)^T)_{ij} = (\alpha A)_{ji} = \alpha A_{ji} = \alpha (A^T)_{ij} \implies (\alpha A)^T = \alpha A^T$.
+\end{proof}
+\begin{prop}
+  Lo spazio delle matrici simmetriche $S_n(\mathbb{K})$ e delle matrici antisimmetriche $A_n(\mathbb{K})$ sono, rispettivamente, due sottospazi vettoriali.
+\end{prop}
+\begin{proof}
+  Mostriamo per primo che lo spazio delle matrici simmetriche è un sottospazio vettoriale: usiamo sempre la proposizione \ref{prop:ssp_vett_iff}. Tuttavia è chiaro che se $A, B \in S_n(\mathbb{K})$, allora si ha, usando il lemma appena mostrato, che
+  $$
+    (A + B)^T = A^T + B^T \stackrel{\text{A, B matrici simm.}}{=} A + B
+  $$
+  e chiaramente $\forall \alpha \in \mathbb{K}$ si ha che
+  $$
+    (\alpha A)^T = \alpha A^T = \alpha A.
+  $$
+  Per quanto riguarda le matrici antisimmetriche abbiamo che, prese due matrici $A, B \in A_n(\mathbb{K})$, abbiamo che la loro somma
+  $$
+    (A + B)^T = A^T + B^T = - A - B = -(A+B),
+  $$
+  e preso $\alpha \in \mathbb{K}$ abbiamo che
+  $$
+    (\alpha A)^T = \alpha A^T = - \alpha A.
+  $$
+\end{proof}
+Mostriamo quali sono le dimensioni di questi due sottospazi: nel caso di $V = \mathbb{K}$, le matrici che agiscono in questo spazio sono matrici $1 \times 1$, quindi l'unica matrice simmetrica in questo spazio è della forma
+\begin{align*}
+  &\begin{pmatrix}
+    \alpha
+  \end{pmatrix} & &\text{con } \alpha \in \mathbb{K},
+\end{align*}
+e non ci sono chiaramente matrici antisimmetriche. Per quanto riguarda invece lo spazio $V = \mathbb{K}^2$ abbiamo che le matrici simmetriche sono della forma
+\begin{align*}
+  \begin{pmatrix}
+    \alpha & \beta \\
+    \beta & \delta
+  \end{pmatrix} = \alpha \begin{pmatrix}
+    1_{\mathbb{K}} & 0 \\
+    0 & 0 
+  \end{pmatrix} + \beta \begin{pmatrix}
+    0 & 1_{\mathbb{K}} \\
+    1_{\mathbb{K}} & 0
+  \end{pmatrix} + \gamma \begin{pmatrix}
+    0 & 0 \\
+    0 & 1_\mathbb{K}
+  \end{pmatrix} & &\text{con } \alpha, \beta, \gamma \in \mathbb{K},
+\end{align*}
+da cui segue che le matrici simmetriche appartengono allo Span delle matrici $\begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}, \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}, \begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix}$. Per quanto riguarda invece le matrici antisimmetriche
+osserviamo che queste sono tutte della forma (ricordando che sulla diagonale hanno necessariamente solo zeri)
+\begin{align*}
+  &\begin{pmatrix}
+    0 & \delta \\
+    -\delta & 0
+  \end{pmatrix} = \delta \begin{pmatrix} 0 & 1_{\mathbb{K}} \\ -1_\mathbb{K} & 0 \end{pmatrix} & &\text{con } \delta \in \mathbb{K},
+\end{align*}
+quindi le matrici antisimmetriche appartengono allo Span della matrice $\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}$. Studiando anche il caso per $V=\mathbb{K}^3$ e qualche altro, si osserva che un possibile formula per le dimensioni delle matrici simmetriche è
+\begin{equation}
+  \label{eq:dim_simm}
+  \text{dim}(S_n) = \frac{n(n+1)}{2},
+\end{equation}
+mentre per quelle antisimmetriche abbiamo la seguente formula possibile
+\begin{equation}
+  \label{eq:dim_antisimm}
+  \text{dim}(A_n) = \frac{n(n-1)}{2}.
+\end{equation}
+\begin{remark}
+  Un possibile modo per ricavare questa formula è osservare, innanzitutto, che le matrici quadrate hanno dimensione $n^2$: questo si vede mostrando che le matrici $e_{i,j}$ che hanno un $1$ solo in posizione $(i,j)$ e zero altrove formano una base. Successivamente si osserva che, per quanto riguarda le matrici antisimmetriche, vanno tolte le matrici $e_{1, 1}, e_{2, 2}$ e $e_{3, 3}, \ldots, e_{n, n}$, siccome sulla diagonale non posso avere elementi; successivamente il numero che otteniamo
+  va diviso per $2$ perché gli elementi sotto la diagonale sono l'opposto di quelli sopra la diagonale, quindi sono "fissati", ottenendo così che $\text{dim}(A_n) = \frac{n^2-n}{2}$. Per quanto riguarda le simmetriche, si osserva che dobbiamo considerare il numero di elementi sopra la diagonale (che mi fissano anche quelli sotto la diagonale) e aggiungerci il numero di elementi sulla diagonale: ripetendo il ragionamento fatto per le antisimmetriche, abbiamo che $\frac{n^2-n}{2}$ rappresenta il numero di elementi
+  sopra la diagonale, quindi abbiamo che $\frac{n^2 - n}{2} + n = \frac{n^2 - n +2n}{2} = \frac{n(n+1)}{2}$.
+\end{remark}
+Mostriamo formalmente\footnote{in realtà l'osservazione fatta sopra è più che sufficiente per concludere, tuttavia vi voglio abituare all'induzione in cui si potrebbe, a priori, congetturare formule senza alcun significato e mostrare, per induzione, che in realtà queste formule sono effettivamente valide} (tramite il metodo di induzione) la dimensione di questi due sottospazi usando come ipotesi induttiva le equazioni $(\ref{eq:dim_simm})$ e $(\ref{eq:dim_antisimm})$
+\begin{prop}
+  Lo spazio delle matrici simmetriche a coefficienti nel campo $\mathbb{K}$ ha dimensioni pari a
+  $$
+    \frac{n(n+1)}{2},
+  $$
+  mentre le dimensioni dello spazio delle matrici antisimmetriche a coefficienti nel campo $\mathbb{K}$ ha dimensione pari a
+  $$
+    \frac{n(n-1)}{2}.
+  $$
+\end{prop}
+\begin{proof}
+  Osserviamo che il caso per $n=1$ è già stato analizzato sopra e abbiamo che $\text{dim}(S_1) = \frac{1(1+1)}{2} = 1$ e $\text{dim}(A_1) = \frac{1(1-1)}{2}=0$. Mostriamo che $n \implies n+1$ usando come ipotesi induttiva che $\text{dim}(S_n) = \frac{n(n+1)}{2}$ e $\text{dim}(A_n) = \frac{n(n-1)}{2}$: si ha che se consideriamo una matrice $n+1 \times n+1$ abbiamo che
+  \begin{align*}
+  S_{n+1} =
+  \begin{pmatrix}
+    \alpha_1      & \alpha_2      & \cdots & \alpha_{n+1} \\
+    \alpha_2      &               &        &              \\
+    \vdots        &               & S_n    &              \\
+    \alpha_{n+1}  &               &        &
+  \end{pmatrix}
+\end{align*}
+dove $S_n$ è una matrice $n \times n$. Siccome gli elementi sulla prima colonna (a parte $\alpha_1$) sono fissati dagli elementi sulla prima riga, è sufficiente osservare che alle dimensioni delle spazio delle matrici $S_n$ bisogna aggiungere $n+1$ elementi, quindi
+$$
+  \text{dim}(S_{n+1}) = \frac{n(n+1)}{2} + (n+1) = \frac{n(n+1) + 2(n+1)}{2} = \frac{(n+1)(n+2)}{2}
+$$
+dove riconosciamo la formula (\ref{eq:dim_simm}) in cui $n \underset{\text{mandato in}}{\stackrel{\text{viene}}{\rightarrow}} n+1$. Per le matrici antisimmetriche si osserva che sono della forma
+\begin{align*}
+A_{n+1} =
+  \begin{pmatrix}
+    0      & \alpha_2      & \cdots & \alpha_{n+1} \\
+    -\alpha_2      &               &        &              \\
+    \vdots        &               & A_n    &              \\
+    -\alpha_{n+1}  &               &        &
+  \end{pmatrix}
+\end{align*}
+dunque è sufficiente ripetere il ragionamento fatto sopra (sul fatto che gli elementi sulla colonna sono fissati dagli elementi sulla prima riga) e aggiungere alla dimensioni delle matrici $A_n$ il numero di elementi non nulli nella prima riga, pari a $n$, pertanto
+$$
+  \text{dim}(A_{n+1}) = \frac{n(n-1)}{2} + n = \frac{n(n-1) + 2n}{2} = \frac{n(n+1)}{2}
+$$
+dove vediamo che questa è esattamente la formula $(\ref{eq:dim_antisimm})$ dove $n \underset{\text{mandato in}}{\stackrel{\text{viene}}{\rightarrow}} n+1$.
+\end{proof}
+Si osserva che $\text{dim}(S_n) + \text{dim}(A_n) = \frac{n(n+1)}{2} + \frac{n(n-1)}{2} = \frac{2n^2}{2} = n^2$ e $S_n \cap A_n = \{ \underline{0} \}$ (dove $\underline{0}$ è la matrice nulla): se per assurdo $\exists S_n \cap A_n \ni A \neq \underline{0}$ allora
+\begin{align*}
+  &\begin{cases}
+    \circled{1} \, A_{ij} = A_{ji} \\
+    \circled{2} \, A_{ij} = -A_{ji}
+  \end{cases} & &\forall i, j \in \{ 1, \ldots, n\}.
+\end{align*}
+Tuttavia si osserva dalla \circled{1} si ha che $A_{ji} = A_{ij}$ quindi inserendola nella seconda abbiamo che $A_{ij} = -A_{ji} = -A_{ij} \implies A_{ij} = -A_{ij} \, \forall i, j \in \{ 1, \ldots, n \}$; che ci porta a concludere che $A_{ij} = 0 \, \forall i, j \in \{ 1, \ldots, n \}$. Si ha quindi che i due sottospazi hanno intersezione banale. \\
+Abbiamo, quindi, mostrato la seguente proposizione
+\begin{prop}
+  Lo spazio delle matrici quadrate $n \times n$ a coefficienti nel campo $\mathbb{K}$ è dato dalla somma diretta dello spazio delle matrici simmetriche e dello spazio delle matrici antisimmetriche.
+  \begin{equation}
+    \mathcal{M}_n (\mathbb{K}) = S_n \circled{+} A_n.
+  \end{equation}  
+\end{prop}
+Presa una matrice $M \in \mathcal{M}_n(\mathbb{K})$, possiamo costruire esplicitamente le matrici simmetriche e antisimmetriche la cui somma ci dà la matrice $M$, infatti osserviamo che la matrice $(M + M^T)$ è simmetrica, siccome
+$$
+  (M + M^T)^T = M^T + (M^T)^T = M^T + M = M + M^T
+$$
+e la matrice $(M - M^T)$ è antisimmetrica, siccome
+$$
+  (M - M^T)^T = M^T - (M^T)^T = M^T - M = -(M - M^T),
+$$
+e si osserva che $M = \frac{1}{2}(M + M^T) + \frac{1}{2}(M - M^T)$.
+
 \section{Applicazioni lineari}
 Arriviamo finalmente a trattare il cuore di Geometria, ovvero le applicazioni lineari. Queste sono molto importanti perché ci permettono di descrivere tutte le operazioni geometriche che possiamo fare in uno spazio.
 \begin{definition}
@@ -537,7 +869,7 @@ Visto che le applicazioni lineari rimangono comunque delle funzioni, vogliamo ve
   Mostrare la proposizione qua sopra.
 \end{exercise}
 Mostriamo che vale la seguente
-\begin{prop}
+\begin{prop} \label{prop:kern_iniett}
   Siano $V$ e $W$ due spazi vettoriali, sia $f: V \to W$ un'applicazione lineare, allora si ha che
   \begin{align*}
     &f \text{ è iniettiva} \iff \text{Ker}(f) = \{ \underline{0} \}.
@@ -549,7 +881,7 @@ Mostriamo che vale la seguente
   $\underline{x}-\underline{y} = \underline{0}_V \iff \underline{x} = \underline{y}$. Abbiamo quindi mostrato che $f(\underline{x}) = f(\underline{y}) \implies \underline{x} = \underline{y}$, quindi $f$ è iniettiva.
 \end{proof}
 Vale il seguente risultato
-\begin{theorem}[delle dimensioni]
+\begin{theorem}[delle dimensioni] \label{thm:form_dim}
   Siano $V, W$ due spazi vettoriali sul medesimo campo $\mathbb{K}$ e sia $f: V \to W$, allora abbiamo che
   $$
     \text{dim}(V) = \text{dim}(\text{Ker}(f)) + \text{dim}(\text{Im}(f))
@@ -575,10 +907,324 @@ Vale il seguente risultato
   \end{align*}
   tuttavia essendo i vettori $\underline{v_1}, \ldots, \underline{v_n}$ una base di $V$, si ha che questa equazione ha soluzione solo banale; pertanto $\alpha_i = 0_\mathbb{K} \, \forall i \in \{ 1, \ldots, n \}$, dunque i vettori $f(\underline{v_{m+1}}), \ldots, f(\underline{v_{n}})$ sono linearmente indipendenti.
 \end{proof}
-Due altre proprietà molto importanti delle applicazioni lineari sono le seguenti
+Le ultime due proprietà molto utili per quanto riguarda le applicazioni lineari sono le due prossime proposizioni:
 \begin{prop}
-  Siano $f: V \to W$ un'applicazione lineare con $V$ e $W$ due spazi lineari sul campo $\mathbb{K}$, allora si ha che
+  Siano $f: V \to W$ una funzione (non applicazione lineare!) fra spazi lineari con $V$ e $W$ due spazi lineari sul campo $\mathbb{K}$ e sia $\mathcal{B} = \{ \underline{v_1}, \ldots, \underline{v_n} \}$ una base di $V$. Allora
+  \begin{enumerate}[label=\protect\circled{\arabic*}]
+    \item se $f: V \to W$ è lineare, allora essa è determinata dalla conoscenza dei $\underline{w_1} = f(\underline{v_1}), \ldots, \underline{w_n} = f(\underline{v_n})$.
+    \item viceversa, assegnata una lista ordinata di vettore $\underline{w_1}, \ldots, \underline{w_n} \in W \, \exists ! f: V \to W$ lineare tale che $\underline{w_1} = f(\underline{v_1}), \ldots, \underline{w_n} = f(\underline{v_n})$.  
+  \end{enumerate}
 \end{prop}
+\begin{proof}
+  Mostriamo la \circled{1}: $\underline{v} \in V, \underline{v} = x_1 \underline{v_1} + x_2 \underline{v_2} + \ldots + x_n \underline{v_n}$ dove gli $x_i \in \mathbb{K}$ sono determinati in modo univoco (per la proposizione \ref{prop:uniqueness_coordinates}) e osserviamo che
+  $$
+    f(\underline{v}) = f(x_1 \underline{v_1}+\ldots+x_n \underline{v_n}) = x_1 f(\underline{v_1}) + \ldots + x_n f(\underline{v_n}) = x_1 \underline{w_1} + \ldots + x_n \underline{w_n}.
+  $$
+  Mostriamo la \circled{2}. Definiamo $f: V \to W$ in questa maniera: se $\underline{v} = x_1 \underline{v_1} + \ldots + x_n \underline{v_n}$ allora $f(\underline{v}) = x_1 \underline{w_1} + \ldots + x_n \underline{w_n}$ (in particolare abbiamo che $f(\underline{v_1}) = \underline{w_1}, \ldots, f(\underline{v_n}) = \underline{w_n}$). Mostriamo che è lineare: osserviamo che preso $\underline{v}$ come prima definito e $\underline{w} = y_1 \underline{v_1}+\ldots + y_n \underline{v_n}$ allora $\underline{v} + \underline{w} = (x_1 + y_1) \underline{v_1} + \ldots + (x_n + y_n) \underline{v_n}$, dunque
+  $$
+  f(\underline{v} + \underline{w}) = (x_1 + y_1) \underline{w_1} + \ldots + (x_n + y_n) \underline{w_n} = (x_1 \underline{w_1} + \ldots + x_n \underline{w_n}) + (y_1 \underline{w_1} + \ldots + y_n \underline{w_n}) = f(\underline{v}) + f(\underline{w}),
+  $$
+  e similmente si procede per mostrare che $f(\lambda \underline{v}) = \lambda f(\underline{v})$. L'unicità è garantita dal fatto che se esistesse una funzione $g$ lineare per cui $\underline{w_1} = g(\underline{v_1}), \ldots, \underline{w_n} = g(\underline{v_n})$ e $g \neq f$ per cui $\underline{w_1} = g(\underline{v_1}), \ldots, \underline{w_n} = g(\underline{v_n})$ si ha che preso un vettore $\underline{v} = x_1 \underline{v_1} + \ldots + x_n \underline{v_n}$ si ha che
+  \begin{align*}
+    f(\underline{v}) &= f(x_1 \underline{v_1} + \ldots + x_n \underline{v_n}) = x_1 f(\underline{v_1}) + \ldots + x_n f(\underline{v_n}) = x_1 \underline{w_1} + \ldots + x_n \underline{w_n} = \\
+    &=x_1 g(\underline{v_1}) + \ldots + x_n g(\underline{v_n}) = g(x_1 \underline{v_1} + \ldots + x_n \underline{v_n}) = g(\underline{v})
+  \end{align*}
+  ma questo ragionamento non dipende da qualunque $\underline{v} \in V$ preso; quindi $g = f$.
+\end{proof}
+\begin{prop}
+  \label{prop:iniett_pr_lin_ind}
+  Sia $f: V \to W$ è un'applicazione lineare \textbf{iniettiva} fra due spazi vettoriali $V$ e $W$ sul medesimo campo $\mathbb{K}$, allora se $\{ \underline{v_1}, \ldots, \underline{v_n}\} \subset V$ sono vettori linearmente indipendenti allora $f(\underline{v_1}), \ldots, f(\underline{v_n})$ sono linearmente indipendenti.
+\end{prop}
+\begin{proof}
+  Si procede con la contronominale\footnote{se stiamo mostrando $A \implies B$ possiamo far vedere che questa implicazione, dal punto di vista logico, è equivalente a far vedere che $\neg B \implies \neg A$, quindi in questo caso dobbiamo mostrare che se $f(\underline{v_1}), \ldots, f(\underline{v_n})$ sono linearmente dipendenti allora i vettori $\underline{v_1}, \ldots, \underline{v_n}$ sono linearmente dipendenti}: se $f(\underline{v_1}), \ldots, f(\underline{v_n})$ sono vettori linearmente dipendenti in $W$, allora esiste una relazione non banale
+  \begin{align*}
+    &\alpha_1 f(\underline{v_1}) + \ldots + \alpha_n f(\underline{v_n}) = \underline{0}_W, & &\text{con } \alpha_i \in \mathbb{K} \, \forall i \in \{1, \ldots, n \} \text{ non tutti nulli }(=0_K)
+  \end{align*}
+  tuttavia usando la linearità di $f$ si ha che
+  $$
+    f(\alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n}) = \underline{0}_W,
+  $$
+  dunque per definizione abbiamo che $\alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n} \in \text{Ker}(f)$; tuttavia, abbiamo che $\text{Ker}(f) = \{ \underline{0}_V \}$, quindi si ha che
+  $$
+    \alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n} = \underline{0}_V
+  $$
+  dove gli $\alpha_i$ non sono tutti nulli, quindi abbiamo ottenuto una relazione non banale fra i vettori di $V$, mostrando quindi che i vettori $\underline{v_1}, \ldots, \underline{v_n}$ sono linearmente dipendenti.
+\end{proof}
+\section{Isomorfismo delle coordinate}
+Tramite la proposizione \ref{prop:uniqueness_coordinates} sappiamo che le coordinate rispetto ad una base sono univoche. Preso quindi uno spazio vettoriale $V$ sul campo $\mathbb{K}$ e fissata una base $\mathcal{B} = \{ \underline{v_1}, \ldots, \underline{v_n} \}$ di $V$, possiamo pensare di costruire una funzione $\phi : V \to \mathbb{K}^n$ tale che se $\underline{v} = \alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n}$ allora
+\begin{align}
+  \underline{v} \stackrel{\phi}{\mapsto} \begin{pmatrix}
+    \alpha_1 \\
+    \alpha_2 \\
+    \vdots \\
+    \alpha_n
+  \end{pmatrix} \label{eq:isomorf_coord}
+\end{align}
+Possiamo far vedere che
+\begin{prop}
+  Se $V$ spazio vettoriale sul campo $\mathbb{K}$ e $\text{dim}(V) = n$, allora la $\phi: V \to \mathbb{K}^n$ sopra definita è lineare.
+\end{prop}
+\begin{proof}
+  Presi due vettori $\underline{v}, \underline{w} \in V$ allora sappiamo che $\exists \alpha_1, \ldots, \alpha_n, \beta_1, \ldots, \beta_n \in \mathbb{K}$ tali che
+  \begin{align*}
+    &\underline{v} = \alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n} & &\underline{w} = \beta_1 \underline{v_1} + \ldots + \beta_n \underline{v_n},
+  \end{align*}
+  abbiamo che $\underline{v} + \underline{w} = (\alpha_1 + \beta_1) \underline{v_1} + \ldots + (\alpha_n + \beta_n) \underline{v_n}$ e
+  $$
+    \phi(\underline{v} + \underline{w}) = \begin{pmatrix}
+      \alpha_1 + \beta_1 \\
+      \alpha_2 + \beta_2 \\
+      \vdots \\
+      \alpha_n + \beta_n
+    \end{pmatrix} = \begin{pmatrix}
+      \alpha_1 \\
+      \alpha_2 \\
+      \vdots \\
+      \alpha_n
+    \end{pmatrix} + \begin{pmatrix} \beta_1 \\
+      \beta_2 \\
+      \vdots \\
+      \beta_n
+    \end{pmatrix} = \phi(\underline{v}) + \phi(\underline{w}).
+  $$
+  Similmente si può mostrare che $\phi(\lambda \underline{v}) = \lambda \phi(\underline{v})$.
+\end{proof}
+Possiamo fare molto di più, ovvero possiamo mostrare che in realtà la $\phi$ sopra definita è un \emph{isomorfismo di spazi vettoriali}:
+\begin{definition}[isomorfismo di spazi vettoriali]
+  Sia $V$ e $W$ due spazi vettoriali sul medesimo campo $\mathbb{K}$, diciamo che $f: V \to W$ è un isomorfismo di spazi vettoriali se $f$ è un'applicazione lineare bigettiva. Diremo che due spazi vettoriali $V$ e $W$ sul medesimo campo $\mathbb{K}$ sono isomorfi se $\exists f$ isomorfismo di spazio vettoriale fra i due. 
+\end{definition}
+\begin{remark}
+  Si noti che due spazi vettoriali non possono essere isomorfi se non hanno la medesima dimensione, siccome se per assurdo esistesse tale isomorfismo $\phi$ abbiamo che 
+  \begin{enumerate}[label=\protect\circled{\arabic*}]
+    \item $\text{dim}(\text{Ker}(\phi)) = 0$; siccome, essendo isomorfismo, $\phi$ è iniettiva dunque, per la proposizione \ref{prop:kern_iniett}, abbiamo che $\text{Ker}(\phi) = \{ \underline{0} \} \implies \text{dim}(\text{Ker}(\phi)) = 0$
+    \item $\text{Im}(\phi) = W$; siccome $\phi$ è un isomorfismo, dunque suriettivo.
+  \end{enumerate}  
+  Se $\text{dim}(W) > \text{dim}(V)$ allora avremmo dal teorema \ref{thm:form_dim}
+  $$
+    \text{dim}(W) = \text{dim}(\text{Im}(\phi)) \leq \text{dim}(V) < \text{dim}(W),
+  $$
+  che è assurdo. Se $\text{dim}(W) < \text{dim}(V)$ allora si deve avere, sempre per il teorema \ref{thm:form_dim}, che
+  $$
+    \text{dim}(W) < \text{dim}(V) = \text{dim}(\text{Im}(f)) = \text{dim}(W).
+  $$
+  il che è assurdo.
+\end{remark}
+\begin{prop}
+  Sia $V$ uno spazio vettoriale sul campo $\mathbb{K}$ e sia $n = \text{dim}(V) < +\infty$. Fissando una base $\mathcal{B} = \{\underline{v_1}, \ldots, \underline{v_n} \}$, allora la $\phi: V \to \mathbb{K}^n$ definita come in (\ref{eq:isomorf_coord}) è un isomorfismo fra $V$ e $\mathbb{K}^n$
+\end{prop}
+\begin{proof}
+  Dobbiamo mostrare che \circled{1} la $\phi$ è iniettiva e \circled{2} la $\phi$ è suriettiva: per mostrare la \circled{1} osserviamo che l'unico vettore $\underline{v} \in V$ tale che
+  $$
+    \phi(\underline{v}) = \underline{0}_{\mathbb{K}^n}
+  $$
+  è solo il vettore nullo (che ha coordinate rispetto a questa base). Per quanto riguarda la \circled{2} possiamo usare il teorema \ref{thm:form_dim} (formula delle dimensioni) osservando che $\text{dim}(V) = \text{dim}(\mathbb{K}^n)$, dunque
+  $$
+  \text{dim}(\mathbb{K}^n) = \text{dim}(V) = \underbrace{\text{dim}(\text{Ker}(f))}_{= 0\text{ per quanto mostrato}} + \text{dim}(\text{Im}(f)) = \text{dim}(\text{Im}(f)).
+  $$
+\end{proof}
+Questo isomorfismo semplifica un sacco le cose, siccome ci consente di prendere qualcosa che "vive" nello spazio vettoriale $V$, mandarlo in $\mathbb{K}^n$ e studiarlo e poi ritornare a $V$. In figura:
+\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}[>=stealth, auto]
+
+			% Nodi
+			\node (V) at (0,0) {$V$};
+			\node (Kn) at (3,0) {$\mathbb{K}^n$};
+			\node (X) at (0,-1.5) {$x$};
+			\node (Y) at (3,-1.5) {\scriptsize $\begin{pmatrix} \alpha_1 \\ \vdots \\ \alpha_n \end{pmatrix}$};
+	
+			% Frecce biunivoche
+			\draw[<->] (V) -- node[midway, above] {$\varphi$} (Kn);
+			\draw[<->] (X) -- node[midway, above] {} (Y);
+			% Frecce con il simbolo \in ruotato
+			\node at (0,-0.50) {\rotatebox{90}{$\in$}};
+        	\node at (3, -0.50) {\rotatebox{90}{$\in$}};
+			\node at (0, -2) {\rotatebox{90}{$=$}};
+			\node at (0, -2.5) {\scriptsize $\alpha_1 x_1 + \ldots + \alpha_n x_n$};
+		\end{tikzpicture}
+		\caption{Diagramma commutativo tra $V$ e $\mathbb{K}^n$: fissando una base, è possibile studiare un qualunque spazio vettoriale supponendo di trovarci in $\mathbb{K}^n$.}
+\end{figure}
+\textbf{Notazioni}: adesso in poi indicheremo quest'azione di prendere le coordinate rispetto ad una base $\mathcal{B}$ con $[\cdot]_\mathcal{B}$. \\
+
+
+Non solo, tramite questo isomorfismo, possiamo studiare il comportamento delle applicazioni lineari. Fissando una base $\mathcal{B} = \{ \underline{v_1}, \ldots, \underline{v_n} \}$ di $V$ e una base $\mathcal{B}'=\{ \underline{w_1}, \ldots, \underline{w_n} \}$ di $W$, come rappresentazione un'applicazione lineare?
+Osserviamo che, se consideriamo un vettore $\underline{v} \in V$, allora abbiamo che 
+$$
+f(\underline{v}) = f(\alpha_1 \underline{v_1} + \alpha_2 \underline{v_2} + \ldots + \alpha_n \underline{v_n}) = \alpha_1 f(\underline{v_1}) + \alpha_2 f(\underline{v_2}) + \ldots + \alpha_n f(\underline{v_n})
+$$
+allora le coordinate rispetto alla base $\mathcal{B}'$ di $W$ sono
+$$
+[f(\underline{v})]_\mathcal{B'} = [\alpha_1 f(\underline{v_1}) + \alpha_2 f(\underline{v_2}) + \ldots + \alpha_n f(\underline{v_n})]_\mathcal{B'} = \alpha_1 [f(\underline{v_1})]_\mathcal{B'} + \ldots + \alpha_n [f(\underline{v_n})]_\mathcal{B'}.
+$$
+In quest'ultima espressione, siccome i $\phi_{\mathcal{B}'}(f(\underline{v_i}))$ sono vettori colonna di $\mathbb{K}^n$, possiamo scriverlo sotto forma di matrice (infatti vi ricordo che abbiamo fatto questa medesima cosa nei sistemi lineari, per esempio, siccome si era visto che $A\underline{x} = x_1 A_1 + \ldots + x_n A_n$ dove $A_i$ sono le colonne della matrice $A$), dunque
+$$
+  \alpha_1 \phi_{\mathcal{B}'}(f(\underline{v_1})) + \ldots + \alpha_n \phi_{\mathcal{B}'}(f(\underline{v_n})) = \left(
+\begin{array}{c|c|c|c}
+    [f(\underline{v_1})]_\mathcal{B'} &
+    [f(\underline{v_2})]_\mathcal{B'} &
+    \ldots &
+    [f(\underline{v_n})]_\mathcal{B'}
+\end{array}
+\right)
+\begin{pmatrix}
+    \alpha_1 \\
+    \alpha_2 \\
+    \vdots \\
+    \alpha_n
+  \end{pmatrix}.
+$$
+\begin{definition}[matrice associata ad un'applicazione lineare $f$ con $\mathcal{B}$ in partenza e $\mathcal{B}'$ in uscita]
+  Siano $V, W$ due spazi vettoriali sul campo $\mathbb{K}$ e sia $f: V \to W$ un'applicazione lineare. Fissata $\mathcal{B}$ base di $V$ (base in entrata) e $\mathcal{B}'$ base di $W$ (base in uscita), diremo che la matrice le cui colonne contengono le coordinate rispetto alla base $\mathcal{B}'$ dell'applicazione lineare $f$ applicata ai vettori della base $\mathcal{B}$
+  $$
+    [f]_{\mathcal{B}'}^{\mathcal{B}} = 
+    \left( \begin{array}{c|c|c|c}
+    [f(\underline{v_1})]_\mathcal{B'} &
+    [f(\underline{v_2})]_\mathcal{B'} &
+    \ldots &
+    [f(\underline{v_n})]_\mathcal{B'}
+\end{array} \right)
+  $$
+  è la matrice associata ad $f$ con $\mathcal{B}$ in entrata e $\mathcal{B}'$ in uscita.
+\end{definition}
+
+Le potenzialità di questo isomorfismo sono riassunte nel diagramma qua sotto: possiamo studiare l'azione di un'applicazione lineare utilizzando gli isomorfismi, rispettivamente, fra $V$ e $\mathbb{K}^n$ e $W$ e $\mathbb{K}^m$ e rappresentare l'azione di $f$ tramite la matrice associata.
+\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}[baseline, >=stealth, auto]
+			% Nodi
+			\def\trasl{+3}
+			\node (V) at (0-\trasl,0) {$V$};
+			\node (W) at (3-\trasl,0) {$W$};
+			\node (Kn) at (0-\trasl,-1.5) {$\mathbb{K}^n$};
+			\node (Km) at (3-\trasl,-1.5) {$\mathbb{K}^m$};
+	
+			\node (x) at (-1.40-\trasl, 0) {$x$};
+			\node (in) at (-0.50-\trasl, 0) {$\in$};
+			\node (x_coord) at (-1.40-\trasl, -1.5) {\scriptsize $(\alpha_1, \ldots, \alpha_n)$};
+			\node (x_coord_in) at (-0.50-\trasl, -1.5) {$\in$};
+			\node (y) at (4.40-\trasl, 0) {$y$};
+			\node (y_in) at (3.50-\trasl, 0) {$\ni$};
+			\node (y_coord_in) at (3.50-\trasl, -1.5) {$\ni$};
+			\node (y_coord) at (4.40-\trasl, -1.5) {\scriptsize $(\mu_1, \ldots, \mu_m)$};
+			% Frecce biunivoche
+			\draw[<->] (V) -- node[midway, right] {$\varphi_n$} (Kn);
+			\draw[<->] (W) -- node[midway, left] {$\varphi_m$} (Km);
+			\draw[->] (V) -- node[midway, above] {$f$} (W);
+			\draw[<->] (x) -- node[midway, above] {} (x_coord);
+			\draw[<->] (y) -- node[midway, right] {} (y_coord);
+			\draw[->] (Kn) -- node[midway, above] {$[f]$} (Km);
+			% Frecce con il simbolo \in ruotato
+			\node (f) at (5, -0.75) {dove $[f] = \left. \smash[b]{\underbrace{\big( a_{ij} \big)}_{\textstyle\text{$n$ colonne}}}\,\right\}\text{$m$ righe}$};
+		\end{tikzpicture}
+		\caption{Diagramma non commutativo fra $V$, $W$ e gli spazi vettoriali ad esso isomorfi $\mathbb{K}^n$ e $\mathbb{K}^m$: possiamo studiare l'azione di un'applicazione lineare $f$ tramite la matrice associata $[f]^{\mathcal{B}}_{\mathcal{B}'}$.}
+\end{figure}
+Il problema che adesso ci poniamo è capire che relazione esiste fra $[f]_{\mathcal{B}'}^{\mathcal{B}}$ e $[f]_{\mathcal{B}'''}^{\mathcal{B}''}$ dove $\mathcal{B}, \mathcal{B}''$ e $\mathcal{B}'',\mathcal{B}'''$ sono, rispettivamente, basi distinte di $V$ e di $W$: per rispondere a questa domanda introduciamo la \emph{matrice di cambiamento di base}
+\begin{definition}[matrice di cambiamento di base fra $\mathcal{B}$ e $\mathcal{B}'$]
+  Sia $V$ uno spazio vettoriale con $\text{dim}(V) < +\infty$ e siano $\mathcal{B}=\{\underline{v_1}, \ldots, \underline{v_n} \}$ e $\mathcal{B}' = \{ \underline{w_1}, \ldots, \underline{w_n} \}$ due basi distinte di $V$, allora diremo che la matrice di cambiamento di base fra $\mathcal{B}$ e $\mathcal{B}'$ è la matrice
+  $$
+    [\text{Id}]^{\mathcal{B}}_{\mathcal{B}'} = \left( \begin{array}{c | c | c | c}
+      [\underline{v_1}]_{\mathcal{B}'} & [\underline{v_2}]_{\mathcal{B}'} & \ldots & [\underline{v_n}]_{\mathcal{B}'}
+    \end{array} \right)
+  $$
+  dove $[\underline{v_i}]_{\mathcal{B}'}$ sono le coordinate del vettore $\underline{v_i} \in \mathcal{B}$ rispetto alla base $\mathcal{B}'$.
+\end{definition}
+
+Il motivo di questo nome è chiaro: se noi consideriamo il vettore $\underline{v} = x_1 \underline{v_1} + \ldots + x_n \underline{v_n}$ come combinazione lineare dei vettori in $\mathcal{B}$, allora le coordinate di tale vettore rispetto alla base $\mathcal{B}'$ sono date osservando che
+\begin{align*}
+  [\underline{v}]_{\mathcal{B}'} &= [x_1 \underline{v_1} + \ldots + x_n \underline{v_n}]_\mathcal{B'} = x_1 [\underline{v_1}]_\mathcal{B'} + \ldots + x_n [\underline{v_n}]_\mathcal{B'} = \\
+  &=\left( \begin{array}{c | c | c | c}
+    [\underline{v_1}]_{\mathcal{B'}} & [\underline{v_2}]_\mathcal{B'} & \ldots & [\underline{v_n}]_\mathcal{B'}
+  \end{array} \right) \begin{pmatrix}
+    x_1 \\
+    x_2 \\
+    \vdots \\
+    x_n
+  \end{pmatrix} = [\text{Id}]^\mathcal{B}_{\mathcal{B}'} \begin{pmatrix}
+    x_1 \\
+    x_2 \\
+    \vdots \\
+    x_n
+  \end{pmatrix}.
+\end{align*}
+\begin{remark}
+  Le matrici di cambiamento di base sono invertibili, in quanto rappresentano le coordinate dei vettori di una base rispetto ad un'altra base quindi sono linearmente indipendenti (quindi il rango è uguale ad $n = \text{dim}(V)$).
+\end{remark}
+Per rispondere alla domanda che ci stiamo prefiggendo, dobbiamo mostrare il seguente teorema 
+\begin{theorem}
+  \label{thm:comp_matr}
+  Sia $V$ e $W$ due spazi vettoriali sul medesimo campo $\mathbb{K}$, siano
+  $$
+    V \stackrel{f}{\to} W \stackrel{g}{\to} Z
+  $$
+  applicazioni lineari e siano fissate la base $\mathcal{B}$ di V, la base $\mathcal{B}'$ di W e la base $\mathcal{B}''$ di Z. Allora la matrice associata a $g \circ f$ in base $\mathcal{B}$ in entrata e $\mathcal{B}''$ in uscita è
+  $$
+    \mathcal{M}^\mathcal{B}_\mathcal{B''}(g \circ f) = \mathcal{M}^\mathcal{B'}_\mathcal{B''}(g) \mathcal{M}^\mathcal{B}_\mathcal{B'}(f).
+  $$
+\end{theorem}
+\begin{proof}
+  Per definizione di matrice associata, la matrice associata a $g \circ f$ con base in entrata $\mathcal{B}$ e base in uscita $\mathcal{B''}$ contiene le coordinate dei vettori della base $\mathcal{B}$ rispetto alla base $\mathcal{B''}$, dunque la colonna $j-$esima di questa matrice è data da
+  $$
+  [g(f(\underline{v_j}))]_\mathcal{B''} = \mathcal{M}_\mathcal{B''}^\mathcal{B'}(g) [f(\underline{v_j})]_\mathcal{B'},
+  $$
+  dove l'uguaglianza segue dal fatto che stiamo pensando il vettore $[f(\underline{v_j})]_\mathcal{B'}$ come vettore che viene applicato a $\mathcal{M}^{\mathcal{B'}}_\mathcal{B''}(g)$, tuttavia sappiamo che per definizione $[f(\underline{v_j})]_\mathcal{B'} = \mathcal{M}^\mathcal{B}_\mathcal{B'}(f)_j$, quindi
+  $$
+    [g(f(\underline{v_j}))]_\mathcal{B''} = \mathcal{M}_\mathcal{B''}^\mathcal{B'}(g) (\mathcal{M}^\mathcal{B}_\mathcal{B'}(f))^j
+  $$
+  ma per come è definito il prodotto matriciale abbiamo che la colonna $j-$esima di una matrice $C$ ottenuta dal prodotto di due matrici $A$ e $B$ è pari a $C^j = AB^j$, quindi si ha che
+  $$
+    \mathcal{M}^\mathcal{B}_\mathcal{B''}(g \circ f) = \mathcal{M}^\mathcal{B'}_\mathcal{B''}(g) \mathcal{M}^\mathcal{B}_\mathcal{B'}(f).
+  $$
+\end{proof}
+Si può mostrare che
+\begin{prop} \label{prop:comp_mult}
+  Se $V_1, \ldots, V_n$ sono spazi vettoriali sul medesimo campo $\mathbb{K}$ e se
+  $$
+    V_1 \stackrel{f_1}{\to} V_2 \stackrel{f_2}{\to} V_3 \stackrel{f_3}{\to} \ldots \stackrel{f_{k-2}}{\to} V_{k-1} \stackrel{f_{k-1}}{\to} V_k
+  $$
+  sono applicazioni lineari e abbiamo fissato le basi $\mathcal{B}_1, \ldots, \mathcal{B}_k$ rispettivamente di $V_1, \ldots, V_k$; allora
+  $$
+    \mathcal{M}^\mathcal{B_1}_\mathcal{B_k} (f_{k-1} \circ f_{k-2} \circ \ldots \circ f_1) = \mathcal{M}^{\mathcal{B}_{k-1}}_{\mathcal{B}_k}(f_{k-1})\mathcal{M}^{\mathcal{B}_{k-2}}_{\mathcal{B}_{k-1}} \ldots \mathcal{M}^{\mathcal{B}_2}_{\mathcal{B}_3} \mathcal{M}^{\mathcal{B}_1}_{\mathcal{B}_2}(f_1)
+  $$
+\end{prop}
+\begin{exercise}
+  Mostrare la proposizione \ref{prop:comp_mult}. \emph{Suggerimento:} procedere per induzione su $k$.
+\end{exercise}
+\begin{prop}
+  $[\text{Id}]^\mathcal{B}_\mathcal{B'} = ([\text{Id}]^\mathcal{B'}_\mathcal{B})^{-1}$.
+\end{prop}
+\begin{proof}
+  Abbiamo che le coordinate dei vettori di $\mathcal{B}$ rispetto a $\mathcal{B}$ è una matrice diagonale (banalmente perché $\underline{v_i} = 1_\mathbb{K} \underline{v_i}$), pertanto si ha, per il teorema \ref{thm:comp_matr}, che
+  $$
+    [\text{Id}]^\mathcal{B}_\mathcal{B} = \begin{pmatrix}
+      1 & 0 & 0 & \ldots & 0 \\
+      0 & 1 & 0 & \ldots & 0 \\
+      0 & 0 & \ddots & \ldots & 0 \\
+      \vdots & \vdots & \vdots & \ddots & \vdots \\
+      0 & 0 & 0 & 0 & 1
+    \end{pmatrix} = I = [\text{Id}]^\mathcal{B'}_\mathcal{B} [\text{Id}]^\mathcal{B}_\mathcal{B'}
+  $$
+  dove l'uguaglianza segue dal fatto che il vettore delle componenti di un vettore $\underline{v}$, applicandovi $[\text{Id}]^{\mathcal{B}}_\mathcal{B'}$, viene mandato nel vettore delle coordinate di $\underline{v}$ rispetto alla base $\mathcal{B'}$ e poi viene riportato nel vettore delle coordinate rispetto alla base $\mathcal{B}$, quindi dobbiamo riottenere il vettore iniziale. Ma allora segue che, moltiplicando da entrambe le parti per la matrice inversa di $[\text{Id}]^\mathcal{B}_\mathcal{B'}$, si ha che
+  $$
+    ([\text{Id}]^\mathcal{B}_\mathcal{B'})^{-1} = [\text{Id}]^{\mathcal{B'}}_\mathcal{B}.
+  $$
+\end{proof}
+Utilizzando la proposizione \ref{prop:comp_mult} segue immediatamente il seguente teorema
+\begin{theorem}[formula del cambiamento di base per matrici associate ad applicazioni lineari]
+  Siano $V$ e $W$ spazi vettoriali sul medesimo campo $\mathbb{K}$, sia $f: V \to W$ un'applicazione lineare e siano fissate $\mathcal{B}, \mathcal{C}$ basi di $V$ e $\mathcal{B}', \mathcal{C}'$ due basi di $W$. Allora
+  $$
+    \mathcal{M}^{\mathcal{B}}_{\mathcal{B}''} = \mathcal{M}^{\mathcal{C}'}_{\mathcal{B}''}(\text{Id}_W) \mathcal{M}^{\mathcal{C}}_{\mathcal{C}'}(f) \mathcal{M}^{\mathcal{B}}_\mathcal{C}(\text{Id}_V)
+  $$
+\end{theorem}
+\begin{proof}
+  Posso immaginare tutte queste come la composizione di applicazioni lineari
+  $$
+    \mathbb{K}^n \stackrel{\text{Id}_V}{\to} \mathbb{K}^n \stackrel{f}{\to} \mathbb{K}^m \stackrel{\text{Id}_W}{\to} \mathbb{K}^n
+  $$
+  dove la prima $\text{Id}_V$ va intesa come l'identità con cambio di coordinate su $V$ e la terza applicazione $\text{Id}_W$ come cambio di coordinate su $W$. Segue dalla proposizione \ref{prop:comp_mult} che
+  $$
+    \mathcal{M}^{\mathcal{B}}_{\mathcal{B}''}(f) = \mathcal{M}^{\mathcal{C}'}_{\mathcal{B}''}(\text{Id}_W) \mathcal{M}^{\mathcal{C}}_{\mathcal{C}'}(f) \mathcal{M}^{\mathcal{B}}_\mathcal{C}(\text{Id}_V)
+  $$
+\end{proof}
 \newpage
 \section*{Esercizi proposti}
 
