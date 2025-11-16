@@ -104,12 +104,36 @@ Ora, osserviamo che, se $A$ rappresenta un sistema lineare di equazioni, allora
 \begin{exercise}
   Mostrare la proposizione \ref{prop:inv_righe}
 \end{exercise}
+Questa dei sistemi lineari per righe ci conduce a definire un'equivalenza fra sistemi lineari
+\begin{definition}[sistemi lineari equivalenti]
+  Sia
+  $$
+  S = \begin{cases}
+    \alpha_{11} x_1 + \ldots + \alpha_{1n} x_n = 0 \\
+    \alpha_{21} x_1 + \ldots + \alpha_{2n} x_n = 0 \\
+    \vdots \\
+    \alpha_{m1} x_1 + \ldots + \alpha_{mn} x_n = 0
+  \end{cases}
+  $$
+  un sistema lineare di $m$ equazioni in $n$ incognite. Preso un altro sistema lineare
+  $$
+  S' = \begin{cases}
+    \alpha'_{11} x_1 + \ldots + \alpha'_{1n} x_n = 0 \\
+    \alpha'_{21} x_1 + \ldots + \alpha'_{2n} x_n = 0 \\
+    \ldots \\
+    \alpha'_{l1} x_1 + \ldots + \alpha'_{ln} x_n = 0
+  \end{cases},
+  $$
+  diremo che questo sistema $S$ è equivalente a $S'$ se hanno lo stesso insieme di soluzioni. 
+\end{definition}
+
+
 Come possiamo usare questa proposizione qua sopra per risolvere i sistemi lineari? Supponiamo di avere una matrice $A$ della forma
 $$
 \begin{pmatrix}
   \alpha_{11} & \ldots & \alpha_{1n} \\
   \alpha_{21} & \ldots & \alpha_{2n} \\
-  \vdots & \ddots & \alpha_{3n} \\
+  \vdots & \ddots & \vdots \\
   \alpha_{m1} & \ldots & \alpha_{mn}
 \end{pmatrix}
 $$
@@ -137,7 +161,7 @@ dove gli elementi $*$ sulla diagonale sono detti \textbf{pivot}. Se tutti i pivo
     0 + \ldots + 0 + \alpha'_{nn} x_n = 0 \stackrel{\alpha'_{nn} \neq 0}{\implies} x_n = 0
   \end{cases}
 \end{align*}
-e da qui procedere per mostrare che tutti gli altri $x_i = 0$. Altrimenti se i pivot sono nulli, allora abbiamo che ci sono delle variabili "libere". Per capire meglio questo concetto si consideri la seguente equazione (ovvero un sistema lineare con una sola equazione)
+e da qui procedere per mostrare che tutti gli altri $x_i = 0$. Altrimenti se alcuni pivot sono nulli, allora abbiamo che ci sono delle variabili "libere". Per capire meglio questo concetto si consideri la seguente equazione (ovvero un sistema lineare con una sola equazione)
 $$
   x + y - z = 0.
 $$
@@ -196,170 +220,7 @@ $$
   \end{pmatrix}, \begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix} \right)
 $$
 Ovvero il vettore $\begin{pmatrix} x \\ y \\ z\end{pmatrix}$ appartiene al piano generato dai vettori $\begin{pmatrix} -1 \\ 1 \\ 0 \end{pmatrix}$ e $\begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix}$. Quindi possiamo vedere come tramite le matrici possiamo semplificare
-il problema dei sistemi lineari. Possiamo effettuare anche il procedimento "inverso" di quanto appena fatto: presi due vettori in $\mathbb{R}^3$ vogliamo trovare un'equazione cartesiana del piano generato da questi due passante per l'origine (altrimenti, se non passasse per l'origine, non sarebbe un sottospazio vettoriale ma un sottospazio affine di cui parleremo fra poco) dovrebbe
-coincidere con quella sopra: per fare questo osserviamo che se il vettore $\begin{pmatrix} x \\ y \\ z \end{pmatrix} \in \text{Span}\left(\begin{pmatrix} -1 \\ 1 \\ 0 \end{pmatrix}, \begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix}\right)$ allora l'equazione
-$$
-  \alpha \begin{pmatrix}
-    -1 \\ 1 \\ 0
-  \end{pmatrix} + \beta \begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix} = \begin{pmatrix} x \\ y \\ z \end{pmatrix}
-$$
-deve avere soluzione per $\alpha$ e $\beta \in \mathbb{R}$, quindi mettendo tutto in una bella matrice
-$$
-  \begin{pmatrix}
-    -1 & 1 & x \\
-    1 & 0 & y \\
-    0 & 1 & z
-  \end{pmatrix}
-$$
-dobbiamo trovare una condizione sui pivot. \textbf{Osservazione}: qua dobbiamo procedere per mosse di colonna e non di righe. Il motivo, anche se ancora non è stato definito, è che noi qua siamo interessati a preservare lo Span delle colonne, che non viene modificato dalle mosse di colonna. \\
-Osserviamo che
-$$
-  \begin{pmatrix}
-    -1 & 1 & x \\
-    1 & 0 & y \\
-    0 & 1 & z
-  \end{pmatrix} \rightarrow 
-  \begin{pmatrix}
-    0 & 1 & x \\
-    1 & 0 & y \\
-    0 & 1 & z
-  \end{pmatrix} \rightarrow \begin{pmatrix}
-    0 & 1 & 0 \\
-    1 & 0 & y \\
-    0 & 1 & z-x
-  \end{pmatrix} \rightarrow \begin{pmatrix}
-    1 & 0 & 0 \\
-    0 & 1 & 0 \\
-    1 & 0 & z-x-y
-  \end{pmatrix}
-$$
-affinché il sistema abbia soluzione è necessario che il pivot finale sia nullo: si ha allora che $z-x-y = 0 \implies x + y - z = 0$. \\
-Nel procedimento sopra esposto c'è però un piccolo problema: io per ora vi ho parlato di sistemi del tipo
-$$
-  A \underline{x} = \underline{0},
-$$
-ma nel procedimento sopra utilizzato per trovare le equazioni del piano ho in realtà considerato un sistema del tipo
-$$
-  A\underline{x} = \underline{b},
-$$
-dove nel caso sovraesposto avevamo che $\underline{b} = \begin{pmatrix} x \\ y \\ z \end{pmatrix}$. Come si risolve la situazione? Chi ci assicura che il procedimento attuato 
-è ancora valido? Per rispondere a questa domanda bisogna introdurre il concetto di rango
-\begin{definition}[rango per righe e per colonne]
-  Sia $A$ una matrice $m \times n$ a coefficienti in $\mathbb{K}$, definiamo rango per colonne di $A$ come
-  \begin{align*}
-    &\rank_C{A} = \text{dim}(\text{Span}(A^1, \ldots, A^n)) \text{ dove } A^i \text{ è la colonna $i$-esima di $A$ e } \text{Span}(A^1, \ldots, A^n) \subseteq \mathbb{K}^n,
-  \end{align*}
-  mentre il rango per colonne di $A$ come
-  \begin{align*}
-    &\rank_B{A} = \text{dim}(\text{Span}(A_1, \ldots, A_n)) \text{ dove } A_i \text{ è la riga $i$-esima di $A$ e } \text{Span}(A^1, \ldots, A^n) \subseteq \mathbb{K}^m.
-  \end{align*}
-\end{definition}
-
-Si può mostrare che vale il seguente teorema
-\begin{theorem}
-  Sia $A$ una matrice $m \times n$ allora
-  $$
-    \rank{(A)} = \rank_C{(A)} = \rank_R{(A)} = \text{ numero di pivot non nulli riducendo la matrice}
-  $$
-\end{theorem}
-\begin{cor}
-  $$
-    \rank{A^T} = \rank{A}
-  $$
-\end{cor}
-\begin{remark}
-  Siccome le operazioni di riga non modificano lo Span delle righe, possiamo concludere che il rango della matrice non viene modficato facendo operazioni di riga (anche se cambia lo Span delle colonne!). Siamo adesso pronti a rispondere al problema iniziale tramite il seguente teorema
-\end{remark}
-
-\begin{theorem}[di Rouché-Capelli] \label{thm:rouche_capelli}
-  Sia dato un sistema lineare della forma a coefficienti nel campo $\mathbb{K}$
-  \begin{align*}
-    \begin{cases}
-      \alpha_{1, 1} x_1 + \ldots + \alpha_{1, n} = b_1 \\
-      \alpha_{2, 1} x_1 + \ldots + \alpha_{2, n} = b_2 \\
-      \vdots \\
-      \alpha_{m, 1} x_1 + \ldots + \alpha_{m, n} = b_m
-    \end{cases}.
-  \end{align*}
-  con $b_i \in \mathbb{K} \, \forall i \in \{ 1, \ldots, m \}$. Tale sistema è rappresentato dalla matrice
-  $$
-    (A | \underline{b}) = \begin{pmatrix}
-      \alpha_{1, 1} & \alpha_{1, 2} & \ldots & \alpha_{1, n} & | & b_1 \\
-      \alpha_{2, 1} & \alpha_{2, 2} & \ldots & \alpha_{2, n} & | & b_2 \\
-      \vdots & \vdots & \ddots & \vdots & | & b_3 \\
-      \alpha_{m, 1} & \alpha_{m, 2} & \ldots & \alpha_{m,n} & | & b_m
-    \end{pmatrix}
-  $$
-  e si ha che il sistema lineare ha soluzione unica se $\rank{(A)}$ è uguale a $\rank{(A | \underline{b})}$. In tal caso le soluzioni all'equazione
-  $$
-    A \underline{x} = \underline{b} \text{ dove } \underline{b} = \begin{pmatrix} b_1 \\ b_2 \\ \vdots \\ b_m \end{pmatrix}
-  $$
-  formano uno spazio affine di $\mathbb{K}^n$ di dimensione $n - \rank{(A)}$. In particolare si ha che se $\rank{(A)} = n$ allora la soluzione è unica, altrimenti ve ne sono infinite e sono delle forma
-  $$
-    \underline{x_0} + \underline{v}
-  $$
-  dove $\underline{x_0}$ è una possibile soluzione all'equazione, mentre $\underline{v}$è un generico vettore nel kernel di A.
-\end{theorem}
-
-\begin{remark}
-  Per capire bene il significato di questo teorema, si pensi ad un piano non passante per l'origine, ma passante in $P = (0, 1, 0)$ per esempio. Ogni punto del piano può essere scritto come somma del vettore $\vec{OP}$ e un vettore di un sottospazio vettoriale (immaginate di ritraslare il piano non passante nell'origine, riportandolo nell'origine: abbiamo che ogni punto del piano è identificato da un vettore, siccome riportandolo nell'origine lo abbiamo reso nuovamente uno spazio vettoriale, quindi prendendo un vettore qualunque e sommandolo al vettore $\vec{OP}$ si descrive il generico punto del piano non passante per l'origine).
-\end{remark}
-
-Per effettuare la dimostrazione bisogna prima soffermarci su una piccola questione: rappresentare un sistema lineare come
-$$
-  A \underline{x} = \underline{0}
-$$
-è equivalente a scrivere
-$$
-  x_1 A^1 + \ldots + x_n A^n = \underline{0}
-$$
-dove $A^i$ è la colonna $i-$esima della matrice $A$. Questo si vede col prodotto matriciale siccome
-$$
-  A\underline{x} = \begin{pmatrix}
-  \alpha_{1,1} & \ldots & \alpha_{1, n} \\
-  \alpha_{2, 1} & \ldots & \alpha_{2, n} \\
-  \vdots & \ddots & \vdots \\
-  \alpha_{m, 1} & \ldots & \alpha_{m,n}
-  \end{pmatrix} \begin{pmatrix}
-    x_1 \\
-    \vdots \\
-    x_n
-  \end{pmatrix} = x_1 \begin{pmatrix}
-    \alpha_{1, 1} \\
-    \vdots \\
-    \alpha_{m, 1}
-  \end{pmatrix} + \ldots + x_n \begin{pmatrix}
-    \alpha_{1, n} \\
-    \vdots \\
-    \alpha_{m, n}
-  \end{pmatrix}.
-$$
-Se queste colonne sono linearmente indipendenti (infatti possono essere immaginate come vettori in $\mathbb{K}^m$), allora l'unica soluzione possibile è per $\underline{x} = \underline{0}$. Ragionando come fatto in precedenza, è facile convincersi che ciò è possibile \textbf{solo} se la matrice può essere messa in forma di pivot con questi ultimi tutti non nulli (infatti se avessimo un pivot nullo, per assurdo, avremmo che una delle $x_i$ soddisfa un'equazione del tipo $0 \cdot x_i = 0$ che è vera per qualunque valore di $x_i$). Anche nel caso in cui stessimo studiando il sistema
-$$
-  A \underline{x} = \underline{b}
-$$
-possiamo sempre procedere come sopra e vedere che
-$$
-  x_1 A^1 + \ldots + x_n A^n = \underline{b},
-$$
-dunque $\underline{b}$ è combinazione lineare delle colonne.
-\begin{proof}[Dimostrazione del teorema \ref{thm:rouche_capelli}]
-  Affinché $\underline{b}$ sia soluzione del sistema si deve avere che appartiene allo $\text{Span}$ delle colonne della matrice siccome il sistema
-  $$
-    A \underline{x} = \underline{b}
-  $$
-  è equivalente a scrivere
-  $$
-    x_1 A^1 + \ldots + x_n A^n = \underline{b}
-  $$
-  dove $A^i$ è l'$i-$esima colonna di $A$. Ma se appartiene allo Span delle colonne, l'aggiunta del vettore $\underline{b}$ non modifica la dimensione dello Span delle colonne (siccome è ridondante), dunque la dimensione dello spazio delle colonne della matrice $(A | \underline{b} )$ è la stessa. Per mostrare l'ultima affermazione, sul fatto che le soluzioni formano uno spazio affine, possiamo osservare che se $\underline{x_0}$ è una soluzione del sistema $A \underline{x} = \underline{b}$, allora si ha
-  che, preso un $\underline{v}$ soluzione del sistema $A\underline{x} = \underline{0}$, il vettore $\underline{x_0} + \underline{v}$ è ancora soluzione del sistema $A\underline{x} = \underline{b}$ siccome
-  $$
-    A(\underline{x_0} + \underline{v}) = A\underline{x_0} + A \underline{v} = \underline{b} + \underline{0} = \underline{b}.
-  $$
-  Si vede che se le dimensioni dello spazio delle colonne è uguale a $n$, allora il sistema omogeneo ($A\underline{x} = \underline{0}$) ha solo soluzione nulla (ovvero si può ridurre in forma triangolare con pivot tutti non nulli), quindi avremo che la soluzione è unica.
-\end{proof}
-Dal teorema qua sopra si evince subito che è sempre utile sapere le soluzioni del sistema $A \underline{x} = \underline{0}$, anche quando si sta studiando il sistema $A \underline{x} = \underline{b}$ (siccome le soluzioni a questo sistema sono date da una soluzione $\underline{x_0}$ che risolve il sistema a cui possiamo aggiungere un qualunque vettore che invece soddisfa il sistema omogeneo $A \underline{x} = \underline{0}$).
+il problema dei sistemi lineari. \\
 Il metodo di risoluzione che sfrutta le mosse di riga per semplificare le matrici si chiama \emph{eliminazione di Gauss-Jordan}. Dal punto di vista matriciale la proposizione \ref{prop:inv_righe} si interpreta nella seguente maniera:
 ad ogni operazione di riga sancita da questa proposizione, stiamo moltiplicando la matrice per una \emph{matrice elementare}. Illustriamo quali sono queste matrici:
 \begin{enumerate}
@@ -470,6 +331,277 @@ ad ogni operazione di riga sancita da questa proposizione, stiamo moltiplicando 
   $$
 \end{enumerate}
 
+Vorremmo anche trattare il caso dei sistemi lineari della forma
+$$
+  A\underline{x} = \underline{b} \text{ dove} \underline{b} \text{ non è necessariamente il vettore nullo},
+$$
+che sono molto utile nel caso in cui noi vorremmo, per esempio, trovare le equazioni cartesiane del piano generato da alcuni vettori. Questi sistemi sono rappresentati dalla matrice $A$ a cui aggiungiamo una colonna che contiene il vettore $\underline{b}$, quindi
+$$
+  A\underline{x} = \underline{b} \text{ è rappresentato da } \left( \begin{array}{c c c c | c}
+    & &   & & b_1 \\
+    & A & & & \vdots \\
+    & &   & & b_n
+  \end{array} \right)
+$$
+Si osservi che nel caso dei sistemi con
+$$
+  A \underline{x} = \underline{b} \text{ con } \underline{b} \neq \underline{0},
+$$
+e, indicando con pivot gli elementi sulla diagonale di $A$ nella matrice $(A | \underline{b})$ quando quest'ultima è ridotta in forma di pivot, abbiamo che questi ci indicano se un sistema è risolubile o meno: consideriamo il seguente sistema lineare non omogeneo
+$$
+  \begin{pmatrix}
+    1 & 2 \\
+    1 & 2
+  \end{pmatrix} \begin{pmatrix}
+    \alpha \\
+    \beta
+  \end{pmatrix} = \begin{pmatrix}
+    1 \\
+    3
+  \end{pmatrix}
+$$
+e osserviamo che accorpando tutto nella matrice
+$$
+  \left( \begin{array}{c c | c}
+    1 & 2 & 1 \\
+    1 & 2 & 3 
+  \end{array} \right)
+$$
+e risolvendo per operazioni di riga, sottraendo, per esempio, $1$ volta la prima riga alla seconda riga, si ha che
+$$
+  \left( \begin{array}{c c | c}
+    1 & 2 & 1 \\
+    0 & 0 & 2
+  \end{array} \right)
+$$
+e i pivot qua sarebbero $1$ e $0$. Si vede che il sistema lineare di partenza sarebbe equivalente ad un sistema del tipo
+$$
+  \begin{cases}
+    x + 2y = 1 \\
+    0x + 0y = 2
+  \end{cases}
+$$
+che è impossibile per la seconda riga. Quindi nella forma ridotta a scala della matrice $(\tilde{A} | \tilde{\underline{b}})$ (che indichiamo mettendo una tilde su $A$ e $\underline{b}$) si ha che nelle righe in cui la componente $i-$esima del vettore $\tilde{\underline{b}}$ non è nulla, non ci possono essere pivot nulli. Questo è alla base del procedimento per cui è possibile trovare le equazioni di un piano cartesiano partendo dai vettori che lo generano: per semplicità consideriamo il caso già trattato del piano $x = -y + z$, che abbiamo visto essere coincidere con lo Span dei vettori
+$\begin{pmatrix} -1 \\ 1 \\ 0 \end{pmatrix}, \begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix}$. Illustriamo il procedimento: supponiamo che il vettore $\begin{pmatrix} x \\ y \\ z \end{pmatrix}$ appartenga allo Span dei vettori $\begin{pmatrix} -1 \\ 1 \\ 0 \end{pmatrix}, \begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix}$,
+quindi il sistema
+$$
+  \begin{pmatrix}
+  -1 & 1 \\
+  1 & 0 \\
+  0 & 1 \\
+  \end{pmatrix} \begin{pmatrix}
+    \alpha \\
+    \beta
+  \end{pmatrix} = \alpha \begin{pmatrix} -1 \\ 1 \\ 0 \end{pmatrix} + \beta \begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix} = \begin{pmatrix}
+    x \\
+    y \\
+    z
+  \end{pmatrix}
+$$
+ovvero $\exists \alpha, \beta \in \mathbb{R}$ per cui vale l'uguaglianza appena scritta. Se procediamo con le operazioni di riga, tuttavia, andiamo a cambiare lo Span delle colonne: noi non vogliamo questo, siccome è come se
+cambiassimo le "coordinate" (la base) in cui ci troviamo, ottenendo delle equazioni che valgono in base diversa da quella "cartesiana" (canonica). Quindi, si lavora con lo Span delle colonne per ovviare a questo problema (più avanti sarà possibile rispondere in maniera più accurata al motivo):
+osserviamo che
+$$
+  \begin{pmatrix}
+    -1 & 1 & x \\
+    1 & 0 & y \\
+    0 & 1 & z
+  \end{pmatrix} \rightarrow 
+  \begin{pmatrix}
+    0 & 1 & x \\
+    1 & 0 & y \\
+    0 & 1 & z
+  \end{pmatrix} \rightarrow \begin{pmatrix}
+    0 & 1 & 0 \\
+    1 & 0 & y \\
+    0 & 1 & z-x
+  \end{pmatrix} \rightarrow \begin{pmatrix}
+    1 & 0 & 0 \\
+    0 & 1 & 0 \\
+    1 & 0 & z-x-y
+  \end{pmatrix}
+$$
+affinché il sistema abbia soluzione è necessario che il pivot finale sia nullo: si ha allora che $z-x-y = 0 \implies x + y - z = 0$. \\
+
+\section{Rango di una matrice}
+
+Abbiamo capito il motivo per cui il procedimento di Gauss-Jordan funziona per i sistemi omogenei, tramite la proposizione \ref{prop:inv_righe}, tuttavia non sappiamo perché funzioni per sistemi del tipo $A\underline{x} = \underline{b}$. Attacchiamo il problema introducendo il \emph{rango} di una matrice
+\begin{definition}[rango per righe e per colonne]
+  Sia $A$ una matrice $m \times n$ a coefficienti in $\mathbb{K}$, definiamo rango per colonne di $A$ come
+  \begin{align*}
+    &\rank_C{(A)} = \text{dim}(\text{Span}(A^1, \ldots, A^n)) \text{ dove } \text{Span}(A^1, \ldots, A^n) \subseteq \mathbb{K}^n,
+  \end{align*}
+  mentre il rango per colonne di $A$ come
+  \begin{align*}
+    &\rank_B{(A)} = \text{dim}(\text{Span}(A_1, \ldots, A_m)) \text{ dove } \text{Span}(A_1, \ldots, A_m) \subseteq \mathbb{K}^m.
+  \end{align*}
+\end{definition}
+\textbf{Notazione}: se $A$ matrice, allora $A^i$ è la colonna $i-$esima di $A$, mentre $A_j$ è la riga $j-$esima di $A$. Tramite questa notazione possiamo scrivere che
+$$
+  (AB)_{ij} = A_i \cdot B^j
+$$
+dove $\cdot$ è il prodotto scalare euclideo. Valgono anche le seguenti uguaglianze
+$$
+  (AB)^j = AB^j
+$$
+e
+$$
+  (AB)_j = A^j B
+$$
+dove si sottointende il prodotto matriciale (e non quello scalare).
+
+Si può mostrare che vale il seguente teorema
+\begin{theorem}
+  Sia $A$ una matrice $m \times n$ a coefficienti in $\mathbb{K}$, allora
+  $$
+    \rank{(A)} = \rank_C{(A)} = \rank_R{(A)} = \text{ numero di pivot non nulli riducendo la matrice}
+  $$
+\end{theorem}
+\begin{proof}
+  Innanzitutto abbiamo che se $r = 0$ allora le righe sono necessariamente tutte nulle, quindi anche $c = 0$; pertanto supponiamo che $r > 0$. Sia $A$ una matrice del tipo
+  $$
+    A = \begin{pmatrix}
+      a_{11} & a_{12} & \ldots & a_{1n} \\
+      a_{21} & a_{22} & \ldots & a_{2n} \\
+      \vdots & \vdots & \ddots & \vdots \\
+      a_{m1} & a_{m2} & \ldots & a_{mn}
+    \end{pmatrix}
+  $$
+  Si osserva che una relazione di dipendenza lineare fra le colonne di $A$ è una soluzione del sistema
+  $$
+    A\underline{x} = \underline{0},
+  $$
+  siccome, come abbiamo già fatto notare più volte, questo sistema è equivalente a dire che
+  $$
+    A\underline{x} = x_1 A^1 + x_2 A^2 + \ldots + x_n A^n = \underline{0},
+  $$
+  con $x_i \in \mathbb{K}$ non tutti nulli. Osserviamo che le operazioni di righe non vanno a cambiare l'insieme delle soluzioni del sistema (ovvero la determinazione del vettore $\underline{x}$), in virtù della proposizione \ref{prop:inv_righe}, e ciò vuol dire che non cambiano le dimensioni dello spazio delle colonne (nonostante le operazioni di riga cambino lo spazio delle colonne!);
+  pertanto, possiamo supporre che le prime $r$ righe siano linearmente indipendenti e considerare la matrice $A^*$, ottenuta limitandosi alle prime $r$ A di $A$, e considerare il sistema lineare omogeneo associato
+  \begin{equation*}
+    A^* \underline{x} = \underline{0} \tag{$\ast$}
+  \end{equation*}
+  Osserviamo che se $\underline{x}$ è soluzione di $(\ast)$, allora si ha che annulla anche le righe $i > r$ della matrice $A$, in quanto combinazioni lineari delle prime $r$ righe linearmente indipendenti
+  \begin{align*}
+    a_{i1} x_1 + a_{i2} x_2 + \ldots + a_{in} x_n &= \alpha_{1} (a_{11} x_1 + a_{12} x_2 + \ldots + a_{1n} x_n) + \ldots + \alpha_r(a_{r1} x_1 + \ldots + a_{rn} x_n) = \\
+    &= 0 + \ldots + 0 = 0
+  \end{align*}
+  per opportuni $\alpha_1, \ldots, \alpha_r \in \mathbb{K}$ tali che $A_i = \alpha_1 A_1 + \ldots + \alpha_r A_r$. Abbiamo quindi che $\underline{x}$ è soluzione anche del sistema "originale", mentre è chiaro che ogni soluzione originale del sistema è anche soluzione del sistema $(\ast)$. I due sistemi sono, quindi, equivalenti e il rango per colonne di $A^*$ è $c$, ma siccome le colonne sono vettori di $\mathbb{K}^r$ (perché ci siamo limitati alle prime $r$ righe), allora $c \leq r$.
+  Ripetendo il medesimo ragionamento con $A^T$ otteniamo invece che $r \leq c$, quindi in definitiva abbiamo che $c = r$.
+\end{proof}
+\begin{cor}
+  $$
+    \rank{(A^T)} = \rank{(A)}
+  $$
+\end{cor}
+
+\begin{theorem}[di Rouché-Capelli] \label{thm:rouche_capelli}
+  Sia dato un sistema lineare della forma a coefficienti nel campo $\mathbb{K}$
+  \begin{align*}
+    \begin{cases}
+      \alpha_{1, 1} x_1 + \ldots + \alpha_{1, n} = b_1 \\
+      \alpha_{2, 1} x_1 + \ldots + \alpha_{2, n} = b_2 \\
+      \vdots \\
+      \alpha_{m, 1} x_1 + \ldots + \alpha_{m, n} = b_m
+    \end{cases}.
+  \end{align*}
+  con $b_i \in \mathbb{K} \, \forall i \in \{ 1, \ldots, m \}$. Tale sistema è rappresentato dalla matrice
+  $$
+    (A | \underline{b}) = \left( \begin{array}{c c c c | c}
+      \alpha_{1, 1} & \alpha_{1, 2} & \ldots & \alpha_{1, n}  & b_1 \\
+      \alpha_{2, 1} & \alpha_{2, 2} & \ldots & \alpha_{2, n} & b_2 \\
+      \vdots & \vdots & \ddots & \vdots & \vdots \\
+      \alpha_{m, 1} & \alpha_{m, 2} & \ldots & \alpha_{m,n} & b_m
+    \end{array} \right)
+  $$
+  e si ha che il sistema lineare ha soluzione unica se $\rank{(A)}$ è uguale a $\rank{(A | \underline{b})}$. In tal caso le soluzioni all'equazione
+  $$
+    A \underline{x} = \underline{b} \text{ dove } \underline{b} = \begin{pmatrix} b_1 \\ b_2 \\ \vdots \\ b_m \end{pmatrix}
+  $$
+  formano uno spazio affine di $\mathbb{K}^n$ di dimensione $n - \rank{(A)}$. In particolare si ha che se $\rank{(A)} = n$ allora la soluzione è unica, altrimenti ve ne sono infinite e sono delle forma
+  $$
+    \underline{x_0} + \underline{v}
+  $$
+  dove $\underline{x_0}$ è una possibile soluzione all'equazione, mentre $\underline{v}$è un generico vettore nel kernel di A.
+\end{theorem}
+
+\begin{remark}
+  Per capire bene il significato di questo teorema, si pensi ad un retta non passante per l'origine, ma passante in $P = (0, 1)$ per esempio. Ogni punto del retta (non passante per l'origine) può essere scritto come somma del vettore $\vec{OP}$ e un vettore di un sottospazio vettoriale (immaginate di ritraslare la retta non passante nell'origine, riportandola nell'origine: abbiamo che ogni punto della è identificato adesso da un vettore, siccome, riportandolo nell'origine, l'abbiamo resa nuovamente uno spazio vettoriale, quindi prendendo un vettore qualunque e sommandolo al vettore $\vec{OP}$ si descrive il generico punto della non passante per l'origine). Questo procedimento è illustrato nella figura di sotto: se consideriamo il vettore $\underline{v}$ che appartiene alla retta non traslata e consideriamo il suo "traslato" sulla retta non passante per l'origine $\underline{v}'$ si osserva che il vettore che appartiene alla retta $y=2x+3$ è ottenuto sommando $\vec{OP}$ con $\underline{v}$ o $\underline{v}'$, il cui risultato in figura sarebbe la linea tratteggiata. 
+  
+  \begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[domain=0:1.5]
+      \draw[very thin,color=gray] (-2.2,-2.2) grid (3.9,5.9);
+
+      \draw[->] (-2,0) -- (4,0) node[right] {$x$};
+      \draw[->] (0,-2) -- (0,4) node[above] {$y$};
+
+      \draw[color=red, domain=-2.0:1.5]    plot (\x,2*\x + 3)             node[above right] {$f(x) = 2x+3$};
+      \draw[color=blue, domain=-1.0:3.0]   plot (\x,2*\x)    node[below right] {$f(x) = 2x$};
+      \draw[->, color=purple] (0, 0) -- (1, 2) node[below right] {$\underline{v}$};
+      \draw[->, orange] (0, 0) -- (0, 3) node[below left] {};
+      \node at (-0.5, 1) {$\vec{OP}$};
+      \draw[->, green] (0, 3) -- (1, 5) node[above] {};
+      \node at (0.5, 4.4) {$\underline{v}'$};
+      \draw[->, dashed] (0, 0) -- (1,5) node[right] {$\vec{OP}+\underline{v}$};
+    \end{tikzpicture}
+  \end{figure}
+\end{remark}
+
+Per effettuare la dimostrazione bisogna prima soffermarci su una piccola questione: rappresentare un sistema lineare come
+$$
+  A \underline{x} = \underline{0}
+$$
+è equivalente a scrivere
+$$
+  x_1 A^1 + \ldots + x_n A^n = \underline{0}
+$$
+dove $A^i$ è la colonna $i-$esima della matrice $A$. Questo si vede col prodotto matriciale siccome
+$$
+  A\underline{x} = \begin{pmatrix}
+  \alpha_{1,1} & \ldots & \alpha_{1, n} \\
+  \alpha_{2, 1} & \ldots & \alpha_{2, n} \\
+  \vdots & \ddots & \vdots \\
+  \alpha_{m, 1} & \ldots & \alpha_{m,n}
+  \end{pmatrix} \begin{pmatrix}
+    x_1 \\
+    \vdots \\
+    x_n
+  \end{pmatrix} = x_1 \begin{pmatrix}
+    \alpha_{1, 1} \\
+    \vdots \\
+    \alpha_{m, 1}
+  \end{pmatrix} + \ldots + x_n \begin{pmatrix}
+    \alpha_{1, n} \\
+    \vdots \\
+    \alpha_{m, n}
+  \end{pmatrix}.
+$$
+Se queste colonne sono linearmente indipendenti (infatti possono essere immaginate come vettori in $\mathbb{K}^m$), allora l'unica soluzione possibile è per $\underline{x} = \underline{0}$. Ragionando come fatto in precedenza, è facile convincersi che ciò è possibile \textbf{solo} se la matrice può essere messa in forma di pivot con questi ultimi tutti non nulli (infatti se avessimo un pivot nullo, per assurdo, avremmo che una delle $x_i$ soddisfa un'equazione del tipo $0 \cdot x_i = 0$ che è vera per qualunque valore di $x_i$). Anche nel caso in cui stessimo studiando il sistema
+$$
+  A \underline{x} = \underline{b}
+$$
+possiamo sempre procedere come sopra e vedere che
+$$
+  x_1 A^1 + \ldots + x_n A^n = \underline{b},
+$$
+dunque $\underline{b}$ è combinazione lineare delle colonne.
+\begin{proof}[Dimostrazione del teorema \ref{thm:rouche_capelli}]
+  Affinché $\underline{b}$ sia soluzione del sistema si deve avere che appartiene allo $\text{Span}$ delle colonne della matrice siccome il sistema
+  $$
+    A \underline{x} = \underline{b}
+  $$
+  è equivalente a scrivere
+  $$
+    x_1 A^1 + \ldots + x_n A^n = \underline{b}
+  $$
+  dove $A^i$ è l'$i-$esima colonna di $A$. Ma se appartiene allo Span delle colonne, l'aggiunta del vettore $\underline{b}$ non modifica la dimensione dello Span delle colonne (siccome è ridondante), dunque la dimensione dello spazio delle colonne della matrice $(A | \underline{b} )$ è la stessa. Per mostrare l'ultima affermazione, sul fatto che le soluzioni formano uno spazio affine, possiamo osservare che se $\underline{x_0}$ è una soluzione del sistema $A \underline{x} = \underline{b}$, allora si ha
+  che, preso un $\underline{v}$ soluzione del sistema $A\underline{x} = \underline{0}$, il vettore $\underline{x_0} + \underline{v}$ è ancora soluzione del sistema $A\underline{x} = \underline{b}$ siccome
+  $$
+    A(\underline{x_0} + \underline{v}) = A\underline{x_0} + A \underline{v} = \underline{b} + \underline{0} = \underline{b}.
+  $$
+  Si vede che se le dimensioni dello spazio delle colonne è uguale a $n$, allora il sistema omogeneo ($A\underline{x} = \underline{0}$) ha solo soluzione nulla (ovvero si può ridurre in forma triangolare con pivot tutti non nulli), quindi avremo che la soluzione è unica.
+\end{proof}
+Dal teorema qua sopra si evince subito che è sempre utile sapere le soluzioni del sistema $A \underline{x} = \underline{0}$, anche quando si sta studiando il sistema $A \underline{x} = \underline{b}$ (siccome le soluzioni a questo sistema sono date da una soluzione $\underline{x_0}$ che risolve il sistema a cui possiamo aggiungere un qualunque vettore che invece soddisfa il sistema omogeneo $A \underline{x} = \underline{0}$).
 Se consideriamo sempre la solita matrice $A$ vorremmo trovare la \emph{matrice inversa}, così definita
 \begin{definition}[matrice inversa]
   Sia $A \in \mathcal{M}_n(\mathbb{K})$ (ovvero le matrici quadrate $n \times n$ a coefficienti sul campo $\mathbb{K}$), la matrice inversa $A^{-1} \in \mathcal{M}_n(\mathbb{K})$ è quella matrice tale che
@@ -561,7 +693,7 @@ $$
   (A | I)
 $$
 come un sistema lineare "multiplo" la cui soluzione è rappresentata dalla matrice $A^{-1}$. Tramite questo procedimento è possibile mostrare la seguente proposizione
-\begin{prop}
+\begin{prop} \label{prop:matr_inv_rank}
   Sia $A$ una matrice $n \times n$ a coefficienti in $\mathbb{K}$, allora
   $$
     A \text{ è invertibile } \iff \rank{(A)} = n
@@ -584,22 +716,22 @@ Per fare questa dimostrazione è necessario questo lemma particolarmente rognoso
   \end{align*}
   quindi ogni riga di $(AB)$ è combinazione lineare delle righe di $B$, quindi è chiaro che lo $\text{Span}$ delle righe di $AB$ è contenuto nello Span delle righe di $B$, dunque
   $$
-    \rank{(AB)} \leq \rank{B},
+    \rank{(AB)} \leq \rank{(B)},
   $$
   ma siccome il rango è invariante per trasposizione, abbiamo che
   $$
-    \rank{(AB)} = \rank{(AB)^T} = \rank{B^T A^T}
+    \rank{(AB)} = \rank{(AB)^T} = \rank{(B^T A^T)}
   $$
   e ragionando come fatto prima abbiamo che le righe di $B^T A^T$ sono combinazioni lineari delle righe di $A$, dunque si ha che
   $$
-    \rank{(AB)} = \rank{B^T A^T} \leq \rank{A^T} = \rank{A},
+    \rank{(AB)} = \rank{(B^T A^T)} \leq \rank{(A^T)} = \rank{(A)},
   $$
   dunque
   $$
     \rank{(AB)} \leq \min{\{ \rank{(A)}, \rank{(B)}\} }.
   $$
 \end{proof}
-\begin{proof} \hspace{1cm} \\
+\begin{proof}[Dimostrazione della proposizione \ref{prop:matr_inv_rank}] \hspace{1cm} \\
   $\boxed{\Rightarrow}$: se $A$ è invertibile, allora abbiamo, usando il lemma di prima, che
   $$
     n = \rank{I_n} = \rank{(AA^{-1})} \leq \rank{(A)},
@@ -1047,7 +1179,7 @@ Questo isomorfismo semplifica un sacco le cose, siccome ci consente di prendere 
 \textbf{Notazioni}: adesso in poi indicheremo quest'azione di prendere le coordinate rispetto ad una base $\mathcal{B}$ con $[\cdot]_\mathcal{B}$. \\
 
 
-Non solo, tramite questo isomorfismo, possiamo studiare il comportamento delle applicazioni lineari. Fissando una base $\mathcal{B} = \{ \underline{v_1}, \ldots, \underline{v_n} \}$ di $V$ e una base $\mathcal{B}'=\{ \underline{w_1}, \ldots, \underline{w_n} \}$ di $W$, come rappresentazione un'applicazione lineare?
+Non solo, tramite questo isomorfismo, possiamo studiare il comportamento delle applicazioni lineari. Fissando una base $\mathcal{B} = \{ \underline{v_1}, \ldots, \underline{v_n} \}$ di $V$ e una base $\mathcal{B}'=\{ \underline{w_1}, \ldots, \underline{w_n} \}$ di $W$, come rappresentiamo l'azione di un'applicazione lineare?
 Osserviamo che, se consideriamo un vettore $\underline{v} \in V$, allora abbiamo che 
 $$
 f(\underline{v}) = f(\alpha_1 \underline{v_1} + \alpha_2 \underline{v_2} + \ldots + \alpha_n \underline{v_n}) = \alpha_1 f(\underline{v_1}) + \alpha_2 f(\underline{v_2}) + \ldots + \alpha_n f(\underline{v_n})
@@ -1076,7 +1208,7 @@ $$
 \begin{definition}[matrice associata ad un'applicazione lineare $f$ con $\mathcal{B}$ in partenza e $\mathcal{B}'$ in uscita]
   Siano $V, W$ due spazi vettoriali sul campo $\mathbb{K}$ e sia $f: V \to W$ un'applicazione lineare. Fissata $\mathcal{B}$ base di $V$ (base in entrata) e $\mathcal{B}'$ base di $W$ (base in uscita), diremo che la matrice le cui colonne contengono le coordinate rispetto alla base $\mathcal{B}'$ dell'applicazione lineare $f$ applicata ai vettori della base $\mathcal{B}$
   $$
-    [f]_{\mathcal{B}'}^{\mathcal{B}} = 
+    \mathcal{M}_{\mathcal{B}'}^{\mathcal{B}}(f) = 
     \left( \begin{array}{c|c|c|c}
     [f(\underline{v_1})]_\mathcal{B'} &
     [f(\underline{v_2})]_\mathcal{B'} &
@@ -1122,7 +1254,7 @@ Il problema che adesso ci poniamo è capire che relazione esiste fra $[f]_{\math
 \begin{definition}[matrice di cambiamento di base fra $\mathcal{B}$ e $\mathcal{B}'$]
   Sia $V$ uno spazio vettoriale con $\text{dim}(V) < +\infty$ e siano $\mathcal{B}=\{\underline{v_1}, \ldots, \underline{v_n} \}$ e $\mathcal{B}' = \{ \underline{w_1}, \ldots, \underline{w_n} \}$ due basi distinte di $V$, allora diremo che la matrice di cambiamento di base fra $\mathcal{B}$ e $\mathcal{B}'$ è la matrice
   $$
-    [\text{Id}]^{\mathcal{B}}_{\mathcal{B}'} = \left( \begin{array}{c | c | c | c}
+    \mathcal{M}^{\mathcal{B}}_{\mathcal{B}'}(\text{Id}_V) = \left( \begin{array}{c | c | c | c}
       [\underline{v_1}]_{\mathcal{B}'} & [\underline{v_2}]_{\mathcal{B}'} & \ldots & [\underline{v_n}]_{\mathcal{B}'}
     \end{array} \right)
   $$
@@ -1139,7 +1271,7 @@ Il motivo di questo nome è chiaro: se noi consideriamo il vettore $\underline{v
     x_2 \\
     \vdots \\
     x_n
-  \end{pmatrix} = [\text{Id}]^\mathcal{B}_{\mathcal{B}'} \begin{pmatrix}
+  \end{pmatrix} = \mathcal{M}^\mathcal{B}_{\mathcal{B}'}(\text{Id}_V) \begin{pmatrix}
     x_1 \\
     x_2 \\
     \vdots \\
@@ -1183,29 +1315,29 @@ Si può mostrare che
   $$
   sono applicazioni lineari e abbiamo fissato le basi $\mathcal{B}_1, \ldots, \mathcal{B}_k$ rispettivamente di $V_1, \ldots, V_k$; allora
   $$
-    \mathcal{M}^\mathcal{B_1}_\mathcal{B_k} (f_{k-1} \circ f_{k-2} \circ \ldots \circ f_1) = \mathcal{M}^{\mathcal{B}_{k-1}}_{\mathcal{B}_k}(f_{k-1})\mathcal{M}^{\mathcal{B}_{k-2}}_{\mathcal{B}_{k-1}} \ldots \mathcal{M}^{\mathcal{B}_2}_{\mathcal{B}_3} \mathcal{M}^{\mathcal{B}_1}_{\mathcal{B}_2}(f_1)
+    \mathcal{M}^{\mathcal{B}_1}_{\mathcal{B}_k} (f_{k-1} \circ f_{k-2} \circ \ldots \circ f_1) = \mathcal{M}^{\mathcal{B}_{k-1}}_{\mathcal{B}_k}(f_{k-1})\mathcal{M}^{\mathcal{B}_{k-2}}_{\mathcal{B}_{k-1}} \ldots \mathcal{M}^{\mathcal{B}_2}_{\mathcal{B}_3} \mathcal{M}^{\mathcal{B}_1}_{\mathcal{B}_2}(f_1)
   $$
 \end{prop}
 \begin{exercise}
   Mostrare la proposizione \ref{prop:comp_mult}. \emph{Suggerimento:} procedere per induzione su $k$.
 \end{exercise}
 \begin{prop}
-  $[\text{Id}]^\mathcal{B}_\mathcal{B'} = ([\text{Id}]^\mathcal{B'}_\mathcal{B})^{-1}$.
+  $\mathcal{M}^\mathcal{B}_\mathcal{B'}(\text{Id}_V) = (\mathcal{M}^\mathcal{B'}_\mathcal{B}(\text{Id}_V))^{-1}$.
 \end{prop}
 \begin{proof}
   Abbiamo che le coordinate dei vettori di $\mathcal{B}$ rispetto a $\mathcal{B}$ è una matrice diagonale (banalmente perché $\underline{v_i} = 1_\mathbb{K} \underline{v_i}$), pertanto si ha, per il teorema \ref{thm:comp_matr}, che
   $$
-    [\text{Id}]^\mathcal{B}_\mathcal{B} = \begin{pmatrix}
+    \mathcal{M}^\mathcal{B}_\mathcal{B}(\text{Id}_V) = \begin{pmatrix}
       1 & 0 & 0 & \ldots & 0 \\
       0 & 1 & 0 & \ldots & 0 \\
       0 & 0 & \ddots & \ldots & 0 \\
       \vdots & \vdots & \vdots & \ddots & \vdots \\
       0 & 0 & 0 & 0 & 1
-    \end{pmatrix} = I = [\text{Id}]^\mathcal{B'}_\mathcal{B} [\text{Id}]^\mathcal{B}_\mathcal{B'}
+    \end{pmatrix} = I = \mathcal{M}^\mathcal{B'}_\mathcal{B}(\text{Id}_V) \mathcal{M}^\mathcal{B}_\mathcal{B'}(\text{Id}_V)
   $$
-  dove l'uguaglianza segue dal fatto che il vettore delle componenti di un vettore $\underline{v}$, applicandovi $[\text{Id}]^{\mathcal{B}}_\mathcal{B'}$, viene mandato nel vettore delle coordinate di $\underline{v}$ rispetto alla base $\mathcal{B'}$ e poi viene riportato nel vettore delle coordinate rispetto alla base $\mathcal{B}$, quindi dobbiamo riottenere il vettore iniziale. Ma allora segue che, moltiplicando da entrambe le parti per la matrice inversa di $[\text{Id}]^\mathcal{B}_\mathcal{B'}$, si ha che
+  dove l'uguaglianza segue dal fatto che il vettore delle componenti di un vettore $\underline{v}$, applicandovi $\mathcal{M}^{\mathcal{B}}_\mathcal{B'}(\text{Id}_V)$, viene mandato nel vettore delle coordinate di $\underline{v}$ rispetto alla base $\mathcal{B'}$ e poi viene riportato nel vettore delle coordinate rispetto alla base $\mathcal{B}$, quindi dobbiamo riottenere il vettore iniziale. Ma allora segue che, moltiplicando da entrambe le parti per la matrice inversa di $\mathcal{M}^\mathcal{B}_\mathcal{B'}(\text{Id}_V)$, si ha che
   $$
-    ([\text{Id}]^\mathcal{B}_\mathcal{B'})^{-1} = [\text{Id}]^{\mathcal{B'}}_\mathcal{B}.
+    (\mathcal{M}^\mathcal{B}_\mathcal{B'}(\text{Id}_V))^{-1} = \mathcal{M}^{\mathcal{B'}}_\mathcal{B}(\text{Id}_V).
   $$
 \end{proof}
 Utilizzando la proposizione \ref{prop:comp_mult} segue immediatamente il seguente teorema
