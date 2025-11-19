@@ -1,0 +1,100 @@
+\chapter{Prodotti scalari}
+
+Vogliamo adesso introdurre il prodotto scalare: quest'ultimo fornisce una "metrica" al nostro spazio vettoriale, ovvero un modo per quantificare le lunghezze all'interno del nostro spazio vettoriale.
+
+\begin{definition}[applicazione bilineare simmetrica]
+	Sia $V$ uno spazio vettoriale sul campo $\mathbb{K}$, diciamo che un'applicazione $\phi : V \times V \to \mathbb{K}$ che soddisfa le seguenti proprietà:
+	\begin{enumerate}[label=\protect\circled{\arabic*}]
+		\item è lineare nella prima componente, ovvero
+		$$\forall \alpha, \beta \in \mathbb{R}, \forall \underline{v}, \underline{w}, \underline{z} \in V, \phi(\alpha \underline{v} + \beta \underline{w}, \underline{z})=\alpha \phi(\underline{v}, \underline{z}) + \beta \phi(\underline{w}, \underline{z})$$
+		\item è lineare nella seconda componente, ovvero
+		$$\forall \alpha, \beta \in \mathbb{R}, \forall \underline{v}, \underline{w}, \underline{z} \in V, \phi(\underline{z}, \alpha \underline{v} + \beta \underline{w}) = \alpha \phi(\underline{z}, \underline{v}) + \beta \phi(\underline{z}, \underline{w})$$
+		\item è simmetrica, ovvero
+		$$\forall \underline{v}, \underline{w}, \phi(\underline{v}, \underline{w}) = \phi(\underline{w}, \underline{v})$$
+	\end{enumerate}
+	è una forma bilineare simmetrica.
+\end{definition}
+\begin{remark}
+	In questo caso la proprietà \circled{2} è ridondante, siccome segue dalla \circled{1} unita alla \circled{3}: infatti abbiamo che
+	\begin{align*}
+		\phi(\underline{z}, \alpha \underline{v} + \beta \underline{w}) \stackrel{\circled{3}}{=} \phi(\alpha \underline{v} + \beta \underline{w}, \underline{z}) \stackrel{\circled{1}}{=} \alpha \phi(\underline{v}, \underline{z}) + \beta \phi(\underline{w}, \underline{z}) \stackrel{\circled{3}}{=} \alpha \phi(\underline{z}, \underline{v}) + \beta \phi(\underline{z}, \underline{w}).
+	\end{align*}
+\end{remark}
+\begin{definition}[prodotto scalare]
+	Sia $V$ uno spazio vettoriale sul campo $\mathbb{R}$, diremo che $\phi: V \times V \to \mathbb{R}$ forma bilineare simmetrica è un prodotto scalare.
+\end{definition}
+
+Il nostro prototipo di prodotto scalare per eccellenza è il prodotto scalare euclideo in $\mathbb{R}$: presi i vettori $\underline{v} \in \mathbb{R}^n$ e $\underline{w} \in \mathbb{R}^n$ sappiamo che questi sono delle forma
+\begin{align*}
+	&\underline{v} = \begin{pmatrix} \alpha_1 \\ \vdots \\ \alpha_n \end{pmatrix} & &\underline{w} = \begin{pmatrix} \beta_1 \\ \vdots \\ \beta_n \end{pmatrix}
+\end{align*}
+
+dove chiaramente $\forall i \in \{1, \ldots, n \}, \alpha_i \in \mathbb{R}$ e $\beta_i \in \mathbb{R}$. Il loro prodotto scalare euclideo (che indicheremo con $(\cdot, \cdot)$) si ha che
+$$
+	(\underline{v}, \underline{w}) = \underline{v}^T \underline{w} = \begin{pmatrix} \alpha_1 \ \ldots \, \alpha_n \end{pmatrix} \begin{pmatrix} \beta_1 \\ \vdots \\ \beta_n \end{pmatrix} = \alpha_1 \beta_1 + \alpha_2 \beta_2 + \ldots + \alpha_n \beta_n,
+$$
+
+dove $\begin{pmatrix} \alpha_1 \ \ldots \, \alpha_n \end{pmatrix} \begin{pmatrix} \beta_1 \\ \vdots \\ \beta_n \end{pmatrix}$ è da effettuare con il prodotto righe per colonne. E' facile mostrare che $(\cdot, \cdot)$ è effettivamente un prodotto scalare
+
+\begin{exercise}
+	\label{ex:3.1}
+	Mostrare che $(\cdot, \cdot)$ è un prodotto scalare: è chiaro che è a valori in $\mathbb{R}$, mostrare che soddisfa le proprietà \circled{1}, \circled{2} e $\circled{3}$
+\end{exercise}
+
+Come fatto per le applicazioni lineari, vogliamo sviluppare un modo per lavorare con le \emph{coordinate} (rispetto ad una base fissata) dei vettori, piuttosto che lavorare effettivamente con i vettori. Per fare questo osserviamo che, presi due vettori, e fissando una base $\mathcal{B} = \{ \underline{v_1}, \ldots, \underline{v_n} \}$, usando la bilinearità, si ha che
+\begin{align*}
+	\phi(\underline{v}, \underline{w}) &= \phi(\alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n}, \beta_1 \underline{v_1} + \ldots + \beta_n \underline{v_n}) = \phi(\alpha_1 \underline{v_1}, \beta_1 \underline{v_1} + \ldots + \beta_n \underline{v_n}) + \ldots + \\
+	&+\phi(\alpha_n \underline{v_n}, \beta_1 \underline{v_1} + \ldots + \beta_n \underline{v_n}) = \phi(\alpha_1 \underline{v_1}, \beta_1 \underline{v_1}) + \phi(\alpha_1 \underline{v_1}, \beta_2 \underline{v_2}) + \ldots + \phi(\alpha_1 \underline{v_1}, \beta_n \underline{v_n}) + \\ 
+	&+ \phi(\alpha_2 \underline{v_2}, \beta_1 \underline{v_1}) + \ldots + \phi(\alpha_2 \underline{v_2}, \beta_n \underline{v_n}) + \ldots + \phi(\alpha_n \underline{v_n}, \beta_1 \underline{v_1}) + \ldots + \phi(\alpha_n \underline{v_n}, \beta_n \underline{v_n}) = \\
+	&= \alpha_1 \beta_1 \phi(\underline{v_1}, \underline{v_1}) + \alpha_1 \beta_2 \phi(\underline{v_1}, \underline{v_2}) + \ldots + \alpha_1 \beta_n \phi (\underline{v_1}, \underline{v_n}) + \ldots + \alpha_n \beta_1 \phi(\underline{v_n}, \underline{v_1}) + \ldots + \\
+	&+ \alpha_n \beta_n \phi(\underline{v_n}, \underline{v_n}) = \sum_{i=1}^n \sum_{j=1}^n \alpha_i \beta_i \phi(\underline{v_i}, \underline{v_j}).
+\end{align*}
+
+Osserviamo, quindi, che è necessario conoscere solamente il valore che il prodotto scalare assume sui vettori della base per poter determinare il suo valore. Possiamo quindi pensare di "ereditare" l'impostazione del prodotto scalare canonico, siccome vediamo dalla formula sopra che
+\begin{align*}
+	\phi(\underline{v}, \underline{w}) &= ([\underline{v}]_\mathcal{B})^T \begin{pmatrix}
+		\phi(\underline{v_1}, \underline{v_1}) & \phi(\underline{v_1}, \underline{v_2}) & \ldots & \phi(\underline{v_1}, \underline{v_n}) \\
+		\phi(\underline{v_2}, \underline{v_1}) & \phi(\underline{v_2}, \underline{v_2}) & \ldots & \phi(\underline{v_2}, \underline{v_n}) \\
+		\vdots & \ldots & \ddots & \vdots \\
+		\phi(\underline{v_n}, \underline{v_1}) & \phi(\underline{v_n}, \underline{v_2}) & \ldots & \phi(\underline{v_n}, \underline{v_n})
+	\end{pmatrix} [\underline{w}]_\mathcal{B} = \sum_{i=1}^n \sum_{j=1}^n \alpha_i \beta_j \phi(\underline{v_i}, \underline{v_j}) = \\
+	&= ([\underline{v}]_\mathcal{B})^T \mathcal{M}^\mathcal{B}(\phi) [\underline{w}]_\mathcal{B}
+\end{align*}
+\begin{definition}[matrice associata ad un prodotto scalare]
+	Sia $V$ uno spazio vettoriale sul campo $\mathbb{R}$ munito di un prodotto scalare $\phi$. Fissata una base $\mathcal{B}$, abbiamo che la matrice associata a $\phi$ in base $\mathcal{B}$ è la matrice
+	$$
+	\mathcal{M}^\mathcal{B}(\phi) = \begin{pmatrix}
+		\phi(\underline{v_1}, \underline{v_1}) & \phi(\underline{v_1}, \underline{v_2}) & \ldots & \phi(\underline{v_1}, \underline{v_n}) \\
+		\phi(\underline{v_2}, \underline{v_1}) & \phi(\underline{v_2}, \underline{v_2}) & \ldots & \phi(\underline{v_2}, \underline{v_n}) \\
+		\vdots & \ldots & \ddots & \vdots \\
+		\phi(\underline{v_n}, \underline{v_1}) & \phi(\underline{v_n}, \underline{v_2}) & \ldots & \phi(\underline{v_n}, \underline{v_n})
+	\end{pmatrix}, 
+	$$
+	ovvero la matrice che in posizione $(i, j)$ contiene il valore del prodotto scalare fra il vettore $i-$esimo e il vettore $j-$esimo
+	$$
+		(\mathcal{M}^\mathcal{B}(\phi))_{ij} = \phi(\underline{v_i}, \underline{v_j}). 
+	$$
+\end{definition}
+Osserviamo che tale matrice dev'essere una matrice simmetrica, siccome nella posizione $(i,j)$ abbiamo che
+$$
+	(\mathcal{M}^{\mathcal{B}}(\phi))_{ij} = \phi(\underline{v_i}, \underline{v_j}) \stackrel{\circled{3}}{=} \phi(\underline{v_j}, \underline{v_i}) = (\mathcal{M}^{\mathcal{B}}(\phi))_{ji},
+$$
+
+Mostriamo il seguente teorema
+\begin{theorem}[cambio di base per le matrici associate ad un prodotto scalare]
+	Sia $V$ uno spazio vettoriale sul campo $\mathbb{R}$ munito di un prodotto scalare $\phi$, sia $\mathcal{B} = \{ \underline{v_1}, \ldots, \underline{v_n} \}$ una base fissata di $V$ e sia $\mathcal{C} = \{ \underline{w_1}, \ldots, \underline{w_n} \}$ un'altra base di $V$. Allora si ha che
+	$$
+		\mathcal{M}^\mathcal{C}(\phi) = (\mathcal{M}^\mathcal{C}_\mathcal{B}(\text{Id}_V))^T \mathcal{M}^\mathcal{B}(\phi) \mathcal{M}^\mathcal{C}_\mathcal{B}(\text{Id}_V).
+	$$
+\end{theorem}
+\begin{proof}
+	Osserviamo che
+	$$
+		(\mathcal{M}^\mathcal{C}(\phi))_{ij} = \phi(\underline{w_i}, \underline{w_j}) =,
+	$$     
+	ma per definizione abbiamo che $[\underline{w_i}]_\mathcal{B} = (\mathcal{M}^{\mathcal{C}}_\mathcal{B}(\text{Id}_V))^i$ e $(\mathcal{M}^{\mathcal{C}}_{\mathcal{B}}(\text{Id}_V))^i = ((\mathcal{M}^{\mathcal{C}}_{\mathcal{B}}(\text{Id}_V))^T)_i$, dunque
+	$$
+		(\mathcal{M}^\mathcal{C}(\phi))_{ij} = ((\mathcal{M}^{\mathcal{C}}_{\mathcal{B}}(\text{Id}_V))^i)^T \mathcal{M}^\mathcal{B}(\phi) (\mathcal{M}^{\mathcal{C}}_{\mathcal{B}}(\text{Id}_V))^j = ((\mathcal{M}^{\mathcal{C}}_{\mathcal{B}}(\text{Id}_V))^T \mathcal{M}^\mathcal{B}(\phi) \mathcal{M}^{\mathcal{C}}_{\mathcal{B}}(\text{Id}_V))_{ij},  
+	$$
+	dove siamo autorizzati a sostituire le operazioni siccome, per definizione di prodotto matriciale, abbiamo che se $C = AB$ allora $C^j = AB^j$ dunque riconosciamo in $\mathcal{M}^\mathcal{B}(\phi) (\mathcal{M}^{\mathcal{C}}_{\mathcal{B}}(\text{Id}_V))^j$ la colonna $j-$esima del loro prodotto, mentre per quanto riguarda il resto abbiamo che stiamo considerando la trasposta della matrice $(((\mathcal{M}^{\mathcal{C}}_{\mathcal{B}}(\text{Id}_V)))^i) = (((\mathcal{M}^{\mathcal{C}}_{\mathcal{B}}(\text{Id}_V)))^T)_i$
+\end{proof}
