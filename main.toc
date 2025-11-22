@@ -13,7 +13,11 @@
 \contentsline {section}{\numberline {2.3}Matrici simmetriche e antisimmetriche}{41}{section.2.3}%
 \contentsline {section}{\numberline {2.4}Applicazioni lineari}{45}{section.2.4}%
 \contentsline {section}{\numberline {2.5}Isomorfismo delle coordinate}{48}{section.2.5}%
-\contentsline {chapter}{\numberline {3}Soluzioni agli esercizi}{55}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Spazi vettoriali}{55}{section.3.1}%
-\contentsline {chapter}{\numberline {A}Logica}{63}{chapter.1}%
-\contentsline {chapter}{\numberline {B}Basi a dimensione infinita}{65}{chapter.2}%
+\contentsline {chapter}{\numberline {3}Prodotti scalari}{55}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Dimensioni del radicale}{60}{section.3.1}%
+\contentsline {chapter}{\numberline {4}Soluzioni agli esercizi}{61}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Spazi vettoriali}{61}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Prodotti scalari}{66}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Esercizio \ref {ex:3.1}}{66}{subsection.4.2.1}%
+\contentsline {chapter}{\numberline {A}Logica}{69}{chapter.1}%
+\contentsline {chapter}{\numberline {B}Basi a dimensione infinita}{71}{chapter.2}%

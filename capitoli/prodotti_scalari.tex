@@ -96,5 +96,150 @@ Mostriamo il seguente teorema
 	$$
 		(\mathcal{M}^\mathcal{C}(\phi))_{ij} = ((\mathcal{M}^{\mathcal{C}}_{\mathcal{B}}(\text{Id}_V))^i)^T \mathcal{M}^\mathcal{B}(\phi) (\mathcal{M}^{\mathcal{C}}_{\mathcal{B}}(\text{Id}_V))^j = ((\mathcal{M}^{\mathcal{C}}_{\mathcal{B}}(\text{Id}_V))^T \mathcal{M}^\mathcal{B}(\phi) \mathcal{M}^{\mathcal{C}}_{\mathcal{B}}(\text{Id}_V))_{ij},  
 	$$
-	dove siamo autorizzati a sostituire le operazioni siccome, per definizione di prodotto matriciale, abbiamo che se $C = AB$ allora $C^j = AB^j$ dunque riconosciamo in $\mathcal{M}^\mathcal{B}(\phi) (\mathcal{M}^{\mathcal{C}}_{\mathcal{B}}(\text{Id}_V))^j$ la colonna $j-$esima del loro prodotto, mentre per quanto riguarda il resto abbiamo che stiamo considerando la trasposta della matrice $(((\mathcal{M}^{\mathcal{C}}_{\mathcal{B}}(\text{Id}_V)))^i) = (((\mathcal{M}^{\mathcal{C}}_{\mathcal{B}}(\text{Id}_V)))^T)_i$
+	dove siamo autorizzati a sostituire le operazioni siccome, per definizione di prodotto matriciale, abbiamo che se $C = AB$ allora $C^j = AB^j$ dunque riconosciamo in $\mathcal{M}^\mathcal{B}(\phi) (\mathcal{M}^{\mathcal{C}}_{\mathcal{B}}(\text{Id}_V))^j$ la colonna $j-$esima del loro prodotto, mentre per quanto riguarda il resto abbiamo che $(((\mathcal{M}^{\mathcal{C}}_{\mathcal{B}}(\text{Id}_V)))^i) = (((\mathcal{M}^{\mathcal{C}}_{\mathcal{B}}(\text{Id}_V)))^T)_i$, dunque, ricordando che $C_{ij} = A_i B^j$, abbiamo che l'elemento
+	in posizione $(i, j)$ della matrice $(\mathcal{M}^\mathcal{C}_\mathcal{B}(\text{Id}_V))^T \mathcal{M}^\mathcal{B}(\phi) \mathcal{M}^\mathcal{C}_\mathcal{B}(\text{Id}_V)$ è proprio $\phi(\underline{w_i}, \underline{w_j})$.
 \end{proof}
+
+Cerchiamo adesso di indagare alcune proprietà geometriche che nascono dal valore che assume un prodotto scalare: spinti dalla valenza geometrica che diamo al prodotto scalare euclideo, diamo la seguente definizione
+
+\begin{definition}[vettori ortogonali]
+	Sia $V$ uno spazio vettoriale sul campo $\mathbb{R}$ e sia $\phi$ un prodotto scalare, allora diremo che $\underline{v}, \underline{w}$ sono ortogonali se
+	$$
+		\phi(\underline{v}, \underline{w}) = 0
+	$$
+\end{definition}
+
+Le cose per prodotti scalari qualunque, però, diventano abbastanza peculiari: per esempio, se consideriamo la quantità $\phi(\underline{v}, \underline{v}) = ||\underline{v}||$, detta \textbf{norma}, si ha che, nel caso del prodotto scalare euclideo, ci fornisce la nozione di "lunghezza" di un vettore, infatti
+$$
+	\underline{v} = \begin{pmatrix}
+		x_1 \\
+		x_2 \\
+		\vdots \\
+		x_n
+	\end{pmatrix} \in \mathbb{R}^n \implies \phi(\underline{v}, \underline{v}) = x_1^2 + \ldots + x^2_n,
+$$
+che altro non è che la generalizzazione $n-$dimensionale del teorema di Pitagora. Si osserva, tuttavia, che la norma euclidea di un vettore è sempre maggiore o uguale di 0, dove l'uguaglianza si ha se e solo se $\underline{v} = \underline{0}$. Per un prodotto scalare qualunque, tuttavia, è possibile che ci siano dei vettori la cui "lunghezza" sia pari a 0: per esempio, si consideri il seguente prodotto scalare in $\mathbb{R}^3$
+$$
+	\begin{pmatrix}
+		x_1 \\
+		x_2 \\
+		x_3
+	\end{pmatrix}, \begin{pmatrix}
+		y_1 \\
+		y_2 \\
+		y_3
+	\end{pmatrix} \stackrel{\phi}{\mapsto} x_1 y_1 - x_3 y_3,
+$$
+da cui è chiaro che questa funzione sia effettivamente un prodotto scalare (se non siete convinti, mostratelo per esercizio). Si osserva che, preso per esempio il vettore $\begin{pmatrix}
+1 \\
+0 \\
+1
+\end{pmatrix}$, possiamo ottenere delle norme uguali a 0, visto che
+$$
+	\phi(\begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix}, \begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix}) = 1^2 - 1^2 = 0,
+$$
+mentre se consideriamo il vettore $\begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}$, abbiamo che
+$$
+	\phi(\begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}, \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}) = 0 - 1 = -1.
+$$
+Interessante, no? Facciamo un'ultimo esempio, un esempio concreto, \emph{fisico}: uno dei prodotti scalari più utilizzati in fisica (metrica di Minkowski, ovvero quella della relatività ristretta) è caratterizza dalla seguente matrice
+$$
+	\begin{pmatrix}
+		1 & 0 & 0 & 0 \\
+		0 & -1 & 0 & 0 \\
+		0 & 0 & -1 & 0 \\
+		0 & 0 & 0 & -1
+	\end{pmatrix}
+$$
+dove si osserva che, sebbene la norma non rappresenti più la nostra nozione geometrica di "lunghezza", ci consente di categorizzare i vettori in 3 categorie:
+\begin{itemize}
+	\item di tipo tempo, ovvero quelli per cui $\phi(\underline{v}, \underline{v}) > 0$;
+	\item di tipo luce, ovvero quelli per cui $\phi(\underline{v}, \underline{v}) = 0$;
+	\item di tipo spazio, ovvero quelli per cui $\phi(\underline{v}, \underline{v}) < 0$.
+\end{itemize}
+Tramite questa distinzione, è possibile determinare quali siano gli eventi che possono essere stati causalmente connessi oppure no. Morale: possono esistere dei prodotti scalari, anche fisicamente rilevanti, che hanno un "tipo" di norma diverso da quello "usuale"; proprio per questo, motiviamo la seguente definizione
+\begin{definition}[vettori isotropi]
+	Sia $V$ uno spazio vettoriale sul campo $\mathbb{R}$ e sia $\phi$ un prodotto scalare, diremo che $\underline{v} \in V$ è isotropo se
+	$$
+		\phi(\underline{v}, \underline{v}) = 0.
+	$$
+\end{definition}
+
+Sempre per un prodotto scalare qualsiasi, può capitare che ci siano dei vettori che risultano ortogonali a tutto lo spazio: si consideri per esempio il seguente prodotto scalare in $\mathbb{R}^3$
+$$
+	\begin{pmatrix}
+		x_1 \\
+		x_2 \\
+		x_3
+	\end{pmatrix}, \begin{pmatrix}
+		y_1 \\
+		y_2 \\
+		y_3
+	\end{pmatrix} \stackrel{\phi}{\mapsto} x_1 y_1,
+$$
+e si vede che i vettori del tipo $\begin{pmatrix}
+	0 \\
+	\alpha \\
+	\beta
+\end{pmatrix}$ sono ortogonali ad ogni altro vettore dello spazio, siccome preso $\underline{v} = \begin{pmatrix}
+	\gamma \\
+	\delta \\
+	\epsilon
+\end{pmatrix}$ si ha che
+$$
+	\phi(\begin{pmatrix}
+		0 \\
+		\alpha \\
+		\beta
+	\end{pmatrix}, \begin{pmatrix}
+		\gamma \\
+		\delta \\
+		\epsilon
+	\end{pmatrix}) = 0,
+$$
+e ciò rappresenta una situazione che nel caso euclideo non si era mai presentato. Siamo così motivati ad introdurre la seguente definizione
+\begin{definition}[radicale]
+	Sia $V$ uno spazio vettoriale sul campo $\mathbb{R}$ e sia $\phi$ un prodotto scalare, allora l'insieme
+	$$
+		V^\perp = \{ \underline{v} \in V \, \big| \, \forall \underline{w} \in V, \phi(\underline{w}, \underline{v}) = 0 \}.
+	$$
+	è detto radicale di $V$.
+\end{definition}
+
+La definizione appena data può essere chiaramente generalizzata ai sottospazi
+\begin{definition}[radicale di un sottospazio]
+	Sia $V$ uno spazio vettoriale sul campo $\mathbb{R}$ e sia $\phi$ un prodotto scalare. Preso $W \subset V$ sottospazio vettoriale, l'insieme
+	$$
+		W^\perp = \{ \underline{v} \in V \, \big| \, \forall \underline{w} \in W, \phi(\underline{v}, \underline{w}) = 0 \}
+	$$
+	è detto radicale di $W$
+\end{definition}
+\begin{exercise}
+	Mostrare che 
+	\begin{enumerate}[label=\protect\circled{\arabic*}]
+		\item se $W \subseteq V$ è un sottospazio vettoriale, allora $W^\perp$ è un sottospazio vettoriale;
+		\item se $W \subseteq V$ è un sottospazio vettoriale, allora $V^\perp \subseteq W^\perp$.
+	\end{enumerate}
+\end{exercise}
+
+Gli obiettivi che ci prefiggiamo adesso sono i seguenti:
+\begin{enumerate}
+	\item esiste un modo per quantificare quanto è grande questo radicale? E' un sottospazio vettoriale e, come tale, può essere messo in somma (diretta o meno) con altri sottospazi vettoriali, quindi sapere la dimensione non fa mai male, no?
+	\item esiste una base ortogonale? Ovvero, esiste una base i cui elementi siano a due a due ortogonali (proprietà che spesso viene indicata dicendo che i vettori di questa base sono \emph{mutualmente ortogonali})? Il motivo
+	per cui vorremo una tale base è rappresentata dal fatto che; guardando il bruttissimo conto che ci aveva portato a concludere che
+	$$
+		\phi(\underline{v}, \underline{w}) = \sum_{i=1}^n \sum_{j=1}^n \alpha_i \beta_i \phi(\underline{v_i}, \underline{v_j}),
+	$$
+	dove $\alpha_i, \beta_i \in \mathbb{R}$ rappresentano rispettivamente le coordinate dei vettori $\underline{v}$ e $\underline{w}$ per la base $\mathcal{B} = \{ \underline{v_1}, \ldots, \underline{v_n} \}$; diventa, in base ortogonale, molto più semplice, siccome, se $\mathcal{B}$ fosse una base ortogonale, allora si ha che
+	$$
+		\phi(\underline{v_i}, \underline{v_j}) = \begin{cases}
+			\phi(\underline{v_i}, \underline{v_i}) & \text{se } i = j \\
+			0 & \text{se } i \neq 0
+		\end{cases},
+	$$
+	dunque una sommatoria va via siccome contribuiscono solamente le $j = i$, quindi
+	$$
+		\phi(\underline{v}, \underline{w}) = \sum_{i=1}^n \alpha_i \beta_i \phi(\underline{v_i}, \underline{v_i}).
+	$$
+\end{enumerate}
+\section{Dimensioni del radicale}
