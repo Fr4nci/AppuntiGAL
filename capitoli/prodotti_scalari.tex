@@ -96,7 +96,7 @@ Mostriamo il seguente teorema
 	$$
 		(\mathcal{M}^\mathcal{C}(\phi))_{ij} = ((\mathcal{M}^{\mathcal{C}}_{\mathcal{B}}(\text{Id}_V))^i)^T \mathcal{M}^\mathcal{B}(\phi) (\mathcal{M}^{\mathcal{C}}_{\mathcal{B}}(\text{Id}_V))^j = ((\mathcal{M}^{\mathcal{C}}_{\mathcal{B}}(\text{Id}_V))^T \mathcal{M}^\mathcal{B}(\phi) \mathcal{M}^{\mathcal{C}}_{\mathcal{B}}(\text{Id}_V))_{ij},  
 	$$
-	dove siamo autorizzati a sostituire le operazioni siccome, per definizione di prodotto matriciale, abbiamo che se $C = AB$ allora $C^j = AB^j$ dunque riconosciamo in $\mathcal{M}^\mathcal{B}(\phi) (\mathcal{M}^{\mathcal{C}}_{\mathcal{B}}(\text{Id}_V))^j$ la colonna $j-$esima del loro prodotto, mentre per quanto riguarda il resto abbiamo che $(((\mathcal{M}^{\mathcal{C}}_{\mathcal{B}}(\text{Id}_V)))^i) = (((\mathcal{M}^{\mathcal{C}}_{\mathcal{B}}(\text{Id}_V)))^T)_i$, dunque, ricordando che $C_{ij} = A_i B^j$, abbiamo che l'elemento
+	dove siamo autorizzati a mettere il prodotto matriciale siccome, per definizione di prodotto matriciale, abbiamo che se $C = AB$ allora $C^j = AB^j$ dunque riconosciamo in $\mathcal{M}^\mathcal{B}(\phi) (\mathcal{M}^{\mathcal{C}}_{\mathcal{B}}(\text{Id}_V))^j$ la colonna $j-$esima del loro prodotto, mentre per quanto riguarda il resto abbiamo che $(((\mathcal{M}^{\mathcal{C}}_{\mathcal{B}}(\text{Id}_V)))^i) = (((\mathcal{M}^{\mathcal{C}}_{\mathcal{B}}(\text{Id}_V)))^T)_i$, dunque, ricordando che $C_{ij} = A_i B^j$, abbiamo che l'elemento
 	in posizione $(i, j)$ della matrice $(\mathcal{M}^\mathcal{C}_\mathcal{B}(\text{Id}_V))^T \mathcal{M}^\mathcal{B}(\phi) \mathcal{M}^\mathcal{C}_\mathcal{B}(\text{Id}_V)$ è proprio $\phi(\underline{w_i}, \underline{w_j})$.
 \end{proof}
 
@@ -205,6 +205,9 @@ e ciò rappresenta una situazione che nel caso euclideo non si era mai presentat
 	$$
 	è detto radicale di $V$.
 \end{definition}
+\begin{definition}[prodotto scalare degenere]
+	Sia $V$ uno spazio vettoriale sul campo $\mathbb{R}$ e sia $\phi$ un prodotto scalare, allora diremo che $\phi$ è degenere se $V^\perp \neq \{ \underline{0} \}$.
+\end{definition}
 
 La definizione appena data può essere chiaramente generalizzata ai sottospazi
 \begin{definition}[radicale di un sottospazio]
@@ -214,11 +217,15 @@ La definizione appena data può essere chiaramente generalizzata ai sottospazi
 	$$
 	è detto radicale di $W$
 \end{definition}
-\begin{exercise}
-	Mostrare che 
+\begin{definition}
+	Diremo che $\phi|_W$ (ovvero il prodotto scalare ristretto a $W$) è degenere se $W^\perp \neq \{ \underline{0} \}$. 
+\end{definition}
+\begin{exercise} \label{ex:3.2}
+	Mostrare che se $W$ è un insieme
 	\begin{enumerate}[label=\protect\circled{\arabic*}]
-		\item se $W \subseteq V$ è un sottospazio vettoriale, allora $W^\perp$ è un sottospazio vettoriale;
-		\item se $W \subseteq V$ è un sottospazio vettoriale, allora $V^\perp \subseteq W^\perp$.
+		\item $W^\perp$ è un sottospazio vettoriale;
+		\item $V^\perp \subseteq W^\perp$;
+		\item $W^\perp = (\text{Span}(W))^\perp$.
 	\end{enumerate}
 \end{exercise}
 
@@ -243,3 +250,126 @@ Gli obiettivi che ci prefiggiamo adesso sono i seguenti:
 	$$
 \end{enumerate}
 \section{Dimensioni del radicale}
+
+Si enuncia il seguente teorema, che ci fornisce un modo per determinare $V^\perp$: si ha che
+\begin{theorem} \label{thm:rad_V}
+	Sia $V$ uno spazio vettoriale e sia $\phi$ un prodotto scalare. Allora, fissata una base $\mathcal{B}$ di $V$, abbiamo che
+	$$
+		V^\perp \cong \text{Ker}(M^\mathcal{B}(\phi)).
+	$$
+\end{theorem}
+\begin{proof}
+	Si ha che se $\underline{v} \in V^\perp$ e preso un qualunque $\underline{w} \in V$ allora
+	$$
+		([\underline{v}]_\mathcal{B})^T \mathcal{M}^\mathcal{B}(\phi) [\underline{w}]_\mathcal{B} = 0
+	$$
+	ma allora questo implica che il sistema lineare $(([\underline{v}]_\mathcal{B})^T \mathcal{M}^\mathcal{B}(\phi))\underline{x} = 0 \, \forall \underline{x} \in \mathbb{R}^n$. Ma allora, indicando con $a_1, \ldots, a_n$ le componenti del vettore risultante dal prodotto matriciale di $([\underline{v}]_\mathcal{B})^T$ con $\mathcal{M}^\mathcal{B}(\phi)$, si deve avere che
+	$$
+		\begin{pmatrix} a_1 \, a_2 \, \ldots \, a_n \end{pmatrix} \begin{pmatrix}
+			x_1 \\
+			x_2 \\
+			\vdots \\
+			x_n
+		\end{pmatrix} = 0 \, \forall \underline{x} \in \mathbb{R}^n,
+	$$
+	che è vero se e solo se $a_1 = a_2 = \ldots = a_n = 0$ (siccome deve valere per ogni valore numerico delle coordinate di $\underline{x}$), pertanto si deve avere che
+	$$
+		[\underline{v}]_\mathcal{B}^T A = \underline{0} \iff A^T [\underline{v}]_\mathcal{B} = \underline{0},
+	$$
+	ma siccome $A = A^T$ si ha che
+	$$
+		A^T [\underline{v}]_\mathcal{B} = \underline{0} \iff A [\underline{v}]_\mathcal{B} = \underline{0},
+	$$
+	dunque, tramite isomorfismo delle coordinate, abbiamo che $\varphi^{-1}(\text{Ker}(\mathcal{M}^\mathcal{B}(\phi))) = V^\perp$, ovvero la tesi.
+\end{proof}
+Quindi, nel caso di $V^\perp$, abbiamo che le dimensioni del kernel della matrice che mi "rappresenta" in una data base l'azione del prodotto scalare coincidono con le dimensioni di $V^\perp$. Per quanto riguarda i radicali dei sottospazi, invece, in che modo si deve procedere? Vale il seguente teorema
+\begin{theorem} \label{thm:rad_ssp}
+	Sia $V$ uno spazio vettoriale e sia $\phi$ un prodotto scalare, allora se $W \subseteq V$ è un sottospazio, allora
+	$$
+		\text{dim}(W^\perp) = \text{dim}(V) - \text{dim}(W) + \text{dim}(W \cap V^\perp)
+	$$
+\end{theorem}
+Per fare questa dimostrazione è necessario il seguente lemma
+\begin{lemma}
+	Siano $A, B$ due matrici che possono essere moltiplicate fra loro, allora
+	$$
+		\text{dim}(A\text{Im}(B)) = \text{dim}(\text{Im}(B)) - \text{dim}(\text{Ker}(A) \cap \text{Im}(B))
+	$$
+\end{lemma}
+\begin{proof}
+	Sia $f_A : \text{Im}(B) \to A(\text{Im}(B))$ l'applicazione che ha come matrice $A$ in base canonica, allora abbiamo dal teorema delle dimensioni che
+	$$
+		\text{dim}(\text{Im}(B)) = \text{dim}(A(\text{Im}(B))) - \text{dim}(\text{Ker}(A) \cap \text{Im}(B)),
+	$$
+	che implica la tesi.
+\end{proof}
+\begin{proof}[Dimostrazione del teorema \ref{thm:rad_ssp}]
+	Sia $\mathcal{B}$ una base di $W$ tale che $\mathcal{B} = \{ \underline{w_1}, \ldots, \underline{w_k} \}$ con $k = \text{dim}(W)$, allora in virtù dell'esercizio \ref{ex:3.2} si ha che $W^\perp = (\text{Span}(W))^\perp = \mathcal{B}^\perp$, ovvero un vettore che appartiene a $W^\perp$ dev'essere ortogonale ad ogni vettore della base di $W$.
+	Sia $\mathcal{C}$ una base di $V$ e indichiamo con $A$ la matrice del prodotto scalare associata alla base $\mathcal{C}$, ovvero
+	$$
+		A = (\mathcal{M}^\mathcal{C}(\phi))
+	$$
+	e, preso $\underline{v} \in W^\perp$, si deve avere, in virtù di quanto detto all'inizio della dimostrazione, che
+	$$
+		([\underline{v}]_\mathcal{C})^T \mathcal{M}^\mathcal{C}(\phi) [\underline{w_i}]_\mathcal{C} = 0 \iff (([\underline{v}]_\mathcal{C})^T \mathcal{M}^\mathcal{C}(\phi) [\underline{w_i}]_\mathcal{C})^T = 0,
+	$$
+	ma allora
+	$$
+	([\underline{w}]_\mathcal{C})^T (\mathcal{M}^\mathcal{C}(\phi))^T [\underline{v}]_\mathcal{C} = ([\underline{w}]_\mathcal{C})^T (\mathcal{M}^\mathcal{C}(\phi)) [\underline{v}]_\mathcal{C} = 0,
+	$$
+	ma questo è vero $\forall i \in \{ 1, \ldots, k \}$, quindi abbiamo un sistema di $k$ equazioni e $n$ incognite (le coordinate di $\underline{v}$) che possiamo riscrivere, ponendo la matrice
+	$$
+		B = \left( \begin{array}{c | c | c}
+			[\underline{w_1}]_\mathcal{C} & \ldots & [\underline{w_k}]_\mathcal{C} 
+		\end{array} \right),
+	$$
+	ovvero la matrice le cui colonne sono le coordinate dell'$i-$esimo vettore della base di $W$, in questa maniera
+	$$
+		(B^T A)\underline{v} = 0 \implies \text{dim}(W^\perp) = \text{ dimensioni delle soluzioni di questo sistema.}
+	$$
+	Ma abbiamo che
+	$$
+		\text{dim}(W^\perp) = n - \rank{(B^T A)} = \text{dim}(\text{Ker}(B^T A)),
+	$$
+	cerchiamo di scriverci in una maniera più agevole il termine $n - \rank{(B^T A)}$: si osserva che, 
+	$$
+		\rank{(B^T A)} = \rank{(B^T A)^T} = \rank{A^T B} = \rank{AB} = \text{dim}(A(\text{Im}(B))),
+	$$
+	dunque, per il lemma precedente, abbiamo che
+	\begin{align*}
+		\text{dim}(W^\perp) &= n - \rank{(B^T A)} = n - \rank{AB} = n - (\text{dim}(\text{Im}(B)) - \text{dim}(\text{Ker}(A^\perp) \cap \text{Im}(B))) \stackrel{n=\text{dim}(V)}{=} \\
+		&= \text{dim}(V) - \text{dim}(\text{Im}(B)) + \text{dim}(\text{Ker}(A^\perp) \cap \text{Im}(B)),
+	\end{align*}
+	tuttavia si ha che $\text{Im}(B) = \text{Span}(B^1, \ldots, B^k)$ (perché sono le coordinate dei vettori della base di $W$) $\implies \text{dim}(\text{Im}(B)) = \text{dim}(W)$ e, invece, per il teorema \ref{thm:rad_V} si ha che $\text{Ker}(A) \cong V^\perp$, quindi
+	$$
+		\text{dim}(W^\perp) = \text{dim}(V) - \text{dim}(W) + \text{dim}(V^\perp \cap W),
+	$$
+	ovvero la tesi.
+\end{proof}
+\begin{remark}
+	Osserviamo che mentre $\text{dim}(\text{Im}(B))$ è chiaro per definizione della matrice di cambio base, affermare che $\text{dim}(\text{Ker}(A) \cap \text{Im}(B)) = \text{dim}(V^\perp \cap W)$ è leggermente più sottile, siccome a priori, ovvero ragionamento in maniera puramente insiemistica e ricordando che $f(A \cap B) \subset f(A) \cap f(B)$, l'unica cosa che potremmo dire è la seguente
+	$$
+		\text{dim}(\text{Ker}(A) \cap \text{Im}(B)) = \text{dim}(\phi^{-1}(\text{Ker}(A) \cap \text{Im}(B))),
+	$$
+	dove $\phi$ è l'isomorfismo che ci ha portato a lavorare con le coordinate. Essendo però un isomorfismo, dunque un'applicazione iniettiva, vale che $\phi^{-1}(A \cap B) = \phi^{-1}(A) \cap \phi^{-1}(B)$, quindi
+	$$
+		\phi^{-1}(\text{Ker}(A) \cap \text{Im}(B)) = \phi^{-1}(\text{Ker}(A)) \cap \phi^{-1}(\text{Im}(B)) = V^\perp \cap W,
+	$$
+	dunque
+	$$
+		\text{dim}(\phi^{-1}(\text{Ker}(A) \cap \text{Im}(B))) = \text{dim}(V^\perp \cap W),
+	$$
+	concludendo quindi che possiamo dormire serenamente.
+\end{remark}
+Ci chiediamo adesso quando è possibile mettere in somma diretta $W$ con $W^\perp$: osserviamo innanzitutto che se $W \cap W^\perp = \{ \underline{0} \}$, allora necessariamente
+$$
+	V = W \circled{+} W^\perp,
+$$
+siccome si ha che $V^\perp \subseteq W^\perp$ (esercizio \ref{ex:3.2}) $\implies V^\perp \cap W \subseteq W^\perp \cap W = \{ \underline{0} \}$, dunque $\text{dim}(V^\perp \cap W) = 0$ e, dal teorema \ref{thm:rad_ssp}, si ha che
+$$
+	\text{dim}(W^\perp) = \text{dim}(V) - \text{W} \implies \text{dim}(V) = \text{dim}(W) + \text{dim}(W^\perp).
+$$
+Si ha quindi che sono in somma diretta. Questo spiega, per esempio, il motivo per cui una retta in $\mathbb{R}^2$ possa essere vista come l'insieme dei vettori che sono ortogonali rispetto ad una certa direzione, siccome, se indichiamo la retta con $W = \text{Span}(\underline{v})$, si ha che $V^\perp = \{ \underline{0} \} \implies V^\perp \cap W = \{ \underline{0} \}$, dunque effettivamente
+il radicale di $W$ ha dimensione pari a $1$ e $W \cap W^\perp = \{ \underline{0} \}$ (se avessero un'intersezione diversa dal vettore nullo, allora $(\underline{v}, \underline{v}) = 0$, il che è possibile se e solo se $\underline{v} = \underline{0}$). Non solo, questo spiega anche il motivo per cui i piani e gli iperpiani, rispettivamente in $\mathbb{R}^3$ e in $\mathbb{R}^n$, possano essere visti come insiemi di vettori ortogonali rispetto ad una certa direzione.
+La cosa si complica per le rette in $\mathbb{R}^3$, siccome in questo caso si ha sempre che $W \cap W^\perp = \{ \underline{0} \}$, ma $\text{dim}(W^\perp) = 2$: questo perché ci sono due direzioni possibili che sono ortogonali ad una retta, ma ciò è proprio coerente col fatto che una retta necessita di $2$ equazioni cartesiane per essere definita. Si ha così che un altro modo per trovare le equazioni cartesiane è considerare i vettori ortogonali alla retta o al piano e imporre che il generico vettore $\begin{pmatrix} x \\ y \\ z \end{pmatrix}$ appartenente alla retta o al piano abbia prodotto scalare
+nullo con i vettori ortogonali. 
