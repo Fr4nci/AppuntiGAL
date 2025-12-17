@@ -15,9 +15,9 @@
 \contentsline {section}{\numberline {2.5}Isomorfismo delle coordinate}{48}{section.2.5}%
 \contentsline {chapter}{\numberline {3}Prodotti scalari}{55}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Dimensioni del radicale}{60}{section.3.1}%
-\contentsline {chapter}{\numberline {4}Soluzioni agli esercizi}{63}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Spazi vettoriali}{63}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Prodotti scalari}{68}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Esercizio \ref {ex:3.1}}{68}{subsection.4.2.1}%
-\contentsline {chapter}{\numberline {A}Logica}{71}{chapter.1}%
-\contentsline {chapter}{\numberline {B}Basi a dimensione infinita}{73}{chapter.2}%
+\contentsline {section}{\numberline {3.2}Esistenza di una base ortogonale, ortornomale e segnatura}{63}{section.3.2}%
+\contentsline {chapter}{\numberline {4}Soluzioni agli esercizi}{65}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Spazi vettoriali}{65}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Prodotti scalari}{70}{section.4.2}%
+\contentsline {chapter}{\numberline {A}Logica}{73}{chapter.1}%
+\contentsline {chapter}{\numberline {B}Basi a dimensione infinita}{75}{chapter.2}%

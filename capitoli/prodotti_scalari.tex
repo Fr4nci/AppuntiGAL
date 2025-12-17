@@ -229,11 +229,27 @@ La definizione appena data può essere chiaramente generalizzata ai sottospazi
 	\end{enumerate}
 \end{exercise}
 
+Ad ogni prodotto scalare è possibile associare una forma quadratica
+\begin{definition}[forma quadratica associata ad un prodotto scalare]
+	Sia $V$ uno spazio vettoriale sul campo $\mathbb{R}$ e sia $\varphi: V \times V \to \mathbb{R}$ un prodotto scalare. Diremo che
+	\begin{align*}
+		&\rho(\underline{v}) = \varphi(\underline{v}, \underline{v}) & &\text{con } \underline{v} \in V,
+	\end{align*}
+	è la forma quadratica\footnote{il motivo per cui vengono chiamate in questa maniera sta nel fatto che $\rho(\lambda \underline{v}) = \lambda^2 \rho(\underline{v})$ con $\lambda \in \mathbb{R}$. Non vi fasciate la testa su questo tante le rivredete a Meccanica e a Complementi di Analisi (soprattutto se studiate sul mio pdf).} associata al prodotto scalare.
+\end{definition}
+\begin{remark}
+	Una domanda che uno si potrebbe chiedere è la seguente: posso ricostruire completamente l'azione di un prodotto scalare nota la forma quadratica associata? La risposta a questa domanda è \emph{sì}: infatti, abbiamo che
+	\begin{align*}
+		\rho(\underline{v} + \underline{w}) &= \varphi(\underline{v} + \underline{w}, \underline{v} + \underline{w}) = \varphi(\underline{v}, \underline{v}) + \varphi(\underline{v}, \underline{w}) + \varphi(\underline{w}, \underline{v}) + \varphi(\underline{w}, \underline{w}) = \\
+		&= \rho(\underline{v}) + \rho(\underline{w}) + 2 \varphi(\underline{v}, \underline{w}) \implies \varphi(\underline{v}, \underline{w}) = \frac{1}{2}(\rho(\underline{v} + \underline{w}) - \rho(\underline{v}) - \rho(\underline{w})).
+	\end{align*}
+\end{remark}
+
 Gli obiettivi che ci prefiggiamo adesso sono i seguenti:
 \begin{enumerate}
 	\item esiste un modo per quantificare quanto è grande questo radicale? E' un sottospazio vettoriale e, come tale, può essere messo in somma (diretta o meno) con altri sottospazi vettoriali, quindi sapere la dimensione non fa mai male, no?
 	\item esiste una base ortogonale? Ovvero, esiste una base i cui elementi siano a due a due ortogonali (proprietà che spesso viene indicata dicendo che i vettori di questa base sono \emph{mutualmente ortogonali})? Il motivo
-	per cui vorremo una tale base è rappresentata dal fatto che; guardando il bruttissimo conto che ci aveva portato a concludere che
+	per cui vorremmo una tale base è rappresentata dal fatto che; guardando il bruttissimo conto che ci aveva portato a concludere che
 	$$
 		\phi(\underline{v}, \underline{w}) = \sum_{i=1}^n \sum_{j=1}^n \alpha_i \beta_i \phi(\underline{v_i}, \underline{v_j}),
 	$$
@@ -347,19 +363,19 @@ Per fare questa dimostrazione è necessario il seguente lemma
 	ovvero la tesi.
 \end{proof}
 \begin{remark}
-	Osserviamo che mentre $\text{dim}(\text{Im}(B))$ è chiaro per definizione della matrice di cambio base, affermare che $\text{dim}(\text{Ker}(A) \cap \text{Im}(B)) = \text{dim}(V^\perp \cap W)$ è leggermente più sottile, siccome a priori, ovvero ragionamento in maniera puramente insiemistica e ricordando che $f(A \cap B) \subset f(A) \cap f(B)$, l'unica cosa che potremmo dire è la seguente
+	Osserviamo che mentre $\text{dim}(\text{Im}(B))$ è chiaro per definizione della matrice di cambio base, affermare che $\text{dim}(\text{Ker}(A) \cap \text{Im}(B)) = \text{dim}(V^\perp \cap W)$ è leggermente più sottile, siccome a priori, ovvero ragionamendo in maniera puramente insiemistica e ricordando che $f(A \cap B) \subseteq f(A) \cap f(B)$, l'unica cosa che potremmo dire è la seguente
 	$$
-		\text{dim}(\text{Ker}(A) \cap \text{Im}(B)) = \text{dim}(\phi^{-1}(\text{Ker}(A) \cap \text{Im}(B))),
+		\text{dim}(\text{Ker}(A) \cap \text{Im}(B)) = \text{dim}(\phi^{-1}(\text{Ker}(A) \cap \text{Im}(B))) \leq \text{dim}(\phi^{-1}(\text{Ker}(A)) \cap \phi^{-1}(\text{Im}(B))),
 	$$
-	dove $\phi$ è l'isomorfismo che ci ha portato a lavorare con le coordinate. Essendo però un isomorfismo, dunque un'applicazione iniettiva, vale che $\phi^{-1}(A \cap B) = \phi^{-1}(A) \cap \phi^{-1}(B)$, quindi
+	dove $\phi$ è l'isomorfismo che ci ha portato a lavorare con le coordinate. Tuttavia, sempre riprendendo la relazione insiemistica prima citata $f(A \cap B) \subseteq f(A) \cap f(B)$, si può mostrare che nel caso di $f$ \textbf{iniettiva} vale anche l'inclusione opposta, ovvero $f(A) \cap f(B) \subseteq f(A \cap B) \implies f(A \cap B) = f(A) \cap f(B)$. L'applicazione $\phi$ è, però, un isomorfismo, quindi è iniettiva, pertanto vale che $\phi^{-1}(A \cap B) = \phi^{-1}(A) \cap \phi^{-1}(B)$, quindi
 	$$
 		\phi^{-1}(\text{Ker}(A) \cap \text{Im}(B)) = \phi^{-1}(\text{Ker}(A)) \cap \phi^{-1}(\text{Im}(B)) = V^\perp \cap W,
 	$$
 	dunque
 	$$
-		\text{dim}(\phi^{-1}(\text{Ker}(A) \cap \text{Im}(B))) = \text{dim}(V^\perp \cap W),
+		\text{dim}(\phi^{-1}(\text{Ker}(A) \cap \text{Im}(B))) = \text{dim}(V^\perp \cap W).
 	$$
-	concludendo quindi che possiamo dormire serenamente.
+	Possiamo quindi dormire serenamente siccome questo ci assicura che la dimostrazione del teorema appena mostrato sia valida.
 \end{remark}
 Ci chiediamo adesso quando è possibile mettere in somma diretta $W$ con $W^\perp$: osserviamo innanzitutto che se $W \cap W^\perp = \{ \underline{0} \}$, allora necessariamente
 $$
@@ -373,3 +389,86 @@ Si ha quindi che sono in somma diretta. Questo spiega, per esempio, il motivo pe
 il radicale di $W$ ha dimensione pari a $1$ e $W \cap W^\perp = \{ \underline{0} \}$ (se avessero un'intersezione diversa dal vettore nullo, allora $(\underline{v}, \underline{v}) = 0$, il che è possibile se e solo se $\underline{v} = \underline{0}$). Non solo, questo spiega anche il motivo per cui i piani e gli iperpiani, rispettivamente in $\mathbb{R}^3$ e in $\mathbb{R}^n$, possano essere visti come insiemi di vettori ortogonali rispetto ad una certa direzione.
 La cosa si complica per le rette in $\mathbb{R}^3$, siccome in questo caso si ha sempre che $W \cap W^\perp = \{ \underline{0} \}$, ma $\text{dim}(W^\perp) = 2$: questo perché ci sono due direzioni possibili che sono ortogonali ad una retta, ma ciò è proprio coerente col fatto che una retta necessita di $2$ equazioni cartesiane per essere definita. Si ha così che un altro modo per trovare le equazioni cartesiane è considerare i vettori ortogonali alla retta o al piano e imporre che il generico vettore $\begin{pmatrix} x \\ y \\ z \end{pmatrix}$ appartenente alla retta o al piano abbia prodotto scalare
 nullo con i vettori ortogonali. 
+
+\section{Esistenza di una base ortogonale, ortornomale e segnatura}
+
+Prima di attaccare il problema, riportiamo la definizione di base ortogonale
+\begin{definition}[base ortogonale]
+	Sia $V$ uno spazio vettoriale sul campo $\mathbb{R}$ e sia $\varphi: V \times V \to \mathbb{R}$ un prodotto scalare, diremo che $\mathcal{B} = \{ \underline{v_1}, \underline{v_2}, \ldots \}$ è una base ortogonale se
+	$$
+		\forall i, j, \varphi(\underline{v_i}, \underline{v_j}) = \begin{cases}
+			\varphi(\underline{v_i}, \underline{v_i}) & i = j \\
+			0 & i \neq j
+		\end{cases}.
+	$$
+\end{definition}
+\begin{remark}
+	Si potrebbe comunque avere che $\varphi(\underline{v_i}, \underline{v_i}) = 0$.
+\end{remark}
+
+Ricordiamo che il motivo per cui vorremmo una tale base è che, normalmente, in base non ortogonale $\mathcal{D} = \{ \underline{u_1}, \ldots, \underline{u_n} \}$ il prodotto scalare fra due vettori arbitrari si può calcolare con la seguente formula (già vista in precedenza)
+$$
+	\varphi(\underline{v}, \underline{w}) = \sum_{i=1}^n \sum_{j=1}^n \alpha_i \beta_j \varphi(\underline{u_i}, \underline{u_j}),
+$$
+dove $\underline{v} = \alpha_1 \underline{u_1} + \ldots + \alpha_n \underline{u_n}$ e $\underline{w} = \beta_1 \underline{u_1} + \ldots + \beta_n \underline{u_n}$. Se i vettori $\underline{u_1}, \ldots, \underline{u_n}$ fossero ortogonali allora avremmo che, fissato $i$, la seconda sommatoria dà contributo solo se $i = j$, dunque una sommatoria si elide
+$$
+	\varphi(\underline{v}, \underline{w}) = \sum_{i=1}^n \sum_{j=1}^n \alpha_i \beta_j \varphi(\underline{u_i}, \underline{u_j}) = \sum_{i=1}^n \alpha_i \beta_i \varphi(\underline{u_i}, \underline{u_i}).
+$$
+Vogliamo adesso mostrare se esiste sempre una base ortogonale. Il teorema di partenza è il seguente
+\begin{theorem}[di Lagrange]
+	Sia $V$ uno spazio vettoriale sul campo $\mathbb{R}$ di dimensione finita e sia $\varphi: V \times V \to \mathbb{R}$ un prodotto scalare. Allora esiste una base ortogonale.
+\end{theorem} 
+\begin{proof}
+	Si procede per induzione sulla dimensione di $n$. Il caso $n=1$ è banale: infatti $V = \text{Span}(\underline{v})$ con $\underline{0} \neq \underline{v} \in V$, quindi $\mathcal{B} = \{ \underline{v} \}$ che è una base ortogonale. Adesso supponendo vera la tesi per $n$ facciamo vedere che implica la tesi anche per $n+1$: dobbiamo distinguere due casi
+	\begin{itemize}
+		\item tutti i vettori sono isotropi: in tal caso se consideriamo il prodotto scalare fra due vettori qualunque ed esprimendolo tramite la forma quadratica $\rho$ associata al prodotto scalare $\varphi$ si ha che
+		$$
+			\varphi(\underline{v}, \underline{w}) = \frac{1}{2}(\rho(\underline{v} + \underline{w}) - \rho(\underline{v}, \underline{v}) - \rho(\underline{w}, \underline{w})) = 0,
+		$$
+		siccome tutti i vettori sono isotropi. Segue che ogni base è ortogonale data l'arbitrarietà di $\underline{v}$ e $\underline{w}$.
+		\item esiste un vettore non isotropo: indichiamo tale vettore con $\underline{v}$ ed è chiaro che $\underline{v} \neq \underline{0}$ (siccome lo zero ha prodotto scalare nullo). Poniamo $W = \text{Span}(\underline{v})$ e vediamo che
+		$$
+			V = W \circled{+} W^\perp.
+		$$
+		Infatti, dal teorema \ref{thm:rad_ssp} abbiamo che 
+		$$
+			\text{dim}(W^\perp) = \text{dim}(V) - \text{dim}(W) + \text{dim}(W \cap V^\perp),
+		$$
+		ma è facile vedere che $\text{dim}(W \cap V^\perp) = \{\underline{0} \}$: se per assurdo $\exists \underline{v} \in V$ con $\underline{v} \neq \underline{0}$ tale che $\underline{v} \in W \cap V^\perp$, allora per definizione $\underline{v} \in V^\perp$, ma allora questo vuol dire che è ortogonale a tutti i vettori dello spazio, ovvero $\forall \underline{w} \in V, \varphi(\underline{v}, \underline{w}) = 0$, dunque anche per $\underline{w} = \underline{v}$. 
+		Ma questo è un assurdo, siccome abbiamo che $\varphi(\underline{v}, \underline{v}) \neq 0$ per costruzione di $W$. Quindi la dimensione di $W \cap V^\perp$ è uguale a $0$, da cui segue che
+		$$
+			\text{dim}(W^\perp) = \text{dim}(V) - \text{dim}(W).
+		$$
+		Bisogna adesso mostrare che $W^\perp \cap W = \{ \underline{0} \}$: si procede similmente a come abbiamo mostrato che $W \cap V^\perp$ ha dimensione $0$, poiché se per assurdo avessimo che $\exists \underline{v} \in W^\perp \cap W$ con $\underline{v} \neq \underline{0}$ allora $\forall \underline{w} \in W, \varphi(\underline{v}, \underline{w}) = 0$, ma allora per $\underline{w}=\underline{v} \in W$ si ha che $\varphi(\underline{v}, \underline{v}) = 0$, il che è assurdo per come abbiamo costruito $W$.
+		In conclusione abbiamo che
+		$$
+			V = W^\perp \circled{+} W = (\text{Span}(\underline{v}))^\perp \circled{+} \text{Span}(\underline{v}),
+		$$
+		dunque $\text{Span}(\underline{v})$ è ortogonale ad una base di $(\text{Span}(\underline{v}))^\perp$ per costruzione. Osserviamo che $\text{dim}(\text{Span}(\underline{v})) = 1$ e, dunque, si ha che $\text{dim}(W^\perp) = \text{dim}(V) - \text{dim}(W) = (n+1) - 1 = n$: vale quindi l'ipotesi induttiva per $W^\perp$, quindi possiamo trovare una base ortogonale $\mathcal{B} = \{ \underline{v_1}, \ldots, \underline{v_n} \}$ di $W^\perp$ e, in definitiva, si ha allora che
+		$$
+			\mathcal{B'} = \{ \underline{v_1}, \ldots, \underline{v_n}, \underline{v} \},
+		$$
+		è una base ortogonale di $V$.
+	\end{itemize}
+\end{proof}
+
+Tramite questo teorema è possibile andare a mostrare il seguente teorema, il quale ci assicura, invece, l'esistenza di una base ortonormale
+
+\begin{definition}[base ortornormale]
+	Sia $V$ uno spazio vettoriale sul campo $\mathbb{R}$ e sia $\varphi:V \times V \to \mathbb{R}$ un prodotto scalare. Diremo che $\mathcal{B} = \{ \underline{v_1}, \underline{v_2}, \ldots \}$ è una base ortonormale se
+	$$
+		\varphi(\underline{v_i}, \underline{v_j}) = \delta_{ij},
+	$$
+	dove $\delta_{ij}$ è la delta di Kronecker, così definita
+	$$
+		\delta_{ij} = \begin{cases}
+			1 & i = j \\
+			0 & i \neq j
+		\end{cases}.
+	$$
+\end{definition}
+
+Tramite il teorema di Lagrange è possibile mostrare il seguente teorema, che risponde alla domanda "Data una base ortogonale, esiste anche una base ortonormale?".
+\begin{theorem}[di Sylvester]
+	Sia $V$ uno spazio vettoriale sul campo $\mathbb{R}$ di dimensione finita e sia $\varphi: V \times V \to \mathbb{R}$ un prodotto scalare. Allora 
+\end{theorem}
