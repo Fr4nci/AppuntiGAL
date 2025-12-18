@@ -3,25 +3,25 @@
 Vogliamo adesso introdurre il prodotto scalare: quest'ultimo fornisce una "metrica" al nostro spazio vettoriale, ovvero un modo per quantificare le lunghezze all'interno del nostro spazio vettoriale.
 
 \begin{definition}[applicazione bilineare simmetrica]
-	Sia $V$ uno spazio vettoriale sul campo $\mathbb{K}$, diciamo che un'applicazione $\phi : V \times V \to \mathbb{K}$ che soddisfa le seguenti proprietà:
+	Sia $V$ uno spazio vettoriale sul campo $\mathbb{K}$, diciamo che un'applicazione $\varphi : V \times V \to \mathbb{K}$ che soddisfa le seguenti proprietà:
 	\begin{enumerate}[label=\protect\circled{\arabic*}]
 		\item è lineare nella prima componente, ovvero
-		$$\forall \alpha, \beta \in \mathbb{R}, \forall \underline{v}, \underline{w}, \underline{z} \in V, \phi(\alpha \underline{v} + \beta \underline{w}, \underline{z})=\alpha \phi(\underline{v}, \underline{z}) + \beta \phi(\underline{w}, \underline{z})$$
+		$$\forall \alpha, \beta \in \mathbb{K}, \forall \underline{v}, \underline{w}, \underline{z} \in V, \varphi(\alpha \underline{v} + \beta \underline{w}, \underline{z})=\alpha \varphi(\underline{v}, \underline{z}) + \beta \varphi(\underline{w}, \underline{z})$$
 		\item è lineare nella seconda componente, ovvero
-		$$\forall \alpha, \beta \in \mathbb{R}, \forall \underline{v}, \underline{w}, \underline{z} \in V, \phi(\underline{z}, \alpha \underline{v} + \beta \underline{w}) = \alpha \phi(\underline{z}, \underline{v}) + \beta \phi(\underline{z}, \underline{w})$$
+		$$\forall \alpha, \beta \in \mathbb{K}, \forall \underline{v}, \underline{w}, \underline{z} \in V, \varphi(\underline{z}, \alpha \underline{v} + \beta \underline{w}) = \alpha \varphi(\underline{z}, \underline{v}) + \beta \varphi(\underline{z}, \underline{w})$$
 		\item è simmetrica, ovvero
-		$$\forall \underline{v}, \underline{w}, \phi(\underline{v}, \underline{w}) = \phi(\underline{w}, \underline{v})$$
+		$$\forall \underline{v}, \underline{w}, \varphi(\underline{v}, \underline{w}) = \varphi(\underline{w}, \underline{v})$$
 	\end{enumerate}
 	è una forma bilineare simmetrica.
 \end{definition}
 \begin{remark}
 	In questo caso la proprietà \circled{2} è ridondante, siccome segue dalla \circled{1} unita alla \circled{3}: infatti abbiamo che
 	\begin{align*}
-		\phi(\underline{z}, \alpha \underline{v} + \beta \underline{w}) \stackrel{\circled{3}}{=} \phi(\alpha \underline{v} + \beta \underline{w}, \underline{z}) \stackrel{\circled{1}}{=} \alpha \phi(\underline{v}, \underline{z}) + \beta \phi(\underline{w}, \underline{z}) \stackrel{\circled{3}}{=} \alpha \phi(\underline{z}, \underline{v}) + \beta \phi(\underline{z}, \underline{w}).
+		\varphi(\underline{z}, \alpha \underline{v} + \beta \underline{w}) \stackrel{\circled{3}}{=} \varphi(\alpha \underline{v} + \beta \underline{w}, \underline{z}) \stackrel{\circled{1}}{=} \alpha \varphi(\underline{v}, \underline{z}) + \beta \varphi(\underline{w}, \underline{z}) \stackrel{\circled{3}}{=} \alpha \varphi(\underline{z}, \underline{v}) + \beta \varphi(\underline{z}, \underline{w}).
 	\end{align*}
 \end{remark}
 \begin{definition}[prodotto scalare]
-	Sia $V$ uno spazio vettoriale sul campo $\mathbb{R}$, diremo che $\phi: V \times V \to \mathbb{R}$ forma bilineare simmetrica è un prodotto scalare.
+	Sia $V$ uno spazio vettoriale sul campo $\mathbb{K}$, diremo che $\varphi: V \times V \to \mathbb{R}$ forma bilineare simmetrica è un prodotto scalare.
 \end{definition}
 
 Il nostro prototipo di prodotto scalare per eccellenza è il prodotto scalare euclideo in $\mathbb{R}$: presi i vettori $\underline{v} \in \mathbb{R}^n$ e $\underline{w} \in \mathbb{R}^n$ sappiamo che questi sono delle forma
@@ -43,80 +43,80 @@ dove $\begin{pmatrix} \alpha_1 \ \ldots \, \alpha_n \end{pmatrix} \begin{pmatrix
 
 Come fatto per le applicazioni lineari, vogliamo sviluppare un modo per lavorare con le \emph{coordinate} (rispetto ad una base fissata) dei vettori, piuttosto che lavorare effettivamente con i vettori. Per fare questo osserviamo che, presi due vettori, e fissando una base $\mathcal{B} = \{ \underline{v_1}, \ldots, \underline{v_n} \}$, usando la bilinearità, si ha che
 \begin{align*}
-	\phi(\underline{v}, \underline{w}) &= \phi(\alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n}, \beta_1 \underline{v_1} + \ldots + \beta_n \underline{v_n}) = \phi(\alpha_1 \underline{v_1}, \beta_1 \underline{v_1} + \ldots + \beta_n \underline{v_n}) + \ldots + \\
-	&+\phi(\alpha_n \underline{v_n}, \beta_1 \underline{v_1} + \ldots + \beta_n \underline{v_n}) = \phi(\alpha_1 \underline{v_1}, \beta_1 \underline{v_1}) + \phi(\alpha_1 \underline{v_1}, \beta_2 \underline{v_2}) + \ldots + \phi(\alpha_1 \underline{v_1}, \beta_n \underline{v_n}) + \\ 
-	&+ \phi(\alpha_2 \underline{v_2}, \beta_1 \underline{v_1}) + \ldots + \phi(\alpha_2 \underline{v_2}, \beta_n \underline{v_n}) + \ldots + \phi(\alpha_n \underline{v_n}, \beta_1 \underline{v_1}) + \ldots + \phi(\alpha_n \underline{v_n}, \beta_n \underline{v_n}) = \\
-	&= \alpha_1 \beta_1 \phi(\underline{v_1}, \underline{v_1}) + \alpha_1 \beta_2 \phi(\underline{v_1}, \underline{v_2}) + \ldots + \alpha_1 \beta_n \phi (\underline{v_1}, \underline{v_n}) + \ldots + \alpha_n \beta_1 \phi(\underline{v_n}, \underline{v_1}) + \ldots + \\
-	&+ \alpha_n \beta_n \phi(\underline{v_n}, \underline{v_n}) = \sum_{i=1}^n \sum_{j=1}^n \alpha_i \beta_i \phi(\underline{v_i}, \underline{v_j}).
+	\varphi(\underline{v}, \underline{w}) &= \varphi(\alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n}, \beta_1 \underline{v_1} + \ldots + \beta_n \underline{v_n}) = \varphi(\alpha_1 \underline{v_1}, \beta_1 \underline{v_1} + \ldots + \beta_n \underline{v_n}) + \ldots + \\
+	&+\varphi(\alpha_n \underline{v_n}, \beta_1 \underline{v_1} + \ldots + \beta_n \underline{v_n}) = \varphi(\alpha_1 \underline{v_1}, \beta_1 \underline{v_1}) + \varphi(\alpha_1 \underline{v_1}, \beta_2 \underline{v_2}) + \ldots + \varphi(\alpha_1 \underline{v_1}, \beta_n \underline{v_n}) + \\ 
+	&+ \varphi(\alpha_2 \underline{v_2}, \beta_1 \underline{v_1}) + \ldots + \varphi(\alpha_2 \underline{v_2}, \beta_n \underline{v_n}) + \ldots + \varphi(\alpha_n \underline{v_n}, \beta_1 \underline{v_1}) + \ldots + \varphi(\alpha_n \underline{v_n}, \beta_n \underline{v_n}) = \\
+	&= \alpha_1 \beta_1 \varphi(\underline{v_1}, \underline{v_1}) + \alpha_1 \beta_2 \varphi(\underline{v_1}, \underline{v_2}) + \ldots + \alpha_1 \beta_n \varphi (\underline{v_1}, \underline{v_n}) + \ldots + \alpha_n \beta_1 \varphi(\underline{v_n}, \underline{v_1}) + \ldots + \\
+	&+ \alpha_n \beta_n \varphi(\underline{v_n}, \underline{v_n}) = \sum_{i=1}^n \sum_{j=1}^n \alpha_i \beta_i \varphi(\underline{v_i}, \underline{v_j}).
 \end{align*}
 
 Osserviamo, quindi, che è necessario conoscere solamente il valore che il prodotto scalare assume sui vettori della base per poter determinare il suo valore. Possiamo quindi pensare di "ereditare" l'impostazione del prodotto scalare canonico, siccome vediamo dalla formula sopra che
 \begin{align*}
-	\phi(\underline{v}, \underline{w}) &= ([\underline{v}]_\mathcal{B})^T \begin{pmatrix}
-		\phi(\underline{v_1}, \underline{v_1}) & \phi(\underline{v_1}, \underline{v_2}) & \ldots & \phi(\underline{v_1}, \underline{v_n}) \\
-		\phi(\underline{v_2}, \underline{v_1}) & \phi(\underline{v_2}, \underline{v_2}) & \ldots & \phi(\underline{v_2}, \underline{v_n}) \\
+	\varphi(\underline{v}, \underline{w}) &= ([\underline{v}]_\mathcal{B})^T \begin{pmatrix}
+		\varphi(\underline{v_1}, \underline{v_1}) & \varphi(\underline{v_1}, \underline{v_2}) & \ldots & \varphi(\underline{v_1}, \underline{v_n}) \\
+		\varphi(\underline{v_2}, \underline{v_1}) & \varphi(\underline{v_2}, \underline{v_2}) & \ldots & \varphi(\underline{v_2}, \underline{v_n}) \\
 		\vdots & \ldots & \ddots & \vdots \\
-		\phi(\underline{v_n}, \underline{v_1}) & \phi(\underline{v_n}, \underline{v_2}) & \ldots & \phi(\underline{v_n}, \underline{v_n})
-	\end{pmatrix} [\underline{w}]_\mathcal{B} = \sum_{i=1}^n \sum_{j=1}^n \alpha_i \beta_j \phi(\underline{v_i}, \underline{v_j}) = \\
-	&= ([\underline{v}]_\mathcal{B})^T \mathcal{M}^\mathcal{B}(\phi) [\underline{w}]_\mathcal{B}
+		\varphi(\underline{v_n}, \underline{v_1}) & \varphi(\underline{v_n}, \underline{v_2}) & \ldots & \varphi(\underline{v_n}, \underline{v_n})
+	\end{pmatrix} [\underline{w}]_\mathcal{B} = \sum_{i=1}^n \sum_{j=1}^n \alpha_i \beta_j \varphi(\underline{v_i}, \underline{v_j}) = \\
+	&= ([\underline{v}]_\mathcal{B})^T \mathcal{M}^\mathcal{B}(\varphi) [\underline{w}]_\mathcal{B}
 \end{align*}
 \begin{definition}[matrice associata ad un prodotto scalare]
-	Sia $V$ uno spazio vettoriale sul campo $\mathbb{R}$ munito di un prodotto scalare $\phi$. Fissata una base $\mathcal{B}$, abbiamo che la matrice associata a $\phi$ in base $\mathcal{B}$ è la matrice
+	Sia $V$ uno spazio vettoriale sul campo $\mathbb{K}$ munito di un prodotto scalare $\varphi$. Fissata una base $\mathcal{B}$, abbiamo che la matrice associata a $\varphi$ in base $\mathcal{B}$ è la matrice
 	$$
-	\mathcal{M}^\mathcal{B}(\phi) = \begin{pmatrix}
-		\phi(\underline{v_1}, \underline{v_1}) & \phi(\underline{v_1}, \underline{v_2}) & \ldots & \phi(\underline{v_1}, \underline{v_n}) \\
-		\phi(\underline{v_2}, \underline{v_1}) & \phi(\underline{v_2}, \underline{v_2}) & \ldots & \phi(\underline{v_2}, \underline{v_n}) \\
+	\mathcal{M}^\mathcal{B}(\varphi) = \begin{pmatrix}
+		\varphi(\underline{v_1}, \underline{v_1}) & \varphi(\underline{v_1}, \underline{v_2}) & \ldots & \varphi(\underline{v_1}, \underline{v_n}) \\
+		\varphi(\underline{v_2}, \underline{v_1}) & \varphi(\underline{v_2}, \underline{v_2}) & \ldots & \varphi(\underline{v_2}, \underline{v_n}) \\
 		\vdots & \ldots & \ddots & \vdots \\
-		\phi(\underline{v_n}, \underline{v_1}) & \phi(\underline{v_n}, \underline{v_2}) & \ldots & \phi(\underline{v_n}, \underline{v_n})
+		\varphi(\underline{v_n}, \underline{v_1}) & \varphi(\underline{v_n}, \underline{v_2}) & \ldots & \varphi(\underline{v_n}, \underline{v_n})
 	\end{pmatrix}, 
 	$$
 	ovvero la matrice che in posizione $(i, j)$ contiene il valore del prodotto scalare fra il vettore $i-$esimo e il vettore $j-$esimo
 	$$
-		(\mathcal{M}^\mathcal{B}(\phi))_{ij} = \phi(\underline{v_i}, \underline{v_j}). 
+		(\mathcal{M}^\mathcal{B}(\varphi))_{ij} = \varphi(\underline{v_i}, \underline{v_j}). 
 	$$
 \end{definition}
 Osserviamo che tale matrice dev'essere una matrice simmetrica, siccome nella posizione $(i,j)$ abbiamo che
 $$
-	(\mathcal{M}^{\mathcal{B}}(\phi))_{ij} = \phi(\underline{v_i}, \underline{v_j}) \stackrel{\circled{3}}{=} \phi(\underline{v_j}, \underline{v_i}) = (\mathcal{M}^{\mathcal{B}}(\phi))_{ji},
+	(\mathcal{M}^{\mathcal{B}}(\varphi))_{ij} = \varphi(\underline{v_i}, \underline{v_j}) \stackrel{\circled{3}}{=} \varphi(\underline{v_j}, \underline{v_i}) = (\mathcal{M}^{\mathcal{B}}(\varphi))_{ji},
 $$
 
 Mostriamo il seguente teorema
 \begin{theorem}[cambio di base per le matrici associate ad un prodotto scalare]
-	Sia $V$ uno spazio vettoriale sul campo $\mathbb{R}$ munito di un prodotto scalare $\phi$, sia $\mathcal{B} = \{ \underline{v_1}, \ldots, \underline{v_n} \}$ una base fissata di $V$ e sia $\mathcal{C} = \{ \underline{w_1}, \ldots, \underline{w_n} \}$ un'altra base di $V$. Allora si ha che
+	Sia $V$ uno spazio vettoriale sul campo $\mathbb{K}$ munito di un prodotto scalare $\varphi$, sia $\mathcal{B} = \{ \underline{v_1}, \ldots, \underline{v_n} \}$ una base fissata di $V$ e sia $\mathcal{C} = \{ \underline{w_1}, \ldots, \underline{w_n} \}$ un'altra base di $V$. Allora si ha che
 	$$
-		\mathcal{M}^\mathcal{C}(\phi) = (\mathcal{M}^\mathcal{C}_\mathcal{B}(\text{Id}_V))^T \mathcal{M}^\mathcal{B}(\phi) \mathcal{M}^\mathcal{C}_\mathcal{B}(\text{Id}_V).
+		\mathcal{M}^\mathcal{C}(\varphi) = (\mathcal{M}^\mathcal{C}_\mathcal{B}(\text{Id}_V))^T \mathcal{M}^\mathcal{B}(\varphi) \mathcal{M}^\mathcal{C}_\mathcal{B}(\text{Id}_V).
 	$$
 \end{theorem}
 \begin{proof}
 	Osserviamo che
 	$$
-		(\mathcal{M}^\mathcal{C}(\phi))_{ij} = \phi(\underline{w_i}, \underline{w_j}) =,
+		(\mathcal{M}^\mathcal{C}(\varphi))_{ij} = \varphi(\underline{w_i}, \underline{w_j}),
 	$$     
 	ma per definizione abbiamo che $[\underline{w_i}]_\mathcal{B} = (\mathcal{M}^{\mathcal{C}}_\mathcal{B}(\text{Id}_V))^i$ e $(\mathcal{M}^{\mathcal{C}}_{\mathcal{B}}(\text{Id}_V))^i = ((\mathcal{M}^{\mathcal{C}}_{\mathcal{B}}(\text{Id}_V))^T)_i$, dunque
 	$$
-		(\mathcal{M}^\mathcal{C}(\phi))_{ij} = ((\mathcal{M}^{\mathcal{C}}_{\mathcal{B}}(\text{Id}_V))^i)^T \mathcal{M}^\mathcal{B}(\phi) (\mathcal{M}^{\mathcal{C}}_{\mathcal{B}}(\text{Id}_V))^j = ((\mathcal{M}^{\mathcal{C}}_{\mathcal{B}}(\text{Id}_V))^T \mathcal{M}^\mathcal{B}(\phi) \mathcal{M}^{\mathcal{C}}_{\mathcal{B}}(\text{Id}_V))_{ij},  
+		(\mathcal{M}^\mathcal{C}(\varphi))_{ij} = ((\mathcal{M}^{\mathcal{C}}_{\mathcal{B}}(\text{Id}_V))^i)^T \mathcal{M}^\mathcal{B}(\varphi) (\mathcal{M}^{\mathcal{C}}_{\mathcal{B}}(\text{Id}_V))^j = ((\mathcal{M}^{\mathcal{C}}_{\mathcal{B}}(\text{Id}_V))^T \mathcal{M}^\mathcal{B}(\varphi) \mathcal{M}^{\mathcal{C}}_{\mathcal{B}}(\text{Id}_V))_{ij},  
 	$$
-	dove siamo autorizzati a mettere il prodotto matriciale siccome, per definizione di prodotto matriciale, abbiamo che se $C = AB$ allora $C^j = AB^j$ dunque riconosciamo in $\mathcal{M}^\mathcal{B}(\phi) (\mathcal{M}^{\mathcal{C}}_{\mathcal{B}}(\text{Id}_V))^j$ la colonna $j-$esima del loro prodotto, mentre per quanto riguarda il resto abbiamo che $(((\mathcal{M}^{\mathcal{C}}_{\mathcal{B}}(\text{Id}_V)))^i) = (((\mathcal{M}^{\mathcal{C}}_{\mathcal{B}}(\text{Id}_V)))^T)_i$, dunque, ricordando che $C_{ij} = A_i B^j$, abbiamo che l'elemento
-	in posizione $(i, j)$ della matrice $(\mathcal{M}^\mathcal{C}_\mathcal{B}(\text{Id}_V))^T \mathcal{M}^\mathcal{B}(\phi) \mathcal{M}^\mathcal{C}_\mathcal{B}(\text{Id}_V)$ è proprio $\phi(\underline{w_i}, \underline{w_j})$.
+	dove siamo autorizzati a mettere il prodotto matriciale siccome, per definizione di prodotto matriciale, abbiamo che se $C = AB$ allora $C^j = AB^j$ dunque riconosciamo in $\mathcal{M}^\mathcal{B}(\varphi) (\mathcal{M}^{\mathcal{C}}_{\mathcal{B}}(\text{Id}_V))^j$ la colonna $j-$esima del loro prodotto, mentre per quanto riguarda il resto abbiamo che $(((\mathcal{M}^{\mathcal{C}}_{\mathcal{B}}(\text{Id}_V)))^i) = (((\mathcal{M}^{\mathcal{C}}_{\mathcal{B}}(\text{Id}_V)))^T)_i$, dunque, ricordando che $C_{ij} = A_i B^j$, abbiamo che l'elemento
+	in posizione $(i, j)$ della matrice $(\mathcal{M}^\mathcal{C}_\mathcal{B}(\text{Id}_V))^T \mathcal{M}^\mathcal{B}(\varphi) \mathcal{M}^\mathcal{C}_\mathcal{B}(\text{Id}_V)$ è proprio $\varphi(\underline{w_i}, \underline{w_j})$.
 \end{proof}
 
 Cerchiamo adesso di indagare alcune proprietà geometriche che nascono dal valore che assume un prodotto scalare: spinti dalla valenza geometrica che diamo al prodotto scalare euclideo, diamo la seguente definizione
 
 \begin{definition}[vettori ortogonali]
-	Sia $V$ uno spazio vettoriale sul campo $\mathbb{R}$ e sia $\phi$ un prodotto scalare, allora diremo che $\underline{v}, \underline{w}$ sono ortogonali se
+	Sia $V$ uno spazio vettoriale sul campo $\mathbb{K}$ e sia $\varphi$ un prodotto scalare, allora diremo che $\underline{v}, \underline{w}$ sono ortogonali se
 	$$
-		\phi(\underline{v}, \underline{w}) = 0
+		\varphi(\underline{v}, \underline{w}) = 0_\mathbb{K}
 	$$
 \end{definition}
 
-Le cose per prodotti scalari qualunque, però, diventano abbastanza peculiari: per esempio, se consideriamo la quantità $\phi(\underline{v}, \underline{v}) = ||\underline{v}||$, detta \textbf{norma}, si ha che, nel caso del prodotto scalare euclideo, ci fornisce la nozione di "lunghezza" di un vettore, infatti
+Le cose per prodotti scalari qualunque, però, diventano abbastanza peculiari: per esempio, se ci mettiamo in $\mathbb{R}^n$ e consideriamo la quantità $\varphi(\underline{v}, \underline{v}) = ||\underline{v}||$, detta \textbf{norma}, si ha che, nel caso del prodotto scalare euclideo, ci fornisce la nozione di "lunghezza" di un vettore, infatti
 $$
 	\underline{v} = \begin{pmatrix}
 		x_1 \\
 		x_2 \\
 		\vdots \\
 		x_n
-	\end{pmatrix} \in \mathbb{R}^n \implies \phi(\underline{v}, \underline{v}) = x_1^2 + \ldots + x^2_n,
+	\end{pmatrix} \in \mathbb{R}^n \implies \varphi(\underline{v}, \underline{v}) = x_1^2 + \ldots + x^2_n,
 $$
 che altro non è che la generalizzazione $n-$dimensionale del teorema di Pitagora. Si osserva, tuttavia, che la norma euclidea di un vettore è sempre maggiore o uguale di 0, dove l'uguaglianza si ha se e solo se $\underline{v} = \underline{0}$. Per un prodotto scalare qualunque, tuttavia, è possibile che ci siano dei vettori la cui "lunghezza" sia pari a 0: per esempio, si consideri il seguente prodotto scalare in $\mathbb{R}^3$
 $$
@@ -128,7 +128,7 @@ $$
 		y_1 \\
 		y_2 \\
 		y_3
-	\end{pmatrix} \stackrel{\phi}{\mapsto} x_1 y_1 - x_3 y_3,
+	\end{pmatrix} \stackrel{\varphi}{\mapsto} x_1 y_1 - x_3 y_3,
 $$
 da cui è chiaro che questa funzione sia effettivamente un prodotto scalare (se non siete convinti, mostratelo per esercizio). Si osserva che, preso per esempio il vettore $\begin{pmatrix}
 1 \\
@@ -136,11 +136,11 @@ da cui è chiaro che questa funzione sia effettivamente un prodotto scalare (se 
 1
 \end{pmatrix}$, possiamo ottenere delle norme uguali a 0, visto che
 $$
-	\phi(\begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix}, \begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix}) = 1^2 - 1^2 = 0,
+	\varphi(\begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix}, \begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix}) = 1^2 - 1^2 = 0,
 $$
 mentre se consideriamo il vettore $\begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}$, abbiamo che
 $$
-	\phi(\begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}, \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}) = 0 - 1 = -1.
+	\varphi(\begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}, \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}) = 0 - 1 = -1.
 $$
 Interessante, no? Facciamo un'ultimo esempio, un esempio concreto, \emph{fisico}: uno dei prodotti scalari più utilizzati in fisica (metrica di Minkowski, ovvero quella della relatività ristretta) è caratterizza dalla seguente matrice
 $$
@@ -153,16 +153,19 @@ $$
 $$
 dove si osserva che, sebbene la norma non rappresenti più la nostra nozione geometrica di "lunghezza", ci consente di categorizzare i vettori in 3 categorie:
 \begin{itemize}
-	\item di tipo tempo, ovvero quelli per cui $\phi(\underline{v}, \underline{v}) > 0$;
-	\item di tipo luce, ovvero quelli per cui $\phi(\underline{v}, \underline{v}) = 0$;
-	\item di tipo spazio, ovvero quelli per cui $\phi(\underline{v}, \underline{v}) < 0$.
+	\item di tipo tempo, ovvero quelli per cui $\varphi(\underline{v}, \underline{v}) > 0$;
+	\item di tipo luce, ovvero quelli per cui $\varphi(\underline{v}, \underline{v}) = 0$;
+	\item di tipo spazio, ovvero quelli per cui $\varphi(\underline{v}, \underline{v}) < 0$.
 \end{itemize}
 Tramite questa distinzione, è possibile determinare quali siano gli eventi che possono essere stati causalmente connessi oppure no. Morale: possono esistere dei prodotti scalari, anche fisicamente rilevanti, che hanno un "tipo" di norma diverso da quello "usuale"; proprio per questo, motiviamo la seguente definizione
 \begin{definition}[vettori isotropi]
-	Sia $V$ uno spazio vettoriale sul campo $\mathbb{R}$ e sia $\phi$ un prodotto scalare, diremo che $\underline{v} \in V$ è isotropo se
+	Sia $V$ uno spazio vettoriale sul campo $\mathbb{K}$ e sia $\varphi$ un prodotto scalare, diremo che $\underline{v} \in V$ è isotropo se
 	$$
-		\phi(\underline{v}, \underline{v}) = 0.
+		\varphi(\underline{v}, \underline{v}) = 0.
 	$$
+\end{definition}
+\begin{definition}
+	Sia $V$ uno spazio vettoriale sul campo $\mathbb{K}$ e sia $\varphi$ un prodotto scalare. Sia $W \subseteq V$ un sottospazio vettoriale, allora se $\varphi_{|W} = 0 (\forall \underline{v}, \underline{w}, \varphi(\underline{v}, \underline{w}) = 0)$ diremo che $W$ è un sottospazio isotropo.
 \end{definition}
 
 Sempre per un prodotto scalare qualsiasi, può capitare che ci siano dei vettori che risultano ortogonali a tutto lo spazio: si consideri per esempio il seguente prodotto scalare in $\mathbb{R}^3$
@@ -175,7 +178,7 @@ $$
 		y_1 \\
 		y_2 \\
 		y_3
-	\end{pmatrix} \stackrel{\phi}{\mapsto} x_1 y_1,
+	\end{pmatrix} \stackrel{\varphi}{\mapsto} x_1 y_1,
 $$
 e si vede che i vettori del tipo $\begin{pmatrix}
 	0 \\
@@ -187,7 +190,7 @@ e si vede che i vettori del tipo $\begin{pmatrix}
 	\epsilon
 \end{pmatrix}$ si ha che
 $$
-	\phi(\begin{pmatrix}
+	\varphi(\begin{pmatrix}
 		0 \\
 		\alpha \\
 		\beta
@@ -199,39 +202,40 @@ $$
 $$
 e ciò rappresenta una situazione che nel caso euclideo non si era mai presentato. Siamo così motivati ad introdurre la seguente definizione
 \begin{definition}[radicale]
-	Sia $V$ uno spazio vettoriale sul campo $\mathbb{R}$ e sia $\phi$ un prodotto scalare, allora l'insieme
+	Sia $V$ uno spazio vettoriale sul campo $\mathbb{K}$ e sia $\varphi$ un prodotto scalare, allora l'insieme
 	$$
-		V^\perp = \{ \underline{v} \in V \, \big| \, \forall \underline{w} \in V, \phi(\underline{w}, \underline{v}) = 0 \}.
+		V^\perp = \{ \underline{v} \in V \, \big| \, \forall \underline{w} \in V, \varphi(\underline{w}, \underline{v}) = 0 \}.
 	$$
 	è detto radicale di $V$.
 \end{definition}
 \begin{definition}[prodotto scalare degenere]
-	Sia $V$ uno spazio vettoriale sul campo $\mathbb{R}$ e sia $\phi$ un prodotto scalare, allora diremo che $\phi$ è degenere se $V^\perp \neq \{ \underline{0} \}$.
+	Sia $V$ uno spazio vettoriale sul campo $\mathbb{K}$ e sia $\varphi$ un prodotto scalare, allora diremo che $\varphi$ è degenere se $V^\perp \neq \{ \underline{0} \}$.
 \end{definition}
 
 La definizione appena data può essere chiaramente generalizzata ai sottospazi
 \begin{definition}[radicale di un sottospazio]
-	Sia $V$ uno spazio vettoriale sul campo $\mathbb{R}$ e sia $\phi$ un prodotto scalare. Preso $W \subset V$ sottospazio vettoriale, l'insieme
+	Sia $V$ uno spazio vettoriale sul campo $\mathbb{K}$ e sia $\varphi$ un prodotto scalare. Preso $W \subset V$ sottospazio vettoriale, l'insieme
 	$$
-		W^\perp = \{ \underline{v} \in V \, \big| \, \forall \underline{w} \in W, \phi(\underline{v}, \underline{w}) = 0 \}
+		W^\perp = \{ \underline{v} \in V \, \big| \, \forall \underline{w} \in W, \varphi(\underline{v}, \underline{w}) = 0 \}
 	$$
 	è detto radicale di $W$
 \end{definition}
 \begin{definition}
-	Diremo che $\phi|_W$ (ovvero il prodotto scalare ristretto a $W$) è degenere se $W^\perp \neq \{ \underline{0} \}$. 
+	Diremo che $\varphi|_W$ (ovvero il prodotto scalare ristretto a $W$) è degenere se $W^\perp \neq \{ \underline{0} \}$. 
 \end{definition}
 \begin{exercise} \label{ex:3.2}
 	Mostrare che se $W$ è un insieme
 	\begin{enumerate}[label=\protect\circled{\arabic*}]
 		\item $W^\perp$ è un sottospazio vettoriale;
 		\item $V^\perp \subseteq W^\perp$;
-		\item $W^\perp = (\text{Span}(W))^\perp$.
+		\item $W^\perp = (\text{Span}(W))^\perp$;
+		\item $W \subseteq (W^\perp)^\perp$.
 	\end{enumerate}
 \end{exercise}
 
 Ad ogni prodotto scalare è possibile associare una forma quadratica
 \begin{definition}[forma quadratica associata ad un prodotto scalare]
-	Sia $V$ uno spazio vettoriale sul campo $\mathbb{R}$ e sia $\varphi: V \times V \to \mathbb{R}$ un prodotto scalare. Diremo che
+	Sia $V$ uno spazio vettoriale sul campo $\mathbb{K}$ e sia $\varphi: V \times V \to \mathbb{K}$ un prodotto scalare. Diremo che
 	\begin{align*}
 		&\rho(\underline{v}) = \varphi(\underline{v}, \underline{v}) & &\text{con } \underline{v} \in V,
 	\end{align*}
@@ -251,35 +255,35 @@ Gli obiettivi che ci prefiggiamo adesso sono i seguenti:
 	\item esiste una base ortogonale? Ovvero, esiste una base i cui elementi siano a due a due ortogonali (proprietà che spesso viene indicata dicendo che i vettori di questa base sono \emph{mutualmente ortogonali})? Il motivo
 	per cui vorremmo una tale base è rappresentata dal fatto che; guardando il bruttissimo conto che ci aveva portato a concludere che
 	$$
-		\phi(\underline{v}, \underline{w}) = \sum_{i=1}^n \sum_{j=1}^n \alpha_i \beta_i \phi(\underline{v_i}, \underline{v_j}),
+		\varphi(\underline{v}, \underline{w}) = \sum_{i=1}^n \sum_{j=1}^n \alpha_i \beta_i \varphi(\underline{v_i}, \underline{v_j}),
 	$$
-	dove $\alpha_i, \beta_i \in \mathbb{R}$ rappresentano rispettivamente le coordinate dei vettori $\underline{v}$ e $\underline{w}$ per la base $\mathcal{B} = \{ \underline{v_1}, \ldots, \underline{v_n} \}$; diventa, in base ortogonale, molto più semplice, siccome, se $\mathcal{B}$ fosse una base ortogonale, allora si ha che
+	dove $\alpha_i, \beta_i \in \mathbb{K}$ rappresentano rispettivamente le coordinate dei vettori $\underline{v}$ e $\underline{w}$ per la base $\mathcal{B} = \{ \underline{v_1}, \ldots, \underline{v_n} \}$; diventa, in base ortogonale, molto più semplice, siccome, se $\mathcal{B}$ fosse una base ortogonale, allora si ha che
 	$$
-		\phi(\underline{v_i}, \underline{v_j}) = \begin{cases}
-			\phi(\underline{v_i}, \underline{v_i}) & \text{se } i = j \\
+		\varphi(\underline{v_i}, \underline{v_j}) = \begin{cases}
+			\varphi(\underline{v_i}, \underline{v_i}) & \text{se } i = j \\
 			0 & \text{se } i \neq 0
 		\end{cases},
 	$$
 	dunque una sommatoria va via siccome contribuiscono solamente le $j = i$, quindi
 	$$
-		\phi(\underline{v}, \underline{w}) = \sum_{i=1}^n \alpha_i \beta_i \phi(\underline{v_i}, \underline{v_i}).
+		\varphi(\underline{v}, \underline{w}) = \sum_{i=1}^n \alpha_i \beta_i \varphi(\underline{v_i}, \underline{v_i}).
 	$$
 \end{enumerate}
 \section{Dimensioni del radicale}
 
 Si enuncia il seguente teorema, che ci fornisce un modo per determinare $V^\perp$: si ha che
 \begin{theorem} \label{thm:rad_V}
-	Sia $V$ uno spazio vettoriale e sia $\phi$ un prodotto scalare. Allora, fissata una base $\mathcal{B}$ di $V$, abbiamo che
+	Sia $V$ uno spazio vettoriale e sia $\varphi$ un prodotto scalare. Allora, fissata una base $\mathcal{B}$ di $V$, abbiamo che
 	$$
-		V^\perp \cong \text{Ker}(M^\mathcal{B}(\phi)).
+		V^\perp \cong \text{Ker}(M^\mathcal{B}(\varphi)).
 	$$
 \end{theorem}
 \begin{proof}
 	Si ha che se $\underline{v} \in V^\perp$ e preso un qualunque $\underline{w} \in V$ allora
 	$$
-		([\underline{v}]_\mathcal{B})^T \mathcal{M}^\mathcal{B}(\phi) [\underline{w}]_\mathcal{B} = 0
+		([\underline{v}]_\mathcal{B})^T \mathcal{M}^\mathcal{B}(\varphi) [\underline{w}]_\mathcal{B} = 0
 	$$
-	ma allora questo implica che il sistema lineare $(([\underline{v}]_\mathcal{B})^T \mathcal{M}^\mathcal{B}(\phi))\underline{x} = 0 \, \forall \underline{x} \in \mathbb{R}^n$. Ma allora, indicando con $a_1, \ldots, a_n$ le componenti del vettore risultante dal prodotto matriciale di $([\underline{v}]_\mathcal{B})^T$ con $\mathcal{M}^\mathcal{B}(\phi)$, si deve avere che
+	ma allora questo implica che il sistema lineare $(([\underline{v}]_\mathcal{B})^T \mathcal{M}^\mathcal{B}(\varphi))\underline{x} = 0 \, \forall \underline{x} \in \mathbb{R}^n$. Ma allora, indicando con $a_1, \ldots, a_n$ le componenti del vettore risultante dal prodotto matriciale di $([\underline{v}]_\mathcal{B})^T$ con $\mathcal{M}^\mathcal{B}(\varphi)$, si deve avere che
 	$$
 		\begin{pmatrix} a_1 \, a_2 \, \ldots \, a_n \end{pmatrix} \begin{pmatrix}
 			x_1 \\
@@ -296,11 +300,11 @@ Si enuncia il seguente teorema, che ci fornisce un modo per determinare $V^\perp
 	$$
 		A^T [\underline{v}]_\mathcal{B} = \underline{0} \iff A [\underline{v}]_\mathcal{B} = \underline{0},
 	$$
-	dunque, tramite isomorfismo delle coordinate, abbiamo che $\varphi^{-1}(\text{Ker}(\mathcal{M}^\mathcal{B}(\phi))) = V^\perp$, ovvero la tesi.
+	dunque, tramite isomorfismo delle coordinate, abbiamo che $\varphi^{-1}(\text{Ker}(\mathcal{M}^\mathcal{B}(\varphi))) = V^\perp$, ovvero la tesi.
 \end{proof}
 Quindi, nel caso di $V^\perp$, abbiamo che le dimensioni del kernel della matrice che mi "rappresenta" in una data base l'azione del prodotto scalare coincidono con le dimensioni di $V^\perp$. Per quanto riguarda i radicali dei sottospazi, invece, in che modo si deve procedere? Vale il seguente teorema
 \begin{theorem} \label{thm:rad_ssp}
-	Sia $V$ uno spazio vettoriale e sia $\phi$ un prodotto scalare, allora se $W \subseteq V$ è un sottospazio vettoriale vale che
+	Sia $V$ uno spazio vettoriale e sia $\varphi$ un prodotto scalare, allora se $W \subseteq V$ è un sottospazio vettoriale vale che
 	$$
 		\text{dim}(W^\perp) = \text{dim}(V) - \text{dim}(W) + \text{dim}(W \cap V^\perp)
 	$$
@@ -309,7 +313,7 @@ Per fare questa dimostrazione è necessario il seguente lemma
 \begin{lemma}
 	Siano $A, B$ due matrici che possono essere moltiplicate fra loro, allora
 	$$
-		\text{dim}(A\text{Im}(B)) = \text{dim}(\text{Im}(B)) - \text{dim}(\text{Ker}(A) \cap \text{Im}(B))
+		\text{dim}(A(\text{Im}(B))) = \text{dim}(\text{Im}(B)) - \text{dim}(\text{Ker}(A) \cap \text{Im}(B))
 	$$
 \end{lemma}
 \begin{proof}
@@ -323,15 +327,15 @@ Per fare questa dimostrazione è necessario il seguente lemma
 	Sia $\mathcal{B}$ una base di $W$ tale che $\mathcal{B} = \{ \underline{w_1}, \ldots, \underline{w_k} \}$ con $k = \text{dim}(W)$, allora in virtù dell'esercizio \ref{ex:3.2} si ha che $W^\perp = (\text{Span}(W))^\perp = \mathcal{B}^\perp$, ovvero un vettore che appartiene a $W^\perp$ dev'essere ortogonale ad ogni vettore della base di $W$.
 	Sia $\mathcal{C}$ una base di $V$ e indichiamo con $A$ la matrice del prodotto scalare associata alla base $\mathcal{C}$, ovvero
 	$$
-		A = (\mathcal{M}^\mathcal{C}(\phi))
+		A = (\mathcal{M}^\mathcal{C}(\varphi))
 	$$
 	e, preso $\underline{v} \in W^\perp$, si deve avere, in virtù di quanto detto all'inizio della dimostrazione, che
 	$$
-		([\underline{v}]_\mathcal{C})^T \mathcal{M}^\mathcal{C}(\phi) [\underline{w_i}]_\mathcal{C} = 0 \iff (([\underline{v}]_\mathcal{C})^T \mathcal{M}^\mathcal{C}(\phi) [\underline{w_i}]_\mathcal{C})^T = 0,
+		([\underline{v}]_\mathcal{C})^T \mathcal{M}^\mathcal{C}(\varphi) [\underline{w_i}]_\mathcal{C} = 0 \iff (([\underline{v}]_\mathcal{C})^T \mathcal{M}^\mathcal{C}(\varphi) [\underline{w_i}]_\mathcal{C})^T = 0,
 	$$
 	ma allora
 	$$
-	([\underline{w}]_\mathcal{C})^T (\mathcal{M}^\mathcal{C}(\phi))^T [\underline{v}]_\mathcal{C} = ([\underline{w}]_\mathcal{C})^T (\mathcal{M}^\mathcal{C}(\phi)) [\underline{v}]_\mathcal{C} = 0,
+	([\underline{w}]_\mathcal{C})^T (\mathcal{M}^\mathcal{C}(\varphi))^T [\underline{v}]_\mathcal{C} = ([\underline{w}]_\mathcal{C})^T (\mathcal{M}^\mathcal{C}(\varphi)) [\underline{v}]_\mathcal{C} = 0,
 	$$
 	ma questo è vero $\forall i \in \{ 1, \ldots, k \}$, quindi abbiamo un sistema di $k$ equazioni e $n$ incognite (le coordinate di $\underline{v}$) che possiamo riscrivere, ponendo la matrice
 	$$
@@ -365,21 +369,21 @@ Per fare questa dimostrazione è necessario il seguente lemma
 \begin{remark}
 	Osserviamo che mentre $\text{dim}(\text{Im}(B))$ è chiaro per definizione della matrice di cambio base, affermare che $\text{dim}(\text{Ker}(A) \cap \text{Im}(B)) = \text{dim}(V^\perp \cap W)$ è leggermente più sottile, siccome a priori, ovvero ragionamendo in maniera puramente insiemistica e ricordando che $f(A \cap B) \subseteq f(A) \cap f(B)$, l'unica cosa che potremmo dire è la seguente
 	$$
-		\text{dim}(\text{Ker}(A) \cap \text{Im}(B)) = \text{dim}(\phi^{-1}(\text{Ker}(A) \cap \text{Im}(B))) \leq \text{dim}(\phi^{-1}(\text{Ker}(A)) \cap \phi^{-1}(\text{Im}(B))),
+		\text{dim}(\text{Ker}(A) \cap \text{Im}(B)) = \text{dim}(\varphi^{-1}(\text{Ker}(A) \cap \text{Im}(B))) \leq \text{dim}(\varphi^{-1}(\text{Ker}(A)) \cap \varphi^{-1}(\text{Im}(B))),
 	$$
-	dove $\phi$ è l'isomorfismo che ci ha portato a lavorare con le coordinate. Tuttavia, sempre riprendendo la relazione insiemistica prima citata $f(A \cap B) \subseteq f(A) \cap f(B)$, si può mostrare che nel caso di $f$ \textbf{iniettiva} vale anche l'inclusione opposta, ovvero $f(A) \cap f(B) \subseteq f(A \cap B) \implies f(A \cap B) = f(A) \cap f(B)$. L'applicazione $\phi$ è, però, un isomorfismo, quindi è iniettiva, pertanto vale che $\phi^{-1}(A \cap B) = \phi^{-1}(A) \cap \phi^{-1}(B)$, quindi
+	dove $\varphi$ è l'isomorfismo che ci ha portato a lavorare con le coordinate. Tuttavia, sempre riprendendo la relazione insiemistica prima citata $f(A \cap B) \subseteq f(A) \cap f(B)$, si può mostrare che nel caso di $f$ \textbf{iniettiva} vale anche l'inclusione opposta, ovvero $f(A) \cap f(B) \subseteq f(A \cap B) \implies f(A \cap B) = f(A) \cap f(B)$. L'applicazione $\varphi$ è, però, un isomorfismo, quindi è iniettiva, pertanto vale che $\varphi^{-1}(A \cap B) = \varphi^{-1}(A) \cap \varphi^{-1}(B)$, quindi
 	$$
-		\phi^{-1}(\text{Ker}(A) \cap \text{Im}(B)) = \phi^{-1}(\text{Ker}(A)) \cap \phi^{-1}(\text{Im}(B)) = V^\perp \cap W,
+		\varphi^{-1}(\text{Ker}(A) \cap \text{Im}(B)) = \varphi^{-1}(\text{Ker}(A)) \cap \varphi^{-1}(\text{Im}(B)) = V^\perp \cap W,
 	$$
 	dunque
 	$$
-		\text{dim}(\phi^{-1}(\text{Ker}(A) \cap \text{Im}(B))) = \text{dim}(V^\perp \cap W).
+		\text{dim}(\varphi^{-1}(\text{Ker}(A) \cap \text{Im}(B))) = \text{dim}(V^\perp \cap W).
 	$$
 	Possiamo quindi dormire serenamente siccome questo ci assicura che la dimostrazione del teorema appena mostrato sia valida.
 \end{remark}
 Ci chiediamo adesso quando è possibile mettere in somma diretta $W$ con $W^\perp$: osserviamo innanzitutto che se $W \cap W^\perp = \{ \underline{0} \}$, allora necessariamente
 $$
-	V = W \circled{+} W^\perp,
+	V = W \oplus W^\perp,
 $$
 siccome si ha che $V^\perp \subseteq W^\perp$ (esercizio \ref{ex:3.2}) $\implies V^\perp \cap W \subseteq W^\perp \cap W = \{ \underline{0} \}$, dunque $\text{dim}(V^\perp \cap W) = 0$ e, dal teorema \ref{thm:rad_ssp}, si ha che
 $$
@@ -390,11 +394,25 @@ il radicale di $W$ ha dimensione pari a $1$ e $W \cap W^\perp = \{ \underline{0}
 La cosa si complica per le rette in $\mathbb{R}^3$, siccome in questo caso si ha sempre che $W \cap W^\perp = \{ \underline{0} \}$, ma $\text{dim}(W^\perp) = 2$: questo perché ci sono due direzioni possibili che sono ortogonali ad una retta, ma ciò è proprio coerente col fatto che una retta necessita di $2$ equazioni cartesiane per essere definita. Si ha così che un altro modo per trovare le equazioni cartesiane è considerare i vettori ortogonali alla retta o al piano e imporre che il generico vettore $\begin{pmatrix} x \\ y \\ z \end{pmatrix}$ appartenente alla retta o al piano abbia prodotto scalare
 nullo con i vettori ortogonali. 
 
+Propongo come esercizio la dimostrazione dei seguenti fatti:
+\begin{exercise}
+	Se $\varphi > 0$ (ovvero il prodotto scalare è definito positivo) allora 
+	\begin{enumerate}
+		\item $\varphi$ è non degenere;
+		\item $\forall W \subseteq V$ sottospazio vettoriale si ha che $V = W \oplus W^\perp$.		
+	\end{enumerate}
+\end{exercise}
+
+Un'altro concetto molto utile è la restrizione del prodotto scalare ad un dato sottospazio vettoriale $W \subseteq V$: indicheremo quest'ultimo con $\varphi_{|W}$ e, chiaramente, essendo $W \subseteq V$, possiamo studiare direttamente l'azione del prodotto scalare su $W$ scrivendoci la matrice associata al prodotto scalare in $W$ valutando l'azione di $\varphi$ sui vettori di una base di $W$. E' facile far vedere che
+\begin{exercise} \label{ex:3.4}
+	$\varphi_{|W}$ è non degenere (ovvero $W^\perp = \{ \underline{0} \}$) $\iff \, V = W \oplus W^\perp$.
+\end{exercise}
+
 \section{Esistenza di una base ortogonale, ortornomale e segnatura}
 
 Prima di attaccare il problema, riportiamo la definizione di base ortogonale
 \begin{definition}[base ortogonale]
-	Sia $V$ uno spazio vettoriale sul campo $\mathbb{R}$ e sia $\varphi: V \times V \to \mathbb{R}$ un prodotto scalare, diremo che $\mathcal{B} = \{ \underline{v_1}, \underline{v_2}, \ldots \}$ è una base ortogonale se
+	Sia $V$ uno spazio vettoriale sul campo $\mathbb{K}$ e sia $\varphi: V \times V \to \mathbb{K}$ un prodotto scalare, diremo che $\mathcal{B} = \{ \underline{v_1}, \underline{v_2}, \ldots \}$ è una base ortogonale se
 	$$
 		\forall i, j, \varphi(\underline{v_i}, \underline{v_j}) = \begin{cases}
 			\varphi(\underline{v_i}, \underline{v_i}) & i = j \\
@@ -416,7 +434,7 @@ $$
 $$
 Vogliamo adesso mostrare se esiste sempre una base ortogonale. Il teorema di partenza è il seguente
 \begin{theorem}[di Lagrange]
-	Sia $V$ uno spazio vettoriale sul campo $\mathbb{R}$ di dimensione finita e sia $\varphi: V \times V \to \mathbb{R}$ un prodotto scalare. Allora esiste una base ortogonale.
+	Sia $V$ uno spazio vettoriale sul campo $\mathbb{K}$ di dimensione finita e sia $\varphi: V \times V \to \mathbb{K}$ un prodotto scalare. Allora esiste una base ortogonale.
 \end{theorem} 
 \begin{proof}
 	Si procede per induzione sulla dimensione di $n$. Il caso $n=1$ è banale: infatti $V = \text{Span}(\underline{v})$ con $\underline{0} \neq \underline{v} \in V$, quindi $\mathcal{B} = \{ \underline{v} \}$ che è una base ortogonale. Adesso supponendo vera la tesi per $n$ facciamo vedere che implica la tesi anche per $n+1$: dobbiamo distinguere due casi
@@ -428,21 +446,21 @@ Vogliamo adesso mostrare se esiste sempre una base ortogonale. Il teorema di par
 		siccome tutti i vettori sono isotropi. Segue che ogni base è ortogonale data l'arbitrarietà di $\underline{v}$ e $\underline{w}$.
 		\item esiste un vettore non isotropo: indichiamo tale vettore con $\underline{v}$ ed è chiaro che $\underline{v} \neq \underline{0}$ (siccome lo zero ha prodotto scalare nullo). Poniamo $W = \text{Span}(\underline{v})$ e vediamo che
 		$$
-			V = W \circled{+} W^\perp.
+			V = W \oplus W^\perp.
 		$$
 		Infatti, dal teorema \ref{thm:rad_ssp} abbiamo che 
 		$$
 			\text{dim}(W^\perp) = \text{dim}(V) - \text{dim}(W) + \text{dim}(W \cap V^\perp),
 		$$
-		ma è facile vedere che $\text{dim}(W \cap V^\perp) = \{\underline{0} \}$: se per assurdo $\exists \underline{v} \in V$ con $\underline{v} \neq \underline{0}$ tale che $\underline{v} \in W \cap V^\perp$, allora per definizione $\underline{v} \in V^\perp$, ma allora questo vuol dire che è ortogonale a tutti i vettori dello spazio, ovvero $\forall \underline{w} \in V, \varphi(\underline{v}, \underline{w}) = 0$, dunque anche per $\underline{w} = \underline{v}$. 
+		ma è facile vedere che $\text{dim}(W \cap V^\perp) = \{\underline{0} \}$: se per assurdo $\exists \underline{w} \in V$ con $\underline{w} \neq \underline{0}$ tale che $\underline{w} \in W \cap V^\perp$, allora per definizione $\underline{w} \in V^\perp$, ma allora questo vuol dire che è ortogonale a tutti i vettori dello spazio, ovvero $\forall \underline{u} \in V, \varphi(\underline{w}, \underline{u}) = 0$, dunque anche per $\underline{u} = \underline{w}$. Questo è un assurdo siccome $\underline{w} \in \text{Span}(\underline{v})$ (per definizione di intersezione fra insiemi), dunque $\exists \alpha \in \mathbb{R}$ con $\alpha \neq 0$ tale che $\underline{w} = \alpha \underline{v} \implies \varphi(\underline{w}, \underline{w}) = \varphi(\alpha \underline{v}, \alpha \underline{v}) = \alpha^2 \varphi(\underline{v}, \underline{v}) \neq 0$ per come abbiamo costruito $W$. 
 		Ma questo è un assurdo, siccome abbiamo che $\varphi(\underline{v}, \underline{v}) \neq 0$ per costruzione di $W$. Quindi la dimensione di $W \cap V^\perp$ è uguale a $0$, da cui segue che
 		$$
 			\text{dim}(W^\perp) = \text{dim}(V) - \text{dim}(W).
 		$$
-		Bisogna adesso mostrare che $W^\perp \cap W = \{ \underline{0} \}$: si procede similmente a come abbiamo mostrato che $W \cap V^\perp$ ha dimensione $0$, poiché se per assurdo avessimo che $\exists \underline{v} \in W^\perp \cap W$ con $\underline{v} \neq \underline{0}$ allora $\forall \underline{w} \in W, \varphi(\underline{v}, \underline{w}) = 0$, ma allora per $\underline{w}=\underline{v} \in W$ si ha che $\varphi(\underline{v}, \underline{v}) = 0$, il che è assurdo per come abbiamo costruito $W$.
+		Bisogna adesso mostrare che $W^\perp \cap W = \{ \underline{0} \}$: si procede similmente a come abbiamo mostrato che $W \cap V^\perp$ ha dimensione $0$, poiché se per assurdo avessimo che $\exists \underline{w} \in W^\perp \cap W$ con $\underline{w} \neq \underline{0}$ allora $\forall \underline{w} \in W, \varphi(\underline{v}, \underline{w}) = 0$, ma allora per $\underline{w}=\underline{v} \in W$ si ha che $\varphi(\underline{v}, \underline{v}) = 0$, il che è assurdo per come abbiamo costruito $W$ (ragionando come sopra, infatti, si ha che $\exists \alpha \in \mathbb{R}$ eccetera).
 		In conclusione abbiamo che
 		$$
-			V = W^\perp \circled{+} W = (\text{Span}(\underline{v}))^\perp \circled{+} \text{Span}(\underline{v}),
+			V = W^\perp \oplus W = (\text{Span}(\underline{v}))^\perp \oplus \text{Span}(\underline{v}),
 		$$
 		dunque $\text{Span}(\underline{v})$ è ortogonale ad una base di $(\text{Span}(\underline{v}))^\perp$ per costruzione. Osserviamo che $\text{dim}(\text{Span}(\underline{v})) = 1$ e, dunque, si ha che $\text{dim}(W^\perp) = \text{dim}(V) - \text{dim}(W) = (n+1) - 1 = n$: vale quindi l'ipotesi induttiva per $W^\perp$, quindi possiamo trovare una base ortogonale $\mathcal{B} = \{ \underline{v_1}, \ldots, \underline{v_n} \}$ di $W^\perp$ e, in definitiva, si ha allora che
 		$$
@@ -451,11 +469,14 @@ Vogliamo adesso mostrare se esiste sempre una base ortogonale. Il teorema di par
 		è una base ortogonale di $V$.
 	\end{itemize}
 \end{proof}
+\begin{cor}
+	Se $A \in \mathcal{M}_n(\mathbb{R})$ è simmetrica allora $\exists P \in \text{GL}_n(\mathbb{R})$ tale che $P^T A P = D$ dove $D$ è una matrice diagonale.
+\end{cor}
 
 Tramite questo teorema è possibile andare a mostrare il seguente teorema, il quale ci assicura, invece, l'esistenza di una base ortonormale
 
 \begin{definition}[base ortornormale]
-	Sia $V$ uno spazio vettoriale sul campo $\mathbb{R}$ e sia $\varphi:V \times V \to \mathbb{R}$ un prodotto scalare. Diremo che $\mathcal{B} = \{ \underline{v_1}, \underline{v_2}, \ldots \}$ è una base ortonormale se
+	Sia $V$ uno spazio vettoriale sul campo $\mathbb{K}$ e sia $\varphi:V \times V \to \mathbb{K}$ un prodotto scalare. Diremo che $\mathcal{B} = \{ \underline{v_1}, \underline{v_2}, \ldots \}$ è una base ortonormale se
 	$$
 		\varphi(\underline{v_i}, \underline{v_j}) = \delta_{ij},
 	$$
@@ -468,7 +489,342 @@ Tramite questo teorema è possibile andare a mostrare il seguente teorema, il qu
 	$$
 \end{definition}
 
-Tramite il teorema di Lagrange è possibile mostrare il seguente teorema, che risponde alla domanda "Data una base ortogonale, esiste anche una base ortonormale?".
-\begin{theorem}[di Sylvester]
-	Sia $V$ uno spazio vettoriale sul campo $\mathbb{R}$ di dimensione finita e sia $\varphi: V \times V \to \mathbb{R}$ un prodotto scalare. Allora 
+Tramite il teorema di Lagrange è possibile mostrare il seguente teorema, che risponde anche alla domanda "Data una base ortogonale, esiste anche una base ortonormale?". Dobbiamo introdurre, tuttavia, il concetto di segnatura di un prodotto scalare
+\begin{definition}[indice di positività, di negatività e di nullità]
+	Sia $V$ uno spazio vettoriale sul campo $\mathbb{R}$ e sia $\varphi: V \times V \to \mathbb{R}$ prodotto scalare. Allora si definiscono le seguenti quantità:
+	\begin{itemize}
+		\item $\iota_+ := \max{\{ \text{dim}(W) : W \text{ ssp di } V \text{ tale che } \varphi_{|W} > 0 \}}$, che si dice \textbf{indice di positività};
+		\item $\iota_- := \max{\{ \text{dim}(W) : W \text{ ssp di } V \text{ tale che } \varphi_{|W} < 0 \}}$, che si dice \textbf{indice di negatività};
+		\item $\iota_0 := \max{\{ \text{dim}(W) : W \text{ ssp di } V \text{ tale che } \varphi_{|W} = 0 \}}$, che si dice \textbf{indice di nullità}.
+	\end{itemize}
+\end{definition}
+\begin{definition}[segnatura di un prodotto scalare]
+	Sia $V$ uno spazio vettoriale sul campo $\mathbb{R}$ e sia $\varphi$ un prodotto scalare, allora chiamiamo segnatura di $\varphi$, che indicheremo con $\sigma(\varphi)$, la terna
+	$$
+		\sigma(\varphi) = (\iota_+, \iota_-, \iota_0).
+	$$
+\end{definition}
+\begin{theorem}[di Sylvester, caso reale]
+	Sia $V$ uno spazio vettoriale sul campo $\mathbb{R}$ di dimensione finita e sia $\varphi: V \times V \to \mathbb{R}$ un prodotto scalare. Allora $\forall \mathcal{B} = \{ \underline{v_1}, \ldots, \underline{v_n} \}$ base ortogonale abbiamo che
+	\begin{itemize}
+		\item[] $\iota_+ = \# \{i | \varphi(\underline{v_i}, \underline{v_i}) > 0 \}$;
+		\item[] $\iota_- = \# \{i | \varphi(\underline{v_i}, \underline{v_i}) < 0 \}$;
+		\item[] $\iota_0 = \# \{i | \varphi(\underline{v_i}, \underline{v_i}) = 0 \}$;
+	\end{itemize}
+	e si ha che $\iota_+ + \iota_- = \rank{\varphi}$ e $\iota_+ + \iota_- + \iota_0 = \text{dim}(V)$. Inoltre si può trovare una base ortogonale $\mathcal{B}'$ tale che
+	\begin{align*}
+		\mathcal{M}_{\mathcal{B}'}(\varphi) = \left( \begin{array}{c c c} \text{Id}_{\iota_+} &  &  \\
+		& -\text{Id}_{\iota_-} &  \\ 
+		& & 0_{\iota_0}
+		\end{array} \right)
+	\end{align*}
+	dove $\text{Id}_{\iota_+}$ è una matrice identità di dimensioni $\iota_+ \times \iota_+$ e $\text{Id}_{\iota_-}$ è una matrice identità di dimensioni $\iota_- \times \iota_-$, mentre $0_{\iota_0}$ è la matrice nulla di dimensioni $\iota_0 \times \iota_0$.
 \end{theorem}
+\begin{remark}
+	Questo teorema ci dice, sostanzialmente, che la segnatura è un invariante, per cambio di base, e ci dice che in base ortogonale corrisponde al numero di elementi positivi, negativi e nulli sulla diagonale.
+\end{remark}
+\begin{proof}
+	Dal teorema di Lagrnage sappiamo che $\exists \mathcal{B} = \{ \underline{v_1}, \ldots, \underline{v_n} \}$ base ortogonale di $V$. Possiamo definire i seguenti sottospazi (la dimostrazioni che sono sottospazi è omessa perché è banale)
+	\begin{itemize}
+		\item $W_+ = \text{Span}(\{ \underline{v_i} : \varphi(\underline{v_i}, \underline{v_i}) > 0 \})$;
+		\item $W_- = \text{Span}(\{ \underline{v_i} : \varphi(\underline{v_i}, \underline{v_i}) < 0 \})$;
+		\item $W_0 = \text{Span}(\{ \underline{v_i} : \varphi(\underline{v_i}, \underline{v_i}) = 0 \})$.
+	\end{itemize}
+	e si vede chiaramente che $V = W_+ \oplus W_- \oplus W_0$. A questo punto riordiniamo la base $\mathcal{B}$, indicando i vettori
+	\begin{itemize}
+		\item $\underline{v_1}, \ldots, \underline{v_p}$ sono quelli "positivi" (per cui $\varphi(\underline{v_i}, \underline{v_i}) > 0 \, \forall i \in \{ 1, \ldots, p\}$);
+		\item $\underline{v_{p+1}}, \ldots, \underline{v_{p + q}}$ sono quelli negativi (per cui $\varphi(\underline{v_i}, \underline{v_i}) < 0 \, \forall i \in \{ p+1, \ldots, p+q\}$);
+		\item $\underline{v_{p+q+1}}, \ldots, \underline{v_{n}}$ sono quelli nulli (per cui $\varphi(\underline{v_i}, \underline{v_i}) = 0 \, \forall i \in \{ p + q + 1, \ldots, n\})$.
+	\end{itemize}
+	Rappresentando il prodotto scalare in questa base abbiamo che questa è una matrice diagonale della forma
+	$$
+		\begin{pmatrix}
+			\varphi(\underline{v_1}, \underline{v_1}) & & & \\
+			& \ddots & & \\
+			& & \varphi(\underline{v_p}, \underline{v_p}) & & \\
+			& & & \varphi(\underline{v_{p+1}}, \underline{v_{p+1}}) & \\
+			& & & & \ddots & \\
+			& & & & & \varphi(\underline{v_{p+q}}, \underline{v_{p+q}}) \\
+			& & & & & & 0 & & \\
+			& & & & & & & \ddots & \\
+			& & & & & & & & 0
+		\end{pmatrix},
+	$$
+	con $\varphi(\underline{v_i}, \underline{v_i}) \neq 0 \, \forall i \in \{ 1, \ldots, p+q \}$. Si vede che il kernel di questa matrice è tutto dato dalle ultime righe che corrispondono ai vettori che generano $W_0$: segue necessariamente che $W_0 = V^\perp$, siccome ogni $\underline{v_i} = \underline{v_{p+q+1}}, \ldots, \underline{v_n}$ sta in $V^\perp$ siccome $\varphi(\underline{v_i}, \underline{v_j}) = 0 \forall j, \forall i$ siccome siamo in una base ortogonale $\implies$ per linearità del prodotto scalare ogni combinazione lineare dei vettori $\underline{v_{p+q+1}}, \ldots, \underline{v_n}$ è ortogonale a tutti i vettori della base di $V \implies$ ogni combinazione lineare dei vettori $\underline{v_{p+q+1}}, \ldots, \underline{v_n}$ è ortogonale a tutti i vettori di $V \implies W_0 \subseteq V^\perp$, ma siccome il rango della matrice associata al prodotto scalare si conserva allora l'unica possibilità è che $\text{dim}(W_0) = \text{Ker}(\mathcal{M}_{\mathcal{B}}(\varphi)) = \text{dim}(V^\perp)$ (inoltre le altre righe hanno pivot non nulli, quindi non contribuiscono al kernel). \\ 
+	Ci resta da mostrare che $\iota_+ = p$ e $\iota_- = q$: si ha che
+	$\varphi_{|W_+} > 0$ siccome se $\underline{v} \in W_+ \implies \varphi(\sum\limits_{i=1}^p \alpha_i \underline{v_i}, \sum\limits_{i=1}^p \alpha_i \underline{v_i}) = \sum\limits_{i=1}^p \alpha_i^2 \varphi(\underline{v_i}, \underline{v_i}) > 0$ se $\underline{v} \neq \underline{0}$, quindi $\iota_+ \geq p$. Se per assurdo $\exists W \subseteq V$ sottospazio tale che $\varphi_{|W} > 0$ e $\text{dim}(W) > p$ allora per le formule di Grassmann abbiamo che il sottospazio $W + W_- + W_0$ soddisfa la seguente relazione
+	\begin{align*}
+		&\text{dim}(W) + \text{dim}(W_0 \oplus W_-) - \text{dim}(W \cap (W_0 \oplus W_-)) = \text{dim}(W + W_0 + W_-) \implies \\ 
+		&\text{dim}(W \cap (W_0 \oplus W_-)) = \underbrace{\text{dim}(W) + \text{dim}(W_0 \oplus W_-)}_{> n} - \underbrace{\text{dim}(W + W_0 + W_-)}_{\leq n} \implies \\
+		&\implies \text{dim}(W \cap (W_0 \oplus W_-)) > 0,
+	\end{align*}
+	ma questo è un assurdo siccome vorrebbe dire che $\exists \underline{v} \in W \cap (W_0 \oplus W_-)$ tale che $\underline{v} \neq \underline{0}$ con $\varphi(\underline{v}, \underline{v}) > 0$ e $\varphi(\underline{v}, \underline{v}) \leq 0$, dunque $\iota_+ = p$. Ragionando allo stesso modo si ricava che $\iota_- = q$. \\
+	Ci resta da far vedere che esiste una base ortogonale per cui la matrice associata è della forma:
+	\begin{align*}
+		\mathcal{M}_{\mathcal{B}'}(\varphi) = \left( \begin{array}{c c c} \text{Id}_{\iota_+} &  &  \\
+		& -\text{Id}_{\iota_-} &  \\ 
+		& & 0_{\iota_0}
+		\end{array} \right).
+	\end{align*}
+	Questo è abbastanza \emph{straightforward}: basta considerare la base $\mathcal{B}' = \{ \underline{v_1}', \ldots, \underline{v_n}' \}$ costruita così
+	\begin{itemize}
+		\item $\underline{v_i}' = \frac{\underline{v_i}}{\sqrt{\varphi(\underline{v_i}, \underline{v_i})}} \, \forall i \in \{ 1, \ldots, p \}$;
+		\item $\underline{v_i}' = \frac{\underline{v_i}}{\sqrt{-\varphi(\underline{v_i}, \underline{v_i})}} \, \forall i \in \{ p+1, \ldots, p+q \}$ (il "$-$" viene dal fatto che il prodotto scalare è negativo e non possiamo prendere le radici negative);
+		\item $\underline{v_i}' = \underline{v_i} \, \forall i \in \{ p + q + 1, \ldots, n \}$;
+	\end{itemize}
+	oppure in forma più compatta diremo semplicemente che $\underline{v_i}' = \frac{\underline{v_i}}{\sqrt{|\varphi(\underline{v_i}, \underline{v_i})|}} \, \forall i \in \{ 1, \ldots, p + q\}$: tramite questa scrittura è facile verificare che se $1 \leq i \leq j \leq p+q$
+	$$
+		\varphi(\underline{v_i}', \underline{v_j}') = \varphi(\frac{\underline{v_i}}{\sqrt{|\varphi(\underline{v_i},\underline{v_i})}|}, \frac{\underline{v_j}}{\sqrt{|\varphi(\underline{v_j}, \underline{v_j})|}}) = \frac{1}{\sqrt{|\varphi(\underline{v_i}, \underline{v_i}) \varphi(\underline{v_j}, \underline{v_j})|}} \varphi(\underline{v_i}, \underline{v_j}) = \delta_{ij},
+	$$
+	mentre se $1 \leq i \leq p+q < j \leq n$ oppure $1 \leq j \leq p+q < i \leq n$ oppure $p+q < i \leq j \leq n$ l'annullamento di $\varphi(\underline{v_i}', \underline{v_j}')$ segue dal fatto che i vettori $\underline{v_i}$, $\underline{v_j}$ risultano ortogonali a tutti gli altri e isotropi. Si ha quindi che
+	\begin{align*}
+		\mathcal{M}_{\mathcal{B}'}(\varphi) = \left( \begin{array}{c c c} \text{Id}_{\iota_+} &  &  \\
+		& -\text{Id}_{\iota_-} &  \\ 
+		& & 0_{\iota_0}
+		\end{array} \right),
+	\end{align*}
+	ovvero la tesi.
+\end{proof}
+
+Possiamo ottenere un interessantissimo corollario da questo teorema: per fare ciò si introduce un altro tipo di relazione di equivalenza che è possibile dare alle matrici simmetriche
+\begin{definition}
+	Siano $A, B \in \mathcal{M}_n(\mathbb{R})$ simmetriche, diremo che $A$ e $B$ sono congruenti se esiste $P \in \mathcal{GL}_n(R)$ tale che
+	$$
+		B = P^T A P.
+	$$
+\end{definition}
+\begin{exercise}
+	Far vedere che la congruenza fra matrici è una relazione d'equivalenza nell'insieme delle matrici quadrate $n \times n$.
+\end{exercise}
+\begin{cor}
+	Due matrici $A, B \in \mathcal{M}_n(\mathbb{R})$ simmetriche sono congruenti $\iff$ hanno la stessa segnatura $\sigma(\varphi)$.
+\end{cor}
+\begin{proof} \hspace{1cm} \\
+	Introduciamo le seguenti notazioni: definiamo $\varphi(\underline{x}, \underline{y}) = \underline{x}^T A \underline{y}$ con $\underline{x}, \underline{y} \in \mathbb{R}^n$ e indichiamo $\iota_+(A) = \iota_+(\varphi), \iota_-(A) = \iota_-(\varphi), \iota_0(A) = \iota_0(\varphi)$ e similmente si fa per $B$. \\
+	$\boxed{\Rightarrow}:$ come conseguenza del teorema di Lagrange abbiamo che esiste una matrice invertibile $Q \in \text{GL}_n(\mathbb{R})$ tale che 
+	$$
+		D = \left( \begin{array}{c c c} \text{Id}_{\iota_+(A)} &  &  \\
+		& -\text{Id}_{\iota_-(A)} &  \\ 
+		& & 0_{\iota_0(A)}
+		\end{array} \right) = Q^T A Q,
+	$$
+	ma siccome $A$ è congruente a $B$ si ha che $\exists P \in \text{GL}_n(\mathbb{R})$ tale che
+	$$
+		B = P^T A P \implies A = (P^T)^{-1} B P^{-1},
+	$$
+	dunque 
+	$$
+		D = Q^T A Q = Q^T (P^T)^{-1} A P^{-1} Q
+	$$
+	e vediamo che $(P^{-1} Q)^T = Q^T (P^{-1})^T = Q^T (P^T)^{-1}$, dove abbiamo fatto uso del fatto che $(P^T)^{-1} = (P^{-1})^T$ facilmente verificabile. \\
+	$\boxed{\Leftarrow}$: si vede che se le due matrici hanno la stessa segnatura allora $\exists P, Q \in \text{GL}_n(\mathbb{R})$ tale che
+	\begin{align*}
+		&\begin{cases} 
+			D = P^T A P \\
+			D = Q^T B Q
+		\end{cases} & &\text{con } D = \left( \begin{array}{c c c} \text{Id}_{\iota_+(A)} &  &  \\
+		& -\text{Id}_{\iota_-(A)} &  \\ 
+		& & 0_{\iota_0(A)}
+		\end{array} \right) = \left( \begin{array}{c c c} \text{Id}_{\iota_+(B)} &  &  \\
+		& -\text{Id}_{\iota_-(B)} &  \\ 
+		& & 0_{\iota_0(A)}
+		\end{array} \right),
+	\end{align*}
+	ma allora si ha che
+	$$
+		P^T A P = Q^T B Q \implies B = (Q^{T})^{-1} P^T A P Q^{-1},
+	$$
+	e si vede che $(PQ^{-1})^T = (Q^{-1})^T P^T = (Q^T)^{-1} P^T$. Segue la tesi.
+\end{proof}
+\begin{remark}
+	E' chiaro che $\varphi$ non degenere $\iff \iota_0 = 0$.
+\end{remark}
+\begin{remark}
+	E' chiaro, come conseguenza del teorema di Sylvester nel caso reale, che negli spazi vettoriali di dimensione finita sul campo $\mathbb{R}$ si può avere una base ortonormale solo se $\iota_+ = \text{dim}(V)$, dunque $\iota_- = \iota_0 = 0$.
+\end{remark}
+
+Nel caso di $\mathbb{K} = \mathbb{C}$ è possibile ottenere una versione analoga al teorema di Sylvester appena mostrata
+\begin{theorem}[di Sylvester, caso complesso]
+	Sia $V$ uno spazio vettoriale sul campo $\mathbb{C}$ con $\varphi: V \times V \to \mathbb{C}$ prodotto scalare di rango $r$. Allora $\exists \mathcal{B}$ base di $V$ tale che
+	\begin{align*}
+		\mathcal{M}_\mathcal{B}(\varphi) = \left( \begin{array}{c c}
+			\text{Id}_r & * \\
+			* & 0_{n-r}
+		\end{array} \right)
+	\end{align*}
+	dove $\text{Id}_r$ è la matrice identità $r \times r$ e $0_{n-r}$ è la matrice nulla di dimensioni $(n-r) \times (n-r)$.
+\end{theorem}
+\begin{proof}
+	Per il teorema di Lagrange abbiamo che $\exists \mathcal{B}' = \{ \underline{v_1}', \ldots, \underline{v_n}' \}$ base ortogonale di $V$ e quindi la matrice associata al prodotto scalare in tale base è della forma
+	$$
+		\mathcal{M}_{\mathcal{B}'}(\varphi) = \begin{pmatrix}
+			a_{11} & & & & & \\
+			& \ddots & & & & \\
+			& & a_{rr} & & & \\
+			& & & 0 & & \\
+			& & & & \ddots & \\
+			& & & & & & 0 
+		\end{pmatrix}
+	$$
+	con $a_{ii} \neq 0 \, \forall i \in \{ 1, \ldots, r\}$. Si ha che $\forall \underline{v}, \varphi(\underline{v}, \underline{v}) = a \in \mathbb{C}$ e notiamo che $\varphi(\alpha \underline{v}, \alpha \underline{v}) = \alpha^2 \varphi(\underline{v}, \underline{v}) = \alpha^2 a = 1 \implies$ se prendo $\alpha = \frac{1}{\sqrt{a}}$ e ponendo $\underline{v_i}' = \frac{\underline{v_i}}{\sqrt{a}}$ per $i \in \{ 1, \ldots, r\}$ e gli altri vettori della base si ottiene la tesi.
+\end{proof}
+\begin{remark}
+	Ciò che fa funzionare questo in $\mathbb{C}$ è la possibilità di prendere le radici dei numeri negativi, cosa che in $\mathbb{R}$ non si può fare.  
+\end{remark}
+\begin{cor}
+	$A, B$ simmetriche in $\mathbb{C}$ sono congruenti se e solo se hanno lo stesso rango.
+\end{cor}
+\begin{proof}
+	Si procede come per il caso reale, osservando però che in questo caso il teorema di Sylvester ci permette di concludere che la matrice è congruente alla matrice diagonale
+	\begin{align*}
+		\mathcal{M}_\mathcal{B}(\varphi) = \left( \begin{array}{c c}
+			\text{Id}_r & * \\
+			* & 0_{n-r}
+		\end{array} \right)
+	\end{align*}
+\end{proof}
+Possiamo adesso richiedere che due spazi vettoriali in somma diretta siano anche ortogonali fra loro:
+\begin{definition}[somma diretta ortogonale]
+	Sia $V$ uno spazio vettoriale sul campo $\mathbb{R}$ e sia $\varphi: V \times V \to \mathbb{R}$ un prodotto scalare. Diremo che $U, W \subseteq V$ sottospazi vettoriali sono in somma diretta ortogonale se $\forall \underline{u} \in U, \forall \underline{w} \in W, \varphi(\underline{u}, \underline{w}) = 0$ e se $V = U \oplus W$ e indicheremo questo con la seguente notazioni
+	$$
+		V = U \overset{\perp}{\oplus} W
+	$$
+\end{definition}
+\begin{remark}
+	E' immediato vedere che, nel caso di due sottspazi $U$ e $W$ in somma diretta ortogonale, valgono le seguenti relazioni
+	\begin{align*}
+		&\iota_+(\varphi) = \iota_+(\varphi_{|U}) + \iota_+(\varphi_{|W}),
+		&\iota_-(\varphi) = \iota_-(\varphi_{|U}) + \iota_-(\varphi_{|W}),
+		&\iota_0(\varphi) = \iota_0(\varphi_{|U}) + \iota_0(\varphi_{|W}),
+	\end{align*}
+	siccome basta metterci in una base di $V$ ottenuta unendo una base ortogonale di $U$ con una base ortogonale di $W$.
+\end{remark}
+\begin{exercise}
+	Mostrare che se $\varphi$ è non degenere allora $\forall U \subseteq V$ sottospazio vettoriale si ha che $(U^\perp)^\perp = U$.
+\end{exercise}
+Prima di concludere con questo capitolo, ci soffermiamo un attimo sulla seguente domanda: "Dati $\underline{v_1}, \ldots, \underline{v_k}$ vettori a 2 a 2 ortogonali (cioé $\forall i, j \in \{ 1, \ldots, k\}, \varphi(\underline{v_i}, \underline{v_j}) = 0)$ posso estenderli ad una base ortogonale di $V$?" E' chiaro che $\varphi$ è non degenere allora ponendo $W = \text{Span}(\underline{v_1}, \ldots, \underline{v_k})$ allora devo avere che
+$$
+	V = W \overset{\perp}{\oplus} W^\perp \stackrel{\text{esercizio } \ref{ex:3.4}}{\iff} \varphi_{|W} \text{ non degenere } \iff \varphi(\underline{v_i}, \underline{v_i}) \neq 0 \, \forall i
+$$
+Nel caso di $\varphi$ non degenere invece? Si osserva che chiaramente dobbiamo aggiungere a $W$ il suo radicale $W^\perp$ perché vogliamo estendere l'insieme di vettori ortogonali a base ortogonale di $W$, dunque si deve imporre necessariamente, come prima che
+$$
+	W \cap W^\perp = \{ \underline{0} \}.
+$$
+\begin{exercise}
+	Mostrare le seguenti affermazioni:
+	\begin{enumerate}[label=\protect\circled{\arabic*}]
+		\item $V^\perp$ è sempre un sottospazio isotropo;
+		\item se $\underline{v}$ è isotropo allora $W = \text{Span}(\underline{v})$ è un sottospazio isotropo;
+		\item $W \subseteq V$ è isotropo $\iff W \subseteq W^\perp$;
+		\item se $\phi: V \times V \to \mathbb{R}$ è un prodotto scalare non degenere e $W \subseteq V$ è un sottospazio isotropo, allora
+		$$
+			\text{dim}(W) \leq \frac{\text{dim}(V)}{2}.
+		$$
+	\end{enumerate}
+\end{exercise}
+\section{Prodotti hermitiani: un film che sembra già visto...}
+
+Come abbiamo introdotto su spazi vettoriali sul campo $\mathbb{R}$ il concetto di prodotto scalare, si potrebbe pensare di fare la medesima cosa su spazi vettoriali definiti sul campo $\mathbb{C}$,
+prendendo come nostro modello il prodotto euclideo canonico di $\mathbb{C}$. Diamo innanzitutto la definizione formale
+
+\begin{definition}[prodotto hermitiano]
+    Sia $V$ uno spazio vettoriale sul campo $\mathbb{C}$ di dimensione finita, si dice che $\varphi: V \times V \to \mathbb{C}$ è un prodotto hermitiano se
+    \begin{enumerate}[label=\protect\circled{\arabic*}]
+        \item $\varphi$ è $\mathbb{C}-$lineare nella seconda componente
+        \begin{align*}
+            &\varphi(\underline{u}, \underline{v} + \underline{w}) = \varphi(\underline{u}, \underline{v}) + \varphi(\underline{u}, \underline{w});
+            &\varphi(\underline{u}, \alpha \underline{v}) = \alpha \varphi(\underline{u}, \underline{v}).
+        \end{align*}
+        \item $\varphi(\underline{v}, \underline{w}) = \overline{\varphi(\underline{w}, \underline{v})}$
+    \end{enumerate} 
+    dove queste proprietà valgono $\forall \underline{v}, \underline{w} \in V$
+\end{definition}
+\begin{remark}
+    Segue dalla \circled{1} e dalla \circled{2} che $\varphi$ è antilineare nella prima componente, siccome
+    \begin{align*}
+        &\varphi(\underline{u} + \underline{v}, \underline{w}) = \overline{\varphi(\underline{w}, \underline{u} + \underline{v})} = \overline{\varphi(\underline{w}, \underline{u}) + \varphi(\underline{w}, \underline{v})} = \overline{\varphi(\underline{w}, \underline{u})} + \overline{\varphi(\underline{w}, \underline{v})} = \varphi(\underline{u}, \underline{w}) + \varphi(\underline{v}, \underline{w}), \\
+        &\varphi(\alpha \underline{u}, \underline{v}) = \overline{\varphi(\underline{v}, \alpha \underline{u})} = \overline{\alpha \varphi(\underline{v}, \underline{u})} = \overline{\alpha} \varphi(\underline{u}, \underline{v}).
+    \end{align*}
+\end{remark}
+\textbf{Notazione}: in molti libri si dice che invece è antilineare nella seconda componente e dice che è lineare nella prima: è un fatto di convenzione.
+\begin{prop}
+    Sia $V$ uno spazio vettoriale sul campo $\mathbb{C}$ e sia $\varphi: V \times V \to \mathbb{C}$ un prodotto hermitiano, allora
+    \begin{align*}
+        &\forall \underline{v} \in V, \varphi(\underline{v}, \underline{v}) \in \mathbb{R}.
+    \end{align*}
+\end{prop}
+\begin{proof}
+    $\varphi(\underline{v}, \underline{v}) = \overline{\varphi(\underline{v}, \underline{v})} \implies \varphi(\underline{v}, \underline{v}) \in \mathbb{R}$.
+\end{proof}
+\begin{example} \hspace{1cm}
+\begin{itemize}
+    \item prodotto hermitiano canonico in $\mathbb{C}^n$:
+    \[
+        \varphi(\underline{z}, \underline{w})
+        =
+        \sum_{i=1}^n \overline{z_i}\, w_i
+    \]
+
+    \item $V = \mathbb{C}_n[z]$, $\varphi(p,q) = \overline{p(0)}\,q(0)$
+\end{itemize}
+\end{example}
+
+
+\subsection{Matrice associata ad un prodotto hermitiano}
+
+Sia $\mathcal{B} = \{ \underline{v_1}, \ldots, \underline{v_n} \}$ una base di $V$, allora
+\begin{align*}
+&\underline{v}=\sum_{i=1}^n x_i \underline{v_i}, & &\underline{w}=\sum_{j=1}^n y_j \underline{v_j},
+\end{align*}
+e si osserva che possiamo ripetere lo stesso identico conto che abbiamo fatto per i prodotti scalari
+$$
+    \varphi(\underline{v}, \underline{w}) = \varphi(\sum_{i=1}^n x_i \underline{v_i}, \sum_{j=1}^n y_i \underline{v_i}) = \sum_{i, j=1}^n \overline{x_i} y_j \varphi(\underline{v_i}, \underline{v_j}) = \underline{x}^T A \underline{y}.
+$$
+dove $A$ è la matrice $(A)_{ij} = \varphi(\underline{v_i}, \underline{v_j})$ e quindi
+$$
+    a_{ji} = \varphi(\underline{v_j}, \underline{v_i}) = \overline{\varphi(\underline{v_i}, \underline{v_j})} = \overline{a_{ij}},
+$$
+ovvero $\overline{A}^t = A$
+\begin{definition}[matrice hermitiana]
+    Sia $A \in \mathcal{M}_n(\mathbb{C})$ tale che $\overline{A}^t = A$ si dice \textbf{matrice hermitiana} e diremo che $\overline{A}^t = A^*$ è la matrice aggiunta di $A$. 
+\end{definition}
+\begin{definition}[matrice associata ad un prodotto hermitiano]
+    Sia $V$ uno spazio vettoriale sul campo $\mathbb{C}$, sia $\varphi: V \times V \to \mathbb{C}$ un prodotto hermitiano. Fissata una base $\mathcal{B}=\{ \underline{v_1}, \ldots, \underline{v_n} \}$, diremo che la matrice
+    $$
+        \mathcal{M}_{\mathcal{B}}(\varphi) = \begin{pmatrix}
+            \varphi(\underline{v_1}, \underline{v_1}) & \varphi(\underline{v_1}, \underline{v_2}) & \ldots & \varphi(\underline{v_1}, \underline{v_n}) \\
+            \varphi(\underline{v_2}, \underline{v_1}) & \ddots & \ldots & \vdots \\
+            \vdots & \vdots & \ddots & \vdots \\
+            \varphi(\underline{v_n}, \underline{v_1}) & \ldots & \ldots & \varphi(\underline{v_n}, \underline{v_n})
+        \end{pmatrix}.
+    $$
+    è la matrice associata al prodotto hermitiano $\mathcal{\phi}$.
+\end{definition}
+Potremmo ripetere lo stesso ragionamento fatto per i prodotti scalari, arrivando a dimostrare il seguente teorema
+\begin{theorem}[formula di cambiamento di base per i prodotti hermitiani]
+    Sia $V$ uno spazio vettoriale sul campo $\mathbb{C}$ e sia $\varphi: V \times V \to \mathbb{C}$ un prodotto hermitiano. Sia $\mathcal{B}$ una base di $V$ e sia
+    $\mathcal{C}$ un'altra base, allora avremo che
+    $$
+        \mathcal{M}_{\mathcal{C}} = (\mathcal{M}(\text{Id})^{\mathcal{C}}_\mathcal{B})^T \mathcal{M}_{\mathcal{B}}(\phi) \mathcal{M}(\text{Id})^\mathcal{C}_\mathcal{B}
+    $$
+\end{theorem}
+
+\subsection{Esistenza di una base ortogonale e teorema di Sylvester}
+
+Analogamente ai prodotti scalari, possiamo sempre definire il concetto di prodotto hermitiano definito positivo
+\begin{definition}[prodotto hermitiano definito positivo]
+    Sia $V$ uno spazio vettoriale sul campo $\mathbb{C}$ e sia $\varphi: V \times V \to \mathbb{C}$ un prodotto hermitiano, diremo che $\varphi > 0$ se $\forall \underline{v} \in V \setminus \{ \underline{0} \}, \varphi(\underline{v}, \underline{v}) > 0$.
+\end{definition}
+\begin{remark}
+    Questo si può fare solo perché $\varphi(\underline{v}, \underline{v}) \in \mathbb{R}$ e perché in $\mathbb{R}$ c'è un ordinamento. Non si potrebbe fare la medesima cosa nel caso in cui, per esempio, fosse stata a valori in $\mathbb{C}$, dove non c'è ordinamento. Questo è un problema che bisogna tenere spesso di conto quando si effettuano generalizzazioni del concetto di spazio vettoriale, nel caso dei moduli che sono definiti sugli anelli, o di spazi vettoriali su campi che non hanno ordinamento (come $\mathbb{C}$).
+\end{remark}
+La dimostrazione del teorema di Lagrange che abbiamo effettuato per i prodotti scalari è valida anche per i prodotti hermitiani, proprio perché $\forall \underline{v} \in V, \varphi(\underline{v}, \underline{v})$.
+Vale anche la versione "reale" del teorema di Sylvester: infatti in questo caso, a causa della antilinearità del prodotto hermitiano, abbiamo che
+$$
+    \forall \underline{v}, \varphi(\underline{v}, \underline{v}) = a \in \mathbb{R},
+$$
+come abbiamo già mostrato e, inoltre, osserviamo che
+$$
+    \forall \underline{v}, \forall \alpha \in \mathbb{C}, \varphi(\alpha \underline{v}, \alpha \underline{v}) = \alpha \alpha^* \varphi(\underline{v}, \underline{v}) = |\alpha|^2 a \in \mathbb{R},
+$$
+quindi non è possibile normalizzare i vettori come avevamo fatto nella versione complessa del teorema di Sylvester. Il motivo di questo sta nel fatto che richiediamo che il prodotto hermitiano sia antilineare nella prima componente e lineare nella seconda, mentre nel prodotto scalare avevamo la linearità in entrambe le componenti.

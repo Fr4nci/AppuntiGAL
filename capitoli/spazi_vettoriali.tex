@@ -658,10 +658,10 @@ Per ovviare a questo problema, si definisce la "somma" di sottospazi nella segue
         \item $Z = U + W$
         \item $U \cap W = \{ \underline{0} \}$
     \end{enumerate}
-    e si scrive $Z = U \circled{+} W$.
+    e si scrive $Z = U \oplus W$.
 \end{definition}
 \begin{prop}
-    se $Z = U \circled{+} W$ allora ogni vettore $\underline{v} \in Z$ si scrive in maniera univoca, ovvero
+    se $Z = U \oplus W$ allora ogni vettore $\underline{v} \in Z$ si scrive in maniera univoca, ovvero
     $$
         \forall \underline{v} \in Z, \exists! \underline{u}, \underline{w} : \underline{v} = \underline{v} + \underline{w}
     $$
@@ -691,7 +691,7 @@ Per ovviare a questo problema, si definisce la "somma" di sottospazi nella segue
     \label{ex:1.11}
     Vale anche il viceversa della proposizione, ovvero se $Z = U + W$ e $\forall \underline{v} \in Z, \exists! \underline{u} \in U, \underline{w} \in W : \underline{v} = \underline{u} + \underline{w}$ allora
     $$
-        Z = U \circled{+} W
+        Z = U \oplus W
     $$
     \emph{Suggerimento}: è chiaro che la nostra tesi, siccome $Z$ è già somma di $U$ e $W$, è equivalente a far vedere che $U \cap W = \{ \underline{0} \}$, da cui si può procedere per assurdo facendo vedere che la scrittura non è più univoca.
 \end{exercise}
@@ -699,7 +699,7 @@ Per ovviare a questo problema, si definisce la "somma" di sottospazi nella segue
     \label{ex:1.12}
     Sia $(V, \mathbb{K}, +, \cdot)$ uno spazio vettoriale sul campo $\mathbb{K}$ e consideriamo $A = \{ \underline{v_1}, \ldots, \underline{v_n} \} \subseteq V$ linearmente indipendente. Mostrare che decomponendo $A = A' \cup A''$ con $A' \cap A'' = \emptyset$ allora
     $$
-        \text{Span}(A) = \text{Span}(A') \circled{+} \text{Span}(A'')
+        \text{Span}(A) = \text{Span}(A') \oplus \text{Span}(A'')
     $$
 \end{exercise}
 Mostriamo adesso il seguente teorema che ci permette di permette di quantificare le dimensioni della somma di un sottospazio con un altro. Questo ci consente, in linea di principio, di rispondere alla domanda "Quand'è che la somma diretta di due sottospazi generano tutto lo spazio?", siccome questo teorema permette di determinare la dimensione dello spazio risultante

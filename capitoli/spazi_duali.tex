@@ -1,0 +1,42 @@
+\chapter{Spazi duali}
+
+Vogliamo adesso andare a caratterizzare i funzionali: questi sono delle funzioni che prendono un vettore e restituiscono un numero. Il motivo
+per cui questi oggetti vengono studiati è molto semplice: questi riescono alcuni strumenti di interesse fisico, come l'azione che risulta essere la seguente quantità
+$$
+    \mathcal{S} = \int_A^B \mathcal{L} dt,
+$$
+dove vediamo che $S$ è un funzionale che prende in input la funzione $\mathcal{L}$ (lagrangiana) e restituisce un numero. Non solo: la soluzione più generale dei sistemi fisici lineari che ricevono
+un input una "funzione" $a(t)$ e in output una "funzione" $b(t)$ dà spesso luogo a delle soluzioni sotto forma di distribuzioni, ovvero dei veri e propri funzionali\footnote{il motivo per cui si fa in questa maniera è che, così, riusciamo ad allargare di molto l'insieme delle
+soluzioni che riusciamo a trovare, considerando anche funzioni che non necessariamente appartengono ad $L^2$, ovvero funzioni a quadrato sommabili.}
+
+\begin{definition}[funzionale]
+    Sia $V$ uno spazio vettoriale sul campo $\mathbb{K}$, diremo che $f: V \to \mathbb{K}$ lineare è un funzionale.
+\end{definition}
+\begin{definition}[spazio duale]
+    L'insieme $\mathcal{L}(V, \mathbb{K})$ è uno spazio vettoriale di dimensione pari a $n = \text{dim}(V)$ che si dice spazio duale di $V$ e si indica con $V^*$.
+\end{definition}
+E' chiaro, in virtù dell'identificazione che implicitamente abbiamo già fatto nella definizione appena data, che lo spazio duale di $V$ abbia dimensioni pari a $V$. Chiaramente, visto che abbiamo introdotto un nuovo spazio vettoriale (la somma di due funzionali è ancora un funzionale, così come la moltiplicazione per un elemento di $\mathbb{K}$), ci poniamo
+la solita domanda di routine "Qual è una base di $V^*$?". \\
+Fissata una base $\mathcal{B}=\{ \underline{v_1}, \ldots, \underline{v_n} \}$ di $V$, potremmo pensare di introdurre il seguente insieme di funzionali $\mathcal{B}^* = \{ \underline{v_1}^*, \ldots, \underline{v_n}^*\}$ tali che
+\begin{align*}
+    &v_i^*: V \to \mathbb{K} & &\text{con } \underline{v_i}^*(v_j) = \delta_{ij}.
+\end{align*}
+\begin{exercise}
+    Mostrare le seguenti affermazioni:
+    \begin{enumerate}[label=\protect\circled{\arabic*}]
+        \item $\mathcal{B}^*$ è una base di $V^*$ (\emph{Suggerimento}: si può pensare di applicare un vettore della base ad una certa equazione...);
+        \item se $F: V \to \mathbb{K}$ è un funzionale, allora si può esprimere $F$ tramite $\mathcal{B}$ (\emph{Suggerimento}: mostrare che $F = \sum\limits_{i=1}^n F(\underline{v_i})\underline{v_i}^*$)
+        \item sia $f: V \to W$ una funzione lineare, allora esiste un'applicazione \emph{trasposta} $f^*: W^* \to V^*$ tale che $f^*(F) = F \circ f$ e $f^*$ è lineare.
+        \item se ho basi di $V$ e $C$ di $W$, $f: V \to W$ e $A = \mathcal{M}^B_C(f)$, chi è la matrice di $\mathcal{M}^{C^*}_{B^*}(f^*)$? (\emph{Suggerimento}: come si chiama $f^*$?).
+    \end{enumerate}
+\end{exercise}
+Il teorema più importante per quanto riguarda gli spazi duali è il seguente
+\begin{theorem}[di rappresentazione di Riesz]
+    Sia $V$ uno spazio vettoriale sul campo $\mathbb{K}$ e $\varphi$ un prodotto (scalare o hermitiano) non degenere su $V$, allora $\forall f\in V^* \exists ! \underline{w} \in V$ tale che $F(\underline{v}) = \varphi(\underline{w}, \underline{v}) \, \forall \underline{v} \in V$.
+\end{theorem}
+\begin{proof}
+    Mostriamo, per prima cosa, che l'insieme di tutti i funzonali $F_w$ ($F_w: V \to \mathbb{K}, F_w := \varphi(\underline{w}, \underline{v})$) al variare di $\underline{w} \in V$ è un sottospazio di $V^*$, siccome
+    \begin{align*}
+        &F_{\underline{w_1}} + F_{}
+    \end{align*}
+\end{proof}
