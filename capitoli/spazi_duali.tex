@@ -1,14 +1,10 @@
-\chapter{Spazi duali}
+\chapter{Funzionali lineari}
 
-Vogliamo adesso andare a caratterizzare i funzionali: questi sono delle funzioni che prendono un vettore e restituiscono un numero. Il motivo
-per cui questi oggetti vengono studiati è molto semplice: questi riescono alcuni strumenti di interesse fisico, come l'azione che risulta essere la seguente quantità
-$$
-    \mathcal{S} = \int_A^B \mathcal{L} dt,
-$$
-dove vediamo che $S$ è un funzionale che prende in input la funzione $\mathcal{L}$ (lagrangiana) e restituisce un numero. Non solo: la soluzione più generale dei sistemi fisici lineari che ricevono
-un input una "funzione" $a(t)$ e in output una "funzione" $b(t)$ dà spesso luogo a delle soluzioni sotto forma di distribuzioni, ovvero dei veri e propri funzionali\footnote{il motivo per cui si fa in questa maniera è che, così, riusciamo ad allargare di molto l'insieme delle
-soluzioni che riusciamo a trovare, considerando anche funzioni che non necessariamente appartengono ad $L^2$, ovvero funzioni a quadrato sommabili.}
+Vogliamo adesso andare a caratterizzare i funzionali lineari: questi sono delle applicazioni lineari che prendono un vettore e restituiscono un numero. Questi oggetti sono studianti anche per il loro grandissimo interesse fisico: si ha, per esempio, che le soluzione più generali dei sistemi fisici lineari che ricevono
+un input una "funzione" $a(t)$ e in output una "funzione" $b(t)$ dà luogo a delle soluzioni sotto forma di distribuzioni, ovvero dei veri e propri funzionali\footnote{il motivo per cui si fa in questa maniera è che, così, riusciamo ad allargare di molto l'insieme delle
+soluzioni che riusciamo a trovare, considerando anche funzioni che non necessariamente appartengono ad $L^2$, ovvero funzioni a quadrato sommabili.}.
 
+\section{Spazi duali}
 \begin{definition}[funzionale]
     Sia $V$ uno spazio vettoriale sul campo $\mathbb{K}$, diremo che $f: V \to \mathbb{K}$ lineare è un funzionale.
 \end{definition}
@@ -19,24 +15,128 @@ E' chiaro, in virtù dell'identificazione che implicitamente abbiamo già fatto 
 la solita domanda di routine "Qual è una base di $V^*$?". \\
 Fissata una base $\mathcal{B}=\{ \underline{v_1}, \ldots, \underline{v_n} \}$ di $V$, potremmo pensare di introdurre il seguente insieme di funzionali $\mathcal{B}^* = \{ \underline{v_1}^*, \ldots, \underline{v_n}^*\}$ tali che
 \begin{align*}
-    &v_i^*: V \to \mathbb{K} & &\text{con } \underline{v_i}^*(v_j) = \delta_{ij}.
+    &v_i^*: V \to \mathbb{K} \, \text{con } \underline{v_i}^*(v_j) = \delta_{ij}.
 \end{align*}
 \begin{exercise}
     Mostrare le seguenti affermazioni:
     \begin{enumerate}[label=\protect\circled{\arabic*}]
         \item $\mathcal{B}^*$ è una base di $V^*$ (\emph{Suggerimento}: si può pensare di applicare un vettore della base ad una certa equazione...);
         \item se $F: V \to \mathbb{K}$ è un funzionale, allora si può esprimere $F$ tramite $\mathcal{B}$ (\emph{Suggerimento}: mostrare che $F = \sum\limits_{i=1}^n F(\underline{v_i})\underline{v_i}^*$)
-        \item sia $f: V \to W$ una funzione lineare, allora esiste un'applicazione \emph{trasposta} $f^*: W^* \to V^*$ tale che $f^*(F) = F \circ f$ e $f^*$ è lineare.
+        \item sia $f: V \to W$ una funzione lineare, allora esiste un'applicazione \emph{trasposta} $f^*: W^* \to V^*$ tale che $f^*(F) = F \circ f \, \forall F \in W^\star$ e $f^*$ è lineare.
         \item se ho basi di $V$ e $C$ di $W$, $f: V \to W$ e $A = \mathcal{M}^B_C(f)$, chi è la matrice di $\mathcal{M}^{C^*}_{B^*}(f^*)$? (\emph{Suggerimento}: come si chiama $f^*$?).
     \end{enumerate}
 \end{exercise}
+Riporto lo svolgimento di questo esercizio, perché lo reputo complicato (in particolar modo il punto \circled{4}): provate a farlo senza guardare, però non ci perdete più di $2$ ore!
+\begin{proof}[Svolgimento]
+    Mostriamo la \circled{1}. Per come è stato definito, sappiamo che $\mathcal{L}(V, \mathbb{K}) = V^\ast$ è uno spazio di dimensione $n$, dunque, siccome $\mathcal{B}^\ast$ è un insieme di $n$ vettori, è sufficiente far vedere che $\mathcal{B}^\ast$ è linearmente indipendente. Per fare questo, osserviamo che l'equazione
+    $$
+        \alpha_1 \underline{v_1}^\ast + \ldots + \alpha_n \underline{v_n}^\ast = \underline{0},
+    $$
+    è un'equazione dove bisogna intendere un'uguaglianza fra funzioni, quindi il membro a destra contiene $\underline{0}$ come l'applicazione nulla. Possiamo quindi pensare di applicare dei vettori ad entrambi i lati, in particolare applichiamo il vettore $j-$esimo della base da entrambe le parti, ottenendo che
+    $$
+        (\alpha_1 \underline{v_1}^\ast + \ldots + \alpha_n \underline{v_n}^\ast)(\underline{v_j}) = \underline{0}(\underline{v_j}) \stackrel{\text{per linearità}}{\implies} \alpha_1 \underline{v_1}^\ast(\underline{v_j}) + \ldots + \alpha_n \underline{v_n}^\ast(\underline{v_j}) = \underline{0}(\underline{v_j}) = 0.
+    $$
+    Per definizione di base duale (ovvero che $\underline{v_i}^\ast(\underline{v_j}) = \delta_{ij}$) si ha che dà contributo solo il termine $j-$esimo della base duale
+    $$
+        \alpha_1 \underline{v_1}^\ast(\underline{v_j}) + \ldots + \alpha_n \underline{v_n}^\ast(\underline{v_j}) = 0 + \ldots + 0 + \alpha_j \underline{v_j}^\ast(\underline{v_j}) + \ldots + 0 = \alpha_j = \underline{0}(\underline{v_j}) = 0 \implies \alpha_j = 0.
+    $$
+    Possiamo ripetere lo stesso ragionamento per tutti i vettori della base, dunque si ha che l'unica soluzione a questa equazione è $\alpha_i = 0 \, \forall i \in \{ 1, \ldots, n\}$. \\
+    Mostriamo la \circled{2}. Dimostriamo questa affermazione per costruzione diretta: definiamo $g = \sum\limits_{i=1}^n F(\underline{v_i})\underline{v_i}^*$ ed è sufficiente far vedere che $F$ e $g$ assumono gli stessi valori sui vettori della base. Si osserva che
+    $$
+        g(\underline{v_j}) = \left( \sum\limits_{i=1}^n F(\underline{v_i})\underline{v_i}^*\right)(\underline{v_j}) = \sum\limits_{i=1}^n F(\underline{v_i})\underline{v_i}^*(\underline{v_j}) = \sum\limits_{i=1}^n F(\underline{v_i})\delta_{ij} = F(v_j).
+    $$
+    Il ragionamento fatto è valido $\forall j \in \{ 1, \ldots, n\}$, ovvero per ogni vettore della base, dunque si ha la tesi. \\
+    Mostriamo la \circled{3}. Prima di procedere, spiego un po' il senso di questa proposizione: abbiamo che se $f: V \to W$, è chiaro che se compongo a $f$ un qualunque funzionale $\phi$ che agisce sui vettori di $W$, allora ottengo chiaramente un funzionale che agisce sui vettori di $V$ (siccome $\phi: W \to \mathbb{K}$, $f: V \to W$, quindi $\phi \circ f: V \to \mathbb{K}$). Matematicamente vuol dire che esiste una funzione in qualche modo legata ad $f$ (ma chiaramente distinta!) che mi va ad associare
+    ad ogni funzionale che agisce sui vettori di $W$ un funzionale che agisce sui vettori di $V$: non solo, questa funzione è anche lineare (fra $W^\ast$ e $V^\ast$). \\
+    Per mostrare l'esistenza osserviamo che
+    \begin{align*}
+        &f^\ast(\phi) = \phi \circ f, \, \text{con } \phi \in W^\ast,
+    \end{align*}
+    è ben definita\footnote{la "buona definizione" qua è da intendere osservando che, a priori, nulla ci garantisce che la funzione risultante sia una funzione che appartiene a $W^\ast$, ovvero che sia lineare: il fatto che sia una funzione è chiaro (perché composizione di funzioni), il fatto invece che sia lineare, ovvero che appartenga a $W^\ast$ va verificato.}, poiché la funzione risultante è una funzione lineare grazie alla linearità di $f$ e $\phi$, siccome presi $\alpha_1, \alpha_2 \in \mathbb{K}$ e $\underline{v_1}, \underline{v_2} \in V$ si ha che
+    \begin{align*}
+        f^\ast(\phi)(\alpha_1 \underline{v_1} + \alpha_2 \underline{v_2}) &= (\phi \circ f)(\alpha_1 \underline{v_1} + \alpha_2 \underline{v_2}) = \phi(f(\alpha_1 \underline{v_1} + \alpha_2 \underline{v_2})) = \phi(\alpha_1 f(\underline{v_1}) + \alpha_2 f(\underline{v_2})) = & \\ 
+        &= \phi(\alpha_1 f(\underline{v_1})) + \phi(\alpha_2 f(\underline{v_2})) = \alpha_1 \phi(f(\underline{v_1})) + \alpha_2 \phi(f(\underline{v_2})) = & \\
+        &= \alpha_1 (\phi \circ f)(\underline{v_1}) + \alpha_2 (\phi \circ f)(\underline{v_2}). &
+    \end{align*}
+    Mostriamo adesso che $f^\ast(\phi)$ sia lineare fra $V^\ast$ e $W^\ast$: per fare questo osserviamo che presi $\alpha_1, \alpha_2 \in \mathbb{K}$, $\phi_1, \phi_2 \in W^\ast$ si ha che
+    $$
+        f^\ast(\alpha_1 \phi_1 + \alpha_2 \phi_2) = (\alpha_1 \phi_1 + \alpha_2 \phi_2) \circ f = (\alpha_1 \phi_1) \circ f + (\alpha_2 \phi_2) \circ f = \alpha_1 (\phi_1 \circ f) + \alpha_2 (\phi_2 \circ f).
+    $$
+    Mostriamo infine la $\circled{4}$: per fare questo fissiamo in $V$ la base $\mathcal{B}=\{\underline{v_1}, \ldots, \underline{v_n} \}$ e in $W$ la base $\mathcal{C}=\{\underline{w_1}, \ldots, \underline{w_m} \}$. Si ha che le corrispondenti basi rispettivamente di $V^\ast$ e $W^\ast$ sono $\mathcal{B}^\ast$ e $\mathcal{C}^\ast$ e l'esercizio ci chiede di scrivere la matrice associata di $f^\ast$ con base in entrata $\mathcal{C}^\ast$ e $\mathcal{B}^\ast$: è necessario conoscere quindi le coordinate dei vettori mappati da $f^\ast$ della base $\mathcal{C}^\ast$ rispetto alla base $\mathcal{B}^\ast$: si ha che $f^\ast(\underline{w_j}) \in V^\ast$, quindi
+    $$
+        f^\ast(\underline{w_j}^\ast) = \alpha_1 \underline{v_1}^\ast + \ldots + \alpha_n \underline{v_n}^\ast, 
+    $$
+    dove gli $\alpha_i \, \forall i \in \{ 1, \ldots, n \}$ sono ciò che vogliamo trovare $\forall j \in \{ 1, \ldots, m\}$, ovvero per ogni vettore della base duale di $W$. Osserviamo che fissando un $i \in \{ 1, \ldots, n\}$ possiamo trovare $\alpha_i$ applicando a $f^\ast(\underline{w_j}^\ast)$ il vettore $\underline{v_i}$, visto che
+    $$
+        f^\ast(\underline{w_j}^\ast)(\underline{v_i}) = (\alpha_1 \underline{v_1}^\ast + \ldots + \alpha_n \underline{v_n}^\ast)(\underline{v_i}) = \alpha_1 \underline{v_1}^\ast(\underline{v_i}) + \ldots + \alpha_n \underline{v_n}^\ast(\underline{v_i}) = \alpha_i.
+    $$
+    Se la matrice associata di $f$ con $\mathcal{B}$ base in entrata e $\mathcal{C}$ base in uscita è della forma
+    $$
+        (\mathcal{M}^\mathcal{B}_\mathcal{C}(f))_{ij} = (\alpha_{ij}) \iff \mathcal{M}^\mathcal{B}_\mathcal{C}(f) = \begin{pmatrix}
+            \alpha_{11} & \alpha_{12} & \ldots & \alpha_{1n} \\
+            \alpha_{21} & \ddots & \ldots & \alpha_{2n} \\
+            \vdots & \vdots & \vdots & \vdots \\
+            \alpha_{m1} & \ldots & \ldots & \alpha_{mn}
+        \end{pmatrix}
+    $$
+    Si ha che $f(\underline{v_i}) = \sum\limits_{j=1}^m (\mathcal{M}^\mathcal{B}_\mathcal{C}(f))_{ji} \underline{v_j} = \alpha_{1i} \underline{w_1} + \ldots + \alpha_{mi} \underline{w_n}$ (infatti sulla colonna $j-$esima sono riportate le coordinate del vettore $f(\underline{v_j})$ rispetto alla base in uscita: notare che è per questo che scorriamo sulle righe!) e notiamo che
+    \begin{align*}
+        f^\ast(\underline{w_j}^\ast)(\underline{v_i}) &= \underline{w_j}^\ast(f(\underline{v_i})) = \underline{w_j}^\ast(\alpha_{1i} \underline{w_1} + \ldots + \alpha_{mi} \underline{w_m}) \stackrel{\text{per linearità}}{=} & \\
+        &\stackrel{\text{per linearità}}{=} \alpha_{1i} \underline{w_j}^\ast(\underline{w_1}) + \ldots + \alpha_{ji} \underline{w_j}^\ast(\underline{w_j}) + \ldots + \alpha_{mi} \underline{w_j}^\ast(\underline{w_m}) = \alpha_{ji}, &
+    \end{align*}
+    abbiamo quindi che in posizione $(i, j)$ della matrice associata di $f^\ast$ rispetto alla base $\mathcal{B}^\ast$ in entrata e $\mathcal{C}^\ast$ in uscita ha $\alpha_{ji}$, ovvero
+    $$
+        (\mathcal{M}^\mathcal{C^\ast}_\mathcal{B^\ast}(f^\ast))_{ij} = (\alpha_{ji}) \iff \mathcal{M}^\mathcal{C^\ast}_\mathcal{B^\ast}(f^\ast) = \begin{pmatrix}
+            \alpha_{11} & \alpha_{21} & \ldots & \ldots & \alpha_{m1} \\
+            \alpha_{12} & \alpha_{22} & \ldots & \ldots & \alpha_{m2} \\
+            \alpha_{13} & \alpha_{23} & \ddots & \ldots & \vdots \\
+            \vdots & \vdots & \vdots & \ddots & \vdots \\
+            \alpha_{1n} & \alpha_{2m} & \ldots & \ldots & \alpha_{mn}
+        \end{pmatrix} = (\mathcal{M}^\mathcal{B}_\mathcal{C}(f))^T
+    $$
+\end{proof}
 Il teorema più importante per quanto riguarda gli spazi duali è il seguente
 \begin{theorem}[di rappresentazione di Riesz]
-    Sia $V$ uno spazio vettoriale sul campo $\mathbb{K}$ e $\varphi$ un prodotto (scalare o hermitiano) non degenere su $V$, allora $\forall f\in V^* \exists ! \underline{w} \in V$ tale che $F(\underline{v}) = \varphi(\underline{w}, \underline{v}) \, \forall \underline{v} \in V$.
+    Sia $V$ uno spazio vettoriale sul campo $\mathbb{K}$ e $\varphi$ un prodotto (scalare o hermitiano) non degenere su $V$, allora $\forall F \in V^*, \exists ! \underline{w} \in V$ tale che $F(\underline{v}) = \varphi(\underline{w}, \underline{v}) \, \forall \underline{v} \in V$.
 \end{theorem}
 \begin{proof}
-    Mostriamo, per prima cosa, che l'insieme di tutti i funzonali $F_w$ ($F_w: V \to \mathbb{K}, F_w := \varphi(\underline{w}, \underline{v})$) al variare di $\underline{w} \in V$ è un sottospazio di $V^*$, siccome
+    Mostriamo, per prima cosa, che l'insieme di tutti i funzionali $F_{\underline{w}}$ (ossia le applicazioni $F_{\underline{w}}: V \to \mathbb{K}$ definite da $F_{\underline{w}}(\underline{v}) \coloneqq \varphi(\underline{w}, \underline{v})$) al variare di $\underline{w} \in V$ è un sottospazio di $V^\ast$, poiché
     \begin{align*}
-        &F_{\underline{w_1}} + F_{}
+        &F_{\underline{w_1}}(\underline{v}) + F_{\underline{w_2}}(\underline{v})
+        = \varphi(\underline{w_1},\underline{v}) + \varphi(\underline{w_2},\underline{v})
+        = \varphi(\underline{w_1} + \underline{w_2},\underline{v})
+        = F_{\underline{w_1} + \underline{w_2}}(\underline{v}), \\
+        &F_{\alpha \underline{w_1}}(\underline{v})
+        = \varphi(\alpha \underline{w_1},\underline{v})
+        = \alpha \varphi(\underline{w_1},\underline{v})
+        = \alpha F_{\underline{w_1}}(\underline{v}).
     \end{align*}
+    dove si è usata la linearità del prodotto scalare. Mostriamo adesso che questo sottospazio coincide con $V^\ast$: per fare questo, fissiamo una base $\mathcal{B} = \{ \underline{w_1}, \ldots, \underline{w_n} \}$ e facciamo vedere che i funzionali $\{ F_{\underline{w_i}}\}_{i \in \{1,\ldots,n\}}$ formano una base per $V^\ast$: partiamo considerando l'equazione
+    $$
+        \alpha_1 F_{\underline{w_1}} + \ldots + \alpha_n F_{\underline{w_n}} = \underline{0},
+    $$
+    dove $\underline{0}$ è l'applicazione nulla. Usando la linearità del prodotto scalare vediamo che
+    $$
+        \alpha_1 F_{\underline{w_1}} + \ldots + \alpha_n F_{\underline{w_n}} = F_{\alpha_1 \underline{w_1} + \ldots + \alpha_n \underline{w_n}} = \underline{0},
+    $$
+    ma il funzionale $F_{\alpha_1 \underline{w_1} + \ldots + \alpha_n \underline{w_n}} = \varphi(\alpha_1 \underline{w_1} + \ldots + \alpha_n \underline{w_n}, \cdot) = \underline{0} \, \forall \underline{v} \in V$ se e solo se $\alpha_1 \underline{w_1} + \ldots + \alpha_n \underline{w_n} = \underline{0}$, dove adesso $\underline{0}$ è il vettore nullo di $V$. Siccome i vettori $\{\underline{w_i}\}_{i \in \{ 1,\ldots, n\}}$ formano
+    una base di $V$, abbiamo che l'unica soluzione a questa equazione è data da $\alpha_i = 0 \, \forall i \in \{ 1, \ldots, n \}$. \\
+    Preso $F \in V^\ast,$ abbiamo quindi che $\exists \alpha_1, \ldots, \alpha_n \in \mathbb{K}$ tale che
+    $$
+        F = \alpha_1 F_{\underline{w_1}} + \ldots + \alpha_n F_{\underline{w_n}} = F_{\alpha_1 \underline{w_1} + \ldots + \alpha_n \underline{w_n}}.
+    $$
+    Mostriamo che $\underline{w}' = \alpha_1 \underline{w_1} + \ldots + \alpha_n \underline{w_n}$ è unico: se per assurdo esistesse $\underline{w}'' \neq \underline{w}'$ tale che
+    $$
+        f(\underline{v}) = F_{\underline{w}'}(\underline{v}) = F_{\underline{w}''}(\underline{v}) \, \forall \underline{v} \in V,
+    $$
+    ma allora
+    \begin{align*}
+        F_{\underline{w}'}(\underline{v}) = F_{\underline{w}''}(\underline{v}) &\iff \varphi(\underline{w}', \underline{v}) = \varphi(\underline{w}'', \underline{v}) \iff \varphi(\underline{w}', \underline{v}) - \varphi(\underline{w}'', \underline{v}) = 0 \iff \\
+        &\iff \varphi(\underline{w}' - \underline{w}'', \underline{v}) = 0 \iff \underline{w}' - \underline{w}'' = \underline{0},
+    \end{align*}
+    ovvero la tesi.
 \end{proof}
+
+\section{Determinante}
+
+Vogliamo adesso costruire un funzionale che ci consenta di caratterizzare le matrici tramite il loro rango.

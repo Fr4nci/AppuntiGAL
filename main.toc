@@ -19,9 +19,11 @@
 \contentsline {section}{\numberline {3.3}Prodotti hermitiani: un film che sembra già visto...}{70}{section.3.3}%
 \contentsline {subsection}{\numberline {3.3.1}Matrice associata ad un prodotto hermitiano}{70}{subsection.3.3.1}%
 \contentsline {subsection}{\numberline {3.3.2}Esistenza di una base ortogonale e teorema di Sylvester}{71}{subsection.3.3.2}%
-\contentsline {chapter}{\numberline {4}Spazi duali}{73}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Soluzioni agli esercizi}{75}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Spazi vettoriali}{75}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Prodotti scalari}{80}{section.5.2}%
-\contentsline {chapter}{\numberline {A}Logica}{83}{chapter.1}%
-\contentsline {chapter}{\numberline {B}Basi a dimensione infinita}{85}{chapter.2}%
+\contentsline {chapter}{\numberline {4}Funzionali lineari}{73}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Spazi duali}{73}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Determinante}{76}{section.4.2}%
+\contentsline {chapter}{\numberline {5}Soluzioni agli esercizi}{77}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Spazi vettoriali}{77}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Prodotti scalari}{82}{section.5.2}%
+\contentsline {chapter}{\numberline {A}Logica}{85}{chapter.1}%
+\contentsline {chapter}{\numberline {B}Basi a dimensione infinita}{87}{chapter.2}%
