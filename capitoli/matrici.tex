@@ -1357,51 +1357,32 @@ Utilizzando la proposizione \ref{prop:comp_mult} segue immediatamente il seguent
     \mathcal{M}^{\mathcal{B}}_{\mathcal{B}''}(f) = \mathcal{M}^{\mathcal{C}'}_{\mathcal{B}''}(\text{Id}_W) \mathcal{M}^{\mathcal{C}}_{\mathcal{C}'}(f) \mathcal{M}^{\mathcal{B}}_\mathcal{C}(\text{Id}_V)
   $$
 \end{proof}
-\newpage
-\section*{Esercizi proposti}
 
-\begin{enumerate}
-  \item Sia $\mathcal{L}(V)$ lo spazio degli endomorfismi di $V$, si consideri $\mathcal{F} = \{ f \in \mathcal{L}(V) : \text{Ker}(f) \subseteq \text{Im}(f) \}$ e sia $\mathcal{A} = \{ f \in \mathcal{L}(V) : V = \text{Ker}(f) \, \oplus \, \text{Im}(f) \}$.
-  \begin{enumerate}
-    \item Trovare un $A$ appartenente a $\mathcal{F}$ e $B$ non appartenente. Mostrare che $\mathcal{F}$ è un sottospazio oppure dimostrare che non lo è.
-    \item Trovare un $A$ appartenete a $\mathcal{A}$ e $B$ non appartenente.
+\section{SD-equivalenza e similitudine}
+
+Nei precedenti teoremi abbiamo visto come le applicazioni lineari scritte in base in entrata e in uscita possono essere facilmente (almeno dal punto di vista teorico) riscritte in termini di base in entrata e in uscita diverse da quelle iniziali.
+Questo ci suggerisce di poter introdurre delle relazioni di equivalenza all'interno dello spazio delle matrici quadrate e non che, come suggerisce il nome, ci consente di far equivalere matrici distinte che, essenzialmente, è come se fossero scritte in basi distinte.
+
+\begin{definition}[SD-equivalenza]
+  Siano $A, B \in \text{M}_{mn}(\mathbb{K})$, diremo che $A$ è SD-equivalente a $B$ se esiste $P \in \text{GL}_n(\mathbb{K})$ e $Q \in \text{GL}_n(\mathbb{K})$ tali che
+  $$
+    B = P A Q
+  $$
+\end{definition}
+\begin{remark}
+  Chiaramente non è restrittivo supporre che $m=n$, ovvero stiamo lavorando con delle matrici quadrate.
+\end{remark}
+E' facile vedere che
+\begin{prop}
+  \label{prop:sd_equiv_prop}
+  $A, B \in \mathcal{M}_{mn}(\mathbb{K})$ sono SD-equivalenti se e solo se hanno il medesimo rango.
+\end{prop}
+\begin{exercise}
+Mostrare che:
+  \begin{enumerate}[label=\protect\circled{\arabic*}]
+    \item la SD-equivalenza è una relazione d'equivalenza;
+    \item la proposizione \ref{prop:sd_equiv_prop}.
   \end{enumerate}
-  \begin{proof}[Svolgimento]
-    Ricordiamo che $\text{Ker}(f) = \{ \underline{v} \in V : f(\underline{v}) = \underline{0} \}$ e $\text{Im}(f) = \{ \underline{w} \in W \big| \exists \underline{v} \in V : f(\underline{v}) = \underline{w} \}$, quindi si ha
-    che una possibile funzione è isomorfa a questa matrice qua
-    \begin{equation*}
-      A = \begin{pmatrix}
-          0 & 1 \\
-          0 & 0
-      \end{pmatrix}
-    \end{equation*}
-    Vediamo che il kernel di questa matrice qua è rappresentata da vettori che appartengono a $\text{Span}(\underline{e_1})$, quindi preso un vettore $\underline{v} = \alpha \underline{e_1} + \beta \underline{e_2}$, quindi si ha che
-    $f(\underline{v}) = f(\alpha \underline{e_1} + \beta \underline{e_2}) = \alpha f(\underline{e_1}) + \beta f(\underline{e_2}) = \beta f(\underline{e_2}) = \beta \underline{e_1}$, dunque abbiamo che $\text{Ker}(f)  \subseteq \text{Im}(f)$.
-    La matrice $B$ che non appartiene invece a $\mathcal{F}$ è invece la matrice nulla, per esempio, siccome si ha che $\text{Ker}(f) = V$ e, chiaramente, $\text{Im}(f) = \{ \underline{0} \}$, dunque non abbiamo che $V = \text{Ker}(f) \not\subseteq \text{Im}(f)$. Segue necessariamente che $\mathcal{F}$ non è un sottospazio. \\
-    Un esempio di matrice $A$ che appartiene a $\mathcal{A}$ è invece pari a
-    $$
-      A = \begin{pmatrix}
-        1 & 0 \\
-        1 & 0
-      \end{pmatrix}
-    $$
-    siccome abbiamo che $\underline{e_2}$ in $\text{Ker}(A)$ e preso un vettore $\underline{v} \in \text{Im}(f)$ abbiamo che esso sarà della forma $\underline{v} = \alpha \underline{e_1} + \beta \underline{e_2}$.
-    Per quanto riguarda $B$ abbiamo che la matrice
-    $$
-      B = \begin{pmatrix}
-        1 & -1 \\
-        1 & -1
-      \end{pmatrix}
-    $$
-    non appartiene a $\mathcal{A}$ siccome si ha che $\text{ker}(B) = \text{Span}(\begin{pmatrix} 1 \\ 1 \end{pmatrix})$ mentre, presa la base $\mathcal{B} = \{ \begin{pmatrix} 1 \\ -1 \end{pmatrix}, \begin{pmatrix} 1 \\ 1 \end{pmatrix} \}$ abbiamo che
-    $$
-      B(\underline{v}) = B(\alpha \begin{pmatrix} 1 \\ -1 \end{pmatrix} + \beta \begin{pmatrix} 1 \\ 1 \end{pmatrix}) = \alpha B\begin{pmatrix} 1 \\ -1 \end{pmatrix} + \underline{0} = \alpha \begin{pmatrix} 1 \\ 1 \end{pmatrix} \in \text{Ker}(B). 
-    $$
-    Si ha quindi che $\text{Im}(f) = \text{Ker}(B)$, dunque abbiamo che non possono essere in somma diretta, dunque $B \not\in \mathcal{A}$. Questo insieme non è un sottospazio: infatti, se prendiamo due applicazioni "invertite" (ovvero prese $A, B$ se $B$ mi manda tutti i vettori nel kernel di $A$ in loro stessi allora $A+B$ mi rompe la somma diretta), siccome
-    $$
-      A + \begin{pmatrix} 0 & -1 \\ 0 & -1 \end{pmatrix} = B,
-    $$
-    quindi questo insieme non è chiuso rispetto alla somma.
-  \end{proof}
-  \item Trovare la matrice inversa
-\end{enumerate}
+\end{exercise}
+La SD-equivalenza, di fatto, rende "equivalenti" due matrici che sono scritte in base in entrata e in uscita differenti ma, dal punto di vista concettuale, è come se rappresentassero la medesima applicazione lineare. Un caso particolare della SD-equivalenza, che si può solamente avere
+per matrici quadrate, è la similitudine.

@@ -13,6 +13,7 @@
 \contentsline {section}{\numberline {2.3}Matrici simmetriche e antisimmetriche}{41}{section.2.3}%
 \contentsline {section}{\numberline {2.4}Applicazioni lineari}{45}{section.2.4}%
 \contentsline {section}{\numberline {2.5}Isomorfismo delle coordinate}{48}{section.2.5}%
+\contentsline {section}{\numberline {2.6}SD-equivalenza e similitudine}{52}{section.2.6}%
 \contentsline {chapter}{\numberline {3}Prodotti scalari}{55}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Dimensioni del radicale}{60}{section.3.1}%
 \contentsline {section}{\numberline {3.2}Esistenza di una base ortogonale, ortornomale e segnatura}{63}{section.3.2}%
@@ -22,8 +23,9 @@
 \contentsline {chapter}{\numberline {4}Funzionali lineari}{73}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Spazi duali}{73}{section.4.1}%
 \contentsline {section}{\numberline {4.2}Determinante}{76}{section.4.2}%
-\contentsline {chapter}{\numberline {5}Soluzioni agli esercizi}{77}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Spazi vettoriali}{77}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Prodotti scalari}{82}{section.5.2}%
-\contentsline {chapter}{\numberline {A}Logica}{85}{chapter.1}%
-\contentsline {chapter}{\numberline {B}Basi a dimensione infinita}{87}{chapter.2}%
+\contentsline {subsection}{\numberline {4.2.1}Costruzione del determinante}{77}{subsection.4.2.1}%
+\contentsline {chapter}{\numberline {5}Soluzioni agli esercizi}{81}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Spazi vettoriali}{81}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Prodotti scalari}{86}{section.5.2}%
+\contentsline {chapter}{\numberline {A}Logica}{89}{chapter.1}%
+\contentsline {chapter}{\numberline {B}Basi a dimensione infinita}{91}{chapter.2}%
