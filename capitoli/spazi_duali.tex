@@ -211,6 +211,18 @@ Imponiamo che la $\varphi$ che noi stiamo cercando abbia queste proprietà:
 \begin{theorem}[dell'esistenza e dell'unicità del determinante]
     Esiste una sola $\varphi$ che soddisfa le proprietà \circled{1}, \circled{2},\circled{3}. Tale $\varphi$ sarà detta determinante.
 \end{theorem}
+\begin{lemma}
+    Se
+    $$
+    A = [\lambda_1 A_1, \ldots, \lambda_n A_n]
+    $$ allora
+    $$
+        \det{A} = \lambda_1 \ldots \lambda_n \det{[A_1, \ldots, A_n]}.
+    $$
+\end{lemma}
+\begin{exercise}
+    Mostrare il lemma sopra. (\emph{Suggerimento}: usare la multilinearità.)
+\end{exercise}
 \begin{proof}
     La dimostrazione di queste teorema verte nel dimostrare che, dalle proprietà \circled{1}, \circled{2}, \circled{3}, valgono una serie di proprietà del funzionale $\varphi$ che assicurano l'esistenza e l'unicità. \\
     Innanzitutto vediamo che:
@@ -252,5 +264,97 @@ Imponiamo che la $\varphi$ che noi stiamo cercando abbia queste proprietà:
               0 & \ldots & 0 & p_n
             \end{pmatrix}$$
         \end{itemize}
+        E' chiaro, in virtù del lemma, che
+        $$
+            \det{A} = \pm \det{S} = \pm p_1 \ldots p_n \det{\underline{e_1}, \ldots, \underline{e_n}} \stackrel{\text{\circled{3}}}{=} p_1 \ldots p_n.
+        $$
+        Segue quindi che
+        \begin{itemize}
+            \item se la matrice $A$ è singolare, allora sappiamo che $\det{A} = 0$;
+            \item se la matrice $A$ non è singolare, il determinante è ben definito e ne segue anche l'unicità (se esistessere due funzionali distinti con le proprietà \circled{1}, \circled{2} e \circled{3} allora, per entrambe devono valere le proprietà che abbiamo mostrato sopra, siccome valgono direttamente dal fatto che soddisfano le proprietà \circled{1}, \circled{2} e \circled{3}, dunque per matrici singolari si annullano, mentre se la matrice non è singolare allora si deve avere che i due funzionali devono assumere, a meno del segno, il valore del prodotto degli elementi sulla diagonale della matrice ridotta a scala $\implies$ coincidono).
+        \end{itemize}        
     \end{enumerate}
+\end{proof}
+\subsection{Gruppo simmetrico}
+
+Per trattare meglio il determinante è necessario introdurre il gruppo simmetrico
+\begin{definition}[gruppo simmetrico $\sigma_n$]
+    Definiamo il gruppo simmetrico $\sigma_n$ come il gruppo delle permutazioni $\sigma$ che agiscono sull'insieme $S = \{1, \ldots, n}$, dove $\sigma: S \to S$ è una funzione bigettiva
+\end{definition}
+
+Il gruppo simmetrico, come il nome già implicitamente dice, è un gruppo, di cui diamo una definizione rigorosa.
+\begin{definition}[gruppo]
+    Sia $G$ un insieme e sia $\cdot: G \times G \to G$ un'operazione che soddisfa le seguenti proprietà:
+    \begin{enumerate}[label=\protect\circled{\arabic*}]
+        \item è \textbf{associativa}, ovvero $\forall a, b, c \in G, a\cdot(b \cdot) c = (a \cdot b) \cdot c;$
+        \item esiste un elemento neutro destri rispetto all'operazione $\cdot$, ovvero $\exists e_R \in G : \forall a \in G, a \cdot e = e \cdot a = a;$
+        \item per ogni elemento di $G$ esiste un elemento inverso, ovvero $\forall a \in G, \exists a^{-1} \in G : a^{-1} \cdot a = a \cdot a^{-1} = e$.
+    \end{enumerate}
+    Formalmente, diremo che la coppia $(G, \cdot)$ è un gruppo.
+\end{definition}
+\begin{remark}
+    Il motivo per cui, formalmente, si definisce un gruppo come una coppia deriva dal fatto che, formalmente, come accadeva per gli spazi vettoriali si ha un certo grado di indeterminazione sull'operazione di gruppo (e, infatti, gli spazi vettoriali si identificavano come una tetrade in cui si specificava l'insieme, il campo su cui è definito lo spazio vettoriale e le due operazioni di composizione interna ed esterna).
+\end{remark}
+La struttura di gruppo è un qualcosa di molto generale e, infatti, senza averlo detto esplicitamente, abbiamo incontrato già altri esempi di gruppi, come l'insieme delle matrici invertibili $\text{GL}(n)$, che rappresenta un gruppo rispetto al prodotto matriciale. Infatti, prese due matrici $A, B$ invertibili si ha che $AB$ è una matrice invertibili, con $B^{-1} A^{-1}$ la sua matrice inversa. A priori, l'operazione definita sul gruppo non è commutativa: nel caso in cui lo sia, diremo che il gruppo $G$ è un gruppo \textbf{abeliano}. 
+
+Non dobbiamo disperarci: alla fine fino ad ora abbiamo lavorato con le matrici, dove l'operazione non è commutativa. Nonostante questo, possiamo rincuorarci un attimo mostrando che:
+\begin{enumerate}[label=\preotecct\circled{\arabic*}]
+    \item l'elemento neutro a destra è anche un elemento neutro a sinistra;
+    \item l'elemento neutro è unico;
+    \item l'elemento inverso è sia un inverso "destro" che "sinistro" (gli assiomi assicurano solo che sia un'inversa destra), ovvero
+    $$
+        \forall a \in G, a^{-1} a = a.
+    $$
+    \item l'elemento inverso è unico;
+\end{enumerate}
+\begin{exercise}[Esercizio facoltativo]
+    Mostrare questi fatti qua sopra.
+\end{exercise}
+\begin{proof}[Svolgimento]
+    Mostriamo la $\circled{1}$: se per assurdo avessimo che esistono due elementi neutri $e, e'$ distinti allora si dovrebbe avere che
+    $$
+    e = e \cdot e' = e',
+    $$
+    dove abbiamo usato nel primo passaggio che $e'$ è un elemento neutro, mentre nel secondo passaggio si usa il fatto che anche $e$ sia un elemento neutro. Segue che $e = e'$. \\   
+    Mostriamo la $\circled{2}$: preso $a \in G$ allora si ha che se per assurdo si avesse che esistono due elementi inversi distinti $a^{-1}$ e $a^{-1}'$ allora
+    $$
+        a^{-1}' = a^{-1}' \cdot (a \cdot a^{-1}) = (a^{-1}' \cdot a) \cdot a^{-1} = e \cdot a^{-1} = a^{-1}.
+    $$
+\end{proof}
+\begin{remark}
+    Si potrebbero rilassare le ipotesi di gruppo, imponendo che esista un'identità destra, ovvero
+    $$
+        \forall a \in G, \exists e_R \in G: a \cdot e_R = a,
+    $$
+    e un'identità sinistra, ovvero
+    $$
+        \forall a \in G, \exists e_L \in G: e_L \cdot a = a;
+    $$
+    e, allo stesso modo, si potrebbe anche farlo per le inverse, parlando di inversa destra
+    $$
+        \forall a \in G, \exists (a^{-1})_R \in G : a \cdot (a^{-1})_R = e_R,
+    $$
+    e l'inversa sinistra come
+    $$
+        \forall a \in G, \exists (a^{-1})_L \in G : (a^{-1})_L \cdot a = e_L.
+    $$
+    E' facile far vedere che tale insieme soddisfa comunque le ipotesi di gruppo prima data, ovvero identità destra e sinistra coincidono e inversa destra e sinistra coincidono.
+\end{remark}
+\begin{exercise}[facoltativo]
+    Mostrare che le definizioni rilassate di gruppo coincidono con quelle di gruppo, ovvero mostrare che
+    \begin{enumerate}[label=\protect\circled{\arabic*}]
+        \item l'identità destra coincide con l'identità sinistra
+        \item l'elemento inverso destro è anche un elemento inverso sinistro.
+    \end{enumerate}
+\end{exercise}
+\begin{proof}[Svolgimento]
+    Mostriamo la $\circled{1}$ allora se $e_L$ e $e_R$ sono, rispettivamente, l'elemento neutro a sinistra o a destra, allora
+    $$
+    e_L = e_L \cdot e_R = e_R,
+    $$
+    dove si è usato il fatto che $e_R$ sia l'elemento neutro a destra e $e_L$ l'elemento neutro a sinistra. \\
+    Mostriamo la $\circled{2}$: si vede che se $a \in G$, allora gli assiomi assicurano l'esistenza di un'inversa destra $a^{-1}_R$. Si ha che
+    $$
+        a^{-1}_R \cdot a = (a^{-1} \cdot a) \cdot e = (a^{-1}_R \cdot a) \cdot (a^{-1}_R \cdot (a^{-1})_R^{-1}) = a^{-1}_R \cdot e \cdot (a^{-1})_R^{-1} = e,
+    $$
 \end{proof}
