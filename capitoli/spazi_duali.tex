@@ -262,7 +262,17 @@ Imponiamo che la $\varphi$ che noi stiamo cercando abbia queste proprietà:
               0 & \ddots & \ast &  \ast \\
               0 & \ldots & \ddots & \vdots \\
               0 & \ldots & 0 & p_n
-            \end{pmatrix}$$
+            \end{pmatrix},$$
+            e a questo punto si procede a rendere diagonale la matrice annullando tutte le entrate sopra $p_n$, poi $p_{n-1}$ e così via, dunque
+            $$
+            A \sim S \sim \begin{pmatrix}
+              p_1 & 0 & \ldots  & 0 \\
+              0 & \ddots & 0 &  0 \\
+              0 & \ldots & \ddots & \vdots \\
+              0 & \ldots & 0 & p_n
+            \end{pmatrix},
+            $$
+            e il procedimento usato non va a cambiare i pivot $p_1, \ldots, p_n$. Segue che $\varphi(A) = \pm \varphi(S') = \pm \prod\limits_{i=1}^n p_i$.
         \end{itemize}
         E' chiaro, in virtù del lemma, che
         $$
