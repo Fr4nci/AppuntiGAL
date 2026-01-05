@@ -272,24 +272,23 @@ Imponiamo che la $\varphi$ che noi stiamo cercando abbia queste proprietà:
               0 & \ldots & 0 & p_n
             \end{pmatrix},
             $$
-            e il procedimento usato non va a cambiare i pivot $p_1, \ldots, p_n$. Segue che $\varphi(A) = \pm \varphi(S') = \pm \prod\limits_{i=1}^n p_i$.
+            e il procedimento usato non va a cambiare i pivot $p_1, \ldots, p_n$. Segue che $\varphi(A) = \pm \varphi(S') = \pm \prod\limits_{i=1}^n p_i$ dove l'ultima uguaglianza segue dal lemma mostrato prima.
         \end{itemize}
-        E' chiaro, in virtù del lemma, che
-        $$
-            \det{A} = \pm \det{S} = \pm p_1 \ldots p_n \det{\underline{e_1}, \ldots, \underline{e_n}} \stackrel{\text{\circled{3}}}{=} p_1 \ldots p_n.
-        $$
-        Segue quindi che
+        Si ha quindi che
         \begin{itemize}
             \item se la matrice $A$ è singolare, allora sappiamo che $\det{A} = 0$;
-            \item se la matrice $A$ non è singolare, il determinante è ben definito e ne segue anche l'unicità (se esistessere due funzionali distinti con le proprietà \circled{1}, \circled{2} e \circled{3} allora, per entrambe devono valere le proprietà che abbiamo mostrato sopra, siccome valgono direttamente dal fatto che soddisfano le proprietà \circled{1}, \circled{2} e \circled{3}, dunque per matrici singolari si annullano, mentre se la matrice non è singolare allora si deve avere che i due funzionali devono assumere, a meno del segno, il valore del prodotto degli elementi sulla diagonale della matrice ridotta a scala $\implies$ coincidono).
+            \item se la matrice $A$ non è singolare, il determinante è ben definito e ne segue anche l'unicità (se esistessere due funzionali distinti con le proprietà \circled{1}, \circled{2} e \circled{3} allora, per entrambe devono valere le proprietà che abbiamo mostrato sopra, siccome seguono direttamente dal fatto che entrambe soddisfano le proprietà \circled{1}, \circled{2} e \circled{3}, dunque per matrici singolari si annullano, mentre se la matrice non è singolare allora si deve avere che i due funzionali devono assumere, a meno del segno, il valore del prodotto degli elementi sulla diagonale della matrice ridotta a scala $\implies$ coincidono).
         \end{itemize}        
     \end{enumerate}
 \end{proof}
 \subsection{Gruppo simmetrico}
 
 Per trattare meglio il determinante è necessario introdurre il gruppo simmetrico
-\begin{definition}[gruppo simmetrico $\sigma_n$]
-    Definiamo il gruppo simmetrico $\sigma_n$ come il gruppo delle permutazioni $\sigma$ che agiscono sull'insieme $S = \{1, \ldots, n}$, dove $\sigma: S \to S$ è una funzione bigettiva
+\begin{definition}[gruppo simmetrico $\Sigma_n$]
+    Definiamo il gruppo simmetrico $\Sigma_n$ come il gruppo delle permutazioni $\sigma$ che agiscono sull'insieme $S = \{1, \ldots, n \}$, dove $\sigma: S \to S$ è una funzione bigettiva. Formalmente, diremo che
+    $$
+        \Sigma_n = \{ \sigma: S \to S | \sigma \text{ bigettiva} \}.
+    $$
 \end{definition}
 
 Il gruppo simmetrico, come il nome già implicitamente dice, è un gruppo, di cui diamo una definizione rigorosa.
@@ -308,7 +307,7 @@ Il gruppo simmetrico, come il nome già implicitamente dice, è un gruppo, di cu
 La struttura di gruppo è un qualcosa di molto generale e, infatti, senza averlo detto esplicitamente, abbiamo incontrato già altri esempi di gruppi, come l'insieme delle matrici invertibili $\text{GL}(n)$, che rappresenta un gruppo rispetto al prodotto matriciale. Infatti, prese due matrici $A, B$ invertibili si ha che $AB$ è una matrice invertibili, con $B^{-1} A^{-1}$ la sua matrice inversa. A priori, l'operazione definita sul gruppo non è commutativa: nel caso in cui lo sia, diremo che il gruppo $G$ è un gruppo \textbf{abeliano}. 
 
 Non dobbiamo disperarci: alla fine fino ad ora abbiamo lavorato con le matrici, dove l'operazione non è commutativa. Nonostante questo, possiamo rincuorarci un attimo mostrando che:
-\begin{enumerate}[label=\preotecct\circled{\arabic*}]
+\begin{enumerate}[label=\protect\circled{\arabic*}]
     \item l'elemento neutro a destra è anche un elemento neutro a sinistra;
     \item l'elemento neutro è unico;
     \item l'elemento inverso è sia un inverso "destro" che "sinistro" (gli assiomi assicurano solo che sia un'inversa destra), ovvero
@@ -317,7 +316,7 @@ Non dobbiamo disperarci: alla fine fino ad ora abbiamo lavorato con le matrici, 
     $$
     \item l'elemento inverso è unico;
 \end{enumerate}
-\begin{exercise}[Esercizio facoltativo]
+\begin{exercise}[facoltativo]
     Mostrare questi fatti qua sopra.
 \end{exercise}
 \begin{proof}[Svolgimento]
@@ -326,9 +325,9 @@ Non dobbiamo disperarci: alla fine fino ad ora abbiamo lavorato con le matrici, 
     e = e \cdot e' = e',
     $$
     dove abbiamo usato nel primo passaggio che $e'$ è un elemento neutro, mentre nel secondo passaggio si usa il fatto che anche $e$ sia un elemento neutro. Segue che $e = e'$. \\   
-    Mostriamo la $\circled{2}$: preso $a \in G$ allora si ha che se per assurdo si avesse che esistono due elementi inversi distinti $a^{-1}$ e $a^{-1}'$ allora
+    Mostriamo la $\circled{2}$: preso $a \in G$ allora si ha che se per assurdo si avesse che esistono due elementi inversi distinti $a^{-1}$ e $(a^{-1})'$ allora
     $$
-        a^{-1}' = a^{-1}' \cdot (a \cdot a^{-1}) = (a^{-1}' \cdot a) \cdot a^{-1} = e \cdot a^{-1} = a^{-1}.
+        (a^{-1})' = (a^{-1})' \cdot (a \cdot a^{-1}) = ((a^{-1})' \cdot a) \cdot a^{-1} = e \cdot a^{-1} = a^{-1}.
     $$
 \end{proof}
 \begin{remark}
@@ -365,6 +364,113 @@ Non dobbiamo disperarci: alla fine fino ad ora abbiamo lavorato con le matrici, 
     dove si è usato il fatto che $e_R$ sia l'elemento neutro a destra e $e_L$ l'elemento neutro a sinistra. \\
     Mostriamo la $\circled{2}$: si vede che se $a \in G$, allora gli assiomi assicurano l'esistenza di un'inversa destra $a^{-1}_R$. Si ha che
     $$
-        a^{-1}_R \cdot a = (a^{-1} \cdot a) \cdot e = (a^{-1}_R \cdot a) \cdot (a^{-1}_R \cdot (a^{-1})_R^{-1}) = a^{-1}_R \cdot e \cdot (a^{-1})_R^{-1} = e,
+        a^{-1}_R \cdot a = (a^{-1}_R \cdot a) \cdot e = (a^{-1}_R \cdot a) \cdot (a^{-1}_R \cdot (a^{-1})_R^{-1}) = a^{-1}_R \cdot e \cdot (a^{-1})_R^{-1} = e.
     $$
+\end{proof}
+\begin{exercise}
+    Quante sono le permutazioni in $\sigma_n$?
+\end{exercise}
+\begin{proof}[Svolgimento]
+    E' un semplice esercizio di combinatoria: i modi che abbiamo per permutare $n$ numeri senza ripetizioni (perché le $\sigma$ sono bigettive) è $n!$. Altrimenti si può procedere per induzione...
+\end{proof}
+\begin{exercise}
+    Mostrare per induzione l'esercizio appena svolto.
+\end{exercise}
+\begin{definition}
+    Si chiama traspozione $(i, j)$ una permutazione che scambia \textbf{solo} due elementi.
+\end{definition}
+\begin{remark}
+    Si osservi che se $\sigma$ è una permutazione, allora $\sigma^{-1} = \sigma$. Segue che $\sigma^2 = \text{id}$.
+\end{remark}
+\begin{exercise}
+    Quanti sono le trasposizioni in $\sigma_n$?
+\end{exercise}
+\begin{proof}[Svolgimento]
+    Siccome $(i, j) = (j, i)$ (in virtù dell'osservazione fatta sopra sul fatto che $\sigma=\sigma^{-1}$), allora si ha che il numero delle trasposizioni è dato dal numero delle combinazioni formate da $2$ elementi prese da un gruppo di $n$ elementi, quindi il numero delle trasposizioni è pari a $\binom{n}{2} = \frac{n(n-1)}{2}.$
+\end{proof}
+Vogliamo adesso dimostrare la seguente proposizione
+\begin{prop}
+    \begin{enumerate}[label=\protect\circled{\arabic*}]
+        \item ogni permutazione è prodotto di trasposizioni;
+        \item se $\sigma = \tau_1 \circ \ldots \circ \tau_k = \lambda_1 \circ \ldots \circ \lambda_h$ con $\tau_i$ e $\lambda_j$ trasposizioni $\forall i \in \{1, \ldots, k \}, \forall j \in \{1,\ldots, h \}$, allora $k$ e $h$ sono entrambi pari o entrambi dispari. 
+    \end{enumerate}
+\end{prop}
+Per capire bene la dimostrazione, cercherò di spiegare un concetto più astratto che proviene direttamente da teoria dei gruppi: un gruppo, spesso, è un qualcosa di profondamente astratto. Si pensi ad esempio alle rotazioni (che formano un gruppo): noi possiamo dire che una rotazione $R$ è "rappresentata" da una matrice (come vedremo meglio più avanti) ben precisa, ma non sappiamo "scrivere" direttamente cosa sia $R$. Quello che
+si conosce di un gruppo sono le sue "rappresentazioni", ovvero come il gruppo si "comporta" quando lo facciamo agire su una determinata classe di oggetti; quindi, riprendendo l'esempio delle rotazioni, noi conosciamo le rappresentazioni del gruppo delle rotazioni perché sappiamo come agiscono sui vettori. Nella dimostrazione del secondo punto lavoreremo studiamo come il gruppo delle permutazioni agisce quando gli facciamo permutare dei polinomi che sono in funzioni delle variabili $x_1, \ldots, x_n$. 
+\begin{proof}
+    Mostriamo la \circled{1}: lo dimostro su $\Sigma_n$ per induzione su $n$. \\
+    Il caso $n=1$ è chiaramente banale, dunque mostriamo che $n \implies n+1$: prendiamo $\sigma \in \Sigma_n$ e supponiamo, per adesso, che $\sigma(n)=n$, da cui osserviamo che, alla fine, $\sigma$ muove solo $\{ 1, \ldots, n-1\}$, quindi posso "vederlo" come elemento di $\Sigma_{n-1}$, ma su quest'ultimo vale la proprietà induttiva, quindi
+    $$
+        \sigma = \sigma_{|\{ 1, \ldots, n-1 \} } \stackrel{\text{ip. ind.}}{=} \lambda_1 \circ \ldots \circ \lambda_h \text{ con } h \in \mathbb{N},
+    $$
+    Nel caso in cui $\sigma(n) \neq n$ allora possiamo considerare la trasposizione $\tau = (n, \sigma(n))$ e porre la permutazione
+    $$
+        \sigma' = \tau \circ \sigma,
+    $$
+    e vediamo che questa $\sigma'$ fissa $n$, quindi vale il ragionamento fatto prima; pertanto
+    $$
+        \tau \circ \sigma = \sigma' \underbrace{=}_{\text{per quanto mostrato sopra}} \lambda_1 \circ \ldots \circ \lambda_h \implies \tau \circ \tau \circ \sigma = \tau^2 \circ \sigma = \sigma = \tau \circ \lambda_1 \circ \ldots \circ \lambda_h,
+    $$
+    dove abbiamo usato il fatto che, essendo $\tau$ una trasposizione, allora $\tau^2 = \text{id}$.
+    Mostriamo la $\circled{2}$: si consideri il polinomio
+    $$
+        p(x_1, \ldots, x_n) = \prod_{1 \leq i < j \leq n} (x_j - x_i),
+    $$
+    e vediamo come il gruppo $\sigma_n$ "agisce" permutando le variabili $x_1, \ldots, x_n$.
+    $$
+        p(x_1, \ldots, x_n) \stackrel{\sigma}{\rightarrow} p(x_{\sigma(1)}, \ldots, x_{\sigma(n)}) = \pm p(x_1, \ldots, x_n).
+    $$
+    In generale, se consideriamo la trasposizione $\tau$, allora 
+\end{proof}
+\section{Spazi biduali}
+\begin{flushright}
+    \begin{minipage}{0.25\textwidth}
+        \itshape\small
+        \noindent Il nulla nulleggia \\
+        \noindent - Martin Heidegger
+    \end{minipage}
+\end{flushright}
+Preso uno spazio vettoriale $V$ definito sul campo $\mathbb{K}$, abbiamo visto come sia possibile andare a definire uno spazio vettoriale duale $V^*$: siccome siamo persone dotate di libero arbitrio, nulla ci vieta (purtroppo!) di andare a costruire uno spazio "duale" allo spazio duale. Questo prende il nome di \emph{spazio biduale} e sarà l'origine di tutti i mali. \\
+Innanzitutto, ragionando come abbiamo fatto per $V^*$, si conclude che lo spazio biduale ha dimensione pari a $n$, ma poi? Cosa possiamo dire? Cerchiamo di attaccare il problema con più calma, definendo per bene ciò con cui andiamo a lavorare.
+
+\begin{definition}[spazio biduale]
+    Sia $V$ uno spazio vettoriale definito sul campo $\mathbb{K}$, diremo che lo spazio biduale a $V$ è l'insieme
+    $$
+        (V^*)^* = \{ f: V^* \to \mathbb{K} : f \text{ lineare}\}.
+    $$
+\end{definition}
+Lo spazio biduale è, apparentemente, difficile da immaginare: come visualizziamo geometricamente una funzione $f$ che prende un funzionale in input e ne restituisce un numero? Non l'avrei definito "l'origine dei nostri mali" in maniera così leggere se le cose fossero semplici ecco... \\
+
+Vogliamo far vedere un fatto importantissimo, ovvero che $V$ e $(V^*)^*$ sono più o meno la stessa cosa: sappiamo che, avendo la stessa dimensione, sono chiaramente isomorfi; tuttavia vogliamo far vedere che fra questi due insiemi sussiste un legame di "similitudine" che è più "forte", per esempio, del legame che c'è fra $V$ e $\mathbb{K}^n$ tramite isomorfismo delle coordinate. Infatti, l'isomorfismo che si 
+può costruire fra questi due insiemi è un isomorfismo canonico, ovvero un isomorfismo che non dipende dalla scelta delle basi: come vedremo, nella dimostrazione non sarà mai necessario porsi, per costruire questo isomorfismo, in una determinata base oppure andare a lavorare con degli oggetti che sono perfettamente definiti una volta che abbiamo fissato una base\footnote{ciò non toglie che faremo uso delle basi nella dimostrazione, ma solo per dimostrare l'iniettività. La definizione che daremo dell'isomorfismo è completamente svincolata dalle basi}. 
+Anche se rimane difficile visualizzare comunque geometricamente come ci sia questo legame, le dimostrazioni non mentono, quindi fidatevi\footnote{anche io, a distanza di $3$ anni, faccio fatica a immaginarmelo. Non solo, ci ho dovuto dimostrare della roba sui tensori in cui ho sputato sangue, quindi ecco.}
+
+\begin{theorem}
+    $V$ e $(V^*)^*$ sono canonicamente isomorfi.
+\end{theorem}
+\begin{proof}
+    Sia $\Psi: V \to (V^*)^*$ un'applicazione tale che
+    $$
+        (\Psi(\underline{v}))(\phi) = \phi(\underline{v}),
+    $$
+    dove $\phi \in V^*$ (la $\Psi(\underline{v})$ restituisce un elemento di $(V^*)^*$, ovvero un'applicazione lineare che prende gli elementi $\phi \in V^*$ e li mappa nel numero $\phi(\underline{v})$, dove ricordiamo che $\phi$ è un funzionale e manda vettori in numeri). Mostriamo che la $\Psi$ sopra definita è un isomorfismo, dunque dobbiamo mostrare che
+    \begin{enumerate}[label=\protect\circled{\arabic*}]
+        \item è lineare;
+        \item è surgettiva (ovvero $\text{Im}(\Psi) = (V^*)^*$).
+    \end{enumerate} 
+    Mostriamo la $\circled{1}$: osserviamo che presa una $\phi \in V^*$ arbitraria allora
+    $$
+        \Psi(\underline{v} + \underline{w})(\phi) = \phi(\underline{v} + \underline{w}) = \phi(\underline{v}) + \phi(\underline{w}) = \Psi(\underline{v})(\phi) + \Psi(\underline{w})(\phi) = [\Psi(\underline{v}) + \Psi(\underline{w})](\phi),
+    $$
+    ma siccome vale per $\phi \in V^*$ arbitraria, allora dobbiamo necessariamente avere che $\Psi(\underline{v} + \underline{w}) = \Psi(\underline{v}) + \Psi(\underline{w}).$ Similmente si procede per far vedere che $\Psi(\alpha \underline{v}) = \alpha \Psi(\underline{v})$. \\
+    Mostriamo la $\circled{2}$: dal teorema delle dimensioni abbiamo che
+    $$
+        \text{dim}(V) = \text{dim}(\text{Im}(\Psi)) + \text{dim}(\text{Ker}(\Psi)).
+    $$
+    Se mostriamo che $\text{dim}(\text{Ker}(\Psi)) = 0$, allora si ha che $\text{dim}(\text{Im}(\Psi)) = \text{dim}(V) = \text{dim}((V^*)^*) \implies \text{Im}(\Psi) = (V^*)^*$. Per mostrare l'iniettività, osserviamo che fissando una base $\underline{B} = \{ \underline{v_1}, \ldots, \underline{v_n} \}$ di $V$ e consideriamo la base duale $\mathcal{B}^*$: possiamo scrivere che $\underline{v} = \alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n}$,
+    ma allora abbiamo che, se per assurdo, $\Psi(\underline{v}) = \underline{0}_{(V^*)^*}$ e $\underline{v} \neq \underline{0}_V$, dove $\underline{0}_{(V^*)^*}$ è la funzione che prende ogni funzionale che agisce sui vettori di $V$ e li manda in $0_\mathbb{K}$, allora si deve avere che
+    $$
+        0 = \Psi(\underline{v})(\underline{v_i}^*) = \underline{v_i}^*(\underline{v}) = \underline{v_i}^*(\alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n}) = \alpha_i \implies \alpha_i = 0 \, \forall i \in \{ 1, \ldots, n \},
+    $$
+    ma allora si ha che $\underline{v} = \underline{0}$, che rappresenta un assurdo. Abbiamo allora che $\underline{v} = \underline{0}$, quindi si ha la tesi dal teorema delle dimensioni.
 \end{proof}
