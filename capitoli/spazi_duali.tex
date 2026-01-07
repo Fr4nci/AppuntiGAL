@@ -389,7 +389,7 @@ Non dobbiamo disperarci: alla fine fino ad ora abbiamo lavorato con le matrici, 
     Siccome $(i, j) = (j, i)$ (in virtù dell'osservazione fatta sopra sul fatto che $\sigma=\sigma^{-1}$), allora si ha che il numero delle trasposizioni è dato dal numero delle combinazioni formate da $2$ elementi prese da un gruppo di $n$ elementi, quindi il numero delle trasposizioni è pari a $\binom{n}{2} = \frac{n(n-1)}{2}.$
 \end{proof}
 Vogliamo adesso dimostrare la seguente proposizione
-\begin{prop} \hspace{1cm} \\
+\begin{prop} \hspace{1cm}
     \begin{enumerate}[label=\protect\circled{\arabic*}]
         \item ogni permutazione è prodotto di trasposizioni;
         \item se $\sigma = \tau_1 \circ \ldots \circ \tau_k = \lambda_1 \circ \ldots \circ \lambda_h$ con $\tau_i$ e $\lambda_j$ trasposizioni $\forall i \in \{1, \ldots, k \}, \forall j \in \{1,\ldots, h \}$, allora $k$ e $h$ sono entrambi pari o entrambi dispari. 
@@ -445,6 +445,7 @@ si conosce di un gruppo sono le sue "rappresentazioni", ovvero come il gruppo si
     $$
     si deve avere necessariamente che $k$ e $h$ sono necessariamente entrambi numeri pari (se così non fosse avremmo un assurdo per quanto appena visto riguardo al comportamento di un polinomio all'applicazione di una trasposizione).
 \end{proof}
+
 Possiamo quindi parlare di \emph{permutazioni pari} e \emph{permutazioni dispari}
 \begin{definition}[permutazioni pari e permutazioni dispari]
     Sia $\sigma \in \Sigma_n$, allora diremo che $\sigma$ è una permutaione pari se è prodotto di un numero pari di trasposizioni. Equivalentemente diremo che $\sigma$ è dispari se è prodotto di un numero dispari di traspozioni.
@@ -508,7 +509,7 @@ Perché abbiamo introdotto il gruppo simmetrico? Una delle definizioni del deter
     $$
 \end{proof}
 Tramite questa forma del determinante è abbastanza semplice far vedere il seguente teorema
-\begin{theorem}
+\begin{theorem} \label{thm:det_trasp}
     Sia $A \in \mathcal{M}(\mathbb{K})$, allora
     $$
         \det{A} = \det{A^T}.
@@ -536,7 +537,7 @@ Un modo formale per mostrare che $\sum\limits_{j=1}^n (-1)^{i+j} a_{ij} \det{A_{
 Per fare la dimostrazione faremo uso del seguente lemma
 \begin{lemma}
     Sia $B \in \mathcal{M}_n(\mathbb{K})$ della forma
-    \begin{align*}
+    B=\begin{align*}
         \begin{pmatrix}
             1 & 0 & \ldots & 0 \\
             b_{21} & b_{22} & \ldots & b_{2n} \\
@@ -552,7 +553,7 @@ Per fare la dimostrazione faremo uso del seguente lemma
 \begin{exercise}
     Mostrare il lemma qua sopra (\emph{Suggerimento}: usare la formula del determinante che abbiamo mostrato e verificare quali permutazioni danno contributo...)
 \end{exercise}
-\begin{proof}[del teorema \ref{thm:laplace_rule}]
+\begin{proof}[Dimostrazione del teorema \ref{thm:laplace_rule}]
 Per la proprietà di multilinearità del determinante rispetto alle righe, possiamo scrivere la riga $i$-esima come somma di vettori della base canonica pesati dai coefficienti $a_{ij}$. Il determinante di $A$ diventa quindi la somma di $n$ determinanti:
 \[
 \det(A) = \sum_{j=1}^n a_{ij} \det \begin{pmatrix} 
@@ -577,11 +578,15 @@ Il segno risultante da queste operazioni è:
 \]
 Dopo gli scambi, la matrice ha la forma:
 \[
-(-1)^{i+j} a_{ij} \det \begin{pmatrix} 
-1 & 0 & \dots & 0 \\ 
-* & a_{11} & \dots & a_{1n} \\ 
-\vdots & \vdots & A_{ij} & \vdots \\
-* & a_{n1} & \dots & a_{nn} 
+\begin{pmatrix} 
+1 & 0 & \ldots & \ldots & \ldots & \ldots & 0 \\ 
+a_{1j} & a_{11} & \ldots & a_{1(j-1)} & a_{1(j+1)} & \ldots & a_{1n} \\
+a_{2j} & a_{21} & \ldots & a_{2(j-1)} & a_{2(j+1)} & \ldots & a_{2n} \\ 
+\vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\
+a_{(r-1)(j-1)} & a_{(r-1)1} & \ldots & a_{(r-1)(j-1)} & a_{(r-1)(j-1)} & \ldots & a_{n(j-1)} \\
+a_{(r+1)(j+1)} & a_{(r-1)1} & \ldots & a_{(r+1)(j-1)} & a_{(r+1)(j+1)} & \ldots & a_{n(j+1)} \\
+\vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\
+a_{nj} & a_{n1} & \ldots & a_{n(r-1)} & a_{n(r+1)} & \ldots & a_{nn}  \\
 \end{pmatrix}
 \]
 Per le proprietà del determinante, quando una matrice ha un unico elemento non nullo in una riga (o colonna) che è pari a $1$, il suo determinante coincide con quello della sottomatrice complementare. In questo caso, il determinante è proprio $\det(A_{ij})$.
@@ -590,6 +595,157 @@ Sommando i contributi per tutti i $j$ elementi della riga $i$, otteniamo la tesi
 \det(A) = \sum_{j=1}^n (-1)^{i+j} a_{ij} \det(A_{ij})
 \]
 \end{proof}
+Come diretto corollario dal teorema \ref{thm:det_trasp} unito al teorema appena mostrato sopra, possiamo espandere anche sulle colonne (che sarebbe equivalente a computare il determinante della trasposta, che sappiamo essere uguale al determinante della matrice non trasposta)
+\begin{cor}
+    Sia $A \in \mathcal{M}(\mathbb{K}),$ allora, fissato $j \in \{ 1, \ldots, n \}$, si ha che
+    $$
+        \det{A} = \sum_{i=1}^n (-1)^{i+j} a_{ij} \det{A_{ij}},
+    $$
+    dove $A_{ij}$ è la matrice ottenuta rimuovendo l'$i-$esima riga e la $j-$esima colonna.
+\end{cor}
+
+L'ultimo grande risultato che mostreremo sul determinante è il seguente
+\begin{theorem}[di Binet] \label{thm:binet}
+    Siano $A, B \in \mathcal{M}_n(\mathbb{K})$ allora
+    $$
+    \det{AB} = \det{A} \det{B}.
+    $$
+\end{theorem}
+Prima di mostrare il teorema, definisco la nozione di matrice singolare (particolarmente usata in Analisi 2):
+\begin{definition}[matrice singolare]
+    Diremo che $A$ è singolare se non è invertibile. Altrimenti si dice che non è singolare.
+\end{definition}
+Per quanto abbiamo visto vale immediamente che
+\begin{prop} \hspace{1cm}
+    \begin{enumerate}[label=\protect\circled{\arabic*}]
+        \item $A \text{ è singolare} \iff \det{A} = 0 \iff \text{rg}(A) < n$;
+        \item $A \text{ è non singolare } \iff \det{A} \neq 0 \iff \text{rg}(A) = n$.
+    \end{enumerate}
+\end{prop}
+\begin{cor} \hspace{1cm}
+    \begin{enumerate}[label=\protect\circled{\arabic*}]
+        \item $A \text{ è invertibile} \iff \text{rg}(A) = n \iff \det{A} \neq 0$
+        \item $A \text{ è non invertibile } \iff \text{rg}(A) < n \iff \det{A} = 0.$
+    \end{enumerate}
+\end{cor}
+\begin{proof}
+    Abbiamo infatti visto, nella dimostrazione \ref{thm:ex_uniq_det}, che una matrice con rango minore di $n$ ha determinante pari a $0$, mentre una matrice con rango massimo ha determinante non nullo. Unendo ciò alla proposizione \ref{prop:matr_inv_rank}, abbiamo la tesi. 
+\end{proof}
+\begin{proof}[Dimostrazione del teorema \ref{thm:binet}]
+    Distinguiamo due casi:
+    \begin{itemize}
+        \item se $A$ o $B$ sono singolari (ovvero $\text{rg}(A) < n$ o $\text{rg}(B) < n$) allora si ha, usando il lemma \ref{lemma:rg_min}, si ha che
+        $$
+            \text{rg}(AB) \leq \min{\text{rg}(A), \text{rg}(B)} \leq n \implies \det{AB} = 0.
+        $$
+        \item se in particolare $\det{B} \neq 0$ allora possiamo definire il seguente funzionale
+        $$
+            \varphi(A) = \frac{\det(AB)}{\det{B}},
+        $$
+        e facciamo vedere che questo $\varphi$ soddisfa le proprietà $\circled{1}, \circled{2}$ e $\circled{3}$:
+        \begin{itemize}
+            \item \textbf{proprietà} $\circled{1}$: si osservi che $(AB)_i = A_i B$, quindi se $A_i = \lambda A_i' + \mu A_i'' \implies (AB)_i = (\lambda A_i' + \mu A_i'') B = \lambda A_i' B + \mu A_i'' B \implies \det{AB} = \lambda \det{A'B} + \mu \det{A''B}$ con
+            \begin{align*} 
+                A'=\begin{pmatrix}
+                A_1 \\ A_2 \\ \vdots \\ A_{i-1} \\ A_i' \\ A_{i+1} \\ \vdots \\ A_n
+            \end{pmatrix} \text{ e } A'' = \begin{pmatrix}
+                A_1 \\ A_2 \\ \vdots \\ A_{i-1} \\ A_i'' \\ A_{i+1} \\ \vdots \\ A_n
+            \end{pmatrix},
+            \end{align*}
+            dunque si ottiene che $\varphi(\lambda A' + \mu A'') = \lambda \varphi(A') + \mu \varphi(A'')$.
+            \item \textbf{proprietà} $\circled{2}$: si osservi che scambiando le righe di $A$ si scambiano le corrispondenti righe di $B$ (siccome, come già usato sopra, si ha che $(AB)_i = A_i B$), dunque $\det{(AB)}$ cambia di segno e ciò comporta un cambio di segno anche in $\varphi(A)$.
+            \item \textbf{proprietà} $\circled{3}$: se $A=I \implies \det{AB} = \det{IB} = \det{B} \implies \varphi(A=I) = 1$.
+        \end{itemize}
+        Per unicità del determinante, segue che $\varphi(A) = \det{A} \implies \det{A}\det{B} = \det{AB}.$
+    \end{itemize}
+\end{proof}
+\begin{cor}
+    Se $A \in \mathcal{M}_n(\mathbb{K})$ non singolare allora
+    $$
+        \det{A^{-1}} = \frac{1}{\det{A}}.
+    $$
+\end{cor}
+\begin{proof}
+    $$
+        \det{I} = \det{A^{-1} A} \stackrel{\text{Binet}}{=} \det{A^{-1}} \det{A} \implies \det{A^{-1}} = \frac{1}{\det{A}}.
+    $$
+\end{proof}
+\begin{cor}
+    $\forall A, B \in \mathcal{M}_n(\mathbb{K})$ allora
+    $$
+        \det{AB} = \det{BA}
+    $$
+\end{cor}
+\begin{cor}
+    Se $B \in \text{GL}_n(\mathbb{K})$ e $A \in \mathcal{M}_n(\mathbb{K})$ allora
+    $$
+        \det{B^{-1} A B} = \det{A}.
+    $$
+\end{cor}
+Un fatto molto importante che si può dimostrare agevolmente col teorema di Binet è il seguente:
+\begin{exercise} \label{ex:4.10}
+    Sia $A \in \mathcal{M}_n(\mathbb{K})$ una matrice a blocchi della forma
+    $$
+        A = \begin{pmatrix}
+            [A_1] & [D] \\
+            0 & [A_2]
+        \end{pmatrix},
+    $$
+    allora
+    $$
+        \det{A} = \det{A_1} \det{A_2}.
+    $$
+\end{exercise}
+\begin{proof}[Svolgimento]
+    Possiamo vedere $A$ come
+    $$
+        A = \begin{pmatrix}
+            [A_1] & 0 \\
+            0 & [1]
+        \end{pmatrix} \begin{pmatrix}
+            [1] & [(A_1)^{-1}][D] \\
+            0 & [1]
+        \end{pmatrix} \begin{pmatrix}
+            [1] & 0 \\
+            0 & [A_2]
+        \end{pmatrix} 
+    $$
+    ed è facile vedere, usando la definizione di determinante usando le permutazioni, che il determinante della prima e della terza matrice si riduce al determinante del blocco che hanno. Infatti, si ha considerando per l'esempio la prima matrice e supponendo che $[A_1]$ sia un blocco $k \times k$ con $k \leq n$, che
+    $$
+        \det{\begin{pmatrix}
+            [A_1] & 0 \\
+            0 & [1]
+        \end{pmatrix}} = \sum_{\sigma \in \Sigma_n} \text{sgn}(\sigma) a_{1\sigma(1)} \ldots a_{k\sigma(k)} i_{(k+1)\sigma(k+1)} \ldots i_{n \sigma(n)},
+    $$
+    e si vede che se $\sigma(l) \neq l$ per $l > k$ allora il contributo dato dalla permutazione $\sigma$ è uguale a zero. Dunque $\sigma(l) = l$ per $l > k$ e se $l \leq k$ allora $\sigma(l) = l' \in \{ 1, \ldots, k \}$ (se andasse fuori da questo insieme non sarebbe bigettiva, quindi non sarebbe una permutazione). Ma allora
+    si vede che
+    $$
+        \sum_{\sigma \in \Sigma_n} \text{sgn}(\sigma) a_{1\sigma(1)} \ldots a_{k\sigma(k)} i_{(k+1)\sigma(k+1)} \ldots i_{n \sigma(n)} = \sum_{\sigma' \in \Sigma_k} \text{sgn}(\sigma') a_{1 \sigma'(1)} \ldots a_{k \sigma'(k)}.
+    $$
+    Similmente si procede per la terza matrice, mentre in maniera analoga a quanto fatto adesso si vede che la seconda matrice invece ha un contributo non nullo sul determinante solo se si considera $\sigma = \text{id}$, ma allora il determinante è uguale ad $1$.
+\end{proof}
+\begin{remark}
+    Il fatto che $\text{sgn}(\sigma) = \text{sgn}(\sigma')$ nella dimostrazione appena fatta deriva dal fatto che, siccome la permutazione $\sigma$ lascia invariati gli elementi dopo $k$, essa può essere scritta come solo trasposizioni che stanno in $\Sigma_k$ e basta, quindi il segno delle due deve coincidere necessariamente.
+\end{remark}
+\begin{cor}
+    Sia $A \in \mathcal{M}_n(\mathbb{K})$ una matrice a blocchi della forma
+    $$
+        A = \begin{pmatrix}
+            [A_1] & 0 \\
+            [D] & [A_2]
+        \end{pmatrix},
+    $$ allora
+    $$
+        \det{A} = \det{A_1} \det{A_2}.
+    $$
+\end{cor}
+\begin{proof}
+    Segue per trasposizione dal precedente esercizio.
+\end{proof}
+\begin{exercise}
+    Mostrare per induzione sulle dimensioni dei blocchi l'esercizio \ref{ex:4.10}
+\end{exercise}
+
 
 \section{Spazi biduali}
 
@@ -666,7 +822,7 @@ Valgono i seguenti fatti:
     Mostrare la proposizione qua sopra.
 \end{exercise}
 Si potrebbe anche pensare di lavorare con l'annullatore dell'annullatore: questo oggetto di stampo molto heideggeriano soddisfa una serie di proprietà molto interessanti, come
-\begin{prop} \hspace{1cm}
+\begin{prop}[facoltativa] \hspace{1cm}
     \begin{enumerate}[label=\protect\circled{\arabic*}]
         \item Se $f \in V^\ast$, allora $\text{Ann}(f) = \Psi(\text{Ker}(f))$;
         \item Se $U$ è un sottospazio vettoriale di $V$, allora $\text{Ann}(\text{Ann}(U)) = \Psi(U)$;

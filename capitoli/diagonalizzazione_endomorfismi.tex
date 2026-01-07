@@ -1,0 +1,181 @@
+\chapter{Diagonalizzazione degli endomorfismi}
+
+Un argomento molto importante in Geometria è l'individuazione di basi in cui studiare determinati endomorfismi risulti
+più semplice. 
+\begin{definition}[endomorgismo diagonalizzabile]
+    Sia $V$ uno spazio vettoriale sul campo $\mathbb{K}$. Diremo che $f: V \to V$ è un endomorfismo diagonalizzabile se $\exists \mathcal{B}$ base di $V$
+    tale che
+    $$
+        \mathcal{M}^\mathcal{B}_\mathcal{B}(f) = \begin{pmatrix}
+            \lambda_1 & 0 & 0 & \ldots & 0 \\
+            0 & \lambda_2 & 0 & \ldots & \vdots \\
+            0 & 0 & \lambda_3 & \ldots & \vdots \\
+            \vdots & \vdots & \vdots & \ddots & 0 \\
+            0 & \ldots & \ldots & \ldots & \lambda_n
+        \end{pmatrix}
+    $$
+\end{definition}
+In maniera simile diremo che
+\begin{definition}[matrice diagonalizzabile]
+    Diremo che $A \in \mathcal{M}_n(\mathbb{K})$ è una matrice diagonalizzabile se è simile ad una matrice diagonale (cioé $\exists B \in \text{GL}_n(\mathbb{K}) : B^{-1}AB$ è diagonale).
+\end{definition}
+
+Per poter attaccare il problema dobbiamo dare una serie di definizioni per spiegare meglio alcune espressioni che utilizzeremo per approcciarci a sviscere il problema correttamente.
+\begin{definition}[sottospazio $f-$invariante]
+    Sia $V$ uno spazio vettoriale sul campo $\mathbb{K}$, diremo che $W \subseteq V$ sottospazio vettoriale di $V$ è $f-$invariante se $f(W) \subseteq W$.
+\end{definition}
+\begin{example}
+    Se $f$ è diagonalizzabile e rispetto alla base $\mathcal{B} = \{ \underline{v_1}, \ldots, \underline{v_n} \}$ la matrice associata di $f$ con base in entrata e in uscita $\mathcal{B}$ è la seguente
+    $$
+        \mathcal{M}^\mathcal{B}_\mathcal{B}(f) = \begin{pmatrix}
+            \lambda_1 & 0 & 0 & \ldots & 0 \\
+            0 & \lambda_2 & 0 & \ldots & \vdots \\
+            0 & 0 & \lambda_3 & \ldots & \vdots \\
+            \vdots & \vdots & \vdots & \ddots & 0 \\
+            0 & \ldots & \ldots & \ldots & \lambda_n
+        \end{pmatrix},
+    $$
+    allora è chiaro che i sottospazi $W_i = \text{Span}(\underline{v_i})$ sono $f-$invarianti, siccome $f(\underline{v_i}) = \lambda_i \underline{v_i} \in \text{Span}(\underline{v_i})$.
+\end{example}
+Diamo la seguente definizione
+\begin{definition}
+    Sia $V$ uno spazio vettoriale sul campo $\mathbb{K}$ e sia $f: V \to V$ un endomorfismo, diremo che un numbero $\lambda \in \mathbb{K}$ tale che $\exists \underline{v} \neq \underline{0}$ per cui
+    \begin{align*}
+        f(\underline{v}) = \lambda \underline{v} \tag{$\ast$}
+    \end{align*}
+    si dice autovalore di $f$, mentre ogni vettore $\underline{v} \neq \underline{0}$ che verifica la $(\ast)$ si dice autovettore di $f$ relativo all'autovalore $\lambda$.
+\end{definition}
+\begin{remark}
+    $\text{Ker}(f) = \{ \text{autovettori relativi all'autovalore } 0 \} \cup \{ \underline{0} \}$.
+\end{remark}
+\begin{remark}
+    $f$ diagonalizzabile $\iff \, V$ ha una base di autovettori
+\end{remark}
+\begin{definition}
+    Dato $\lambda \in \mathbb{K}$ autovalore di $f: V \to V$ chiamo
+    $$
+        V_\lambda = \{ \underline{v} \in V | f(\underline{v}) = \lambda \underline{v} \}
+    $$
+    autospazio relativo a $\lambda$.
+\end{definition}
+\begin{exercise}
+    Mostrare che $V_\lambda$ è un sottospazio vettoriale di $V$.
+\end{exercise}
+\begin{example}
+    Sia $A = \begin{pmatrix}
+     1 & 1 \\
+     0 & 1
+    \end{pmatrix}$ allora si vede subito che $\underline{e_1}$ è un autovettore relativo all'autovalore $\lambda = 1$.
+\end{example}
+\begin{example}
+    Sia $A = \begin{pmatrix}
+        \cos{\theta} & \sin{\theta} \\
+        -\sin{\theta} & \cos{\theta}
+    \end{pmatrix}$  una rotazione in $\mathbb{R}^2$ di angolo $\theta$, allora non ci sono autovettori in $\mathbb{R}^2$.
+\end{example}
+\begin{exercise}
+    Mostrare l'affermazione fatta qua sopra, ovvero che non ci siano autovettori in $\mathbb{R}^2$.
+\end{exercise}
+\begin{proof}[Svolgimento]
+    Infatti l'equazione
+    $$
+        f(\underline{x}) = \lambda \underline{x} \text{ con } \underline{x} = \begin{pmatrix}
+            x_1 \\
+            x_2
+        \end{pmatrix},
+    $$
+    è equivalente a scrivere 
+    \begin{align*}
+        &\begin{pmatrix}
+            x_2 \sin{\theta} + x_1 \cos{\theta} \\
+            x_2 \cos{\theta} - x_1 \sin{\theta}
+        \end{pmatrix} = \lambda \begin{pmatrix}
+            x_1 \\
+            x_2
+        \end{pmatrix} \implies \begin{cases}
+            \lambda x_1 = x_2 \sin{\theta} + x_1 \cos{\theta} \\
+            \lambda x_2 = x_2 \cos{\theta} - x_1 \sin{\theta}. 
+        \end{cases} \implies \\
+        &\implies \begin{cases}
+            \lambda^2 x_1^2 = x_1^2 \cos^2{\theta} + x_2^2 \sin^2{\theta} + 2 x_1 x_2 \sin{\theta} \cos{\theta} \\
+            \lambda^2 x_2^2 = x_2^2 \cos^2{\theta} + x_1^2 \sin^2{\theta} - 2 x_1 x_2 \cos{\theta} \sin{\theta}
+        \end{cases},
+    \end{align*}
+    sommando le due equazioni si ha che $\lambda^2 (x_1^2 + x_2^2) = (x_1^2 + x_2^2) \implies \lambda^2 = 1$. Ma ciò è impossibile siccome
+    se $\lambda = 1$ allora
+    $$
+        \begin{cases}
+            x_1 = x_2 \sin{\theta} + x_1 \cos{\theta} \\
+            x_2 = x_2 \cos{\theta} - x_1 \sin{\theta}. 
+        \end{cases} \implies \begin{cases}
+            x_1 = x_2 \frac{\sin{\theta}}{1-\cos{\theta}} \\
+            x_2 = x_2 \cos{\theta} - x_2 \frac{\sin{\theta}}{1-\cos{\theta}} \sin{\theta} = -x_2 \implies x_2 = 0 \implies x_1 = 0.
+        \end{cases}
+    $$
+    mentre per $\lambda = -1$ allora si ha che
+    \begin{align*}
+        &\begin{cases}
+            -x_1 = x_2 \sin{\theta} + x_1 \cos{\theta} \\
+            -x_2 = x_2 \cos{\theta} - x_1 \sin{\theta}.
+        \end{cases} \implies \begin{cases}
+            x_1 = -x_2 \sin{\theta} - x_1 \cos{\theta} \\
+            x_2 = - x_2 \cos{\theta} + x_1 \sin{\theta}.
+        \end{cases} \implies \\
+        &\implies \begin{cases}
+            x_1 = -x_2 \frac{\sin{\theta}}{1+\cos{\theta}} \\
+            x_2 = - x_2 \cos{\theta} - x_2\frac{\sin^2{\theta}}{1+\cos{\theta}} = - x_2 \implies x_2 = 0 \implies x_1 = 0.
+        \end{cases}
+    \end{align*}
+\end{proof}
+
+\section{Polinomio caratteristico}
+
+Sia $f: V \to V$ un endomorfismo e sia $\mathcal{C}$ una qualunque base. Ponendo $A = \mathcal{M}^\mathcal{C}_\mathcal{C}(f)$ calcoliamo
+$$
+    p_f(t) = \det{tI - A}
+$$
+\begin{remark}
+    Si osserva che questo polinomio è sempre di grado $n =$ ordine della matrice.
+\end{remark}
+\begin{definition}
+    Chiamiamo $p_A(t) = \det{tI - A}$ il polinomio caratteristico della matrice $A$.
+\end{definition}
+\begin{remark}
+    Io adotterò la notazione per cui $p_A(t) = \det{tI-A}$, tuttavia su altri libri (come il Martelli) è riportato che $p_A(t) = (A - tI)$. Fare attenzione!
+\end{remark}
+\begin{theorem}
+    Data $f: V \to V$ il polinomio $p_f(t)$ è ben definito e non dipende dalla base $\mathcal{C}$ scelta. Inoltre $p_A(t)$ è invariante per similitudine, ovvero se $B = P^{-1}AP \implies p_B(t) = p_A(t)$.
+\end{theorem}
+\begin{proof}
+    Si vede infatti che se $B = P^{-1}AP$ allora
+    \begin{align*}
+    p_B(t) &= \det{tI - B} = \det{tI - P^{-1}AP} = \det{tP^{-1}P - P^{-1}AP} = \det{P^{-1}(tP - AP)} \\
+    &= \det{P^{-1}(tI - A)P} \stackrel{\text{Binet}}{=} \det{tI - A} = p_A(t).
+    \end{align*}
+    Segue anche la prima affermazione siccome se $P$ è la matrice di cambio base da $\mathcal{B}$ a $C$ allora $\mathcal{M}^\mathcal{B}_\mathcal{B}(f) = P^{-1} \mathcal{M}^\mathcal{B}_\mathcal{B}(f) P \implies p_f(t) = p_A(t) = p_B(t)$ con $A = \mathcal{M}^\mathcal{C}_\mathcal{C}(f)$ e $B = \mathcal{M}^\mathcal{B}_\mathcal{B}$.
+\end{proof}
+In virtù di questa indipendenza dalla base scelta, possiamo motivare la seguente definizione
+
+\begin{definition}[polinomio caratteristico di un endomorfismo]
+    Sia $V$ uno spazio vettoriale sul campo $\mathbb{K}$ e sia $f: V \to V$ un endomorfismo, diremo che $p_f(t)$ è il polinomio caratteristico di $f$.
+\end{definition}
+\begin{example}[esistenza di matrici con lo stesso polinomio caratteristico non simili]
+    Esistono delle matrici con lo stesso polinomio caratteristico che non sono simili, per esempio si prendi
+    \begin{align*}
+        &A = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} \text{ e } B=\begin{pmatrix}
+            1 & 1 \\
+            0 & 1
+        \end{pmatrix}.
+    \end{align*}
+\end{example}
+\begin{theorem}
+    Dato $f: V \to V$ allora gli autovalori di $f$ sono le radici di $p_f(t)$.
+\end{theorem}
+\begin{proof}
+    Sia $\lambda$ autovalore di $f$, allora sappiamo che $\exists \underline{v} \in V, \underline{v} \neq \underline{0}$ tale che
+    $$
+        f(\underline{v}) = \lambda \underline{v},
+    $$
+    allora si deve avere che $f(\underline{v}) - \lambda \underline{v} = \underline{0} \implies f(\underline{v}) - \lambda I \underline{v} = \underline{0} \implies (f - \lambda I)\underline{v} = \underline{0} \implies \underline{v} \in \text{Ker}(f-\lambda I)$. Segue allora che $\text{Ker}(f - \lambda I) \neq \{ \underline{0} \},$ ovvero $\text{Ker}(\lambda I - f) \neq \{ 0 \}$ e quindi $\det{(\lambda I - \mathcal{M}^\mathcal{C}_\mathcal{C}(f))} = 0$, dunque $p_f(\lambda) = 0$. Viceversa, se
+    $\lambda \in \mathbb{K}$ è radice di $p_f(t)$, allora possiamo ripercorrere i passaggi all'indietro e segue che $\exists \underline{v} \in V, \underline{v} \neq \underline{0}$ tali che $f(\underline{v}) = \lambda \underline{v}$.
+\end{proof}
