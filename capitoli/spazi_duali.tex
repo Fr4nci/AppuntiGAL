@@ -208,7 +208,7 @@ Imponiamo che la $\varphi$ che noi stiamo cercando abbia queste proprietà:
     $$
     \item (\textbf{normalizzazione}) $\varphi(\text{Id}_n) = \varphi(\underline{e_1}, \ldots, \underline{e_n}) = 1$.
 \end{enumerate}
-\begin{theorem}[dell'esistenza e dell'unicità del determinante]
+\begin{theorem}[dell'esistenza e dell'unicità del determinante] \label{thm:ex_uniq_det}
     Esiste una sola $\varphi$ che soddisfa le proprietà \circled{1}, \circled{2},\circled{3}. Tale $\varphi$ sarà detta determinante.
 \end{theorem}
 \begin{lemma}
@@ -389,7 +389,7 @@ Non dobbiamo disperarci: alla fine fino ad ora abbiamo lavorato con le matrici, 
     Siccome $(i, j) = (j, i)$ (in virtù dell'osservazione fatta sopra sul fatto che $\sigma=\sigma^{-1}$), allora si ha che il numero delle trasposizioni è dato dal numero delle combinazioni formate da $2$ elementi prese da un gruppo di $n$ elementi, quindi il numero delle trasposizioni è pari a $\binom{n}{2} = \frac{n(n-1)}{2}.$
 \end{proof}
 Vogliamo adesso dimostrare la seguente proposizione
-\begin{prop}
+\begin{prop} \hspace{1cm} \\
     \begin{enumerate}[label=\protect\circled{\arabic*}]
         \item ogni permutazione è prodotto di trasposizioni;
         \item se $\sigma = \tau_1 \circ \ldots \circ \tau_k = \lambda_1 \circ \ldots \circ \lambda_h$ con $\tau_i$ e $\lambda_j$ trasposizioni $\forall i \in \{1, \ldots, k \}, \forall j \in \{1,\ldots, h \}$, allora $k$ e $h$ sono entrambi pari o entrambi dispari. 
@@ -397,7 +397,7 @@ Vogliamo adesso dimostrare la seguente proposizione
 \end{prop}
 Per capire bene la dimostrazione, cercherò di spiegare un concetto più astratto che proviene direttamente da teoria dei gruppi: un gruppo, spesso, è un qualcosa di profondamente astratto. Si pensi ad esempio alle rotazioni (che formano un gruppo): noi possiamo dire che una rotazione $R$ è "rappresentata" da una matrice (come vedremo meglio più avanti) ben precisa, ma non sappiamo "scrivere" direttamente cosa sia $R$. Quello che
 si conosce di un gruppo sono le sue "rappresentazioni", ovvero come il gruppo si "comporta" quando lo facciamo agire su una determinata classe di oggetti; quindi, riprendendo l'esempio delle rotazioni, noi conosciamo le rappresentazioni del gruppo delle rotazioni perché sappiamo come agiscono sui vettori. Nella dimostrazione del secondo punto lavoreremo studiamo come il gruppo delle permutazioni agisce quando gli facciamo permutare dei polinomi che sono in funzioni delle variabili $x_1, \ldots, x_n$. 
-\begin{proof}
+\begin{proof} \hspace{1cm} \\
     Mostriamo la \circled{1}: lo dimostro su $\Sigma_n$ per induzione su $n$. \\
     Il caso $n=1$ è chiaramente banale, dunque mostriamo che $n \implies n+1$: prendiamo $\sigma \in \Sigma_n$ e supponiamo, per adesso, che $\sigma(n)=n$, da cui osserviamo che, alla fine, $\sigma$ muove solo $\{ 1, \ldots, n-1\}$, quindi posso "vederlo" come elemento di $\Sigma_{n-1}$, ma su quest'ultimo vale la proprietà induttiva, quindi
     $$
@@ -420,16 +420,179 @@ si conosce di un gruppo sono le sue "rappresentazioni", ovvero come il gruppo si
     $$
         p(x_1, \ldots, x_n) \stackrel{\sigma}{\rightarrow} p(x_{\sigma(1)}, \ldots, x_{\sigma(n)}) = \pm p(x_1, \ldots, x_n).
     $$
-    In generale, se consideriamo la trasposizione $\tau$, allora 
+    In generale, se consideriamo la trasposizione $\tau = (r,s)$ con $r<s$:
+    \begin{enumerate}[label=\protect\circled{\arabic*}]
+        \item il termine $(x_r - x_s) \stackrel{\tau}{\rightarrow} -(x_s - x_r)$
+        \item per $r < i < s$ si ha che 
+        \begin{itemize}
+            \item i termini $(x_i - x_r) \stackrel{\tau}{\rightarrow} (x_i - x_s) = -(x_s - x_i)$;
+            \item i termini $(x_s - x_i) \stackrel{\tau}{\rightarrow} (x_r - x_i) = -(x_i - x_r)$; 
+        \end{itemize}
+        ma le due tipologie di termini sono, in entrambi i casi, presenti in pari numero (ovvero $s-r-1$), quindi tutti i $-$ si semplificano.
+        \item per $i < r < s$ si ha che
+        \begin{align*}
+            (x_r - x_i) \stackrel{\tau}{\rightarrow} (x_s - x_i);
+        \end{align*}
+        \item per $r < s < i$ si ha che
+        $$
+            (x_i - x_s) \stackrel{\tau}{\rightarrow} (x_i - x_r).
+        $$ 
+        \item i termini $(x_j - x_i)$ con $\{ i, j \} \cap \{r, s\} = \emptyset$ rimangono inalterati.
+    \end{enumerate}
+    Abbiamo allora che $p \stackrel{\tau}{\rightarrow} -p$, quindi se $\sigma$ è prodotto di trasposizioni, allora $\sigma = \tau_1 \ldots \tau_k$; dunque se $k$ è pari allora $p \stackrel{\sigma}{\rightarrow} p$. L'azione di $\sigma$ su $p$, tuttavia, non dipende da come l'ho "scritto" in termini di trasposizioni, dunque se $\exists \sigma_1, \ldots, \sigma_k$ e $\lambda_1, \ldots, \lambda_h$ trasposizioni tali che
+    $$
+        \sigma = \tau_1 \ldots \tau_k = \lambda_1 \ldots \lambda_h,
+    $$
+    si deve avere necessariamente che $k$ e $h$ sono necessariamente entrambi numeri pari (se così non fosse avremmo un assurdo per quanto appena visto riguardo al comportamento di un polinomio all'applicazione di una trasposizione).
 \end{proof}
+Possiamo quindi parlare di \emph{permutazioni pari} e \emph{permutazioni dispari}
+\begin{definition}[permutazioni pari e permutazioni dispari]
+    Sia $\sigma \in \Sigma_n$, allora diremo che $\sigma$ è una permutaione pari se è prodotto di un numero pari di trasposizioni. Equivalentemente diremo che $\sigma$ è dispari se è prodotto di un numero dispari di traspozioni.
+\end{definition}
+\begin{remark}
+    Segue immediatamente che il prodotto di due permutazioni pari è pari, il prodotto di due trasposizioni dispari è pari, mentre il prodotto di una trasposizione pari con una dispari o viceversa è dispari.
+\end{remark}
+Equivalentemente, possiamo parlare del segno di una permutazione
+\begin{definition}[segno di una permutazione]
+    Sia $\sigma \in \Sigma_n$, diremo che il segno della permutazione $\sigma$ è
+    $$
+        \text{sgn}(\sigma) = \begin{cases}
+            1 & \text{se } \sigma \text{ è pari,} \\
+            -1 & \text{se } \sigma \text{ è dispari}.
+        \end{cases}
+    $$
+\end{definition}
+In virtù dell'osservazione fatta sopra segue immediatamente che
+$$
+    \text{sgn}(\sigma \tau) = \text{sgn}(\sigma) \text{sgn}(\tau).
+$$
+
+Perché abbiamo introdotto il gruppo simmetrico? Una delle definizioni del determinante di una matrice è la seguente
+\begin{definition}
+    Sia $A = (a_{ij}) \in \mathcal{M}(\mathbb{K})$, definiamo il determinante di $A$ come
+    \begin{equation}
+        \text{det}(A) = \sum_{\sigma \in \Sigma_n} \text{sgn}(\sigma) a_{1\sigma(1)} a_{2\sigma(2)} \ldots a_{n \sigma(n)}. \label{eq:det}
+    \end{equation}
+\end{definition}
+\begin{theorem}
+    Il funzionale definito dalla \ref{eq:det} possiede le proprietà del funzionale descritto in \ref{thm:ex_uniq_det} (dunque è effettivamente un determinante).
+\end{theorem}
+\begin{proof}
+    La dimostrazione consiste solamente nel mostrare che il funzionale descritto dalla \ref{eq:det} soddisfa le proprietà \circled{1}, \circled{2} e \circled{3}. Facciamo vedere che è valida la \circled{1}: presa la riga $A_j$, osserviamo che se $A_j = \lambda A_j' + \mu A_j''$ allora
+    \begin{align*}
+        \text{det}(A) &= \sum_{\sigma \in \Sigma_n} \text{sgn}(\sigma)a_{1\sigma(1)} \ldots a_{j \sigma(j)} \ldots a_{n \sigma(n)} = \\
+        &= \sum_{\sigma \in \Sigma_n} \text{sgn}(\sigma) a_{1\sigma(1)} \ldots (\lambda a_{j \sigma(j)}' + \mu a_{j \sigma(j)}'') \ldots a_{n \sigma(n)} = \\
+        &= \lambda \sum_{\sigma \in \Sigma_n} \text{sgn}(\sigma) a_{1 \sigma(1)} \ldots a_{j\sigma(j)}' \ldots a_{n \sigma(n)} + \mu \sum_{\sigma \in \Sigma_n} \text{sgn}(\sigma) a_{1\sigma(1)} \ldots a_{j \sigma(j)}'' \ldots a_{n \sigma(n)} = \\
+        &=\lambda \det{\begin{pmatrix} A_1 \\ A_2 \\ \vdots \\ A_j' \\ \vdots \\ A_n \end{pmatrix}} + \mu \det{\begin{pmatrix} A_1 \\ A_2 \\ \vdots \\ A_j'' \\ \vdots \\ A_n \end{pmatrix}}.
+    \end{align*}
+    Per quanto riguarda la \circled{2} osserviamo che se consideriamo la matrice $B$ ottenuta scambiando la riga $i-$esima con la riga $j-$esima della matrice $A$ allora
+    \begin{align*}
+        \det{B} &= \sum_{\sigma \in \Sigma_n} \text{sgn}(\sigma) b_{1\sigma(1)} \ldots b_{i \sigma(i)} \ldots b_{j \sigma(j)} \ldots b_{n \sigma(n)} = \\
+        &= \sum_{\sigma \in \Sigma_n} \text{sgn}(\sigma) a_{1 \sigma(1)} \ldots a_{j \sigma(i)} \ldots a_{i \sigma(j)} \ldots a_{n \sigma(n)},
+    \end{align*} 
+    dove abbiamo usato il fatto che $b_{jl} = a_{il}$ e $b_{im} = a_{jm}$ in virtù dello scambio di riga.
+    Sia $\tau = (i j)$, allora osserviamo che se poniamo $\lambda = \sigma \tau$ otteniamo che
+    \begin{align*}
+        &\lambda(l) = \sigma(l) \text{ per } l \neq i, j, \\
+        &\lambda(i) = \sigma(\tau(i)) = \sigma(j), \\
+        &\lambda(j) = \sigma(\tau(j)) = \sigma(i).
+    \end{align*}
+    e chiaramente $\text{sgn}(\lambda) = -\text{sgn}(\sigma)$. Si ha che $\sigma$ varia in tutto $\Sigma_n$, dunque anche $\lambda = \sigma \tau$ varia in tutto $\Sigma_n$, poiché $\lambda \stackrel{\tau^2=\text{id}}{=} \lambda \tau^2 = (\lambda \tau) \tau = \sigma \tau \implies \sigma = \lambda \tau$, dunque possiamo scrivere tutta la sommatoria di prima in funzione delle permutazioni $\lambda$, ovvero
+    \begin{align*}
+    \det{B} &= \sum_{\lambda \in \Sigma_n} -\text{sgn}(\lambda) a_{1 \sigma(1)} \ldots a_{j \sigma(i)} \ldots a_{i \sigma(j)} \ldots a_{n \sigma(n)} = \\
+    &= -\sum_{\lambda \in \Sigma_n} \text{sgn}(\lambda) a_{1 \sigma(1)} \ldots a_{j \lambda(j)} \ldots a_{i\lambda(i)} \ldots a_{n \lambda(n)} = -\det{A}.
+    \end{align*}
+    La $\circled{3}$ è chiara, siccome presa la matrice $A = I$ allora l'unica permutazione che dà contributo è $\sigma = \text{id}$ (siccome altrimenti avrei uno zero nel prodotto degli $a_{i\sigma(i)}$ per qualunque altre permutazione), pertanto
+    $$
+        \det{I} = a_{11} \ldots a_{nn} = 1.
+    $$
+\end{proof}
+Tramite questa forma del determinante è abbastanza semplice far vedere il seguente teorema
+\begin{theorem}
+    Sia $A \in \mathcal{M}(\mathbb{K})$, allora
+    $$
+        \det{A} = \det{A^T}.
+    $$
+\end{theorem}
+\begin{proof}
+    Si osserva che
+    $$
+        \det{A^T} = \sum_{\sigma \in \Sigma_n} \text{sgn}(\sigma) a_{\sigma(1)1} \ldots a_{n \sigma(n)}. 
+    $$
+    Siccome una permutazione è invertibile, allora abbiamo che $\exists \sigma^{-1}: \sigma^{-1} \circ \sigma = \sigma \circ \sigma^{-1} = \text{id}$, dunque si ha che se $\sigma(k) = m \implies \sigma^{-1}(m) = k$; pertanto $a_{\sigma(k) k} = a_{m \sigma^{-1}(m)}$ e quindi
+    $$
+        \det{A^T} = \sum_{\sigma^{-1} \in \Sigma_n} \text{sgn}(\sigma^{-1}) a_{1 \sigma^{-1}(1)} \ldots a_{n \sigma^{-1}(n)} = \det{A}.
+    $$
+\end{proof}
+Questo teorema, oltre ad essere utile per semplificare il calcolo dei determinanti, facilita la dimostrazione di un modo equivalente per calcolare il determinante di un determinante, ovvero \emph{regola di Laplace}.
+\begin{theorem}[regola di Laplace per il determinante] \label{thm:laplace_rule}
+    Sia $A \in \mathcal{M}(\mathbb{K}),$ allora, fissato $i \in \{ 1, \ldots, n \}$, si ha che
+    $$
+        \det{A} = \sum_{j=1}^n (-1)^{i+j} a_{ij} \det{A_{ij}},
+    $$
+    dove $A_{ij}$ è la matrice ottenuta rimuovendo l'$i-$esima riga e la $j-$esima colonna.
+\end{theorem}
+Un modo formale per mostrare che $\sum\limits_{j=1}^n (-1)^{i+j} a_{ij} \det{A_{ij}}$ è un determinante consiste nel verificarlo "direttamente" senza far vedere che valgono le proprietà $\circled{1}, \circled{2}$ e $\circled{3}$. Questo perché verificare le proprietà $\circled{1}, \circled{2}$ e $\circled{3}$ (anche se evidenti a colpo d'occhio) non è banalissimo.
+Per fare la dimostrazione faremo uso del seguente lemma
+\begin{lemma}
+    Sia $B \in \mathcal{M}_n(\mathbb{K})$ della forma
+    \begin{align*}
+        \begin{pmatrix}
+            1 & 0 & \ldots & 0 \\
+            b_{21} & b_{22} & \ldots & b_{2n} \\
+            \vdots & \vdots & \ddots & \vdots \\
+            b_{n1} & b_{n2} & \ldots & b_{nn}
+        \end{pmatrix}.
+    \end{align*}
+    Allora
+    $$
+        \det{B} = \det{\begin{pmatrix} b_{22} & b_{23} & \ldots & b_{2n} \\ \vdots & \ddots & \ldots & \vdots \\ b_{n2} & \ldots & \ldots & b_{nn} \end{pmatrix}}
+    $$
+\end{lemma}
+\begin{exercise}
+    Mostrare il lemma qua sopra (\emph{Suggerimento}: usare la formula del determinante che abbiamo mostrato e verificare quali permutazioni danno contributo...)
+\end{exercise}
+\begin{proof}[del teorema \ref{thm:laplace_rule}]
+Per la proprietà di multilinearità del determinante rispetto alle righe, possiamo scrivere la riga $i$-esima come somma di vettori della base canonica pesati dai coefficienti $a_{ij}$. Il determinante di $A$ diventa quindi la somma di $n$ determinanti:
+\[
+\det(A) = \sum_{j=1}^n a_{ij} \det \begin{pmatrix} 
+a_{11} & a_{12} & \ldots & a_{1(n-1)} & a_{1n} \\ 
+\vdots & \vdots & \vdots & \vdots & \vdots \\
+0 & \dots & 1 & \dots & 0 \\ 
+\vdots & \vdots & \vdots & \vdots & \vdots  \\
+a_{n1} & \vdots & \vdots & a_{n(n-1)} & a_{nn} 
+\end{pmatrix} \leftarrow \text{riga } i
+\]
+In ogni addendo, la riga $i$ presenta un valore $1$ in posizione $(i, j)$ e $0$ altrove.
+
+Per ricondurci a una forma canonica, spostiamo l'elemento $1$ dalla posizione $(i, j)$ alla posizione $(1, 1)$ tramite scambi di righe e colonne:
+\begin{itemize}
+    \item \textbf{Scambi di riga:} Per portare la riga $i$ in prima posizione, dobbiamo effettuare $i-1$ scambi con le righe superiori. Ogni scambio introduce un fattore $(-1)$, generandone in totale $(-1)^{i-1}$.
+    \item \textbf{Scambi di colonna:} Analogamente, per portare la colonna $j$ in prima posizione, effettuiamo $j-1$ scambi con le colonne precedenti, introducendo un fattore $(-1)^{j-1}$.
+\end{itemize}
+
+Il segno risultante da queste operazioni è:
+\[
+(-1)^{i-1} \cdot (-1)^{j-1} = (-1)^{i+j-2} = (-1)^{i+j}
+\]
+Dopo gli scambi, la matrice ha la forma:
+\[
+(-1)^{i+j} a_{ij} \det \begin{pmatrix} 
+1 & 0 & \dots & 0 \\ 
+* & a_{11} & \dots & a_{1n} \\ 
+\vdots & \vdots & A_{ij} & \vdots \\
+* & a_{n1} & \dots & a_{nn} 
+\end{pmatrix}
+\]
+Per le proprietà del determinante, quando una matrice ha un unico elemento non nullo in una riga (o colonna) che è pari a $1$, il suo determinante coincide con quello della sottomatrice complementare. In questo caso, il determinante è proprio $\det(A_{ij})$.
+Sommando i contributi per tutti i $j$ elementi della riga $i$, otteniamo la tesi:
+\[
+\det(A) = \sum_{j=1}^n (-1)^{i+j} a_{ij} \det(A_{ij})
+\]
+\end{proof}
+
 \section{Spazi biduali}
-\begin{flushright}
-    \begin{minipage}{0.25\textwidth}
-        \itshape\small
-        \noindent Il nulla nulleggia \\
-        \noindent - Martin Heidegger
-    \end{minipage}
-\end{flushright}
+
 Preso uno spazio vettoriale $V$ definito sul campo $\mathbb{K}$, abbiamo visto come sia possibile andare a definire uno spazio vettoriale duale $V^*$: siccome siamo persone dotate di libero arbitrio, nulla ci vieta (purtroppo!) di andare a costruire uno spazio "duale" allo spazio duale. Questo prende il nome di \emph{spazio biduale} e sarà l'origine di tutti i mali. \\
 Innanzitutto, ragionando come abbiamo fatto per $V^*$, si conclude che lo spazio biduale ha dimensione pari a $n$, ma poi? Cosa possiamo dire? Cerchiamo di attaccare il problema con più calma, definendo per bene ciò con cui andiamo a lavorare.
 
@@ -473,4 +636,64 @@ Anche se rimane difficile visualizzare comunque geometricamente come ci sia ques
         0 = \Psi(\underline{v})(\underline{v_i}^*) = \underline{v_i}^*(\underline{v}) = \underline{v_i}^*(\alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n}) = \alpha_i \implies \alpha_i = 0 \, \forall i \in \{ 1, \ldots, n \},
     $$
     ma allora si ha che $\underline{v} = \underline{0}$, che rappresenta un assurdo. Abbiamo allora che $\underline{v} = \underline{0}$, quindi si ha la tesi dal teorema delle dimensioni.
+\end{proof}
+
+\section{Annullatore}
+
+\begin{flushright}
+    \begin{minipage}{0.25\textwidth}
+        \itshape\small
+        \noindent Il nulla nulleggia \\
+        \noindent - Martin Heidegger
+    \end{minipage}
+\end{flushright}
+
+Vogliamo adesso parlare di un'altra struttura presente nello spazio duale (e conseguentemente nel biduale) che prende il nome di annullatore: tale spazio rappresenta l'insieme dei funzionali che si annulla su un particolare insieme.
+\begin{definition}
+    Sia $S$ un insieme di $V$ spazio vettoriale sul campo $\mathbb{K}$, allora diremo che $\text{Ann}(S) = \{ f: S \to \mathbb{K} | f(\underline{v}) = 0 \, \forall \underline{v} \in S \}$.
+\end{definition}
+
+Valgono i seguenti fatti:
+\begin{prop} \hspace{1cm}
+    \begin{enumerate}[label=\protect\circled{\arabic*}]
+        \item $\forall S \subseteq V$, $\text{Ann}(S)$ è un sottospazio vettoriale di $V^\ast$;
+        \item Se $S \subseteq T \implies \text{Ann}(T) \subseteq \text{Ann}(S)$;
+        \item $\text{Ann}(S) = \text{Ann}(\text{Span}(S))$;
+        \item Se $U$ è un sottospazio vettoriale con dimensione $k$, allora $\text{dim}(\text{Ann}(U)) = \text{dim}(V) - k$.
+    \end{enumerate}
+\end{prop}
+\begin{exercise}
+    Mostrare la proposizione qua sopra.
+\end{exercise}
+Si potrebbe anche pensare di lavorare con l'annullatore dell'annullatore: questo oggetto di stampo molto heideggeriano soddisfa una serie di proprietà molto interessanti, come
+\begin{prop} \hspace{1cm}
+    \begin{enumerate}[label=\protect\circled{\arabic*}]
+        \item Se $f \in V^\ast$, allora $\text{Ann}(f) = \Psi(\text{Ker}(f))$;
+        \item Se $U$ è un sottospazio vettoriale di $V$, allora $\text{Ann}(\text{Ann}(U)) = \Psi(U)$;
+    \end{enumerate}
+    dove $\Psi$ è l'isomorfismo canonico fra $V$ e $(V^\ast)^\ast$.
+\end{prop}
+\begin{proof} Mostriamo la $\circled{1}$: \\ 
+    $\boxed{\subseteq}$: sia $\underline{w} \in \text{Ker}(f)$ e sia $\phi = \Psi(\underline{w}) \in \Psi{\text{Ker}(f)} \implies \phi(f) = f(\underline{w}) = 0 \implies \phi \in \text{Ann}(f)$. Dall'arbitrarietà di $\underline{w}$, abbiamo che $\Psi(\text{Ker}(f)) \subseteq \text{Ann}(f)$. \\
+    $\boxed{\supseteq}$: sia $\phi \in \text{Ann}(f) \implies \exists ! \underline{v} \in V: \phi = \Psi(\underline{v})$ siccome $\Psi$ isomorfismo. Si ha allora che
+    $$
+        \phi(f) = \Psi(\underline{v})(f) = f(\underline{v}) = 0 \implies \underline{v} \in \text{Ker}(f) \implies \phi \in \Psi(\text{Ker}(f)).
+    $$
+    Mostriamo la $\circled{2}$: è chiaro che $\Psi(U) \subseteq \text{Ann}(\text{Ann}(U))$. Infatti, preso $\underline{v} \in U$, se consideriamo $\phi = \Psi(\underline{v})$ vediamo che se $f \in \text{Ann}(U)$ allora si ha che
+    $$
+        \phi(f) = \Psi(\underline{v})(f) = f(\underline{v}) = 0,
+    $$
+    in quanto $\underline{v} \in U$. Ma allora $\phi$ si annulla se applicata ad un qualunque $f$ che sta nell'annullatore di $U$, quindi $\phi \in \text{Ann}(\text{Ann}(U))$. Per mostrare che vale l'inclusione opposta, vediamo che
+    $$ 
+        \text{dim}(V) = \text{dim}(U) + \text{dim}(\text{Ann}(U))
+    $$
+    e
+    $$
+        \text{dim}(V^*) = \text{dim}(V) = \text{dim}(\text{Ann}(U)) + \text{dim}(\text{Ann}(\text{Ann}(U))),
+    $$
+    dunque si ha che
+    $$
+        \text{dim}(\text{Ann}(\text{Ann}(U))) = \text{dim}(V) - \text{dim}(\text{Ann}(U)) = \text{dim}(U).
+    $$
+    Essendo $\Psi$ un isomorfismo si ha che $\text{dim}(\Psi(U)) = \text{dim}(U) \implies \text{dim}(\Psi(U)) = \text{dim}(U) = \text{dim}(\text{Ann}(\text{Ann}(U)))$, dunque si deve avere necessariamente che $\Psi(U) = \text{Ann}(\text{Ann}(U)).$
 \end{proof}

@@ -25,9 +25,10 @@
 \contentsline {section}{\numberline {4.2}Determinante}{76}{section.4.2}%
 \contentsline {subsection}{\numberline {4.2.1}Costruzione del determinante}{77}{subsection.4.2.1}%
 \contentsline {subsection}{\numberline {4.2.2}Gruppo simmetrico}{79}{subsection.4.2.2}%
-\contentsline {section}{\numberline {4.3}Spazi biduali}{82}{section.4.3}%
-\contentsline {chapter}{\numberline {5}Soluzioni agli esercizi}{85}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Spazi vettoriali}{85}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Prodotti scalari}{90}{section.5.2}%
-\contentsline {chapter}{\numberline {A}Logica}{93}{chapter.1}%
-\contentsline {chapter}{\numberline {B}Basi a dimensione infinita}{95}{chapter.2}%
+\contentsline {section}{\numberline {4.3}Spazi biduali}{86}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Annullatore}{87}{section.4.4}%
+\contentsline {chapter}{\numberline {5}Soluzioni agli esercizi}{89}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Spazi vettoriali}{89}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Prodotti scalari}{94}{section.5.2}%
+\contentsline {chapter}{\numberline {A}Logica}{97}{chapter.1}%
+\contentsline {chapter}{\numberline {B}Basi a dimensione infinita}{99}{chapter.2}%
