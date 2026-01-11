@@ -2,7 +2,7 @@
 
 Un argomento molto importante in Geometria è l'individuazione di basi in cui studiare determinati endomorfismi risulti
 più semplice. 
-\begin{definition}[endomorgismo diagonalizzabile]
+\begin{definition}[endomorfismo diagonalizzabile]
     Sia $V$ uno spazio vettoriale sul campo $\mathbb{K}$. Diremo che $f: V \to V$ è un endomorfismo diagonalizzabile se $\exists \mathcal{B}$ base di $V$
     tale che
     $$
@@ -20,7 +20,7 @@ In maniera simile diremo che
     Diremo che $A \in \mathcal{M}_n(\mathbb{K})$ è una matrice diagonalizzabile se è simile ad una matrice diagonale (cioé $\exists B \in \text{GL}_n(\mathbb{K}) : B^{-1}AB$ è diagonale).
 \end{definition}
 
-Per poter attaccare il problema dobbiamo dare una serie di definizioni per spiegare meglio alcune espressioni che utilizzeremo per approcciarci a sviscere il problema correttamente.
+Per poter attaccare il problema dobbiamo dare una serie di definizioni per spiegare meglio alcune espressioni che utilizzeremo per approcciarci a sviscerare il problema correttamente.
 \begin{definition}[sottospazio $f-$invariante]
     Sia $V$ uno spazio vettoriale sul campo $\mathbb{K}$, diremo che $W \subseteq V$ sottospazio vettoriale di $V$ è $f-$invariante se $f(W) \subseteq W$.
 \end{definition}
@@ -179,3 +179,133 @@ In virtù di questa indipendenza dalla base scelta, possiamo motivare la seguent
     allora si deve avere che $f(\underline{v}) - \lambda \underline{v} = \underline{0} \implies f(\underline{v}) - \lambda I \underline{v} = \underline{0} \implies (f - \lambda I)\underline{v} = \underline{0} \implies \underline{v} \in \text{Ker}(f-\lambda I)$. Segue allora che $\text{Ker}(f - \lambda I) \neq \{ \underline{0} \},$ ovvero $\text{Ker}(\lambda I - f) \neq \{ 0 \}$ e quindi $\det{(\lambda I - \mathcal{M}^\mathcal{C}_\mathcal{C}(f))} = 0$, dunque $p_f(\lambda) = 0$. Viceversa, se
     $\lambda \in \mathbb{K}$ è radice di $p_f(t)$, allora possiamo ripercorrere i passaggi all'indietro e segue che $\exists \underline{v} \in V, \underline{v} \neq \underline{0}$ tali che $f(\underline{v}) = \lambda \underline{v}$.
 \end{proof}
+\begin{example}
+    Sia $f: \mathbb{R}^3 \to \mathbb{R}^3$ con $\mathcal{M}^\mathcal{C}_\mathcal{C}(f) = \begin{pmatrix}
+        0 & 1 & 1 \\ -1 & 2 & 1 \\ -1 & 1 & 2
+    \end{pmatrix} = A$. Allora vediamo che
+    \begin{align*}
+        \det{(tI - A)} &= \det{\begin{pmatrix} t & -1 & -1 \\ 1 & t - 2 & -1 \\ 1 & -1 & t-2 \end{pmatrix}} = \det{\begin{pmatrix} t & -1 & -1 \\ 0 & t - 1 & 1-t \\ 1 & -1 & t-2 \end{pmatrix}} = \det{\begin{pmatrix} 0 & t-1 & -t^2 - 2t - 1 \\ 0 & t-1 & 1-t \\ 1 & -1 & t-2 \end{pmatrix}} = & \\
+        &= 1 \det{\begin{pmatrix} t-1 & -(t-1)^2 \\ t-1 & 1-t \end{pmatrix}} = -(t-1)^2 + (t-1)(t-1)^2 = (t-1)^2(-1 + t - 1) = \\
+        &= (t-1)^2(t-2),
+    \end{align*}
+    dove ho usato delle mosse di riga per semplificare la forma della matrice (cosa che vi consiglio sempre di fare, poi io soffro probabilmente di qualche disabilità da quando sono caduto dal seggiolone e sono totalmente incapace nel fare calcoli, però ecco semplifica parecchio procedere poi con la regola di Sarrus o Laplace) e poi ho effettuato l'espansione in righe tramite la regola di Laplace.
+    Si procede da qua a cercare gli autospazi (quindi, di fatto, gli autovettori) osservando che, in virtù del teorema appena visto, gli autospazi $V_1$ e $V_2$ sono, rispettivamente, $\text{Ker}(I - A)$ e $\text{Ker}(2I - A)$. Vediamo che
+    $$
+        V_1 = \text{Ker}(I - A) = \text{Ker}(\begin{pmatrix}
+            1 & -1 & -1 \\
+            1 & -1 & -1 \\
+            1 & -1 & -1
+        \end{pmatrix}) = \text{Span} \left\{ \begin{pmatrix} 1 \\ 1 \\ 0 \end{pmatrix}, \begin{pmatrix} 0 \\ 1 \\ -1 \end{pmatrix} \right\},
+    $$
+    mentre
+    $$
+        V_2 = \text{Ker}(2I - A) = \text{Ker}(\begin{pmatrix} 2 & -1 & -1 \\ 1 & 0 & -1 \\ 1 & -1 & 0 \end{pmatrix}) = \text{Span} \left\{ \begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix} \right\}.
+    $$
+    Ponendo $\underline{v_1} = \begin{pmatrix} 1 \\ 1 \\ 0 \end{pmatrix}, \underline{v_2} = \begin{pmatrix} 0 \\ 1 \\ -1 \end{pmatrix}$ e $\underline{v_3} = \begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix}$, notiamo che $\mathcal{B} = \{ \underline{v_1}, \underline{v_2}, \underline{v_3} \}$ è base di $\mathbb{R}^3$ e
+    $$
+        \mathcal{M}^\mathcal{B}_\mathcal{B}(f) = \begin{pmatrix}
+            1 & 0 & 0 \\
+            0 & 1 & 0 \\
+            0 & 0 & 2
+        \end{pmatrix},
+    $$
+    come atteso (facendo uso del teorema \ref{thm:form_camb_base_app_lin}).
+\end{example}
+Procedendo in questa stessa maniera è facile far vedere che
+\begin{exercise}
+    Sia $A = \begin{pmatrix} \cos{\theta} & \sin{\theta} \\ -\sin{\theta} & \cos{\theta} \end{pmatrix}$, allora è facile vedere che l'applicazione $f: \mathbb{R}^2 \to \mathbb{R}^2$ tale che $f(\underline{v}) = A\underline{v}$ ha due autovalori complessi in $\mathbb{C}^2$. Trovarli e scrivere gli autovettori.
+\end{exercise}
+
+Faremo adesso uso di qualche fatto elementare dei polinomi. Definiamo, per procedere senza problemi con la molteplicità algebrica di una radice, che riprenderemo quando parleremo, chiaramente, della molteplicità algebrica di un autovalore
+
+\begin{definition}[molteplicità algebrica di una radice]
+    Sia $p(x) \in \mathbb{K}[x]$ (ovvero polinomi a coefficienti in un campo generico), definiamo la molteplicità di una radice $a \in \mathbb{K}$ come quel massimo intero $n$ positivo per cui possiamo scrivere
+    $$
+        p(x) = (x-a)^n q(x),
+    $$
+    con $q(a) \neq 0_\mathbb{K}$.
+\end{definition}
+
+Come conseguenza del teorema di Ruffini, la molteplicità di una radice è il numero massimo di volte per cui possiamo dividere $p$ per $x-a$. 
+
+\begin{theorem}[fondamentale dell'algebra]
+    Ogni polinomio in $p(x) \in \mathbb{C}[x]$ ha almeno una radice in $\mathbb{C}$ (contate con le loro molteplicità).
+\end{theorem}
+La dimostrazione del teorema è chiaramente omessa, siccome sono necessari alcuni fatti di Analisi Reale (se si vuole dare una dimostrazione che non faccia uso del teorema di Liouville). E' facile tuttavia mostrare, come conseguenza di questo teorema, il seguente corollario
+
+\begin{cor}
+    Ogni polinomio $p(x) \in \mathbb{C}[x]$ di grado $n$ ha $n$ radici (non necessariamente distinte).
+\end{cor}
+
+\begin{proof}
+    Il teorema chiaramente garantisce che sia vera l'ipotesi per $n=1$; mostriamo adesso il caso generale osservando che preso un polinomio $p(x) \in \mathbb{C}[x]$, allora il teorema garantisce che $\exists z^\star_1 \in \mathbb{C}$ tale che
+    $$
+        p(z_1^\star) = 0,
+    $$
+    dunque in virtù del teorema di Ruffini sappiamo che il polinomio può essere scritto come
+    $$
+        p(z) = (z-z_1^\star)p_{n-1}(z),
+    $$
+    dove $p_{n-1}$ è un polinomio di grado $n-1$, dunque si può riapplicare il teorema e sappiamo che $\exists z_2^\star \in \mathbb{C}$ tale che $p_{n-1}(z) = 0$, dunque
+    $$
+        p_{n-1}(z) = (z-z_2^\star)p_{n-2}(z) \implies p(z) = (z-z_1^\star)(z-z_2^\star)p_{n-2}(z),
+    $$
+    dove $p_{n-2}(z)$ è un polinomio di grado $n-2$. Procedendo per induzione si vede allora che
+    $$
+        p(z) = (z-z_1^\star) \ldots (z-z_n^\star).
+    $$
+\end{proof}
+
+\begin{remark}
+    La dimostrazione formale si fa per induzione, però per rendere più evidente la costruzione della dimostrazione l'ho fatta in questa maniera. E' facile, tuttavia, formalizzarla: preso $p(z)$ di grado $n+1$ allora possiamo scriverlo (in virtù del teorema) come $p(z) = (z-z^\star)p_n(z)$ e applicare direttamente l'ipotesi induttiva.
+\end{remark}
+
+Questo teorema appena mostrato garantisce che $\mathbb{C}$ sia un campo \emph{algebricamente chiuso}, ovvero che ogni equazione polinomiale a coefficienti in $\mathbb{C}$ ha almeno una soluzione in $\mathbb{C}$. Non si può dire che $\mathbb{R}$ sia algebricamente chiuso poiché l'equazione
+$$
+x^2 + 1 = 0,
+$$
+non ha soluzioni reali e, si può dimostrare, che $\mathbb{C}$ è la \emph{chiusura algebrica} di $\mathbb{R}$ (ovvero il più campo, algebricamente chiuso, che contiene $\mathbb{R}$).
+
+\begin{remark}(facoltativa)
+    Così come $\mathbb{C}$ si è definito come la chiusura algebrica di $\mathbb{R}$, si potrebbe pensare che la chiusura algebrica di $\mathbb{Q}$ (che è un campo) sia $\mathbb{C}$. Questo è sbagliato: infatti, si può dimostrare che la chiusura algebrica di $\mathbb{Q}$ è il campo dei numeri algebrici, definito come l'insieme dei numeri reali o complessi che risolvono un'equazione polinomiali a coefficienti in $\mathbb{Q}$, in cui rientratano alcuni numeri irrazionali come $\sqrt{2}$ o $\sqrt{3}$ e anche alcuni numeri complessi, ma non ci sono, per esempio, $\pi$ o $e$. Se per assurdo $\mathbb{C}$ fosse la chiusura algebrica di $\mathbb{Q}$ allora si dovrebbe avere che
+    $$
+        \mathbb{Q} \cong \mathbb{A} = \mathbb{C} \cong \mathbb{R}^2 \cong \mathbb{R},
+    $$
+    dove ho posto $\mathbb{A} =$ insieme dei numeri algebrici e con $\cong$ intendo la relazione di medesima cardinalità. Ma questo vorrebbe dire che $\mathbb{Q}$ dovrebbe avere la stessa cardinalità di $\mathbb{R}$, che è un assurdo. Il motivo per cui vale che $\mathbb{Q} \cong \mathbb{A}$ deriva dal fatto che possiamo identificare (non univocamente) ogni numero algebrico con i coefficienti dell'equazione che risolve, tuttavia quest'ultimo spazio (per il teorema della diagonale di Cantor) ha la medesima cardinalità di $\mathbb{Q}$, quindi segue l'uguaglianza.
+\end{remark}
+
+Nel caso di $p(x) \in \mathbb{R}[x]$, tuttavia, seguono una serie di proprietà molto interessanti se $\alpha \in \mathbb{C}$ è radice di $p$. Si potrebbe, infatti, mostrare che
+
+\begin{prop}
+    Se $p(x) \in \mathbb{R}[x]$ e $\alpha \in \mathbb{C}$ è radice di $p(x)$, allora $\bar{\alpha} \in \mathbb{C}$ è radice di $p(x)$.
+\end{prop}
+
+\begin{cor}
+    Se $p(x) \in \mathbb{R}[x]$ allora
+    $$
+        p(x) = (x-\alpha_1)^{m_1} \ldots (x-\alpha_k)^{m_k} (x - \alpha_{k+1})^{m_{k+1}} (x - \bar{\alpha_{k+1}})^{m_{k+1}} \ldots (x - \alpha_h)^{m_h} (x - \bar{\alpha_h})^{m_h}, 
+    $$ 
+    con $\alpha_1, \ldots, \alpha_k \in \mathbb{R}$, mentre $\alpha_{k+1}, \ldots, \alpha_h \in \mathbb{C}$. I numeri $m_1, \ldots m_h$ sono invece detti molteplicità della soluzione e rappresentano 
+\end{cor}
+
+\begin{definition}[molteplicità algebrica e geometrica di un autovalore]
+    Sia $\lambda_i$ un autovalore, diremo che la molteplocità algebrica di $\lambda_i$ è pari alla "sua" molteplicità algebrica come radice di $p_f(t)$, ovvero è quel massimo intero $n$ positivo tale che $(x - \lambda_i)^m$ divide il polinomio caratteristico $p_f(t)$, e la denoteremo con $\mu_a(\lambda_i)$. \\
+    Chiamiamo, invece, molteplicità geometrica dell'autovalore $\lambda_i$ e che denoteremo con $\mu_g(\lambda_i)$ come le dimensioni di $V_{\lambda_i}$.
+\end{definition}
+
+\begin{remark}
+    Non necessariamente $\mu_a(\lambda) = \mu_g(\lambda)$: si pensi alla matrice
+    $$
+        A = \begin{pmatrix}
+            1 & 1 \\
+            0 & 1
+        \end{pmatrix} \implies p_A(t) = (t-1)^2 \implies \mu_a(1) = 2.
+    $$
+    Tuttavia si vede che
+    $$
+        \text{Ker}(I-A) = \begin{pmatrix}
+            0 & -1 \\
+            0 & 0
+        \end{pmatrix} = \text{Span}\left\{ \begin{pmatrix} 1 \\ 0 \end{pmatrix} \right\} \implies \mu_g(1) = 1 \neq \mu_a(1).
+    $$
+\end{remark}
