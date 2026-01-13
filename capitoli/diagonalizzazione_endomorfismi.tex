@@ -149,8 +149,8 @@ $$
 \begin{proof}
     Si vede infatti che se $B = P^{-1}AP$ allora
     \begin{align*}
-    p_B(t) &= \det{tI - B} = \det{tI - P^{-1}AP} = \det{tP^{-1}P - P^{-1}AP} = \det{P^{-1}(tP - AP)} \\
-    &= \det{P^{-1}(tI - A)P} \stackrel{\text{Binet}}{=} \det{tI - A} = p_A(t).
+    p_B(t) &= \det{(tI - B)} = \det{(tI - P^{-1}AP)} = \det{[tP^{-1}P - P^{-1}AP]} = \det{[P^{-1}(tP - AP)]} \\
+    &= \det{[P^{-1}(tI - A)P]} \stackrel{\text{Binet}}{=} \det{(tI - A)} = p_A(t).
     \end{align*}
     Segue anche la prima affermazione siccome se $P$ è la matrice di cambio base da $\mathcal{B}$ a $C$ allora $\mathcal{M}^\mathcal{B}_\mathcal{B}(f) = P^{-1} \mathcal{M}^\mathcal{B}_\mathcal{B}(f) P \implies p_f(t) = p_A(t) = p_B(t)$ con $A = \mathcal{M}^\mathcal{C}_\mathcal{C}(f)$ e $B = \mathcal{M}^\mathcal{B}_\mathcal{B}$.
 \end{proof}
@@ -191,15 +191,15 @@ In virtù di questa indipendenza dalla base scelta, possiamo motivare la seguent
     dove ho usato delle mosse di riga per semplificare la forma della matrice (cosa che vi consiglio sempre di fare, poi io soffro probabilmente di qualche disabilità da quando sono caduto dal seggiolone e sono totalmente incapace nel fare calcoli, però ecco semplifica parecchio procedere poi con la regola di Sarrus o Laplace) e poi ho effettuato l'espansione in righe tramite la regola di Laplace.
     Si procede da qua a cercare gli autospazi (quindi, di fatto, gli autovettori) osservando che, in virtù del teorema appena visto, gli autospazi $V_1$ e $V_2$ sono, rispettivamente, $\text{Ker}(I - A)$ e $\text{Ker}(2I - A)$. Vediamo che
     $$
-        V_1 = \text{Ker}(I - A) = \text{Ker}(\begin{pmatrix}
+        V_1 = \text{Ker}(I - A) = \text{Ker} \begin{pmatrix}
             1 & -1 & -1 \\
             1 & -1 & -1 \\
             1 & -1 & -1
-        \end{pmatrix}) = \text{Span} \left\{ \begin{pmatrix} 1 \\ 1 \\ 0 \end{pmatrix}, \begin{pmatrix} 0 \\ 1 \\ -1 \end{pmatrix} \right\},
+        \end{pmatrix} = \text{Span} \left\{ \begin{pmatrix} 1 \\ 1 \\ 0 \end{pmatrix}, \begin{pmatrix} 0 \\ 1 \\ -1 \end{pmatrix} \right\},
     $$
     mentre
     $$
-        V_2 = \text{Ker}(2I - A) = \text{Ker}(\begin{pmatrix} 2 & -1 & -1 \\ 1 & 0 & -1 \\ 1 & -1 & 0 \end{pmatrix}) = \text{Span} \left\{ \begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix} \right\}.
+        V_2 = \text{Ker}(2I - A) = \text{Ker} \begin{pmatrix} 2 & -1 & -1 \\ 1 & 0 & -1 \\ 1 & -1 & 0 \end{pmatrix} = \text{Span} \left\{ \begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix} \right\}.
     $$
     Ponendo $\underline{v_1} = \begin{pmatrix} 1 \\ 1 \\ 0 \end{pmatrix}, \underline{v_2} = \begin{pmatrix} 0 \\ 1 \\ -1 \end{pmatrix}$ e $\underline{v_3} = \begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix}$, notiamo che $\mathcal{B} = \{ \underline{v_1}, \underline{v_2}, \underline{v_3} \}$ è base di $\mathbb{R}^3$ e
     $$
@@ -275,11 +275,9 @@ non ha soluzioni reali e, si può dimostrare, che $\mathbb{C}$ è la \emph{chius
 \end{remark}
 
 Nel caso di $p(x) \in \mathbb{R}[x]$, tuttavia, seguono una serie di proprietà molto interessanti se $\alpha \in \mathbb{C}$ è radice di $p$. Si potrebbe, infatti, mostrare che
-
 \begin{prop}
     Se $p(x) \in \mathbb{R}[x]$ e $\alpha \in \mathbb{C}$ è radice di $p(x)$, allora $\bar{\alpha} \in \mathbb{C}$ è radice di $p(x)$.
 \end{prop}
-
 \begin{cor}
     Se $p(x) \in \mathbb{R}[x]$ allora
     $$
@@ -287,12 +285,10 @@ Nel caso di $p(x) \in \mathbb{R}[x]$, tuttavia, seguono una serie di proprietà 
     $$ 
     con $\alpha_1, \ldots, \alpha_k \in \mathbb{R}$, mentre $\alpha_{k+1}, \ldots, \alpha_h \in \mathbb{C}$. I numeri $m_1, \ldots m_h$ sono invece detti molteplicità della soluzione e rappresentano 
 \end{cor}
-
 \begin{definition}[molteplicità algebrica e geometrica di un autovalore]
-    Sia $\lambda_i$ un autovalore, diremo che la molteplocità algebrica di $\lambda_i$ è pari alla "sua" molteplicità algebrica come radice di $p_f(t)$, ovvero è quel massimo intero $n$ positivo tale che $(x - \lambda_i)^m$ divide il polinomio caratteristico $p_f(t)$, e la denoteremo con $\mu_a(\lambda_i)$. \\
-    Chiamiamo, invece, molteplicità geometrica dell'autovalore $\lambda_i$ e che denoteremo con $\mu_g(\lambda_i)$ come le dimensioni di $V_{\lambda_i}$.
+    Sia $\lambda_i$ un autovalore, diremo che la \textbf{molteplicità algebrica} di $\lambda_i$ è pari alla "sua" molteplicità algebrica come radice di $p_f(t)$, ovvero è quel massimo intero $n$ positivo tale che $(x - \lambda_i)^m$ divide il polinomio caratteristico $p_f(t)$, e la denoteremo con $\mu_a(\lambda_i)$. \\
+    Chiamiamo, invece, \textbf{molteplicità geometrica} dell'autovalore $\lambda_i$ e che denoteremo con $\mu_g(\lambda_i)$ come le dimensioni di $V_{\lambda_i}$.
 \end{definition}
-
 \begin{remark}
     Non necessariamente $\mu_a(\lambda) = \mu_g(\lambda)$: si pensi alla matrice
     $$
@@ -309,3 +305,151 @@ Nel caso di $p(x) \in \mathbb{R}[x]$, tuttavia, seguono una serie di proprietà 
         \end{pmatrix} = \text{Span}\left\{ \begin{pmatrix} 1 \\ 0 \end{pmatrix} \right\} \implies \mu_g(1) = 1 \neq \mu_a(1).
     $$
 \end{remark}
+\begin{theorem}
+    Sia $V$ uno spazio vettoriale sul campo $\mathbb{K}$ e sia $f: V \to V$ un endomorfismo, allora $\forall \lambda_i$ autovalore si ha che $1 \leq \mu_g(\lambda_i) \leq \mu_a(\lambda_i).$
+\end{theorem}
+\begin{proof}
+    Sappiamo che esiste $V_{\lambda_i}$ autospazio relativo all'autovalore $\lambda_i$ con dimensione almeno pari a $k = \mu_g(\lambda_i)$, allora possiamo trovare una base $\mathcal{B}_\lambda = \{ \underline{v_1}, \ldots, \underline{v_k} \}$ dell'autospazio $V_\lambda$ e possiamo completarla a base di $V$, ottenendo la base $\mathcal{B} = \mathcal{B}_\lambda \cup \{ \underline{v_{k+1}}, \ldots, \underline{v_n} \}$, dove chiaramente $n = \text{dim}(V)$. Si ha allora che in questa
+    base in entrata e in uscita, la matrice associata ad $f$ sarà della forma
+    \begin{align*}
+        &\mathcal{M}(f)^\mathcal{B}_\mathcal{B} = \begin{pmatrix}
+            \lambda_i & 0 & \ldots & 0 & 0 & \ast & \ast & \ldots & \ast & \ast \\
+            0 & \lambda_i & 0 & \ldots & 0 & \ast & \ast & \ldots & \ast & \ast \\
+            0 & 0 & \ddots & \ldots & 0 & \ast & \ast & \ldots & \ast & \ast \\
+            0 & 0 & \ldots & \lambda_i & 0 & \ast & \ast & \ldots & \ast & \ast \\
+            0 & 0 & \ldots & \ldots & \lambda_i & \ast & \ast & \ldots & \ast & \ast \\
+            0 & 0 & \ldots & \ldots & 0 &   &   &   &   & \\
+            0 & 0 & \ldots & \ldots & 0 &   &   &   &   & \\
+            0 & 0 & \ldots & \ldots & 0 &   &  &[C]   &  & \\
+            0 & 0 & \ldots & \ldots & 0 &   &   &   &   & \\
+            0 & 0 & \ldots & \ldots & 0 &   &   &   &   & 
+        \end{pmatrix}.
+    \end{align*}
+    Si ha allora che
+    \begin{align*}
+        &\implies \mathcal{M}(tI - f)^\mathcal{B}_\mathcal{B} = \begin{pmatrix}
+            t-\lambda_i & 0 & \ldots & 0 & 0 & \ast & \ast & \ldots & \ast & \ast \\
+            0 & t-\lambda_i & 0 & \ldots & 0 & \ast & \ast & \ldots & \ast & \ast \\
+            0 & 0 & \ddots & \ldots & 0 & \ast & \ast & \ldots & \ast & \ast \\
+            0 & 0 & \ldots & t-\lambda_i & 0 & \ast & \ast & \ldots & \ast & \ast \\
+            0 & 0 & \ldots & \ldots & t-\lambda_i & \ast & \ast & \ldots & \ast & \ast \\
+            0 & 0 & \ldots & \ldots & 0 &   &   &   &   & \\
+            0 & 0 & \ldots & \ldots & 0 &   &   &   &   & \\
+            0 & 0 & \ldots & \ldots & 0 &   &  &[t\text{Id}_{(n-k)\times (n-k)} - C]   &  & \\
+            0 & 0 & \ldots & \ldots & 0 &   &   &   &   & \\
+            0 & 0 & \ldots & \ldots & 0 &   &   &   &   & 
+        \end{pmatrix} = \\
+        &=\begin{pmatrix} (t - \lambda_i) \text{Id}_{n \times n} & B \\ 0_{(n-k) \times (n-k)} & t\text{Id}_{(n-k) \times (n-k)} - C \end{pmatrix}.
+    \end{align*}
+    Siccome è una matrice a blocchi, segue dall'esercizio \ref{ex:4.10} che
+    $$
+    \det{(\mathcal{M}(tI - f)^\mathcal{B}_\mathcal{B})} = \det{((t-\lambda_i)\text{Id}_{k \times k})} \det{(t\text{Id}_{(n-k)\times (n-k)} - C)} = (t-\lambda_i)^k \det{(t\text{Id}_{(n-k)\times (n-k)} - C)}.
+    $$
+    Segue allora che $\mu_a(\lambda_i)$ è almeno maggiore o uguale a $\mu_g(\lambda_i)$ e poiché si deve avere (per definizione di autovalore) che $\mu_g(\lambda) \geq 1 \implies 1 \leq \mu_g(\lambda_i) \leq \mu_a(\lambda_i)$.
+\end{proof}
+\begin{remark}
+    E' chiaro che $\mu_g(\lambda_i)$ è invariante per similitudine: se $B = P^{-1} A P \implies V_{\lambda, A} \cong V_{\lambda, B}$ e quindi hanno la stessa dimensione.
+\end{remark}
+\begin{remark}
+    Gli autovalori di $f: V \to V$ sono gli stessi di $A = \mathcal{M}^\mathcal{B}_\mathcal{B}(f)$ per qualunque base $\mathcal{B}$ (per invarianza del polinomio caratteristico). Si ha allora che
+    \begin{align*}
+        &f \text{ diagonalizzabile } \iff \mathcal{M}^\mathcal{B}_\mathcal{B}(f) \text{ diagonalizzabile (per una qualunque base } \mathcal{B}). 
+    \end{align*}
+\end{remark}
+\begin{theorem}
+    Sia $V$ uno spazio vettoriale sul campo $\mathbb{K}$ e sia $f: V \to V$ un endomorfismo con $\lambda_1, \ldots, \lambda_k$ autovalori distinti. Allora qualunque $k-$upla di autovettori $\underline{v_1}, \ldots, \underline{v_k}$ relativi rispettivamente agli autovalori $\lambda_1, \ldots, \lambda_k$ è linearmente indipendente.
+\end{theorem}
+\begin{proof}
+    Si fa per induzione su $k$.
+    \begin{itemize}
+        \item Se $k=1$ è chiaramente ovvio (perché un autovettore è $\neq$ 0 per definizione, quindi linearmente indipendente).
+        \item Sia $k > 1$, allora mostriamo che $k \implies k+1$. Studiamo l'equazione
+        \begin{align} \label{eq:rel_not_banale_aut}
+            &\alpha_1 \underline{v_1} + \ldots + \alpha_k \underline{v_k} + \alpha_{k+1} \underline{v_{k+1}} = \underline{0},
+        \end{align}
+        e applicando $f$ sia a destra che a sinistra si ha che
+        \begin{align*}
+            &f(\alpha_1 \underline{v_1} + \ldots + \alpha_k \underline{v_k} + \alpha_{k+1} \underline{v_{k+1}}) = \alpha_1 f(\underline{v_1}) + \ldots + \alpha_{k+1} f(\underline{v_{k+1}}) = & & \\
+            &= \alpha_1 \lambda_1 \underline{v_1} + \ldots + \alpha_{k+1} \lambda_{k+1} \underline{v_{k+1}} = f(\underline{0}) = \underline{0}, & &
+        \end{align*}
+        ottenendo così in definitiva che
+        \begin{align} \label{eq:eq:rel_not_banale_aut_f}
+            \alpha_1 \lambda_1 \underline{v_1} + \ldots + \alpha_{k+1} \lambda_{k+1} \underline{v_{k+1}} = \underline{0},
+        \end{align}
+        ma allora moltiplicando la (\ref{eq:rel_not_banale_aut}) per $\lambda_{k+1}$ e sottraendo la (\ref{eq:rel_not_banale_aut}) eliminiamo il termine $\underline{v_{k+1}}$ e si ha che
+        $$
+            (\lambda_1 - \lambda_{k+1}) \alpha_1 \underline{v_1} + \ldots + (\lambda_{k} - \lambda_{k+1}) \alpha_{k} \underline{v_k} = \underline{0}.
+        $$
+        e siccome $\lambda_i - \lambda_{k+1} \neq 0 \, \forall i \in \{ 1, \ldots, k \}$ e, per ipotesi induttiva, i vettori $\underline{v_1}, \ldots, \underline{v_k}$ sono linearmente indipendenti, allora si deve avere che 
+        $\alpha_i = 0 \, \forall i \in \{ 1, \ldots, k \}$, dunque la \ref{eq:rel_not_banale_aut} si riduce a
+        $$
+            \alpha_{k+1} \underline{v_{k+1}} = \underline{0} \implies \alpha_{k+1} = 0,
+        $$
+        siccome $\underline{v_{k+1}}$ è, per definizione, diverso da $0$. Se $\lambda_{k+1} = 0$ il passaggio di moltiplicare la \ref{eq:rel_not_banale_aut} non è ben definito, tuttavia vediamo che in, tal caso, la \ref{eq:rel_not_banale_aut_f} diventa
+        $$
+            \alpha_1 \lambda_1 \underline{v_1} + \ldots + \alpha_k \lambda_{k} \underline{v_k} = \underline{0},
+        $$
+        senza il vettore $\underline{v_{k+1}}$, ma allora si deduce alla solita maniera che $\alpha_i = 0 \, \forall i \in \{ 1, \ldots, k \}$ e procedendo come fatto prima si riottiene l'asserto.
+    \end{itemize}
+\end{proof}
+\begin{cor} \label{cor:somma_dir_autospazi}
+    Autospazi relativi ad autovalori distinti sono in somma diretta.
+    $$
+        V_{\lambda_1} + \ldots + V_{\lambda_{k}} = V_{\lambda_1} \oplus \ldots \oplus V_{\lambda_k}.
+    $$
+\end{cor}
+\begin{proof}
+    Infatti si ha che
+    \begin{align*}
+        &V_{\lambda_1} \oplus \ldots \oplus V_{\lambda_k} \iff V_i \cap (V_{\lambda_1} \oplus \ldots V_{\lambda_{i-1}} \oplus V_{\lambda_{i+1}} \oplus \ldots \oplus V_{\lambda_k}) = \{ \underline{0} \} \, \forall i \in \{ 1, \ldots, k\} \\
+        &\iff \underline{0} \neq \underline{v_1} \in V_1, \ldots, \underline{0} \neq \underline{v_k} \in V_k \text{ sono sempre linearmente indipendenti.}
+    \end{align*}
+\end{proof}
+\begin{cor}
+    Sia $V$ uno spazio vettoriale sul campo $\mathbb{K}$ e $f: V \to V$ un endomorfismo con $n = \text{dim}(V)$ autovalori distinti, allora $f$ diagonalizzabile.
+\end{cor}
+\begin{proof}
+    Infatti, poiché $\lambda_1, \ldots, \lambda_n$ sono autovalori distinti, allora se prendiamo $\underline{v_1}, \ldots, \underline{v_n}$ autovettori relativi ad essi, questi sono linearmente indipendenti per cui formano una base.
+\end{proof}
+Segue quindi che
+\begin{prop}
+Sia $f: V \to V$ allora si ha che
+\begin{align*}
+    &f \text{ diagonalizzabile } \iff V \text{ ha una base di autovettori } \iff \\
+    &\iff V = V_{\lambda_1} \oplus \ldots \oplus V_{\lambda_k} \text{ dove } \lambda_1, \ldots, \lambda_k \text{ sono tutti gli autovalori distinti di }f.
+\end{align*}
+\end{prop}
+\begin{proof}
+    Il primo se e solo se è già stato visto nei precedenti teoremi, quindi studiamo il secondo se e solo se: per fare questo vediamo che \\
+    $\boxed{\Leftarrow}:$ basta mettere insieme la base $\mathcal{B}_{\lambda_1}, \ldots, \mathcal{B}_{\lambda_k}$ di $V_{\lambda_1}, \ldots, V_{\lambda_k}$. \\
+    $\boxed{\Rightarrow}:$ sia $W = V_{\lambda_1} \oplus \ldots \oplus V_{\lambda_k}$ dove gli $\lambda_1, \ldots, \lambda_k$ sono gli autovalori. Si ha quindi che gli autovettori stanno in $W$, $W = V_{\lambda_1} \oplus \ldots \oplus V_{\lambda_k}$ (in virtù del corollario \ref{cor:somma_dir_autospazi}) e, poiché ho una base di autovettori, allora $W = V$.
+\end{proof}
+Inoltre si vede, partendo da $W = V$ che $\text{dim}(V) = \text{dim}(V) = \text{dim}(V_{\lambda_1}) + \ldots + \text{dim}(V_{\lambda_k}) = \mu_g(\lambda_1) + \ldots + \mu_g(\lambda_k) \leq \mu_a(\lambda_1) + \ldots + \mu_a(\lambda_k) = \text{dim}(V)$. Ciò è possibile se e solo se 
+$$
+    \mu_g(\lambda_i) = \mu_a(\lambda_i) \, \forall i \in \{ 1, \ldots, k \}.
+$$
+Ma allora si ha che
+$$
+    p_f(t) = (t-\lambda_1)^{\mu_a(\lambda_1)} \ldots (t-\lambda_k)^{\mu_a(\lambda_k)}
+$$
+Abbiamo quindi dimostrato che
+\begin{theorem}
+    Sia $V$ uno spazio vettoriale sul campo $\mathbb{K}$, allora $f:V \to V$ è diagonalizzabile se e solo se il polinomio caratteristico $p_f(t)$ si fattorizza completamente come prodotto di fattori di grado 1, ovvero $p_f(t) = \prod\limits_{i=1}^k (t-\alpha_i)^{m_i}$, e $\forall \lambda_i \text{ autovalore}, \mu_a(\lambda_i) = \mu_g(\lambda_i)$. In tal caso se $\lambda_1, \ldots, \lambda_k$ sono gli autovalori e $\mathcal{B_i}$ è una base dell'autospazio $V_{\lambda_i}$, allora
+    la base $\mathcal{B} = \bigcup\limits_{i=1}^k B_i$ diagonalizza $f$.
+\end{theorem}
+\begin{remark}
+    Un esempio del motivo per cui sia necessario che il polinomio possa essere fattorizzato come prodotto di grado $1$ è rappresentato dalle rotazioni. Come visto per le rotazioni in $\mathbb{R}$, il polinomio caratteristico ha $2$ soluzioni complesse che, quindi, sono "fuori" da $\mathbb{R}$ e, conseguentemente, non è possibile fattorizzare il polinomio come prodotto di fattori di grado $1$.
+\end{remark}
+Un caso particolare si ha chiaramente per $\mathbb{K} = \mathbb{C}$ o, più in generale, per ogni campo algebricamente chiuso: in tal caso si ha che il polinomio caratteristico si fattorizza sempre come prodotti di fattori di grado $1$, tuttavia è sempre necessario che per ogni autovalore la molteplicità algebrica e geometrica coincida. Nel caso reale, si deve avere, quindi, non solo questa condizione, ma che tutte le radici siano reali.
+\begin{example}
+    \begin{itemize}
+        \item $A = \begin{pmatrix}
+            0 & -1 \\
+            1 & 0
+        \end{pmatrix}$ ha polinomio caratteristico $p(t) = t^2 + 1$ che si diagonalizza su $\mathbb{C}$, non su $\mathbb{R}$;
+        \item $A = \begin{pmatrix}
+            1 & 1 \\
+            0 & 1
+        \end{pmatrix}$ ha polinomio caratteristico $p(t) = (t-1)^2$, ma $\mu_g(1) = 1 < \mu_a(1) = 2$, quindi non si diagonalizza né su $\mathbb{C}$ né su $\mathbb{R}$.
+    \end{itemize}
+\end{example}

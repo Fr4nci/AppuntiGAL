@@ -25,12 +25,12 @@
 \contentsline {section}{\numberline {4.2}Determinante}{76}{section.4.2}%
 \contentsline {subsection}{\numberline {4.2.1}Costruzione del determinante}{77}{subsection.4.2.1}%
 \contentsline {subsection}{\numberline {4.2.2}Gruppo simmetrico}{79}{subsection.4.2.2}%
-\contentsline {section}{\numberline {4.3}Spazi biduali}{89}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Annullatore}{90}{section.4.4}%
+\contentsline {section}{\numberline {4.3}Spazi biduali}{90}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Annullatore}{91}{section.4.4}%
 \contentsline {chapter}{\numberline {5}Diagonalizzazione degli endomorfismi}{93}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Polinomio caratteristico}{95}{section.5.1}%
-\contentsline {chapter}{\numberline {6}Soluzioni agli esercizi}{99}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Spazi vettoriali}{99}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Prodotti scalari}{104}{section.6.2}%
-\contentsline {chapter}{\numberline {A}Logica}{107}{chapter.1}%
-\contentsline {chapter}{\numberline {B}Basi a dimensione infinita}{109}{chapter.2}%
+\contentsline {chapter}{\numberline {6}Soluzioni agli esercizi}{103}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Spazi vettoriali}{103}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Prodotti scalari}{108}{section.6.2}%
+\contentsline {chapter}{\numberline {A}Logica}{111}{chapter.1}%
+\contentsline {chapter}{\numberline {B}Basi a dimensione infinita}{113}{chapter.2}%
