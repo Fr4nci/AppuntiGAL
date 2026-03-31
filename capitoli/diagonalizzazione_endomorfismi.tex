@@ -260,18 +260,18 @@ La dimostrazione del teorema è chiaramente omessa, siccome sono necessari alcun
     La dimostrazione formale si fa per induzione, però per rendere più evidente la costruzione della dimostrazione l'ho fatta in questa maniera. E' facile, tuttavia, formalizzarla: preso $p(z)$ di grado $n+1$ allora possiamo scriverlo (in virtù del teorema) come $p(z) = (z-z^\star)p_n(z)$ e applicare direttamente l'ipotesi induttiva.
 \end{remark}
 
-Questo teorema appena mostrato garantisce che $\mathbb{C}$ sia un campo \emph{algebricamente chiuso}, ovvero che ogni equazione polinomiale a coefficienti in $\mathbb{C}$ ha almeno una soluzione in $\mathbb{C}$. Non si può dire che $\mathbb{R}$ sia algebricamente chiuso poiché l'equazione
+Questo teorema appena enunciato garantisce che $\mathbb{C}$ sia un campo \emph{algebricamente chiuso}, ovvero che ogni equazione polinomiale a coefficienti in $\mathbb{C}$ ha almeno una soluzione in $\mathbb{C}$. Non si può dire che $\mathbb{R}$ sia algebricamente chiuso poiché l'equazione
 $$
 x^2 + 1 = 0,
 $$
-non ha soluzioni reali e, si può dimostrare, che $\mathbb{C}$ è la \emph{chiusura algebrica} di $\mathbb{R}$ (ovvero il più campo, algebricamente chiuso, che contiene $\mathbb{R}$).
+non ha soluzioni reali e, anche se non lo faremo, si potrebbe mostrare che $\mathbb{C}$ è la \emph{chiusura algebrica} di $\mathbb{R}$ (ovvero il più piccolo campo algebricamente chiuso che contiene $\mathbb{R}$).
 
 \begin{remark}(facoltativa)
     Così come $\mathbb{C}$ si è definito come la chiusura algebrica di $\mathbb{R}$, si potrebbe pensare che la chiusura algebrica di $\mathbb{Q}$ (che è un campo) sia $\mathbb{C}$. Questo è sbagliato: infatti, si può dimostrare che la chiusura algebrica di $\mathbb{Q}$ è il campo dei numeri algebrici, definito come l'insieme dei numeri reali o complessi che risolvono un'equazione polinomiali a coefficienti in $\mathbb{Q}$, in cui rientratano alcuni numeri irrazionali come $\sqrt{2}$ o $\sqrt{3}$ e anche alcuni numeri complessi, ma non ci sono, per esempio, $\pi$ o $e$. Se per assurdo $\mathbb{C}$ fosse la chiusura algebrica di $\mathbb{Q}$ allora si dovrebbe avere che
     $$
         \mathbb{Q} \cong \mathbb{A} = \mathbb{C} \cong \mathbb{R}^2 \cong \mathbb{R},
     $$
-    dove ho posto $\mathbb{A} =$ insieme dei numeri algebrici e con $\cong$ intendo la relazione di medesima cardinalità. Ma questo vorrebbe dire che $\mathbb{Q}$ dovrebbe avere la stessa cardinalità di $\mathbb{R}$, che è un assurdo. Il motivo per cui vale che $\mathbb{Q} \cong \mathbb{A}$ deriva dal fatto che possiamo identificare (non univocamente) ogni numero algebrico con i coefficienti dell'equazione che risolve, tuttavia quest'ultimo spazio (per il teorema della diagonale di Cantor) ha la medesima cardinalità di $\mathbb{Q}$, quindi segue l'uguaglianza.
+    dove ho posto $\mathbb{A} =$ insieme dei numeri algebrici e con $\cong$ intendo la relazione di medesima cardinalità. Ma questo vorrebbe dire che $\mathbb{Q}$ dovrebbe avere la stessa cardinalità di $\mathbb{R}$, che è un assurdo. Il motivo per cui vale che $\mathbb{Q} \cong \mathbb{A}$ deriva dal fatto che possiamo identificare (non univocamente) ogni numero algebrico con i coefficienti dell'equazione che risolve, tuttavia quest'ultimo spazio (per il teorema della diagonale di Cantor) ha la medesima cardinalità di $\mathbb{Q}$, quindi segue che abbiano la stessa cardinalità.
 \end{remark}
 
 Nel caso di $p(x) \in \mathbb{R}[x]$, tuttavia, seguono una serie di proprietà molto interessanti se $\alpha \in \mathbb{C}$ è radice di $p$. Si potrebbe, infatti, mostrare che
@@ -327,7 +327,7 @@ Nel caso di $p(x) \in \mathbb{R}[x]$, tuttavia, seguono una serie di proprietà 
     \end{align*}
     Si ha allora che
     \begin{align*}
-        &\implies \mathcal{M}(tI - f)^\mathcal{B}_\mathcal{B} = \begin{pmatrix}
+        &\mathcal{M}(tI - f)^\mathcal{B}_\mathcal{B} = \begin{pmatrix}
             t-\lambda_i & 0 & \ldots & 0 & 0 & \ast & \ast & \ldots & \ast & \ast \\
             0 & t-\lambda_i & 0 & \ldots & 0 & \ast & \ast & \ldots & \ast & \ast \\
             0 & 0 & \ddots & \ldots & 0 & \ast & \ast & \ldots & \ast & \ast \\
@@ -373,7 +373,7 @@ Nel caso di $p(x) \in \mathbb{R}[x]$, tuttavia, seguono una serie di proprietà 
             &= \alpha_1 \lambda_1 \underline{v_1} + \ldots + \alpha_{k+1} \lambda_{k+1} \underline{v_{k+1}} = f(\underline{0}) = \underline{0}, & &
         \end{align*}
         ottenendo così in definitiva che
-        \begin{align} \label{eq:eq:rel_not_banale_aut_f}
+        \begin{align} \label{eq:rel_not_banale_aut_f}
             \alpha_1 \lambda_1 \underline{v_1} + \ldots + \alpha_{k+1} \lambda_{k+1} \underline{v_{k+1}} = \underline{0},
         \end{align}
         ma allora moltiplicando la (\ref{eq:rel_not_banale_aut}) per $\lambda_{k+1}$ e sottraendo la (\ref{eq:rel_not_banale_aut}) eliminiamo il termine $\underline{v_{k+1}}$ e si ha che
@@ -404,6 +404,31 @@ Nel caso di $p(x) \in \mathbb{R}[x]$, tuttavia, seguono una serie di proprietà 
         &V_{\lambda_1} \oplus \ldots \oplus V_{\lambda_k} \iff V_i \cap (V_{\lambda_1} \oplus \ldots V_{\lambda_{i-1}} \oplus V_{\lambda_{i+1}} \oplus \ldots \oplus V_{\lambda_k}) = \{ \underline{0} \} \, \forall i \in \{ 1, \ldots, k\} \\
         &\iff \underline{0} \neq \underline{v_1} \in V_1, \ldots, \underline{0} \neq \underline{v_k} \in V_k \text{ sono sempre linearmente indipendenti.}
     \end{align*}
+    Mostriamo l'ultimo se e solo se: $\boxed{\Rightarrow}$ Supponiamo che l'intersezione sia banale per ogni $i$. Consideriamo la combinazione lineare nulla:
+    \[
+        \alpha_1 \underline{v}_1 + \dots + \alpha_i \underline{v}_i + \dots + \alpha_k \underline{v}_k = \underline{0}.
+    \]
+    Isolando il termine $i$-esimo, otteniamo:
+    \[
+        \alpha_i \underline{v}_i = - \sum_{j \neq i} \alpha_j \underline{v}_j.
+    \]
+    Il membro sinistro appartiene a $V_{\lambda_i}$, mentre il membro destro appartiene alla somma degli altri autospazi $\sum_{j \neq i} V_{\lambda_j}$. 
+    Per ipotesi di somma diretta, l'unico elemento comune è il vettore nullo, quindi:
+    \[
+        \alpha_i \underline{v}_i = \underline{0}.
+    \]
+    Poiché per ipotesi i vettori scelti sono non nulli ($\underline{v}_i \neq \underline{0}$), deve essere **$\alpha_i = 0$**. Ripetendo il ragionamento per ogni $i$, tutti i coefficienti sono nulli, dunque i vettori sono linearmente indipendenti.
+
+    $\boxed{\Leftarrow}$ Supponiamo per assurdo che esista un indice $i$ per cui l'intersezione non sia banale. Esiste quindi un vettore $\underline{x} \neq \underline{0}$ tale che:
+    \[
+        \underline{x} \in V_{\lambda_i} \quad \text{e} \quad \underline{x} \in \sum_{j \neq i} V_{\lambda_j}.
+    \]
+    Possiamo quindi scrivere $\underline{x}$ come somma di vettori degli altri autospazi: $\underline{x} = \sum_{j \neq i} \underline{v}_j$. 
+    Ponendo $\underline{v}_i = \underline{x}$, otteniamo:
+    \[
+        \underline{v}_i - \sum_{j \neq i} \underline{v}_j = \underline{0}.
+    \]
+    Questa è una relazione di dipendenza lineare non banale (il coefficiente di $\underline{v}_i$ è $1 \neq 0$), il che contraddice l'ipotesi di indipendenza lineare dei vettori tra autospazi distinti.
 \end{proof}
 \begin{cor}
     Sia $V$ uno spazio vettoriale sul campo $\mathbb{K}$ e $f: V \to V$ un endomorfismo con $n = \text{dim}(V)$ autovalori distinti, allora $f$ diagonalizzabile.
@@ -441,7 +466,7 @@ Abbiamo quindi dimostrato che
     Un esempio del motivo per cui sia necessario che il polinomio possa essere fattorizzato come prodotto di grado $1$ è rappresentato dalle rotazioni. Come visto per le rotazioni in $\mathbb{R}$, il polinomio caratteristico ha $2$ soluzioni complesse che, quindi, sono "fuori" da $\mathbb{R}$ e, conseguentemente, non è possibile fattorizzare il polinomio come prodotto di fattori di grado $1$.
 \end{remark}
 Un caso particolare si ha chiaramente per $\mathbb{K} = \mathbb{C}$ o, più in generale, per ogni campo algebricamente chiuso: in tal caso si ha che il polinomio caratteristico si fattorizza sempre come prodotti di fattori di grado $1$, tuttavia è sempre necessario che per ogni autovalore la molteplicità algebrica e geometrica coincida. Nel caso reale, si deve avere, quindi, non solo questa condizione, ma che tutte le radici siano reali.
-\begin{example}
+\begin{example} \hspace{1cm}
     \begin{itemize}
         \item $A = \begin{pmatrix}
             0 & -1 \\
@@ -453,3 +478,63 @@ Un caso particolare si ha chiaramente per $\mathbb{K} = \mathbb{C}$ o, più in g
         \end{pmatrix}$ ha polinomio caratteristico $p(t) = (t-1)^2$, ma $\mu_g(1) = 1 < \mu_a(1) = 2$, quindi non si diagonalizza né su $\mathbb{C}$ né su $\mathbb{R}$.
     \end{itemize}
 \end{example}
+\begin{remark} (condizioni sulla similitudine fra due matrici)
+    Una condizione necessaria affinché due matrici siano simili è che queste abbiano gli stessi autovalori, con le stesse molteplicità algebrica e geometrica: il motivo è chiaro, in quanto se supponiamo per assurdo che non abbiamo gli stessi autovalori, ovvero $\exists \lambda \in \mathbb{K}$ che è autovettore di $A$ e non è autovettore di $B$, allora si ha dalla condizione di 
+    similitudine che $\exists S \in M_n(\mathbb{K}) : B = S^{-1} A S$ e se consideriamo un $\underline{v} \neq \underline{0}$\footnote{l'esistenza di un autovettore non nullo (in cui l'equazione $A\underline{v} = \lambda \underline{v}$ è banale) è garantita dalla definizione stessa di autovalore!} autovettore di $A$ con autovalore $\lambda$, abbiamo che $S^{-1} \underline{v}$ è autovettore di $B$, in quanto
+    \begin{align}
+        B(S^{-1} \underline{v}) = (S^{-1} A S)(S^{-1} \underline{v}) = S^{-1} A (S S^{-1} \underline{v}) = \lambda S^{-1} \underline{v},
+    \end{align}
+    e questo è chiaramente un assurdo col fatto che avevamo supposto che $\lambda$ non fosse un autovalore di $B$. Il fatto che debbano avere la stessa molteplicità algebrica è altrettanto chiaro dal fatto che il polinomio caratteristico è invariante per similitudine, mentre il fatto che abbiano la stessa molteplicità geometrica segue dal fatto che se esistesse un autovalore $\lambda$ per cui
+    $\mu_g(A) > \mu_g(B)$ (senza perdita di generalità), allora si ha che $V_{\lambda, A} = \text{Span}(\underline{v_1}, \ldots, \underline{v}_{\mu_g(A)})$ con $\{ \underline{v_1}, \ldots, \underline{v_{\mu_g(A)}} \}$ autovettori relativi all'autovalore $\lambda$ e, ripetendo il ragionamento fatto sopra, si ha necessariamente che $S^{-1}(V_{\lambda, A})$ è l'autospazio degli autovettori relativi a $\lambda$ di $B$, ma poiché
+    $S$ è invertibile allora $V_{\lambda, B} = S^{-1}(V_{\lambda, A})$ che ha dimensione pari a quello dello spazio di partenza (in quanto $S^{-1}$ isomorfismo), il che è assurdo poiché avevamo supposto che $\mu_g(A) > \mu_g(B)$.
+    Le condizioni enunciate qua sono anche sufficienti? Indubbiamente, se $A$ e $B$ sono diagonalizzabili sì, dunque si procede a mostrare il teorema
+    \begin{theorem}
+        Se $A, B \in M_n(\mathcal{K})$ sono diagonalizzabili, allora
+        $$
+            A \text{ e } B \text{ sono simili } \iff \text{hanno gli stessi autovalori, con stesse molteplicità algebriche e geometriche}. 
+        $$
+    \end{theorem}
+    \begin{proof} \hspace{1cm} \\
+        $\boxed{\Rightarrow}$: mostrato sopra. \\
+        $\boxed{\Leftarrow}$: se $A$ e $B$ sono diagonalizzabili, allora sappiamo che esiste per $A$ una matrice $S$ tale per cui
+        \begin{align}
+            D = S^{-1} A S,
+        \end{align}
+        e anche per $B$ abbiamo che esiste $S'$ tale che 
+        \begin{align}
+            D' = (S')^{-1} B S',
+        \end{align}
+        ma si deve avere necessariamente, in quanto hanno gli stessi autovalori con le medesime molteplicità algebriche e geometriche, che (a meno di riordinare gli elementi sulla diagonale con le matrici elemenetari $E_{ij}$) queste due matrici diagonali devono coincidere, dunque
+        \begin{align}
+            S^{-1} A S = (S')^{-1} B S' \implies B = (S' S^{-1}) A (S (S')^{-1}),
+        \end{align}
+        dunque sono simili.
+    \end{proof}
+\end{remark}
+    Mettiamoci adesso a studiare i sottospazi invarianti: per fissare le cose, consideriamo una rotazione appartenente $SO(3)$ (rotazione in $\mathbb{R}^3$) che, come vedremo, può essere scritta in una base ortogonale il cui primo vettore è l'asse della rotazione e gli altri due vettori come i generatori del piano dell'asse ortogonale al piano, allora la matrice in tale base è della forma
+    \begin{align}
+        R(\theta) = \begin{pmatrix}
+            1 & 0 & 0 \\
+            0 & \cos{\theta} & -\sin{\theta} \\
+            0 & \sin{\theta} & \cos{\theta}
+        \end{pmatrix},
+    \end{align}
+    e vediamo che indubbiamente il vettore che mi genera l'asse di rotazione è un autovettore relativo all'autovalore $1$, ma gli altri due vettori mi generano un sottospazio non diagonalizzabile che è $f-$invariante. Vogliamo capire se è possibile stabilire anche dei criteri con cui vedere se un sottospazio $W$ è $f-$invariante. Le rotazioni sono un po' particolari: infatti, nei teoremi che enuncieremo, vedremo che 
+    una condizione che imporremo è che l'endomorfismo sia diagonalizzabile, tuttavia le rotazioni \textbf{non} sono diagonalizzabili. 
+    \begin{exercise}
+        Sia $f: V \to V$ un endomorfismo, se $W_1$ e $W_2$ sono $f-$invarianti allora $W_1 \cap W_2$ è $f-$invariante.
+    \end{exercise}
+
+    \begin{lemma}
+        Sia $f: V \to V$ un endomorfismo diagonalizzabile e sia
+        $$
+            V = V_{\lambda_1} \oplus \ldots \oplus V_{\lambda_k},
+        $$
+        la decomposizione in autospazi, allora
+        \begin{align}
+            W \subset V \text{ è f-invariante } \iff W = (W \cap V_{\lambda_1}) \oplus \ldots (W \cap V_{\lambda_k}).
+        \end{align}
+    \end{lemma}
+    \begin{proof} \hspace{1cm} \\
+        $\boxed{\Leftarrow}$: se $W = (W \cap V_{\lambda_1}) \oplus \ldots (W \cap V_{\lambda_k})$, denotando con $W_i = W \cap V_{\lambda_i}$, allora $W$ è $f-$invariante, in quanto preso $\underline{w} = \underline{w_1} + \ldots + \underline{w_k}$ con $\underline{w_i} \in W_i$
+    \end{proof}

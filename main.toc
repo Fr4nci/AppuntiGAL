@@ -29,8 +29,8 @@
 \contentsline {section}{\numberline {4.4}Annullatore}{91}{section.4.4}%
 \contentsline {chapter}{\numberline {5}Diagonalizzazione degli endomorfismi}{93}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Polinomio caratteristico}{95}{section.5.1}%
-\contentsline {chapter}{\numberline {6}Soluzioni agli esercizi}{103}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Spazi vettoriali}{103}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Prodotti scalari}{108}{section.6.2}%
-\contentsline {chapter}{\numberline {A}Logica}{111}{chapter.1}%
-\contentsline {chapter}{\numberline {B}Basi a dimensione infinita}{113}{chapter.2}%
+\contentsline {chapter}{\numberline {6}Soluzioni agli esercizi}{105}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Spazi vettoriali}{105}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Prodotti scalari}{110}{section.6.2}%
+\contentsline {chapter}{\numberline {A}Logica}{113}{chapter.1}%
+\contentsline {chapter}{\numberline {B}Basi a dimensione infinita}{115}{chapter.2}%
