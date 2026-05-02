@@ -80,12 +80,12 @@ $$
   c_{ij} = \sum_{k=0}^m a_{ik} b_{kj}.
 $$
 Per fissare meglio come funziona questo particolare prodotto, consideriamo le due matrici
-\begin{align*}
+\begin{align}
   &A = \begin{pmatrix}
     -3 & 2 \\
     6 & 7
   \end{pmatrix} & &B = \begin{pmatrix} 9 & 2 \\ -2 & 4 \end{pmatrix}
-\end{align*}
+\end{align}
 abbiamo che il \emph{prodotto righe per colonne} per ricavare l'elemento nella matrice risultante alla prima riga e alla prima colonna consiste nel prendere la prima riga della matrice $A$ e moltiplicarla elemento per elemento ad ogni elemento della prima colonna della matrice $B$; per trovare
 invece l'elemento alla prima riga e nella seconda colonna dobbiamo prendere la prima riga della matrice $A$ e moltiplicarla elemento per elemento con la seconda colonna della matrice $B$; per trovare l'elemento alla seconda riga e alla prima colonna bisogna invece prendere la seconda riga della matrice
 $A$ e moltiplicarla elemento per elemento per la prima colonna della matrice $B$; infine per l'ultimo elemento (siccome questa operazione produce una matrice $2 \times 2$) dobbiamo prendere la seconda riga della matrice $A$ e moltiplicarla elemento per elemento per la seconda colonna della matrice $B$. Abbiamo quindi che
@@ -148,7 +148,7 @@ $$
 \end{pmatrix}
 $$
 dove gli elementi $*$ sulla diagonale sono detti \textbf{pivot}. Se tutti i pivot sono non nulli e $m=n$ allora esiste solo una soluzione banale per il nostro sistema: questo perché il nostro sistema lineare
-\begin{align*}
+\begin{align}
   &\begin{cases}
     \alpha_{11} x_1 + \ldots + \alpha_{1n} x_n = 0 \\
     \alpha_{21} + \ldots + \alpha_{2n} \\
@@ -160,7 +160,7 @@ dove gli elementi $*$ sulla diagonale sono detti \textbf{pivot}. Se tutti i pivo
     \vdots \, \, \, \, \vdots \, \, \, \, \vdots \, \, \, \, \vdots \\
     0 + \ldots + 0 + \alpha'_{nn} x_n = 0 \stackrel{\alpha'_{nn} \neq 0}{\implies} x_n = 0
   \end{cases}
-\end{align*}
+\end{align}
 e da qui procedere per mostrare che tutti gli altri $x_i = 0$. Altrimenti se alcuni pivot sono nulli, allora abbiamo che ci sono delle variabili "libere". Per capire meglio questo concetto si consideri la seguente equazione (ovvero un sistema lineare con una sola equazione)
 $$
   x + y - z = 0.
@@ -225,7 +225,7 @@ Il metodo di risoluzione che sfrutta le mosse di riga per semplificare le matric
 ad ogni operazione di riga sancita da questa proposizione, stiamo moltiplicando la matrice per una \emph{matrice elementare}. Illustriamo quali sono queste matrici:
 \begin{enumerate}
   \item \textbf{Scambio di righe}. In questo caso se stiamo scambiando l'$i-$esima riga con la $j-$esima riga stiamo moltiplicando la nostra matrice per
-  \begin{align*}
+  \begin{align}
     E_{i,j} = \begin{pmatrix}
       1 & 0 & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & 0 \\
       0 & 1 & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & 0 \\
@@ -238,7 +238,7 @@ ad ogni operazione di riga sancita da questa proposizione, stiamo moltiplicando 
       0 & \ldots & \ldots & 0 & \ldots & 0 & 0 & 0 & \ddots & 0 \\
       0 & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & 1
     \end{pmatrix}
-  \end{align*}
+  \end{align}
   che equivale ad una matrice identità dove al posto del termine $i-$esimo sulla diagonale mettiamo uno $0$ e mettiamo un $1$ invece alla posizione $j-$esima della stessa riga $i-$esima, mentre al termine $j-$esima della diagonale mettiamo uno $0$ e mettiamo un $1$ nella posizione $i-$esima della stessa riga $i-$esima. Per fissare le idee (siccome questo matricione non rende benissimo l'idea), consideriamo la seguente matrice
   $$
     A = \begin{pmatrix}
@@ -428,13 +428,13 @@ affinché il sistema abbia soluzione è necessario che il pivot finale sia nullo
 Abbiamo capito il motivo per cui il procedimento di Gauss-Jordan funziona per i sistemi omogenei, tramite la proposizione \ref{prop:inv_righe}, tuttavia non sappiamo perché funzioni per sistemi del tipo $A\underline{x} = \underline{b}$. Attacchiamo il problema introducendo il \emph{rango} di una matrice
 \begin{definition}[rango per righe e per colonne]
   Sia $A$ una matrice $m \times n$ a coefficienti in $\mathbb{K}$, definiamo rango per colonne di $A$ come
-  \begin{align*}
+  \begin{align}
     &\rank_C{(A)} = \text{dim}(\text{Span}(A^1, \ldots, A^n)) \text{ dove } \text{Span}(A^1, \ldots, A^n) \subseteq \mathbb{K}^n,
-  \end{align*}
+  \end{align}
   mentre il rango per colonne di $A$ come
-  \begin{align*}
+  \begin{align}
     &\rank_B{(A)} = \text{dim}(\text{Span}(A_1, \ldots, A_m)) \text{ dove } \text{Span}(A_1, \ldots, A_m) \subseteq \mathbb{K}^m.
-  \end{align*}
+  \end{align}
 \end{definition}
 \textbf{Notazione}: se $A$ matrice, allora $A^i$ è la colonna $i-$esima di $A$, mentre $A_j$ è la riga $j-$esima di $A$. Tramite questa notazione possiamo scrivere che
 $$
@@ -481,10 +481,10 @@ Si può mostrare che vale il seguente teorema
     A^* \underline{x} = \underline{0} \tag{$\ast$}
   \end{equation*}
   Osserviamo che se $\underline{x}$ è soluzione di $(\ast)$, allora si ha che annulla anche le righe $i > r$ della matrice $A$, in quanto combinazioni lineari delle prime $r$ righe linearmente indipendenti
-  \begin{align*}
+  \begin{align}
     a_{i1} x_1 + a_{i2} x_2 + \ldots + a_{in} x_n &= \alpha_{1} (a_{11} x_1 + a_{12} x_2 + \ldots + a_{1n} x_n) + \ldots + \alpha_r(a_{r1} x_1 + \ldots + a_{rn} x_n) = \\
     &= 0 + \ldots + 0 = 0
-  \end{align*}
+  \end{align}
   per opportuni $\alpha_1, \ldots, \alpha_r \in \mathbb{K}$ tali che $A_i = \alpha_1 A_1 + \ldots + \alpha_r A_r$. Abbiamo quindi che $\underline{x}$ è soluzione anche del sistema "originale", mentre è chiaro che ogni soluzione originale del sistema è anche soluzione del sistema $(\ast)$. I due sistemi sono, quindi, equivalenti e il rango per colonne di $A^*$ è $c$, ma siccome le colonne sono vettori di $\mathbb{K}^r$ (perché ci siamo limitati alle prime $r$ righe), allora $c \leq r$.
   Ripetendo il medesimo ragionamento con $A^T$ otteniamo invece che $r \leq c$, quindi in definitiva abbiamo che $c = r$.
 \end{proof}
@@ -496,14 +496,14 @@ Si può mostrare che vale il seguente teorema
 
 \begin{theorem}[di Rouché-Capelli] \label{thm:rouche_capelli}
   Sia dato un sistema lineare della forma a coefficienti nel campo $\mathbb{K}$
-  \begin{align*}
+  \begin{align}
     \begin{cases}
       \alpha_{1, 1} x_1 + \ldots + \alpha_{1, n} = b_1 \\
       \alpha_{2, 1} x_1 + \ldots + \alpha_{2, n} = b_2 \\
       \vdots \\
       \alpha_{m, 1} x_1 + \ldots + \alpha_{m, n} = b_m
     \end{cases}.
-  \end{align*}
+  \end{align}
   con $b_i \in \mathbb{K} \, \forall i \in \{ 1, \ldots, m \}$. Tale sistema è rappresentato dalla matrice
   $$
     (A | \underline{b}) = \left( \begin{array}{c c c c | c}
@@ -620,7 +620,7 @@ $$
 $$
 quindi le $E_n \ldots E_1 = A^{-1}$, tuttavia avendo moltiplicato anche la parte destra (che è la diagonale) per queste matrici si ha che sulla destra abbiamo proprio la matrice inversa di A! \\
 Per fissare le idee consideriamo sempre la matrice $A$ di prima: vi garantisco io che questa matrice è invertibile (e nella prossima sezione affronteremo anche la questione su quando è possibile invertire una matrice) e costruiamo la matrice come spiegato qua sopra
-\begin{align*}
+\begin{align}
   &\begin{pmatrix}
       1 & 2 & -1 & | & 1 & 0 & 0 \\
       0 & 1 & -3 & | & 0 & 1 & 0 \\
@@ -651,7 +651,7 @@ Per fissare le idee consideriamo sempre la matrice $A$ di prima: vi garantisco i
       0 & 1 & 0 & | & 0 & \frac{4}{22} & \frac{3}{22} \\
       0 & 0 & 1 &  | & 0 & -\frac{6}{22} & \frac{1}{22}
     \end{pmatrix}
-\end{align*}
+\end{align}
 Segue che la matrice inversa di $A$ è pari a
 $$
   A^{-1} = \frac{1}{22} \begin{pmatrix}
@@ -672,13 +672,13 @@ $$
   \end{pmatrix}
 $$
 e anche gli altri due sistemi non omogenei
-\begin{align*}
+\begin{align}
   &A\underline{x_2} = \begin{pmatrix}
     0 \\ 1 \\ 0
   \end{pmatrix} & &A\underline{x_3} = \begin{pmatrix}
     0 \\ 0 \\ 1
   \end{pmatrix}
-\end{align*}
+\end{align}
 
 abbiamo che accorpando i vettori $\underline{x_1}$, $\underline{x_2}$ e $\underline{x_3}$ per formare una matrice le cui colonne sono questi vettori, si ottiene che
 $$
@@ -708,12 +708,12 @@ Per fare questa dimostrazione è necessario questo lemma particolarmente rognoso
 \end{lemma}
 \begin{proof}
   Osserviamo che se $A \in \mathcal{M}_{m \times n}(\mathbb{K})$ e $B \in \mathcal{M}_{n \times s}(\mathbb{K})$, allora si ha che $(AB)_i = A_i B$, da cui facendo il conto
-  \begin{align*}
+  \begin{align}
     &(AB)_i = \\ 
     &=(a_{i1}b_{11} + a_{i2}b_{21} + \ldots + a_{in}b_{n1}, a_{i1}b_{12} + a_{i2}b_{22} + \ldots + a_{in}b_{n2}, \ldots, a_{i1}b_{1s} + \ldots + a_{in}b_{ns}) = \\
     &= (a_{i1}b_{11}, a_{i1}b_{12}, \ldots, a_{i1}b_{1s}) + (a_{i2}b_{21}, a_{i2}b_{22}, a_{i2}b_{23}, \ldots, a_{i2}b_{2s}) + \ldots + \\
     &+ (a_{in}b_{n1}, a_{in}b_{n2}, \ldots, a_{in}b_{ns}) =a_{i1} B^1 + a_{i2} B^2 + \ldots + a_{in} B^n
-  \end{align*}
+  \end{align}
   quindi ogni riga di $(AB)$ è combinazione lineare delle righe di $B$, quindi è chiaro che lo $\text{Span}$ delle righe di $AB$ è contenuto nello Span delle righe di $B$, dunque
   $$
     \rank{(AB)} \leq \rank{(B)},
@@ -852,13 +852,13 @@ Possiamo mostrare che questi due spazi sono, rispettivamente, dei sottospazi vet
   $$
 \end{proof}
 Mostriamo quali sono le dimensioni di questi due sottospazi: nel caso di $V = \mathbb{K}$, le matrici che agiscono in questo spazio sono matrici $1 \times 1$, quindi l'unica matrice simmetrica in questo spazio è della forma
-\begin{align*}
+\begin{align}
   &\begin{pmatrix}
     \alpha
   \end{pmatrix} & &\text{con } \alpha \in \mathbb{K},
-\end{align*}
+\end{align}
 e non ci sono chiaramente matrici antisimmetriche. Per quanto riguarda invece lo spazio $V = \mathbb{K}^2$ abbiamo che le matrici simmetriche sono della forma
-\begin{align*}
+\begin{align}
   \begin{pmatrix}
     \alpha & \beta \\
     \beta & \delta
@@ -872,15 +872,15 @@ e non ci sono chiaramente matrici antisimmetriche. Per quanto riguarda invece lo
     0 & 0 \\
     0 & 1_\mathbb{K}
   \end{pmatrix} & &\text{con } \alpha, \beta, \gamma \in \mathbb{K},
-\end{align*}
+\end{align}
 da cui segue che le matrici simmetriche appartengono allo Span delle matrici $\begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}, \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}, \begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix}$. Per quanto riguarda invece le matrici antisimmetriche
 osserviamo che queste sono tutte della forma (ricordando che sulla diagonale hanno necessariamente solo zeri)
-\begin{align*}
+\begin{align}
   &\begin{pmatrix}
     0 & \delta \\
     -\delta & 0
   \end{pmatrix} = \delta \begin{pmatrix} 0 & 1_{\mathbb{K}} \\ -1_\mathbb{K} & 0 \end{pmatrix} & &\text{con } \delta \in \mathbb{K},
-\end{align*}
+\end{align}
 quindi le matrici antisimmetriche appartengono allo Span della matrice $\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}$. Studiando anche il caso per $V=\mathbb{K}^3$ e qualche altro, si osserva che un possibile formula per le dimensioni delle matrici simmetriche è
 \begin{equation}
   \label{eq:dim_simm}
@@ -909,7 +909,7 @@ Mostriamo formalmente\footnote{in realtà l'osservazione fatta sopra è più che
 \end{prop}
 \begin{proof}
   Osserviamo che il caso per $n=1$ è già stato analizzato sopra e abbiamo che $\text{dim}(S_1) = \frac{1(1+1)}{2} = 1$ e $\text{dim}(A_1) = \frac{1(1-1)}{2}=0$. Mostriamo che $n \implies n+1$ usando come ipotesi induttiva che $\text{dim}(S_n) = \frac{n(n+1)}{2}$ e $\text{dim}(A_n) = \frac{n(n-1)}{2}$: si ha che se consideriamo una matrice $n+1 \times n+1$ abbiamo che
-  \begin{align*}
+  \begin{align}
   S_{n+1} =
   \begin{pmatrix}
     \alpha_1      & \alpha_2      & \cdots & \alpha_{n+1} \\
@@ -917,13 +917,13 @@ Mostriamo formalmente\footnote{in realtà l'osservazione fatta sopra è più che
     \vdots        &               & S_n    &              \\
     \alpha_{n+1}  &               &        &
   \end{pmatrix}
-\end{align*}
+\end{align}
 dove $S_n$ è una matrice $n \times n$. Siccome gli elementi sulla prima colonna (a parte $\alpha_1$) sono fissati dagli elementi sulla prima riga, è sufficiente osservare che alle dimensioni delle spazio delle matrici $S_n$ bisogna aggiungere $n+1$ elementi, quindi
 $$
   \text{dim}(S_{n+1}) = \frac{n(n+1)}{2} + (n+1) = \frac{n(n+1) + 2(n+1)}{2} = \frac{(n+1)(n+2)}{2}
 $$
 dove riconosciamo la formula (\ref{eq:dim_simm}) in cui $n \underset{\text{mandato in}}{\stackrel{\text{viene}}{\rightarrow}} n+1$. Per le matrici antisimmetriche si osserva che sono della forma
-\begin{align*}
+\begin{align}
 A_{n+1} =
   \begin{pmatrix}
     0      & \alpha_2      & \cdots & \alpha_{n+1} \\
@@ -931,7 +931,7 @@ A_{n+1} =
     \vdots        &               & A_n    &              \\
     -\alpha_{n+1}  &               &        &
   \end{pmatrix}
-\end{align*}
+\end{align}
 dunque è sufficiente ripetere il ragionamento fatto sopra (sul fatto che gli elementi sulla colonna sono fissati dagli elementi sulla prima riga) e aggiungere alla dimensioni delle matrici $A_n$ il numero di elementi non nulli nella prima riga, pari a $n$, pertanto
 $$
   \text{dim}(A_{n+1}) = \frac{n(n-1)}{2} + n = \frac{n(n-1) + 2n}{2} = \frac{n(n+1)}{2}
@@ -939,12 +939,12 @@ $$
 dove vediamo che questa è esattamente la formula $(\ref{eq:dim_antisimm})$ dove $n \underset{\text{mandato in}}{\stackrel{\text{viene}}{\rightarrow}} n+1$.
 \end{proof}
 Si osserva che $\text{dim}(S_n) + \text{dim}(A_n) = \frac{n(n+1)}{2} + \frac{n(n-1)}{2} = \frac{2n^2}{2} = n^2$ e $S_n \cap A_n = \{ \underline{0} \}$ (dove $\underline{0}$ è la matrice nulla): se per assurdo $\exists S_n \cap A_n \ni A \neq \underline{0}$ allora
-\begin{align*}
+\begin{align}
   &\begin{cases}
     \circled{1} \, A_{ij} = A_{ji} \\
     \circled{2} \, A_{ij} = -A_{ji}
   \end{cases} & &\forall i, j \in \{ 1, \ldots, n\}.
-\end{align*}
+\end{align}
 Tuttavia si osserva dalla \circled{1} si ha che $A_{ji} = A_{ij}$ quindi inserendola nella seconda abbiamo che $A_{ij} = -A_{ji} = -A_{ij} \implies A_{ij} = -A_{ij} \, \forall i, j \in \{ 1, \ldots, n \}$; che ci porta a concludere che $A_{ij} = 0 \, \forall i, j \in \{ 1, \ldots, n \}$. Si ha quindi che i due sottospazi hanno intersezione banale. \\
 Abbiamo, quindi, mostrato la seguente proposizione
 \begin{prop}
@@ -1003,9 +1003,9 @@ Visto che le applicazioni lineari rimangono comunque delle funzioni, vogliamo ve
 Mostriamo che vale la seguente
 \begin{prop} \label{prop:kern_iniett}
   Siano $V$ e $W$ due spazi vettoriali, sia $f: V \to W$ un'applicazione lineare, allora si ha che
-  \begin{align*}
+  \begin{align}
     &f \text{ è iniettiva} \iff \text{Ker}(f) = \{ \underline{0} \}.
-  \end{align*}
+  \end{align}
 \end{prop}
 \begin{proof} \hspace{1cm} \\
   $\boxed{\Rightarrow}$: se f è iniettiva, allora si ha che $f(\underline{x}) = f(\underline{y}) \implies \underline{x} = \underline{y}$, quindi se $f(\underline{v}) = f(\underline{0}) \implies \underline{v} = \underline{0}$, quindi $\text{ker}(f) = \{ \underline{0}_V \}$. \\
@@ -1022,21 +1022,21 @@ Vale il seguente risultato
 \begin{proof}
   Sappiamo che $\text{Ker}(f)$ è un sottospazio vettoriale contenuto in $V$ e, dunque, sappiamo che possiede una base $\mathcal{B}' = \{ \underline{v_1}, \ldots, \underline{v_m} \}$ che può essere estesa a base di $V$: indichiamo quindi $\mathcal{B}'' = \{\underline{v_{m+1}}, \underline{v_{m+2}}, \ldots, \underline{v_n}\}$ l'insieme che contiene che vanno aggiunti a $\mathcal{B}$ per ottenere una base di $V$ e poniamo $\mathcal{B} = \mathcal{B}' \cup \mathbb{B}''$ base di $V$.
   Dobbiamo mostrare allora che $f(\underline{v_{m+1}}), \ldots, f(\underline{v_{n}})$ è una base di $\text{Im}(f)$: per fare ciò osserviamo che preso $\underline{w} \in \text{Im}(f)$ per definizione $\exists \underline{v} \in V : f(\underline{v}) = \underline{w}$, ma allora
-  \begin{align*}
+  \begin{align}
   \underline{w} &= f(\underline{v}) = f(\alpha_1 \underline{v_1} +_V \ldots +_V \alpha_n \underline{v_n}) = \\
                 &=\alpha_1 \cdot_W f(\underline{v_1}) +_W \ldots +_W \alpha_m \cdot_W f(\underline{v_m}) +_W \alpha_{m+1} \cdot_W f(\underline{v_{m+1}}) +_W \ldots +_W \alpha_n \cdot_W f(\underline{v_{n}}) = \\
                 &=\alpha_1 \cdot_W \underline{0}_W +_W \ldots + \alpha_m \cdot_W \underline{0}_W +_W \alpha_{m+1} \cdot_W f(\underline{v_{m+1}}) +_W \ldots +_W \alpha_n \cdot_W f(\underline{v_n}) = \\
                 &=\alpha_{m+1} \cdot_W f(\underline{v_{m+1}}) +_W \ldots +_W \alpha_n \cdot_W f(\underline{v_n})
-  \end{align*}
+  \end{align}
   quindi si ha che se $\underline{w} \in \text{Im}(f) \implies \underline{w} \in \text{Span}(f(\underline{v_{m+1}}), \ldots, f(\underline{v_{n}}))$. Mostriamo che questi vettori sono linearmente indipendenti: osserviamo che dobbiamo verificare che l'equazione
-  \begin{align*}
+  \begin{align}
     &\alpha_{m+1} \cdot_W f(\underline{v_{m+1}}) +_W \ldots +_W \alpha_{n} \cdot_W f(\underline{v_n}) = \underline{0_W} \stackrel{\text{usando la lin.}}{\iff} \\
     &\iff f(\alpha_{m+1} \cdot_V \underline{v_{m+1}} +_V \ldots +_V \alpha_n \cdot_V \underline{v_n}) = \underline{0_W},
-  \end{align*}
+  \end{align}
   ma allora abbiamo che tutto ciò che si trova all'interno delle parentesi di $f$ deve appartenere al $\text{Ker}(f)$ per definizione: si ha allora che $\exists \alpha_1, \ldots, \alpha_n \in \mathbb{K}$ tali che
-  \begin{align*}
+  \begin{align}
     &\alpha_{m+1} \cdot_V \underline{v_{m+1}} +_V \ldots +_V \alpha_n \cdot_V \underline{v_n} = \alpha_1 \cdot_V \underline{v_1} + \ldots + \alpha_m \cdot_V \underline{v_m} \iff \\ &\iff -\alpha_1 \cdot_V \underline{v_1} - \ldots - \alpha_m \cdot_V \underline{v_m} + \alpha_{m+1} \cdot_V \underline{v_{m+1}} + \ldots + \alpha_n \cdot_V \underline{v_n} = \underline{0_V},
-  \end{align*}
+  \end{align}
   tuttavia essendo i vettori $\underline{v_1}, \ldots, \underline{v_n}$ una base di $V$, si ha che questa equazione ha soluzione solo banale; pertanto $\alpha_i = 0_\mathbb{K} \, \forall i \in \{ 1, \ldots, n \}$, dunque i vettori $f(\underline{v_{m+1}}), \ldots, f(\underline{v_{n}})$ sono linearmente indipendenti.
 \end{proof}
 Le ultime due proprietà molto utili per quanto riguarda le applicazioni lineari sono le due prossime proposizioni:
@@ -1057,10 +1057,10 @@ Le ultime due proprietà molto utili per quanto riguarda le applicazioni lineari
   f(\underline{v} + \underline{w}) = (x_1 + y_1) \underline{w_1} + \ldots + (x_n + y_n) \underline{w_n} = (x_1 \underline{w_1} + \ldots + x_n \underline{w_n}) + (y_1 \underline{w_1} + \ldots + y_n \underline{w_n}) = f(\underline{v}) + f(\underline{w}),
   $$
   e similmente si procede per mostrare che $f(\lambda \underline{v}) = \lambda f(\underline{v})$. L'unicità è garantita dal fatto che se esistesse una funzione $g$ lineare per cui $\underline{w_1} = g(\underline{v_1}), \ldots, \underline{w_n} = g(\underline{v_n})$ e $g \neq f$ per cui $\underline{w_1} = g(\underline{v_1}), \ldots, \underline{w_n} = g(\underline{v_n})$ si ha che preso un vettore $\underline{v} = x_1 \underline{v_1} + \ldots + x_n \underline{v_n}$ si ha che
-  \begin{align*}
+  \begin{align}
     f(\underline{v}) &= f(x_1 \underline{v_1} + \ldots + x_n \underline{v_n}) = x_1 f(\underline{v_1}) + \ldots + x_n f(\underline{v_n}) = x_1 \underline{w_1} + \ldots + x_n \underline{w_n} = \\
     &=x_1 g(\underline{v_1}) + \ldots + x_n g(\underline{v_n}) = g(x_1 \underline{v_1} + \ldots + x_n \underline{v_n}) = g(\underline{v})
-  \end{align*}
+  \end{align}
   ma questo ragionamento non dipende da qualunque $\underline{v} \in V$ preso; quindi $g = f$.
 \end{proof}
 \begin{prop}
@@ -1069,9 +1069,9 @@ Le ultime due proprietà molto utili per quanto riguarda le applicazioni lineari
 \end{prop}
 \begin{proof}
   Si procede con la contronominale\footnote{se stiamo mostrando $A \implies B$ possiamo far vedere che questa implicazione, dal punto di vista logico, è equivalente a far vedere che $\neg B \implies \neg A$, quindi in questo caso dobbiamo mostrare che se $f(\underline{v_1}), \ldots, f(\underline{v_n})$ sono linearmente dipendenti allora i vettori $\underline{v_1}, \ldots, \underline{v_n}$ sono linearmente dipendenti}: se $f(\underline{v_1}), \ldots, f(\underline{v_n})$ sono vettori linearmente dipendenti in $W$, allora esiste una relazione non banale
-  \begin{align*}
+  \begin{align}
     &\alpha_1 f(\underline{v_1}) + \ldots + \alpha_n f(\underline{v_n}) = \underline{0}_W, & &\text{con } \alpha_i \in \mathbb{K} \, \forall i \in \{1, \ldots, n \} \text{ non tutti nulli }(=0_K)
-  \end{align*}
+  \end{align}
   tuttavia usando la linearità di $f$ si ha che
   $$
     f(\alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n}) = \underline{0}_W,
@@ -1098,9 +1098,9 @@ Possiamo far vedere che
 \end{prop}
 \begin{proof}
   Presi due vettori $\underline{v}, \underline{w} \in V$ allora sappiamo che $\exists \alpha_1, \ldots, \alpha_n, \beta_1, \ldots, \beta_n \in \mathbb{K}$ tali che
-  \begin{align*}
+  \begin{align}
     &\underline{v} = \alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n} & &\underline{w} = \beta_1 \underline{v_1} + \ldots + \beta_n \underline{v_n},
-  \end{align*}
+  \end{align}
   abbiamo che $\underline{v} + \underline{w} = (\alpha_1 + \beta_1) \underline{v_1} + \ldots + (\alpha_n + \beta_n) \underline{v_n}$ e
   $$
     \phi(\underline{v} + \underline{w}) = \begin{pmatrix}
@@ -1262,7 +1262,7 @@ Il problema che adesso ci poniamo è capire che relazione esiste fra $[f]_{\math
 \end{definition}
 
 Il motivo di questo nome è chiaro: se noi consideriamo il vettore $\underline{v} = x_1 \underline{v_1} + \ldots + x_n \underline{v_n}$ come combinazione lineare dei vettori in $\mathcal{B}$, allora le coordinate di tale vettore rispetto alla base $\mathcal{B}'$ sono date osservando che
-\begin{align*}
+\begin{align}
   [\underline{v}]_{\mathcal{B}'} &= [x_1 \underline{v_1} + \ldots + x_n \underline{v_n}]_\mathcal{B'} = x_1 [\underline{v_1}]_\mathcal{B'} + \ldots + x_n [\underline{v_n}]_\mathcal{B'} = \\
   &=\left( \begin{array}{c | c | c | c}
     [\underline{v_1}]_{\mathcal{B'}} & [\underline{v_2}]_\mathcal{B'} & \ldots & [\underline{v_n}]_\mathcal{B'}
@@ -1277,7 +1277,7 @@ Il motivo di questo nome è chiaro: se noi consideriamo il vettore $\underline{v
     \vdots \\
     x_n
   \end{pmatrix}.
-\end{align*}
+\end{align}
 \begin{remark}
   Le matrici di cambiamento di base sono invertibili, in quanto rappresentano le coordinate dei vettori di una base rispetto ad un'altra base quindi sono linearmente indipendenti (quindi il rango è uguale ad $n = \text{dim}(V)$).
 \end{remark}

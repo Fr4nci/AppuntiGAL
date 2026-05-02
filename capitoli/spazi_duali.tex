@@ -14,9 +14,9 @@ soluzioni che riusciamo a trovare, considerando anche funzioni che non necessari
 E' chiaro, in virtù dell'identificazione che implicitamente abbiamo già fatto nella definizione appena data, che lo spazio duale di $V$ abbia dimensioni pari a $V$. Chiaramente, visto che abbiamo introdotto un nuovo spazio vettoriale (la somma di due funzionali è ancora un funzionale, così come la moltiplicazione per un elemento di $\mathbb{K}$), ci poniamo
 la solita domanda di routine "Qual è una base di $V^*$?". \\
 Fissata una base $\mathcal{B}=\{ \underline{v_1}, \ldots, \underline{v_n} \}$ di $V$, potremmo pensare di introdurre il seguente insieme di funzionali $\mathcal{B}^* = \{ \underline{v_1}^*, \ldots, \underline{v_n}^*\}$ tali che
-\begin{align*}
+\begin{align}
     &v_i^*: V \to \mathbb{K} \, \text{con } \underline{v_i}^*(v_j) = \delta_{ij}.
-\end{align*}
+\end{align}
 \begin{exercise}
     Mostrare le seguenti affermazioni:
     \begin{enumerate}[label=\protect\circled{\arabic*}]
@@ -49,15 +49,15 @@ Riporto lo svolgimento di questo esercizio, perché lo reputo complicato (in par
     Mostriamo la \circled{3}. Prima di procedere, spiego un po' il senso di questa proposizione: abbiamo che se $f: V \to W$, è chiaro che se compongo a $f$ un qualunque funzionale $\phi$ che agisce sui vettori di $W$, allora ottengo chiaramente un funzionale che agisce sui vettori di $V$ (siccome $\phi: W \to \mathbb{K}$, $f: V \to W$, quindi $\phi \circ f: V \to \mathbb{K}$). Matematicamente vuol dire che esiste una funzione in qualche modo legata ad $f$ (ma chiaramente distinta!) che mi va ad associare
     ad ogni funzionale che agisce sui vettori di $W$ un funzionale che agisce sui vettori di $V$: non solo, questa funzione è anche lineare (fra $W^\ast$ e $V^\ast$). \\
     Per mostrare l'esistenza osserviamo che
-    \begin{align*}
+    \begin{align}
         &f^\ast(\phi) = \phi \circ f \, \text{con } \phi \in W^\ast,
-    \end{align*}
+    \end{align}
     è ben definita\footnote{la "buona definizione" qua è da intendere osservando che, a priori, nulla ci garantisce che la funzione risultante sia una funzione che appartiene a $W^\ast$, ovvero che sia lineare: il fatto che sia una funzione è chiaro (perché composizione di funzioni), il fatto invece che sia lineare, ovvero che appartenga a $W^\ast$ va verificato.}, poiché la funzione risultante è una funzione lineare grazie alla linearità di $f$ e $\phi$, siccome presi $\alpha_1, \alpha_2 \in \mathbb{K}$ e $\underline{v_1}, \underline{v_2} \in V$ si ha che
-    \begin{align*}
+    \begin{align}
         f^\ast(\phi)(\alpha_1 \underline{v_1} + \alpha_2 \underline{v_2}) &= (\phi \circ f)(\alpha_1 \underline{v_1} + \alpha_2 \underline{v_2}) = \phi(f(\alpha_1 \underline{v_1} + \alpha_2 \underline{v_2})) = \phi(\alpha_1 f(\underline{v_1}) + \alpha_2 f(\underline{v_2})) = & \\ 
         &= \phi(\alpha_1 f(\underline{v_1})) + \phi(\alpha_2 f(\underline{v_2})) = \alpha_1 \phi(f(\underline{v_1})) + \alpha_2 \phi(f(\underline{v_2})) = & \\
         &= \alpha_1 (\phi \circ f)(\underline{v_1}) + \alpha_2 (\phi \circ f)(\underline{v_2}). &
-    \end{align*}
+    \end{align}
     Mostriamo adesso che $f^\ast(\phi)$ sia lineare fra $V^\ast$ e $W^\ast$: per fare questo osserviamo che presi $\alpha_1, \alpha_2 \in \mathbb{K}$, $\phi_1, \phi_2 \in W^\ast$ si ha che
     $$
         f^\ast(\alpha_1 \phi_1 + \alpha_2 \phi_2) = (\alpha_1 \phi_1 + \alpha_2 \phi_2) \circ f = (\alpha_1 \phi_1) \circ f + (\alpha_2 \phi_2) \circ f = \alpha_1 (\phi_1 \circ f) + \alpha_2 (\phi_2 \circ f).
@@ -80,10 +80,10 @@ Riporto lo svolgimento di questo esercizio, perché lo reputo complicato (in par
         \end{pmatrix}
     $$
     Si ha che $f(\underline{v_i}) = \sum\limits_{j=1}^m (\mathcal{M}^\mathcal{B}_\mathcal{C}(f))_{ji} \underline{v_j} = \alpha_{1i} \underline{w_1} + \ldots + \alpha_{mi} \underline{w_n}$ (infatti sulla colonna $j-$esima sono riportate le coordinate del vettore $f(\underline{v_j})$ rispetto alla base in uscita: notare che è per questo che scorriamo sulle righe!) e notiamo che
-    \begin{align*}
+    \begin{align}
         f^\ast(\underline{w_j}^\ast)(\underline{v_i}) &= \underline{w_j}^\ast(f(\underline{v_i})) = \underline{w_j}^\ast(\alpha_{1i} \underline{w_1} + \ldots + \alpha_{mi} \underline{w_m}) \stackrel{\text{per linearità}}{=} & \\
         &\stackrel{\text{per linearità}}{=} \alpha_{1i} \underline{w_j}^\ast(\underline{w_1}) + \ldots + \alpha_{ji} \underline{w_j}^\ast(\underline{w_j}) + \ldots + \alpha_{mi} \underline{w_j}^\ast(\underline{w_m}) = \alpha_{ji}, &
-    \end{align*}
+    \end{align}
     abbiamo quindi che in posizione $(i, j)$ della matrice associata di $f^\ast$ rispetto alla base $\mathcal{B}^\ast$ in entrata e $\mathcal{C}^\ast$ in uscita ha $\alpha_{ji}$, ovvero
     $$
         (\mathcal{M}^\mathcal{C^\ast}_\mathcal{B^\ast}(f^\ast))_{ij} = (\alpha_{ji}) \iff \mathcal{M}^\mathcal{C^\ast}_\mathcal{B^\ast}(f^\ast) = \begin{pmatrix}
@@ -101,7 +101,7 @@ Il teorema più importante per quanto riguarda gli spazi duali è il seguente
 \end{theorem}
 \begin{proof}
     Mostriamo, per prima cosa, che l'insieme di tutti i funzionali $F_{\underline{w}}$ (ossia le applicazioni $F_{\underline{w}}: V \to \mathbb{K}$ definite da $F_{\underline{w}}(\underline{v}) \coloneqq \varphi(\underline{w}, \underline{v})$) al variare di $\underline{w} \in V$ è un sottospazio di $V^\ast$, poiché
-    \begin{align*}
+    \begin{align}
         &F_{\underline{w_1}}(\underline{v}) + F_{\underline{w_2}}(\underline{v})
         = \varphi(\underline{w_1},\underline{v}) + \varphi(\underline{w_2},\underline{v})
         = \varphi(\underline{w_1} + \underline{w_2},\underline{v})
@@ -110,7 +110,7 @@ Il teorema più importante per quanto riguarda gli spazi duali è il seguente
         = \varphi(\alpha \underline{w_1},\underline{v})
         = \alpha \varphi(\underline{w_1},\underline{v})
         = \alpha F_{\underline{w_1}}(\underline{v}).
-    \end{align*}
+    \end{align}
     dove si è usata la linearità del prodotto scalare. Mostriamo adesso che questo sottospazio coincide con $V^\ast$: per fare questo, fissiamo una base $\mathcal{B} = \{ \underline{w_1}, \ldots, \underline{w_n} \}$ e facciamo vedere che i funzionali $\{ F_{\underline{w_i}}\}_{i \in \{1,\ldots,n\}}$ formano una base per $V^\ast$: partiamo considerando l'equazione
     $$
         \alpha_1 F_{\underline{w_1}} + \ldots + \alpha_n F_{\underline{w_n}} = \underline{0},
@@ -130,10 +130,10 @@ Il teorema più importante per quanto riguarda gli spazi duali è il seguente
         f(\underline{v}) = F_{\underline{w}'}(\underline{v}) = F_{\underline{w}''}(\underline{v}) \, \forall \underline{v} \in V,
     $$
     ma allora
-    \begin{align*}
+    \begin{align}
         F_{\underline{w}'}(\underline{v}) = F_{\underline{w}''}(\underline{v}) &\iff \varphi(\underline{w}', \underline{v}) = \varphi(\underline{w}'', \underline{v}) \iff \varphi(\underline{w}', \underline{v}) - \varphi(\underline{w}'', \underline{v}) = 0 \iff \\
         &\iff \varphi(\underline{w}' - \underline{w}'', \underline{v}) = 0 \iff \underline{w}' - \underline{w}'' = \underline{0},
-    \end{align*}
+    \end{align}
     dove abbiamo sempre usato il fatto che il vettore $\underline{w}'' - \underline{w}$ dev'essere ortogonale ad ogni vettore di $V$, dunque deve appartenere all'ortogonale di $V$, quindi è uguale al vettore nullo. Si è così mostrata la tesi del teorema.
 \end{proof}
 
@@ -149,10 +149,10 @@ siccome vale
 \end{exercise}
 \begin{proof}
     E' chiaro siccome, ponendo $C = AB$ e $C' = BA$, allora si ha che $(C)_{ij} = A_i B^j$ e $(C')_{ij} = B_i A^j$, dunque 
-    \begin{align*}
+    \begin{align}
         \text{tr}(AB) = \text{tr}(C) = \sum_{i=1} c_{ii} = \sum_{i=1}^n A_i B^i = \sum_{i=1}^n \sum_{j=1}^n a_{ij} b_{ji} &= \sum_{j=1}^n \sum_{i=1}^n b_{ji} a_{ij} = & \\
         &=\sum_{j=1}^n B_j A^j = \sum_{j=1}^n c_{jj} = \text{tr}(C') = \text{tr}(BA). &
-    \end{align*}
+    \end{align}
     E' stato possibile scambiare le sommatorie siccome stiamo lavorando con un numero finito di termini.
 \end{proof}
 Applicando questa proprietà al nostro caso, si osserva che, usando $A' = P^{-1}$ e $B' = AP$, abbiamo che
@@ -198,10 +198,10 @@ $$
 Imponiamo che la $\varphi$ che noi stiamo cercando abbia queste proprietà:
 \begin{enumerate}[label=\protect\circled{\arabic*}]
     \item (\textbf{multilinearità}) $\varphi$ lineare in ogni riga, ovvero $\forall i \in \{ 1, \ldots, n \}$
-    \begin{align*}
+    \begin{align}
         \varphi(A_1, \ldots, A_{i-1}, \lambda A_i' + \mu A_i'', \ldots, A_n) &= \lambda \varphi(A_1, \ldots, A_{i-1}, A_i', A_{i+1}, \ldots, A_n) + \\
         &+\mu \varphi(A_1, \ldots, A_{i-1}, A_i'', A_{i+1}, \ldots, A_n).
-    \end{align*}
+    \end{align}
     \item (\textbf{alternanza}) $\forall i,j \in \{ 1, \ldots, n \}, i \neq j$ si deve avere che
     $$
         \varphi(\ldots, A_i, \ldots, A_j, \ldots) = -\varphi(\ldots, A_j, \ldots, A_i, \ldots).
@@ -237,10 +237,10 @@ Imponiamo che la $\varphi$ che noi stiamo cercando abbia queste proprietà:
             \varphi(A) = \varphi(B).
         $$
         Infatti se $A_i \to A_i + \lambda A_j$ allora
-        \begin{align*}
+        \begin{align}
             &\varphi(\ldots, A_i + \lambda A_j, \ldots, A_j, \ldots) = \\
             &= \varphi(\ldots, A_i, \ldots, A_j, \ldots) + \lambda \varphi(\ldots, A_j, \ldots, A_j, \ldots) = \varphi(A) + \lambda \cdot 0 = \varphi(A).
-        \end{align*}
+        \end{align}
         \item sia $S$ una matrice ridotta a scala di $A$, con riduzione di Gauss $\implies \varphi(A) = \pm \varphi(S)$, dove il segno dipende se ho fatto un numero pari di scambi (+) o un numero dispari (-). Infatti, per la proprietà precedente e la proprietà \circled{2} possiamo andare a rendere a scala la nostra matrice, cambiando al massimo solo il segno del determinante.
         \item se $A$ è una matrice diagonale, ovvero
         $$
@@ -430,9 +430,9 @@ si conosce di un gruppo sono le sue "rappresentazioni", ovvero come il gruppo si
         \end{itemize}
         ma le due tipologie di termini sono, in entrambi i casi, presenti in pari numero (ovvero $s-r-1$), quindi tutti i $-$ si semplificano.
         \item per $i < r < s$ si ha che
-        \begin{align*}
+        \begin{align}
             (x_r - x_i) \stackrel{\tau}{\rightarrow} (x_s - x_i);
-        \end{align*}
+        \end{align}
         \item per $r < s < i$ si ha che
         $$
             (x_i - x_s) \stackrel{\tau}{\rightarrow} (x_i - x_r).
@@ -480,29 +480,29 @@ Perché abbiamo introdotto il gruppo simmetrico? Una delle definizioni del deter
 \end{theorem}
 \begin{proof}
     La dimostrazione consiste solamente nel mostrare che il funzionale descritto dalla \ref{eq:det} soddisfa le proprietà \circled{1}, \circled{2} e \circled{3}. Facciamo vedere che è valida la \circled{1}: presa la riga $A_j$, osserviamo che se $A_j = \lambda A_j' + \mu A_j''$ allora
-    \begin{align*}
+    \begin{align}
         \text{det}(A) &= \sum_{\sigma \in \Sigma_n} \text{sgn}(\sigma)a_{1\sigma(1)} \ldots a_{j \sigma(j)} \ldots a_{n \sigma(n)} = \\
         &= \sum_{\sigma \in \Sigma_n} \text{sgn}(\sigma) a_{1\sigma(1)} \ldots (\lambda a_{j \sigma(j)}' + \mu a_{j \sigma(j)}'') \ldots a_{n \sigma(n)} = \\
         &= \lambda \sum_{\sigma \in \Sigma_n} \text{sgn}(\sigma) a_{1 \sigma(1)} \ldots a_{j\sigma(j)}' \ldots a_{n \sigma(n)} + \mu \sum_{\sigma \in \Sigma_n} \text{sgn}(\sigma) a_{1\sigma(1)} \ldots a_{j \sigma(j)}'' \ldots a_{n \sigma(n)} = \\
         &=\lambda \det{\begin{pmatrix} A_1 \\ A_2 \\ \vdots \\ A_j' \\ \vdots \\ A_n \end{pmatrix}} + \mu \det{\begin{pmatrix} A_1 \\ A_2 \\ \vdots \\ A_j'' \\ \vdots \\ A_n \end{pmatrix}}.
-    \end{align*}
+    \end{align}
     Per quanto riguarda la \circled{2} osserviamo che se consideriamo la matrice $B$ ottenuta scambiando la riga $i-$esima con la riga $j-$esima della matrice $A$ allora
-    \begin{align*}
+    \begin{align}
         \det{B} &= \sum_{\sigma \in \Sigma_n} \text{sgn}(\sigma) b_{1\sigma(1)} \ldots b_{i \sigma(i)} \ldots b_{j \sigma(j)} \ldots b_{n \sigma(n)} = \\
         &= \sum_{\sigma \in \Sigma_n} \text{sgn}(\sigma) a_{1 \sigma(1)} \ldots a_{j \sigma(i)} \ldots a_{i \sigma(j)} \ldots a_{n \sigma(n)},
-    \end{align*} 
+    \end{align} 
     dove abbiamo usato il fatto che $b_{jl} = a_{il}$ e $b_{im} = a_{jm}$ in virtù dello scambio di riga.
     Sia $\tau = (i j)$, allora osserviamo che se poniamo $\lambda = \sigma \tau$ otteniamo che
-    \begin{align*}
+    \begin{align}
         &\lambda(l) = \sigma(l) \text{ per } l \neq i, j, \\
         &\lambda(i) = \sigma(\tau(i)) = \sigma(j), \\
         &\lambda(j) = \sigma(\tau(j)) = \sigma(i).
-    \end{align*}
+    \end{align}
     e chiaramente $\text{sgn}(\lambda) = -\text{sgn}(\sigma)$. Si ha che $\sigma$ varia in tutto $\Sigma_n$, dunque anche $\lambda = \sigma \tau$ varia in tutto $\Sigma_n$, poiché $\lambda \stackrel{\tau^2=\text{id}}{=} \lambda \tau^2 = (\lambda \tau) \tau = \sigma \tau \implies \sigma = \lambda \tau$, dunque possiamo scrivere tutta la sommatoria di prima in funzione delle permutazioni $\lambda$, ovvero
-    \begin{align*}
+    \begin{align}
     \det{B} &= \sum_{\lambda \in \Sigma_n} -\text{sgn}(\lambda) a_{1 \sigma(1)} \ldots a_{j \sigma(i)} \ldots a_{i \sigma(j)} \ldots a_{n \sigma(n)} = \\
     &= -\sum_{\lambda \in \Sigma_n} \text{sgn}(\lambda) a_{1 \sigma(1)} \ldots a_{j \lambda(j)} \ldots a_{i\lambda(i)} \ldots a_{n \lambda(n)} = -\det{A}.
-    \end{align*}
+    \end{align}
     La $\circled{3}$ è chiara, siccome presa la matrice $A = I$ allora l'unica permutazione che dà contributo è $\sigma = \text{id}$ (siccome altrimenti avrei uno zero nel prodotto degli $a_{i\sigma(i)}$ per qualunque altre permutazione), pertanto
     $$
         \det{I} = a_{11} \ldots a_{nn} = 1.
@@ -547,10 +547,10 @@ Perché abbiamo introdotto il gruppo simmetrico? Una delle definizioni del deter
 \end{cor}
 \begin{proof}
     Si ottiene questa forma facendo come prima: andiamo a scrivere tutte le permutazioni possibili che abbiamo per una matrice in $3 \times 3$, pesando le permutazioni col loro segno. Si ha che
-    \begin{align*}
+    \begin{align}
         \det{A} &= \sum_{\sigma \in \Sigma_3} \text{sgn}(\sigma) a_{1 \sigma(1)} a_{2 \sigma(2)} a_{3 \sigma(3)} = \\
         &= a_{11} a_{22} a_{33} + a_{12} a_{23} a_{31} + a_{13} a_{21} a_{31} - a_{13} a_{22} a_{31} - a_{11} a_{23} a_{32} - a_{12} a_{21} a_{33}.
-    \end{align*}
+    \end{align}
     \end{proof}
         \begin{remark}
             Un modo abbastanza semplice per ricordarsi la regola è il seguente
@@ -625,14 +625,14 @@ Un modo formale per mostrare che $\sum\limits_{j=1}^n (-1)^{i+j} a_{ij} \det{A_{
 Per fare la dimostrazione faremo uso del seguente lemma
 \begin{lemma}
     Sia $B \in \mathcal{M}_n(\mathbb{K})$ della forma
-    B=\begin{align*}
+    B=\begin{align}
         \begin{pmatrix}
             1 & 0 & \ldots & 0 \\
             b_{21} & b_{22} & \ldots & b_{2n} \\
             \vdots & \vdots & \ddots & \vdots \\
             b_{n1} & b_{n2} & \ldots & b_{nn}
         \end{pmatrix}.
-    \end{align*}
+    \end{align}
     Allora
     $$
         \det{B} = \det{\begin{pmatrix} b_{22} & b_{23} & \ldots & b_{2n} \\ \vdots & \ddots & \ldots & \vdots \\ b_{n2} & \ldots & \ldots & b_{nn} \end{pmatrix}}
@@ -733,13 +733,13 @@ Per quanto abbiamo visto vale immediamente che
         e facciamo vedere che questo $\varphi$ soddisfa le proprietà $\circled{1}, \circled{2}$ e $\circled{3}$:
         \begin{itemize}
             \item \textbf{proprietà} $\circled{1}$: si osservi che $(AB)_i = A_i B$, quindi se $A_i = \lambda A_i' + \mu A_i'' \implies (AB)_i = (\lambda A_i' + \mu A_i'') B = \lambda A_i' B + \mu A_i'' B \implies \det{AB} = \lambda \det{A'B} + \mu \det{A''B}$ con
-            \begin{align*} 
+            \begin{align} 
                 A'=\begin{pmatrix}
                 A_1 \\ A_2 \\ \vdots \\ A_{i-1} \\ A_i' \\ A_{i+1} \\ \vdots \\ A_n
             \end{pmatrix} \text{ e } A'' = \begin{pmatrix}
                 A_1 \\ A_2 \\ \vdots \\ A_{i-1} \\ A_i'' \\ A_{i+1} \\ \vdots \\ A_n
             \end{pmatrix},
-            \end{align*}
+            \end{align}
             dunque si ottiene che $\varphi(\lambda A' + \mu A'') = \lambda \varphi(A') + \mu \varphi(A'')$.
             \item \textbf{proprietà} $\circled{2}$: si osservi che scambiando le righe di $A$ si scambiano le corrispondenti righe di $B$ (siccome, come già usato sopra, si ha che $(AB)_i = A_i B$), dunque $\det{(AB)}$ cambia di segno e ciò comporta un cambio di segno anche in $\varphi(A)$.
             \item \textbf{proprietà} $\circled{3}$: se $A=I \implies \det{AB} = \det{IB} = \det{B} \implies \varphi(A=I) = 1$.

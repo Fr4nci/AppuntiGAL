@@ -18,7 +18,7 @@
 \contentsline {section}{\numberline {3.1}Dimensioni del radicale}{60}{section.3.1}%
 \contentsline {section}{\numberline {3.2}Esistenza di una base ortogonale, ortornomale e segnatura}{63}{section.3.2}%
 \contentsline {section}{\numberline {3.3}Prodotti hermitiani: un film che sembra già visto...}{70}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}Matrice associata ad un prodotto hermitiano}{70}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.1}Matrice associata ad un prodotto hermitiano}{71}{subsection.3.3.1}%
 \contentsline {subsection}{\numberline {3.3.2}Esistenza di una base ortogonale e teorema di Sylvester}{71}{subsection.3.3.2}%
 \contentsline {chapter}{\numberline {4}Funzionali lineari}{73}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Spazi duali}{73}{section.4.1}%

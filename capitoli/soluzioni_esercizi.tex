@@ -9,16 +9,16 @@ Per quanto riguarda la dimostrazione che il vettore nullo è unico, possiamo pro
     \forall \underline{v} \in V, \underline{0} + \underline{v} = \underline{v} + \underline{0} = \underline{v} = \underline{0}' + \underline{v} = \underline{v} + \underline{0}'.
     $$
     Ma, osservando che queste due relazioni devono valere per ogni $\underline{v}$, si ha che
-    \begin{align*}
+    \begin{align}
 \underline{0}' &= \underline{0}' + \underline{0} & \text{(perché \underline{0} è l'elemento neutro)} \\
 &= \underline{0} + \underline{0}' & \text{(perché \underline{0}' è un elemento neutro rispetto a $+$)} \\
 &= \underline{0} & \text{(perché \underline{0} è un elemento neutro rispetto a $+$)}.
-\end{align*}
+\end{align}
 Ma questo è una contraddizione, in quanto abbiamo assunto che $\underline{0}$ e $\underline{0}'$ fossero distinti. Segue la tesi. \\
 Per quanto riguarda la dimostrazione che $\forall \underline{v} \in V$ il vettore nullo è $0 \cdot \underline{v}$, si osserva che
-\begin{align*}
+\begin{align}
     0_\mathbb{K} \cdot \underline{v} = (0_\mathbb{K} +_{\mathbb{K}} 0_\mathbb{K}) \cdot \underline{v} = 0_{\mathbb{K}} \cdot \underline{v} + 0_\mathbb{K} \cdot \underline{v}, 
-    \end{align*}
+    \end{align}
 dove si è usato il fatto che $0_\mathbb{K} = 0_\mathbb{K} +_{\mathbb{K}} 0_\mathbb{K}$ (essendo l'elemento neutro rispetto all'operazione $+_\mathbb{K}$ definita sul campo $\mathbb{K}$) e la proprietà distributiva di cui gode $\cdot$ rispetto a $+_\mathbb{K}$. A questo punto, sappiamo che $\forall \underline{v} \in V, \exists (-\underline{v}) \in V$ tale che $\underline{v} + (-\underline{v}) = (-\underline{v}) + \underline{v} = \underline{0}$, dunque sappiamo che esiste un elemento inverso per $0_{\mathbb{K}} \cdot \underline{v}$ che possiamo aggiungere a destra di ogni membro\footnote{esplicito questa cosa di aggiungere a sinistra perché, a priori, queste dimostrazioni si potrebbero fare anche su spazi dove non è garantita la proprietà commutativa della somma, ottenendo dei risultati simili, ma in questo caso non sarebbe necessario. La faccio per pura pedanteria e perché alcune di queste dimostrazioni potrebbero esseri riviste a Teoria dei Gruppi}
     $$
     0_\mathbb{K} \cdot \underline{v} + (-0_\mathbb{K} \cdot \underline{v}) = 0_\mathbb{K} \cdot \underline{v} + 0_\mathbb{K} \cdot \underline{v} + (-0_\mathbb{K} \cdot \underline{v}).
@@ -41,30 +41,30 @@ dove abbiamo sempre usato il fatto che $\underline{0}$ è l'elemento neutro risp
 \subsection*{Esercizio \ref{ex:1.2}}
 Per quanto riguarda la dimostrazione che $\text{Span}(\underline{v_1}, \ldots, \underline{v_n})$ è un sottospazio vettoriale, osserviamo che possiamo usare la proposizione \ref{prop:ssp_vett_iff}, dunque è sufficiente mostrare che $\forall \underline{v}, \underline{w} \in V$ e $\forall \alpha \in \mathbb{K}$ valgono le implicazioni $\underline{v}, \underline{w} \in W \implies \underline{v}+\underline{w} \in W$ e $\underline{v} \in V \implies \alpha \underline{v} \in V$ (dove ho sottointeso il prodotto per scalare). \\
 Per quanto riguarda la prima implicazione, è chiaro che se $\underline{v},\underline{w} \in V$, allora per definizione esistono $\alpha_1, \ldots, \alpha_n, \beta_1, \ldots, \beta_n \in \mathbb{K}$ tali che $\underline{v} = \alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n}$ e $\underline{w} = \beta_1 \underline{v_1} + \ldots + \beta_n \underline{v_n}$, dunque se sommiamo i due vettori otteniamo che
-\begin{align*}
+\begin{align}
     &\underline{v} + \underline{w} = (\alpha_1 +_\mathbb{K} \beta_1) \underline{v_1} + \ldots + (\alpha_n +_\mathbb{K} \beta_n) \underline{v_n} \implies \exists \gamma_1 = \alpha_1 + \beta_1, \ldots, \gamma_n = \alpha_n + \beta_n \in \mathbb{K} \text{ tali che } \\
     &\underline{v} + \underline{w} = \gamma_1 \underline{v_1} + \ldots + \gamma_n \underline{v_n} \implies \underline{v} + \underline{w} \in W.
-\end{align*}
+\end{align}
 Per quanto riguarda la seconda implicazione, è chiaro che se $\underline{v} \in V$, allora per definizione esistono $\alpha_1, \ldots, \alpha_n \in \mathbb{K}$ tali che $\underline{v} = \alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n}$, dunque
-\begin{align*}
+\begin{align}
     &\alpha \underline{v} = \alpha (\alpha_1 \underline{v_1} +_\mathbb{K} \ldots +_\mathbb{K} \alpha_n \underline{v_n}) = (\alpha \alpha_1) \underline{v_1} + \ldots + (\alpha \alpha_n) \underline{v_n} \implies \exists \beta_1 = \alpha \alpha_1, \ldots, \beta_n = \alpha \alpha_n \in \mathbb{K} \\
     &\text{ tali che } \alpha \underline{v} = \beta_1 \underline{v_1} + \ldots + \beta_n \underline{v_n} \implies \alpha \underline{v} \in W.
-\end{align*}
+\end{align}
 Si osservi che in entrambe le implicazioni abbiamo usato il fatto che le operazioni $+$ e $\cdot$ godessero delle proprietà distributive rispetto a $+_{\mathbb{K}}$. Segue la tesi. \\
 Per quanto riguarda la dimostrazione che $\text{Span}(\underline{v_1}, \ldots, \underline{v_n})$ è il più piccolo sottospazio vettoriale contenente $\{\underline{v_1}, \ldots, \underline{v_n}\}$, osserviamo che, per definizione di spazio vettoriale, ogni sottospazio vettoriale $W$ di $V$ che contiene gli elementi $\underline{v_1}, \ldots, \underline{v_n}$, contiene anche le combinazioni lineari di questi elementi, ovvero contiene $\text{Span}(\underline{v_1}, \ldots, \underline{v_n})$. Segue la tesi.
 \subsection*{Esercizio \ref{ex:1.3}}
 Per quanto riguarda la dimostrazione che $\text{Span}(A)$ è un sottospazio vettoriale, osserviamo che possiamo sempre usare la proposizione \ref{prop:ssp_vett_iff}, dunque è sufficiente mostrare che valgono le due implicazioni come fatto nell'esercizio precedente. \\
 Osserviamo che preso $\underline{v} \in \text{Span}(A)$ allora sappiamo che $\exists \underline{v_1}, \ldots, \underline{v_n} \in A : \exists \alpha_1, \ldots, \alpha_n \in \mathbb{K} : \underline{v} = \alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n}$ e, similmente, se $\underline{w} \in \text{Span}(A)$ allora $\exists \underline{w_1}, \ldots, \underline{w_m} \in A : \exists \beta_1, \ldots, \beta_m \in \mathbb{K}$; dunque sommandoli insieme
-\begin{align*}
+\begin{align}
     &\underline{v} + \underline{w} = (\sum_{i=1}^n \alpha_i \underline{v_i}) + (\sum_{i=1}^m \beta_i \underline{w_i}) = \alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n} + \beta_1 \underline{w_1} + \ldots + \beta_m \underline{w_m} \implies \\
     &\exists \underline{v_1}, \ldots, \underline{v_n}, \underline{w_1}, \ldots, \underline{w_m} \in A : \exists \alpha_1, \ldots, \alpha_n, \beta_1, \ldots, \beta_m \in \mathbb{K} : \underline{v} = \sum_{i=1}^n \alpha_i \underline{v_i} + \sum_{i=1}^n \beta_i \underline{w_i} \implies \\
     &\implies \underline{v} + \underline{w} \in \text{Span}(A).
-\end{align*}
+\end{align}
 Mostriamo la seconda implicazione: come prima, se $\underline{v} \in \text{Span}(A)$ allora $\exists \underline{v_1}, \ldots, \underline{v_n} \in A : \exists \alpha_1, \ldots, \alpha_n \in \mathbb{K} : \underline{v} = \alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n}$, dunque preso $\alpha \in \mathbb{K}$ abbiamo che
-\begin{align*}
+\begin{align}
 &\alpha \underline{v} = \alpha (\alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n}) = (\alpha \alpha_1) \underline{v_1} + \ldots + (\alpha \alpha_n) \underline{v_n} \implies \\
 &\implies \exists \underline{v_1}, \ldots, \underline{v_n} \in A : \exists \beta_1 = \alpha \alpha_1, \ldots, \beta_n = \alpha \alpha_n \in \mathbb{K} : \alpha \underline{v} = \sum_{i=1}^n \beta_i \underline{v_i} \implies \alpha \underline{v} \in \text{Span}(A).
-\end{align*}
+\end{align}
 Si osservi che in entrambe le implicazioni abbiamo usato il fatto che le operazioni $+$ e $\cdot$ godano delle proprietà distributive rispetto a $+_\mathbb{K}$. Segue la tesi. \\
 Per quanto riguarda il dimostrare che se $A$ è un sottospazio vettoriale allora $A = \text{Span}(A)$, è sufficiente mostrare che $A \subseteq \text{Span}(A)$ (che è banale) e che $\text{Span}(A) \subseteq A$, da cui segue che $A = \text{Span}(A)$. \\
 $\boxed{\subseteq}$: preso $\underline{v} \in A$, allora per definizione di $\text{Span}(A)$ dobbiamo mostrare $\exists \underline{v_1}, \underline{v_2}, \ldots, \underline{v_n} \in A : \exists \alpha_1, \ldots, \alpha_n \in \mathbb{K} : \underline{v} = \alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n}$, ma possiamo direttamente prendere $\underline{v_1} = \underline{v}$ e $\alpha_1 = 1_\mathbb{K}$ (la definizione di $\text{Span}$ non ci vieta di farlo). Dunque $\underline{v} \in \text{Span}(A)$ e, per l'arbitrarietà di $\underline{v}$, segue che $A \subseteq \text{Span}(A)$. \\
@@ -118,10 +118,10 @@ $$
 dove abbiamo il fatto che la legge di composizione interna produce vettori appartenenti sempre al sottospazio considerato. Segue allora che ogni vettore non può più essere scritto in maniera univoca, ottenendo così un assurdo. Segue così la tesi.
 \subsection*{Esercizio \ref{ex:1.12}}
 Supponiamo, senza perdita di generalità, che $A' = \{ \underline{v_1}, \ldots, \underline{v_k} \}$ e $A'' = \{ \underline{v_{k+1}}, \ldots, \underline{v_n} \}$ (a meno di riarrangiare i termini), osserviamo che preso $\underline{v} \in \text{Span}(A)$ allora $\exists! \alpha_1, \ldots, \alpha_n \in \mathbb{K}$ tali che
-\begin{align*}
+\begin{align}
     &\underline{v} = \alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n} = \underset{\in \text{Span}(A')}{(\alpha_1 \underline{v_1} + \ldots + \alpha_k \underline{v_k})} + \underset{\in \text{Span}(A'')}{(\alpha_{k+1} \underline{v_{k+1}} + \ldots + \alpha_n \underline{v_n})} \implies \\
     &\implies \text{Span}(A) = \text{Span}(A') + \text{Span}(A'').
-\end{align*}
+\end{align}
 Rimane da mostrare che $\text{Span}(A') \cap \text{Span}(A'') = \{ \underline{0} \}$: se per assurdo non fosse così allora preso $\underline{v} \in \text{Span}(A') \cap \text{Span}(A'')$ sappiamo che $\underline{v} \in \text{Span}(A')$ e $\underline{v} \in \text{Span}(A'')$, dunque $\exists \alpha_1, \ldots, \alpha_n \in \mathbb{K}$ non tutti nulli tali che
 $$
     \underline{v} = \alpha_1 \underline{v_1} + \ldots + \alpha_k \underline{v_n} = \alpha_{k+1} \underline{v_{k+1}} + \ldots + \alpha_n \underline{v_n} \implies \alpha_1 \underline{v_1} + \ldots - \alpha_n \underline{v_n} = \underline{0},
@@ -144,12 +144,12 @@ E' chiaro che $(\cdot, \cdot)$ è simmetrica, siccome il prodotto fra numeri rea
     \vdots \\
     \alpha_n
 \end{pmatrix}$ e $\underline{w} = \begin{pmatrix} \beta_1 \\ \vdots \\ \beta_n \end{pmatrix}$
-\begin{align*}
+\begin{align}
     (\underline{v}, \underline{w}) &= \begin{pmatrix} \alpha_1 \ \ldots \, \alpha_n \end{pmatrix} \begin{pmatrix} \beta_1 \\ \vdots \\ \beta_n \end{pmatrix} = \alpha_1 \beta_1 + \ldots + \alpha_n \beta_n \stackrel{\text{prop. commutativa}}{=} \beta_1 \alpha_1 + \ldots + \beta_n \alpha_n =  \\
     &=\begin{pmatrix} \beta_1 \, \ldots \, \beta_n \end{pmatrix} \begin{pmatrix} \alpha_1 \\ \vdots \\ \alpha_n \end{pmatrix} = (\underline{w}, \underline{v}).
-\end{align*}
+\end{align}
 Per quanto riguarda le proprietà $\circled{1}$ e $\circled{2}$, osserviamo che, in virtù della proprietà di simmetria che abbiamo appena mostrato, è sufficiente mostrare che vale la \circled{1}. Per fare ciò, è necessario fare il conto prendendo $\underline{v} = \begin{pmatrix} \xi_1 \\ \vdots \\ \xi_n \end{pmatrix}$, $\underline{w} = \begin{pmatrix} \zeta_1 \\ \vdots \\ \zeta_n \end{pmatrix}$ e $\underline{z} = \begin{pmatrix} \epsilon_1 \\ \vdots \\ \epsilon_n \end{pmatrix}$
-\begin{align*}
+\begin{align}
     \varphi(\alpha \underline{v} + \beta \underline{w}, \underline{z}) &= \begin{pmatrix}
         \alpha \xi_1 + \beta \zeta_1 \\ \ldots \\ \alpha \xi_n + \beta \zeta_n
     \end{pmatrix} \begin{pmatrix}
@@ -171,6 +171,6 @@ Per quanto riguarda le proprietà $\circled{1}$ e $\circled{2}$, osserviamo che,
         \vdots \\
         \epsilon_n
     \end{pmatrix} = \alpha (\underline{v}, \underline{z}) + \beta (\underline{w}, \underline{z}).
-\end{align*}
+\end{align}
 
 Abbiamo quindi mostrato che, effettivamente, il prodotto scalare euclideo è una forma bilineare simmetrica.

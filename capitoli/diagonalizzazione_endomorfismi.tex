@@ -40,9 +40,9 @@ Per poter attaccare il problema dobbiamo dare una serie di definizioni per spieg
 Diamo la seguente definizione
 \begin{definition}
     Sia $V$ uno spazio vettoriale sul campo $\mathbb{K}$ e sia $f: V \to V$ un endomorfismo, diremo che un numbero $\lambda \in \mathbb{K}$ tale che $\exists \underline{v} \neq \underline{0}$ per cui
-    \begin{align*}
+    \begin{align}
         f(\underline{v}) = \lambda \underline{v} \tag{$\ast$}
-    \end{align*}
+    \end{align}
     si dice autovalore di $f$, mentre ogni vettore $\underline{v} \neq \underline{0}$ che verifica la $(\ast)$ si dice autovettore di $f$ relativo all'autovalore $\lambda$.
 \end{definition}
 \begin{remark}
@@ -85,7 +85,7 @@ Diamo la seguente definizione
         \end{pmatrix},
     $$
     è equivalente a scrivere 
-    \begin{align*}
+    \begin{align}
         &\begin{pmatrix}
             x_2 \sin{\theta} + x_1 \cos{\theta} \\
             x_2 \cos{\theta} - x_1 \sin{\theta}
@@ -100,7 +100,7 @@ Diamo la seguente definizione
             \lambda^2 x_1^2 = x_1^2 \cos^2{\theta} + x_2^2 \sin^2{\theta} + 2 x_1 x_2 \sin{\theta} \cos{\theta} \\
             \lambda^2 x_2^2 = x_2^2 \cos^2{\theta} + x_1^2 \sin^2{\theta} - 2 x_1 x_2 \cos{\theta} \sin{\theta}
         \end{cases},
-    \end{align*}
+    \end{align}
     sommando le due equazioni si ha che $\lambda^2 (x_1^2 + x_2^2) = (x_1^2 + x_2^2) \implies \lambda^2 = 1$. Ma ciò è impossibile siccome
     se $\lambda = 1$ allora
     $$
@@ -113,7 +113,7 @@ Diamo la seguente definizione
         \end{cases}
     $$
     mentre per $\lambda = -1$ allora si ha che
-    \begin{align*}
+    \begin{align}
         &\begin{cases}
             -x_1 = x_2 \sin{\theta} + x_1 \cos{\theta} \\
             -x_2 = x_2 \cos{\theta} - x_1 \sin{\theta}.
@@ -125,7 +125,7 @@ Diamo la seguente definizione
             x_1 = -x_2 \frac{\sin{\theta}}{1+\cos{\theta}} \\
             x_2 = - x_2 \cos{\theta} - x_2\frac{\sin^2{\theta}}{1+\cos{\theta}} = - x_2 \implies x_2 = 0 \implies x_1 = 0.
         \end{cases}
-    \end{align*}
+    \end{align}
 \end{proof}
 
 \section{Polinomio caratteristico}
@@ -148,10 +148,10 @@ $$
 \end{theorem}
 \begin{proof}
     Si vede infatti che se $B = P^{-1}AP$ allora
-    \begin{align*}
+    \begin{align}
     p_B(t) &= \det{(tI - B)} = \det{(tI - P^{-1}AP)} = \det{[tP^{-1}P - P^{-1}AP]} = \det{[P^{-1}(tP - AP)]} \\
     &= \det{[P^{-1}(tI - A)P]} \stackrel{\text{Binet}}{=} \det{(tI - A)} = p_A(t).
-    \end{align*}
+    \end{align}
     Segue anche la prima affermazione siccome se $P$ è la matrice di cambio base da $\mathcal{B}$ a $C$ allora $\mathcal{M}^\mathcal{B}_\mathcal{B}(f) = P^{-1} \mathcal{M}^\mathcal{B}_\mathcal{B}(f) P \implies p_f(t) = p_A(t) = p_B(t)$ con $A = \mathcal{M}^\mathcal{C}_\mathcal{C}(f)$ e $B = \mathcal{M}^\mathcal{B}_\mathcal{B}$.
 \end{proof}
 In virtù di questa indipendenza dalla base scelta, possiamo motivare la seguente definizione
@@ -161,12 +161,12 @@ In virtù di questa indipendenza dalla base scelta, possiamo motivare la seguent
 \end{definition}
 \begin{example}[esistenza di matrici con lo stesso polinomio caratteristico non simili]
     Esistono delle matrici con lo stesso polinomio caratteristico che non sono simili, per esempio si prendi
-    \begin{align*}
+    \begin{align}
         &A = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} \text{ e } B=\begin{pmatrix}
             1 & 1 \\
             0 & 1
         \end{pmatrix}.
-    \end{align*}
+    \end{align}
 \end{example}
 \begin{theorem}
     Dato $f: V \to V$ allora gli autovalori di $f$ sono le radici di $p_f(t)$.
@@ -183,11 +183,11 @@ In virtù di questa indipendenza dalla base scelta, possiamo motivare la seguent
     Sia $f: \mathbb{R}^3 \to \mathbb{R}^3$ con $\mathcal{M}^\mathcal{C}_\mathcal{C}(f) = \begin{pmatrix}
         0 & 1 & 1 \\ -1 & 2 & 1 \\ -1 & 1 & 2
     \end{pmatrix} = A$. Allora vediamo che
-    \begin{align*}
+    \begin{align}
         \det{(tI - A)} &= \det{\begin{pmatrix} t & -1 & -1 \\ 1 & t - 2 & -1 \\ 1 & -1 & t-2 \end{pmatrix}} = \det{\begin{pmatrix} t & -1 & -1 \\ 0 & t - 1 & 1-t \\ 1 & -1 & t-2 \end{pmatrix}} = \det{\begin{pmatrix} 0 & t-1 & -t^2 - 2t - 1 \\ 0 & t-1 & 1-t \\ 1 & -1 & t-2 \end{pmatrix}} = & \\
         &= 1 \det{\begin{pmatrix} t-1 & -(t-1)^2 \\ t-1 & 1-t \end{pmatrix}} = -(t-1)^2 + (t-1)(t-1)^2 = (t-1)^2(-1 + t - 1) = \\
         &= (t-1)^2(t-2),
-    \end{align*}
+    \end{align}
     dove ho usato delle mosse di riga per semplificare la forma della matrice (cosa che vi consiglio sempre di fare, poi io soffro probabilmente di qualche disabilità da quando sono caduto dal seggiolone e sono totalmente incapace nel fare calcoli, però ecco semplifica parecchio procedere poi con la regola di Sarrus o Laplace) e poi ho effettuato l'espansione in righe tramite la regola di Laplace.
     Si procede da qua a cercare gli autospazi (quindi, di fatto, gli autovettori) osservando che, in virtù del teorema appena visto, gli autospazi $V_1$ e $V_2$ sono, rispettivamente, $\text{Ker}(I - A)$ e $\text{Ker}(2I - A)$. Vediamo che
     $$
@@ -311,7 +311,7 @@ Nel caso di $p(x) \in \mathbb{R}[x]$, tuttavia, seguono una serie di proprietà 
 \begin{proof}
     Sappiamo che esiste $V_{\lambda_i}$ autospazio relativo all'autovalore $\lambda_i$ con dimensione almeno pari a $k = \mu_g(\lambda_i)$, allora possiamo trovare una base $\mathcal{B}_\lambda = \{ \underline{v_1}, \ldots, \underline{v_k} \}$ dell'autospazio $V_\lambda$ e possiamo completarla a base di $V$, ottenendo la base $\mathcal{B} = \mathcal{B}_\lambda \cup \{ \underline{v_{k+1}}, \ldots, \underline{v_n} \}$, dove chiaramente $n = \text{dim}(V)$. Si ha allora che in questa
     base in entrata e in uscita, la matrice associata ad $f$ sarà della forma
-    \begin{align*}
+    \begin{align}
         &\mathcal{M}(f)^\mathcal{B}_\mathcal{B} = \begin{pmatrix}
             \lambda_i & 0 & \ldots & 0 & 0 & \ast & \ast & \ldots & \ast & \ast \\
             0 & \lambda_i & 0 & \ldots & 0 & \ast & \ast & \ldots & \ast & \ast \\
@@ -324,9 +324,9 @@ Nel caso di $p(x) \in \mathbb{R}[x]$, tuttavia, seguono una serie di proprietà 
             0 & 0 & \ldots & \ldots & 0 &   &   &   &   & \\
             0 & 0 & \ldots & \ldots & 0 &   &   &   &   & 
         \end{pmatrix}.
-    \end{align*}
+    \end{align}
     Si ha allora che
-    \begin{align*}
+    \begin{align}
         &\mathcal{M}(tI - f)^\mathcal{B}_\mathcal{B} = \begin{pmatrix}
             t-\lambda_i & 0 & \ldots & 0 & 0 & \ast & \ast & \ldots & \ast & \ast \\
             0 & t-\lambda_i & 0 & \ldots & 0 & \ast & \ast & \ldots & \ast & \ast \\
@@ -340,7 +340,7 @@ Nel caso di $p(x) \in \mathbb{R}[x]$, tuttavia, seguono una serie di proprietà 
             0 & 0 & \ldots & \ldots & 0 &   &   &   &   & 
         \end{pmatrix} = \\
         &=\begin{pmatrix} (t - \lambda_i) \text{Id}_{n \times n} & B \\ 0_{(n-k) \times (n-k)} & t\text{Id}_{(n-k) \times (n-k)} - C \end{pmatrix}.
-    \end{align*}
+    \end{align}
     Siccome è una matrice a blocchi, segue dall'esercizio \ref{ex:4.10} che
     $$
     \det{(\mathcal{M}(tI - f)^\mathcal{B}_\mathcal{B})} = \det{((t-\lambda_i)\text{Id}_{k \times k})} \det{(t\text{Id}_{(n-k)\times (n-k)} - C)} = (t-\lambda_i)^k \det{(t\text{Id}_{(n-k)\times (n-k)} - C)}.
@@ -352,9 +352,9 @@ Nel caso di $p(x) \in \mathbb{R}[x]$, tuttavia, seguono una serie di proprietà 
 \end{remark}
 \begin{remark}
     Gli autovalori di $f: V \to V$ sono gli stessi di $A = \mathcal{M}^\mathcal{B}_\mathcal{B}(f)$ per qualunque base $\mathcal{B}$ (per invarianza del polinomio caratteristico). Si ha allora che
-    \begin{align*}
+    \begin{align}
         &f \text{ diagonalizzabile } \iff \mathcal{M}^\mathcal{B}_\mathcal{B}(f) \text{ diagonalizzabile (per una qualunque base } \mathcal{B}). 
-    \end{align*}
+    \end{align}
 \end{remark}
 \begin{theorem}
     Sia $V$ uno spazio vettoriale sul campo $\mathbb{K}$ e sia $f: V \to V$ un endomorfismo con $\lambda_1, \ldots, \lambda_k$ autovalori distinti. Allora qualunque $k-$upla di autovettori $\underline{v_1}, \ldots, \underline{v_k}$ relativi rispettivamente agli autovalori $\lambda_1, \ldots, \lambda_k$ è linearmente indipendente.
@@ -368,10 +368,10 @@ Nel caso di $p(x) \in \mathbb{R}[x]$, tuttavia, seguono una serie di proprietà 
             &\alpha_1 \underline{v_1} + \ldots + \alpha_k \underline{v_k} + \alpha_{k+1} \underline{v_{k+1}} = \underline{0},
         \end{align}
         e applicando $f$ sia a destra che a sinistra si ha che
-        \begin{align*}
+        \begin{align}
             &f(\alpha_1 \underline{v_1} + \ldots + \alpha_k \underline{v_k} + \alpha_{k+1} \underline{v_{k+1}}) = \alpha_1 f(\underline{v_1}) + \ldots + \alpha_{k+1} f(\underline{v_{k+1}}) = & & \\
             &= \alpha_1 \lambda_1 \underline{v_1} + \ldots + \alpha_{k+1} \lambda_{k+1} \underline{v_{k+1}} = f(\underline{0}) = \underline{0}, & &
-        \end{align*}
+        \end{align}
         ottenendo così in definitiva che
         \begin{align} \label{eq:rel_not_banale_aut_f}
             \alpha_1 \lambda_1 \underline{v_1} + \ldots + \alpha_{k+1} \lambda_{k+1} \underline{v_{k+1}} = \underline{0},
@@ -400,10 +400,10 @@ Nel caso di $p(x) \in \mathbb{R}[x]$, tuttavia, seguono una serie di proprietà 
 \end{cor}
 \begin{proof}
     Infatti si ha che
-    \begin{align*}
+    \begin{align}
         &V_{\lambda_1} \oplus \ldots \oplus V_{\lambda_k} \iff V_i \cap (V_{\lambda_1} \oplus \ldots V_{\lambda_{i-1}} \oplus V_{\lambda_{i+1}} \oplus \ldots \oplus V_{\lambda_k}) = \{ \underline{0} \} \, \forall i \in \{ 1, \ldots, k\} \\
         &\iff \underline{0} \neq \underline{v_1} \in V_1, \ldots, \underline{0} \neq \underline{v_k} \in V_k \text{ sono sempre linearmente indipendenti.}
-    \end{align*}
+    \end{align}
     Mostriamo l'ultimo se e solo se: $\boxed{\Rightarrow}$ Supponiamo che l'intersezione sia banale per ogni $i$. Consideriamo la combinazione lineare nulla:
     \[
         \alpha_1 \underline{v}_1 + \dots + \alpha_i \underline{v}_i + \dots + \alpha_k \underline{v}_k = \underline{0}.
@@ -439,10 +439,10 @@ Nel caso di $p(x) \in \mathbb{R}[x]$, tuttavia, seguono una serie di proprietà 
 Segue quindi che
 \begin{prop}
 Sia $f: V \to V$ allora si ha che
-\begin{align*}
+\begin{align}
     &f \text{ diagonalizzabile } \iff V \text{ ha una base di autovettori } \iff \\
     &\iff V = V_{\lambda_1} \oplus \ldots \oplus V_{\lambda_k} \text{ dove } \lambda_1, \ldots, \lambda_k \text{ sono tutti gli autovalori distinti di }f.
-\end{align*}
+\end{align}
 \end{prop}
 \begin{proof}
     Il primo se e solo se è già stato visto nei precedenti teoremi, quindi studiamo il secondo se e solo se: per fare questo vediamo che \\
@@ -489,7 +489,7 @@ Un caso particolare si ha chiaramente per $\mathbb{K} = \mathbb{C}$ o, più in g
     $S$ è invertibile allora $V_{\lambda, B} = S^{-1}(V_{\lambda, A})$ che ha dimensione pari a quello dello spazio di partenza (in quanto $S^{-1}$ isomorfismo), il che è assurdo poiché avevamo supposto che $\mu_g(A) > \mu_g(B)$.
     Le condizioni enunciate qua sono anche sufficienti? Indubbiamente, se $A$ e $B$ sono diagonalizzabili sì, dunque si procede a mostrare il teorema
     \begin{theorem}
-        Se $A, B \in M_n(\mathcal{K})$ sono diagonalizzabili, allora
+        Se $A, B \in M_n(\mathbb{K})$ sono diagonalizzabili, allora
         $$
             A \text{ e } B \text{ sono simili } \iff \text{hanno gli stessi autovalori, con stesse molteplicità algebriche e geometriche}. 
         $$
@@ -511,30 +511,102 @@ Un caso particolare si ha chiaramente per $\mathbb{K} = \mathbb{C}$ o, più in g
         dunque sono simili.
     \end{proof}
 \end{remark}
-    Mettiamoci adesso a studiare i sottospazi invarianti: per fissare le cose, consideriamo una rotazione appartenente $SO(3)$ (rotazione in $\mathbb{R}^3$) che, come vedremo, può essere scritta in una base ortogonale il cui primo vettore è l'asse della rotazione e gli altri due vettori come i generatori del piano dell'asse ortogonale al piano, allora la matrice in tale base è della forma
-    \begin{align}
-        R(\theta) = \begin{pmatrix}
-            1 & 0 & 0 \\
-            0 & \cos{\theta} & -\sin{\theta} \\
-            0 & \sin{\theta} & \cos{\theta}
-        \end{pmatrix},
-    \end{align}
-    e vediamo che indubbiamente il vettore che mi genera l'asse di rotazione è un autovettore relativo all'autovalore $1$, ma gli altri due vettori mi generano un sottospazio non diagonalizzabile che è $f-$invariante. Vogliamo capire se è possibile stabilire anche dei criteri con cui vedere se un sottospazio $W$ è $f-$invariante. Le rotazioni sono un po' particolari: infatti, nei teoremi che enuncieremo, vedremo che 
-    una condizione che imporremo è che l'endomorfismo sia diagonalizzabile, tuttavia le rotazioni \textbf{non} sono diagonalizzabili. 
-    \begin{exercise}
-        Sia $f: V \to V$ un endomorfismo, se $W_1$ e $W_2$ sono $f-$invarianti allora $W_1 \cap W_2$ è $f-$invariante.
-    \end{exercise}
 
-    \begin{lemma}
-        Sia $f: V \to V$ un endomorfismo diagonalizzabile e sia
-        $$
-            V = V_{\lambda_1} \oplus \ldots \oplus V_{\lambda_k},
-        $$
-        la decomposizione in autospazi, allora
-        \begin{align}
-            W \subset V \text{ è f-invariante } \iff W = (W \cap V_{\lambda_1}) \oplus \ldots (W \cap V_{\lambda_k}).
-        \end{align}
-    \end{lemma}
-    \begin{proof} \hspace{1cm} \\
-        $\boxed{\Leftarrow}$: se $W = (W \cap V_{\lambda_1}) \oplus \ldots (W \cap V_{\lambda_k})$, denotando con $W_i = W \cap V_{\lambda_i}$, allora $W$ è $f-$invariante, in quanto preso $\underline{w} = \underline{w_1} + \ldots + \underline{w_k}$ con $\underline{w_i} \in W_i$
-    \end{proof}
+Mettiamoci adesso a studiare i sottospazi invarianti: per fissare le cose, consideriamo una rotazione appartenente $SO(3)$ (rotazione in $\mathbb{R}^3$) che, come vedremo, può essere scritta in una base ortogonale il cui primo vettore è l'asse della rotazione e gli altri due vettori come i generatori del piano dell'asse ortogonale al piano, allora la matrice in tale base è della forma
+\begin{align}
+    R(\theta) = \begin{pmatrix}
+        1 & 0 & 0 \\
+        0 & \cos{\theta} & -\sin{\theta} \\
+        0 & \sin{\theta} & \cos{\theta}
+    \end{pmatrix},
+\end{align}
+e vediamo che indubbiamente il vettore che mi genera l'asse di rotazione è un autovettore relativo all'autovalore $1$, ma gli altri due vettori mi generano un sottospazio non diagonalizzabile che è $f-$invariante. Vogliamo capire se è possibile stabilire anche dei criteri con cui vedere se un sottospazio $W$ è $f-$invariante. Le rotazioni sono un po' particolari: infatti, nei teoremi che enuncieremo, vedremo che 
+una condizione che imporremo è che l'endomorfismo sia diagonalizzabile, tuttavia le rotazioni \textbf{non} sono diagonalizzabili. 
+\begin{exercise}
+    Sia $f: V \to V$ un endomorfismo, se $W_1$ e $W_2$ sono $f-$invarianti allora $W_1 \cap W_2$ è $f-$invariante.
+\end{exercise}
+
+\begin{lemma}
+    Sia $f: V \to V$ un endomorfismo diagonalizzabile e sia
+    $$
+        V = V_{\lambda_1} \oplus \ldots \oplus V_{\lambda_k},
+    $$
+    la decomposizione in autospazi, allora
+    \begin{align}
+        W \subset V \text{ è } f-\text{invariante } \iff W = (W \cap V_{\lambda_1}) \oplus \ldots \oplus (W \cap V_{\lambda_k}).
+    \end{align}
+\end{lemma}
+\begin{proof} \hspace{1cm} \\
+    $\boxed{\Leftarrow}$: se $W = (W \cap V_{\lambda_1}) \oplus \ldots (W \cap V_{\lambda_k})$, denotando con $W_i = W \cap V_{\lambda_i}$, allora $W$ è $f-$invariante, in quanto preso $\underline{w} = \underline{w_1} + \ldots + \underline{w_k}$ con $\underline{w_i} \in W_i$ allora ho che
+    \begin{align}
+        f(\underline{w}) \stackrel{\text{per linearità}}{=} f(\underline{w_1}) + \ldots + f(\underline{w_k}) = \lambda_1 \underline{w_1} + \ldots + \lambda_k \underline{w_k},
+    \end{align}
+    ma poiché $\forall i, \lambda_i \underline{w_i} \in W_i$, allora $f(\underline{w}) \in W$. \\
+    $\boxed{\Rightarrow}:$ devo mostrare che se $W \subseteq V$ è $f-$invariante, allora $W = (W \cap V_{\lambda_1}) \oplus \ldots \oplus (W \cap V_{\lambda_k})$. Per farlo devo mostrare che $W \subseteq (W \cap V_{\lambda_1}) \oplus \ldots \oplus (W \cap V_{\lambda_k})$ e $(W \cap V_{\lambda_1}) \oplus \ldots \oplus (W \cap V_{\lambda_k}) \subseteq W$, tuttavia osserviamo che
+    chiaramente, per definizione di intersezione $W \cap V_{\lambda_i} \subseteq W$ e la somma fra gli $W \cap V_{\lambda_i}$ è diretta poiché autovettori relativi ad autospazi differenti sono linearmente indipendenti. Segue quindi che 
+    \begin{align}
+        (W \cap V_{\lambda_1}) \oplus \ldots \oplus (W \cap V_{\lambda_k}) \subseteq W,
+    \end{align}
+    quindi è sufficiente andare al mostrare la $\boxed{\supseteq}$: per farlo si procede facendo vedere che se $\underline{w} \in W \implies \exists \underline{w_1}, \ldots, \underline{w_k} \in V: \underline{w} = \underline{w_1} + \ldots + \underline{w_k}$ con $\underline{w_i} \in W \cap V_{\lambda_i}$. Si mostra, per induzione su $m$, che se $\underline{w}$ è somma di $m$ autovettori
+    relativi ad autovalori distinti, allora tali vettori stanno tutti in $W$: è chiaro che il caso di $m=1$ è banale e dobbiamo far vedere che $m \implies m+1$, quindi si consideri $\underline{w} \in W$ tali che
+    \begin{align}
+        \underline{w} = \underline{v_1} + \ldots + \underline{v_{m+1}} \implies f(\underline{w}) \stackrel{\text{per lin.}}{=} f(\underline{v_1}) + \ldots + f(\underline{v_{m+1}}) = \lambda_1 \underline{v_1} + \ldots + \lambda_{m+1} \underline{v_{m+1}},
+    \end{align}
+    da cui ho che se facciamo $f(\underline{w}) - \lambda_{m+1} \underline{w}$ si ha che
+    \begin{align}
+        \underline{w'} = f(\underline{w}) - \lambda_{m+1} \underline{w} = (\lambda_1 - \lambda_{m+1}) \underline{v_1} + \ldots + (\lambda_{m} - \lambda_{m+1}) \underline{v_m},
+    \end{align}
+    osserviamo che $\underline{w'} \in W$ poiché, per ipotesi, $W$ è $f-$invariante, dunque $f(\underline{w}) \in W \implies f(\underline{w}) - \lambda_{m+1} \underline{w} \in W$, quindi per ipotesi induttiva posso concludere che
+    \begin{align}
+        (\lambda_i - \lambda_{m+1}) \underline{v_i} \in W \stackrel{\text{poiché } \lambda_i \neq \lambda_{m+1}}{\implies} \underline{v_i} \in W,
+    \end{align}
+    ma poiché $\underline{w} \in W$ e $\underline{w} = \underline{v_1} + \ldots + \underline{v_{m+1}} \implies \underline{v_{m+1}} = \underline{w} - (\underline{v_1} + \ldots + \underline{v_m}) \in W$.
+\end{proof}
+\begin{cor}
+    Sia $f: V \to V$ diagonalizzabile, sia $W \subseteq V$ un sottospazio $f-$invariante. Allora $f|_{W}: W \to W$ è diagonalizzabile.
+\end{cor}
+\begin{proof}
+    Sappiamo che $W$ è $f-$invariante se e solo se $W = (W \cap V_{\lambda_1}) \oplus \ldots \oplus (W \cap V_{\lambda_k}) \implies W$ ha base di autovettori, dunque $f|_{W}$ è chiaramente diagonalizzabile.
+\end{proof}
+
+Vogliamo, adesso, studiare le condizioni per cui, presi due endomorfismi $f, g$ allora esiste una base comune di autovettori: una condizione ragionevole è il fatto che siano entrambi diagonalizzabili, altrimenti non è ben definito il concetto di base (lo spazio non è decomponibile), mentre l'altra richiesta è che commutino: quando li `rappresentiamo' come matrice nella stessa base, questi
+avranno forma diagonale, dunque commutano. Si può mostrare che queste due condizioni sono necessarie e sufficienti, ovvero
+\begin{theorem}
+    Siano $f, g: V \to V$ due endomorfismi diagonalizzabili, allora
+    \begin{align}
+        \exists \mathcal{B} \text{ base comune di autovettori } \iff [f, g] = f(g(\cdot)) - g(f(\cdot)) = \hat{0},
+    \end{align}
+    dove $\hat{0}$ è l'endomorfismo nullo.
+\end{theorem}
+\begin{proof} \hspace{1cm} \\
+    $\boxed{\Rightarrow}$: siano $\mathcal{B} = \{ \underline{v_1}, \ldots, \underline{v_n} \}$ questa base comune di autovettori e indichiamo con $\{ \lambda_i \}_{i \in \{ 1, \ldots, n \}}$ e $\{ \beta_i \}_{i \in \{ 1, \ldots, n\}}$ gli autovalori, non necessariamente distinti, relativi a $f$ e relativi a $g$, allora sappiamo che, preso $\underline{v} \in V \implies \exists \alpha_1, \ldots, \alpha_n \in \mathbb{K}$ tali che
+    \begin{align}
+        f(g(\underline{v})) &= f(\alpha_1 g(\underline{v_1}) + \ldots + \alpha_k g(\underline{v_k})) = \alpha_1 f(g(\underline{v_1})) + \ldots + \alpha_n f(g(\underline{v_n})) = \\
+        &= \alpha_1 f(\beta_1 \underline{v_1}) + \ldots + \alpha_n f(\beta_n \underline{v_n}) = \alpha_1 \beta_1 f(\underline{v_1}) + \ldots + \alpha_n \beta_n f(\underline{v_n}) = \\
+        &= \alpha_1 \beta_1 \lambda_1 \underline{v_1} + \ldots + \alpha_n \beta_n \lambda_n \underline{v_n} = \alpha_1 \lambda_1 \beta_1 \underline{v_1} + \ldots + \alpha_n \lambda_n \beta_n \underline{v_n} = \\
+        &= \alpha_1 \beta_1 f(\underline{v_1}) + \ldots + \alpha_n \beta_n f(\underline{v_n}) = \alpha_1 g(f(\underline{v_1})) + \ldots + \alpha_n g(f(\underline{v_n})) = g(f(\underline{v})),
+    \end{align}
+    dove si è fatto uso della linearità. Per arbitrarietà di $\underline{v} \in V$, si ha che $[f, g] = \hat{0}$. \\
+    $\boxed{\Leftarrow}$: osserviamo che, se $\underline{v}$ è autovettore di $f$ relativo a $\lambda$, allora $g(\underline{v})$ è ancora autovettore di $f$ relativo a $\lambda$, poiché
+    \begin{align}
+        f(g(\underline{v})) = g(f(\underline{v})) = g(\lambda \underline{v}) = \lambda g(\underline{v}),
+    \end{align}
+    quindi, se abbiamo che $f$ è diagonalizzabile, allora
+    \begin{align}
+        V = (V \cap V_{\lambda_1}) \oplus \ldots \oplus (V \cap V_{\lambda_k}),
+    \end{align}
+    quindi, preso $\underline{v} \in V$ sappiamo che esistono, includendo possibili degenerazioni, $\alpha_{11}, \ldots, \alpha_{kn}$ tali che
+    \begin{align}
+        \underline{v} = \alpha_{11} \underline{v_{11}} + \ldots + \alpha_k \underline{v_{kn}},
+    \end{align}
+    dove abbiamo indicato $\underline{v}_{ij} \in V \cap V_{\lambda_j}$ (si indica l'autovalore col secondo pedice in pratica).
+    Applicandovi $g$ abbiamo che
+    \begin{align}
+        g(\underline{v}) = \alpha_{11} g(\underline{v_{11}}) + \ldots \alpha_k g(\underline{v_{kn}}), 
+    \end{align}
+    tuttavia $g(\underline{v}) \in V \implies \exists \beta_{11}, \ldots, \beta_{kn}$ tali che
+    \begin{align}
+        g(\underline{v}) = \beta_{11} \underline{v_{11}} + \ldots + \beta_{kn} \underline{v_{kn}},
+    \end{align}
+    da cui ho che 
+\end{proof}

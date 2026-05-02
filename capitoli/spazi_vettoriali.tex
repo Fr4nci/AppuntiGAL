@@ -88,18 +88,18 @@ Tramite questa definizione, possiamo andare a mostrare alcuni risultati validi n
 Vediamo adesso qualche esempio di spazio vettoriale per fissare meglio i concetti.
 \begin{example}[$\mathbb{R}^2$ è uno spazio vettoriale sul campo $\mathbb{R}$]
     Consideriamo l'insieme $\mathbb{R}^2 = \mathbb{R} \times \mathbb{R}$: gli elementi di questo insieme sono coppie ordinate di numeri reali, che possiamo denotare come $\underline{v} = (v_1, v_2)$ con $v_1, v_2 \in \mathbb{R}$. Possiamo definire le due operazioni $+$ e $\cdot$ come segue:
-    \begin{align*}
+    \begin{align}
         &\underline{v} + \underline{w} = \begin{pmatrix} v_1 \\ v_2 \end{pmatrix} + \begin{pmatrix} w_1 \\ w_2 \end{pmatrix} = \begin{pmatrix} v_1 + w_1 \\ v_2 + w_2 \end{pmatrix}
         &\alpha \cdot \underline{v} = \alpha \cdot \begin{pmatrix} v_1 \\ v_2 \end{pmatrix} = \begin{pmatrix} \alpha v_1 \\ \alpha v_2 \end{pmatrix}
-    \end{align*}
+    \end{align}
     ed è possibile verificare che queste due operazioni soddisfano sempre le proprietà richieste dalla definizione \ref{def:sp_vett}
 \end{example}
 \begin{example}[$\mathbb{R}^n$ è uno spazio vettoriale sul campo $\mathbb{R}$]
     Partendo dall'idea dell'esempio precedente, possiamo iterare il ragionamento e definire l'insieme $\mathbb{R}^n = \underbrace{\mathbb{R} \times \ldots \times \mathbb{R}}_{\text{n volte}}$: gli elementi di questo insieme sono $n$-tuple ordinate di numeri reali, che possiamo denotare come $\underline{v} = (v_1, \ldots, v_n)$ con $v_i \in \mathbb{R} \forall i \in \{ 1, \ldots, n \}$. Possiamo definire la somma e il prodotto per scalare come fatto prima, sommando componente per componente e moltiplicando componente per componente:
-    \begin{align*}
+    \begin{align}
         &\underline{v} + \underline{w} = \begin{pmatrix} v_1 \\ \vdots \\ v_n \end{pmatrix} + \begin{pmatrix} w_1 \\ \vdots \\ w_n \end{pmatrix} = \begin{pmatrix} v_1 + w_1 \\ \vdots \\ v_n + w_n \end{pmatrix} \\
         &\alpha \cdot \underline{v} = \alpha \cdot \begin{pmatrix} v_1 \\ \vdots \\ v_n \end{pmatrix} = \begin{pmatrix} \alpha v_1 \\ \vdots \\ \alpha v_n \end{pmatrix}.
-    \end{align*}
+    \end{align}
 \end{example}
 \begin{example}[$\mathbb{C}^n$ è uno spazio vettoriale sul campo $\mathbb{C}$]
     Analogamente a quanto fatto per $\mathbb{R}^n$, possiamo riadattare il ragionamento fatto per $\mathbb{R}^n$ ammettendo che le componenti delle $n$-tuple ordinate siano numeri complessi, ovvero $\mathbb{C}^n \ni \underline{v} = \begin{pmatrix} v_1 \\ \vdots \\ v_n \end{pmatrix}$ con $v_i \in \mathbb{C} \forall i \in \{ 1, \ldots, n \}$.
@@ -110,10 +110,10 @@ Vediamo adesso qualche esempio di spazio vettoriale per fissare meglio i concett
         \sum_i^n a_i y^{(i)}(x) = 0 \text{ con } a_i \in \mathbb{R}
     $$
     allora possiamo mostrare che l'insieme delle soluzioni di questa equazione, denotato con $V$ gode della struttura di spazio vettoriale sul campo $\mathbb{R}$ definendo le due operazioni come segue: prese due soluzioni $y_1, y_2 \in V$ allora poniamo
-    \begin{align*}
+    \begin{align}
         &(y_1 + y_2)(x) = y_1(x) + y_2(x) \, \, \forall x \in \mathbb{R}
         &(\alpha y_1)(x) = \alpha y_1(x) \, \, \forall x \in \mathbb{R}
-    \end{align*}
+    \end{align}
     e osserviamo che queste due operazioni sono chiuse, ovvero restituiscono un elemento che è ancora una soluzione dell'equazione differenziale lineare. Infatti
     $$
         \sum_i^n a_i (y_1 + y_2)^{(i)}(x) = \sum_i^n a_i y_1^{(i)} + \sum_i^n a_i y_2^{(i)} = 0 + 0 = 0,
@@ -126,22 +126,22 @@ Vediamo adesso qualche esempio di spazio vettoriale per fissare meglio i concett
 \end{example}
 \begin{example}[spazio dei polinomi a coefficienti reali di grado $\leq n$ è uno spazio vettoriale]
     Sia dato l'insieme dei polinomi a coefficienti reali con grado $\leq n$ $\mathbb{R}_{\leq n}[x]$ su $\mathbb{R}$, allora possiamo definire le due operazioni come segue: presi due polinomi $p_1, p_2 \in \mathbb{R}_{\leq n}[x]$ possiamo definire il seguente polinomio
-    \begin{align*}
+    \begin{align}
     &(p_1 + p_2)(x) = p_1(x) + p_2(x) \, \, \forall x \in \mathbb{R}
     &(\alpha p_1)(x) = \alpha p_1(x) \, \, \forall x \in \mathbb{R}.
-    \end{align*}
+    \end{align}
     Si può verificare che queste due operazioni sono chiuse, ovvero restituiscono sempre un polinomio a coefficienti reali di grado $\leq n$: infatti se $p_1(x) = \sum\limits_{i=1}^n a_i x^i$ e $p_2(x) = \sum\limits_{i=1}^n b_i x^i$ con $a_i, b_i \in \mathbb{R}$ allora
-    \begin{align*}
+    \begin{align}
         &(p_1 + p_2)(x) = \sum_{i=1}^n a_i x^i + \sum_{i=1}^n b_i x^i = \sum_{i=1}^n (a_i + b_i) x^i \\
         &(\alpha p_1)(x) = \alpha \sum_{i=1}^n a_i x^i = \sum_{i=1}^n (\alpha a_i) x^i
-    \end{align*}
+    \end{align}
 \end{example}
 \begin{example}[Uno spazio vettoriale è definito solamente conoscendo la legge interna ed esterna]
     Fissiamo come spazio vettoriale $V = \mathbb{R}^n$, che è chiaramente uno spazio vettoriale sul campo $\mathbb{R}$, e definiamo le due operazioni $\oplus$ e $\odot$ come
-    \begin{align*}
+    \begin{align}
         &\underline{v} \oplus \underline{w} = \begin{pmatrix} v_1 \\ \vdots \\ v_n \end{pmatrix} \oplus \begin{pmatrix} w_1 \\ \vdots \\ w_n \end{pmatrix} = \begin{pmatrix} v_1 + w_1 + 2 \\ \vdots \\ v_n + w_n +2 \end{pmatrix} \\
         &\alpha \odot \underline{v} = \alpha \odot \begin{pmatrix} v_1, \ldots, v_n \end{pmatrix} = \begin{pmatrix} \alpha v_1 - 2(1-\alpha) \\ \alpha v_2 - 2(1-\alpha) \\ \vdots \\ \alpha v_n - 2(1-\alpha) \end{pmatrix}.
-    \end{align*}
+    \end{align}
     Si può verificare che queste due operazioni sono chiuse, ovvero restituiscono sempre un elemento di $V$, e soddisfano le proprietà richieste dalla definizione \ref{def:sp_vett} di spazio vettoriale. Ne deduciamo che uno spazio vettoriale è completamente determinato \textbf{solo} conoscendo le due operazioni $+: V \times V \to V$ e $\cdot: \mathbb{K} \times V \to V$, sebbene in questo spazio vettoriale non è il vettore $(0, \ldots, 0)$ ad essere l'elemento neutro rispetto all'operazione $+$, ma il vettore $(-2, \ldots, -2)$; tuttavia, è interessante notare come
     comunque valgano le proprietà dimostrate nella proposizione \ref{prop:0v_equal_0} (infatti, $0 \odot \underline{v} = \begin{pmatrix} 0 v_1 - 2(1-0) \\ \vdots \\ 0v_n - 2(1-0) \end{pmatrix} = \begin{pmatrix} -2 \\ \vdots \\ -2 \end{pmatrix} )$ e nelle due successivi mostrate.
 \end{example}
@@ -164,10 +164,10 @@ Siamo ora interessati a studiare dei sottoinsiemi di uno spazio vettoriale che s
 \end{prop}
 \begin{proof} Mostriamo le due implicazioni. \\
     $\boxed{\Rightarrow}$: se $W \subseteq V$ è un sottospazio vettoriale, allora per definizione esso è uno spazio vettoriale sul campo $\mathbb{K}$, dunque le due implicazioni
-    \begin{align*}
+    \begin{align}
         &\underline{v}, \underline{w} \in W \implies \underline{v} + \underline{w} \in W;
         &\underline{v} \in W \implies \alpha \underline{v} \in W;
-    \end{align*}
+    \end{align}
     sono sempre vere. \\
     $\boxed{\Leftarrow}$: se valgono le due implicazioni, allora è chiaro che le due operazioni $+$ e $\cdot$ sono chiuse su $W$, dunque è sufficiente mostrare che valgono le proprietà richiesta dalla definizione \ref{def:sp_vett} di spazio vettoriale. Tuttavia, siccome queste valgono per ogni elemento di $V$, è chiaro che varranno anche per ogni elemento di $W$ siccome $W \subseteq V$; dunque possiamo concludere che $W$ è un sottospazio vettoriale di $V$.  
 \end{proof}
@@ -333,10 +333,10 @@ ha delle coordinate univoche. Osserviamo nel dettaglio questo fatto: considerand
 \end{pmatrix} = [\underline{v}]_{\mathcal{B}} \in \mathbb{K}^n$ (si è introdotta la notazione $[\underline{v}]_{\mathcal{B}}$ per indicare il vettore contenente le coordinate) e notiamo che vale la seguente proposizione
 \begin{prop}
     Le coordinate rispetto ad una base $\mathcal{B}$ di uno spazio vettoriale $V$ sul campo $\mathbb{K}$ si comportano "bene" rispetto alla legge interne ed esterna, ovvero
-    \begin{align*}
+    \begin{align}
         &\forall \underline{v}, \underline{w} \in V, [\underline{v} + \underline{w}]_{\mathcal{B}} = [\underline{v}]_\mathcal{B} + [\underline{w}]_\mathcal{B} \\
         &\forall \alpha \in \mathbb{K}, \forall \underline{v} \in V, [\alpha \underline{v}]_{\mathcal{B}} = \alpha [\underline{v}]_{\mathcal{B}}
-    \end{align*}
+    \end{align}
 \end{prop}
 \begin{proof}
     Siano $\underline{v} = x_1 \underline{v_1} + \ldots + x_n \underline{v_n}$ e $\underline{w} = y_1 \underline{v_1} + \ldots + y_n \underline{v_n}$ e osserviamo che
@@ -367,10 +367,10 @@ ha delle coordinate univoche. Osserviamo nel dettaglio questo fatto: considerand
 \end{proof}
 \begin{definition}[isomorfismo di spazi vettoriali]
     Presi $(V, \mathbb{K}, +_V, \cdot_V)$ e $(W, \mathbb{K}, +_W, \cdot_W)$ spazi vettoriali sul campo $\mathbb{K}$, chiamiamo isomorfismo di spazio vettoriale $V, W$ una corrispondenza biunivoca $f: V \to W$ che sussiste fra i due spazi vettoriali che rispetta la legge di composizione interna ed esterna, ovvero
-    \begin{align*}
+    \begin{align}
         &\forall \underline{v}, \underline{w} \in V, f(\underline{v} +_V \underline{w}) = f(\underline{v}) +_W f(\underline{w}) \\
         &\forall \alpha \in \mathbb{K}, \forall \underline{v} \in V, f(\alpha \cdot_V \underline{v}) = \alpha \cdot_W f(\underline{v}).
-    \end{align*}
+    \end{align}
 \end{definition}
 Con la proposizione precedente, possiamo affermare quindi che fissata una base $\mathcal{B}$ di $V$ esiste un isomorfismo di spazi vettoriali fra $V$ e $\mathbb{K}^n$. \\
 Come accennato, adesso mostreremo che per gli spazi vettoriali finatamente generati è sempre possibile trovare una base.
@@ -402,10 +402,10 @@ E' necessario enunciare e dimostrare qualche risultato preparatorio: per snellir
     $$
     ma ciò è un assurdo perché implicherebbe che $A$ è linearmente dipendente. \\
     $\boxed{\alpha \neq 0}$: in tal caso
-    \begin{align*}
+    \begin{align}
         &\alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n} + \alpha \underline{v} = \underline{0} \iff \alpha_1 \underline{v_1} + \ldots + \alpha_n \underline{v_n} = - \alpha \underline{v} \iff \underline{v} = - \frac{\alpha_1}{\alpha} \underline{v_1} - \ldots - \frac{\alpha_n}{\alpha} \underline{v_n} \\
         &\iff \underline{v} \in \text{Span}(\underline{v_1}, \ldots, \underline{v_n}).
-    \end{align*}
+    \end{align}
     ma ciò è un assurdo siccome avevamo preso $\underline{v} \in V \setminus \text{Span}(A)$. \\
     Segue allora che $A \cup \{ \underline{v} \}$ è ancora linearmente indipendente, quindi $A$ non era linearmente indipendente massimale, siccome abbiamo trovato un insieme $B = A \cup \{ \underline{v} \}$ tale che $A \subset B \subseteq V$ che è ancora linearmente indipendente.
 \end{proof}
@@ -712,9 +712,9 @@ Mostriamo adesso il seguente teorema che ci permette di permette di quantificare
 \begin{proof}
     Sappiamo che esiste una base di $U \cap Z$ (siccome è uno spazio vettoriale, essendo sottospazio) dunque siano $\underline{v_1}, \ldots, \underline{v_m}$ una base di tale spazio. Possiamo allora completarla a base di $Z$ (essendo dei vettori linearmente indipendenti), pertanto sia $\mathcal{B} = \{ \underline{v_1}, \ldots, \underline{v_m}, \underline{v'_{m+1}}, \ldots, \underline{v'_q} \}$ una base di $Z$; similmente, possiamo completare gli stessi vettori come base di $Z$, dunque sia $\mathcal{B'} = \{ \underline{v_1}, \ldots, \underline{v_m}, \underline{v''_{m+1}}, \ldots, \underline{v''_n} \}$. Consideriamo
     quindi $\mathcal{B} \cup \mathcal{B'}$ e mostriamo che sono linearmente indipendenti: sia
-    \begin{align*}
+    \begin{align}
         &\sum_{i=1}^m \alpha_i \underline{v_i} + \sum_{i=m+1}^q \alpha'_i \underline{v'_i} + \sum_{i=m+1}^n \alpha''_i \underline{v''_i} = \underline{0}, & &(\ast)
-    \end{align*}
+    \end{align}
     poniamo $\underline{x} = \underbrace{\sum_{i=1}^m \alpha_i \underline{v_i}}_{\in U \cap Z \subset U} + \underbrace{\sum_{i=m+1}^q \alpha_i' \underline{v'_i}}_{\in U}$ dunque $\underline{x} \in U$ (siccome combinazione lineare di vettori di $U$). Osserviamo che
     $$
         \sum_{i=1}^m \alpha_i \underline{v_i} + \sum_{i=m+1}^q \alpha_i' \underline{v'_i} = \underline{x} = - \sum_{i=m+1}^n \alpha_i'' \underline{v''_i}
