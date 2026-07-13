@@ -1,0 +1,114 @@
+\chapter{Algebra multilineare}
+
+Lo scopo di questa sezione è quella di andare ad introdurre e dimostrare i risultati più importanti dell'algebra multilineare necessari per poter trattare meglio le strutture matematiche che incontreremo studiando i \emph{manifolds}.
+
+\section{Introduzione}
+
+Richiamiamo alcuni concetti già visti all'interno di queste dispense che ci consentiranno di chiarire la notazione
+\begin{definition}
+    Siano $V$ e $W$ due spazi vettoriali sul campo $\mathbb{K}$, indicheremo allora con $\text{Hom}(V, W)$ l'insieme delle applicazioni lineari da $V$ in $W$. Se $V = W$ scriveremo semplicemente $\text{End}(V)$ al posto di $\text{Hom}(V, V)$. 
+    Lo spazio duale è lo spazio vettoriale $V^* = \text{Hom}(V, \mathbb{K})$ e gli elementi di tale spazio prendono il nome di \emph{forme lineari}, il biduale è l'insieme $V^{**} = (V^*)^*$ e con $\mathcal{M}_{m, n}(\mathbb{K})$ indicheremo l'insieme delle matrici $m \times n$ a coefficienti in $\mathbb{K}$.
+\end{definition}
+Indicheremo con $\delta_{hk} = \delta^h_k$ il simbolo di Kronecker, così definito
+\begin{align}
+    \delta_{hk} = \delta_h^k = \begin{cases}
+        1 & \text{se } h = k, \\
+        0 & \text{se } h \neq k.
+    \end{cases}
+\end{align}
+Si ricordi che \emph{ogni spazio vettoriale ammette una base}, cioè un insieme $\mathcal{B} = \{ v_j \}_{j \in J} \subset V$ (a priori $J$ può essere anche infinito) tale che
+\begin{enumerate}[label=\protect\circled{\arabic*}]
+    \item ogni sottoinsieme finito di $\mathcal{B}$ è formato da vettori linearmente indipendenti;
+    \item $\forall v \in V \exists \lambda^1, \ldots, \lambda^k \in \mathbb{K} : \exists v_{j_1}, \ldots, v_{j_k} \in \mathcal{B} : v = \lambda^1 v_{j_1} + \ldots + \lambda^k v_{j_k}$.
+\end{enumerate}
+Tutte le basi, inoltre, hanno tutte la stessa cardinalità, che è detta \emph{dimensione} di $V$.
+\begin{prop}
+    Siano $V$ e $W$ due spazi vettoriali sul campo $\mathbb{K}$, supponiamo che $\text{dim}(V) < \infty$ e che $\mathcal{B} = \{ v_1, \ldots, v_n \}$ sia una base di $V$, allora l'applicazione $\mathcal{A} : \text{Hom}(V, W) \to W^n$ tale che $\forall L \in \text{Hom}(V, W)$ associa la $n-$upla $\mathcal{A}(L) = (L(v_1), \ldots, L(v_n)) \in W^n$ è un isomorfismo fra $\text{Hom}(V, W)$ e $W^n$ dipendente dalla scelta della base di $V$. In particolar modo, se anche $W$ ha dimensione finita, allora
+    \begin{align}
+        \text{dim}(\text{Hom}(V, W)) = (\text{dim}(V))(\text{dim}(W)),
+    \end{align}
+    quindi $\text{dim}(V^*) = \text{dim}(V)$.
+\end{prop}
+In pratica, questo è un modo per dire, chiaramente, ciò che abbiamo già trovato, ovvero che ogni applicazione lineare è definita univocamente dal valore che assume su una data base.
+
+Per poter enunciare un risultato analogo nel caso in cui $\text{dim}(V) = \infty$ bisogna introdurre il concetto di prodotto diretto infinito di spazi vettoriali
+\begin{definition}
+    Siano $\{ W_j \}_{j \in J}$ un insieme di spazi vettoriali sul medesimo campo $\mathbb{K}$, diremo che il prodotto diretto degli spazi vettoriali $W_j$ è il prodotto cartesiano
+    \begin{align}
+        \prod_{j \in J} W_j,
+    \end{align}
+    dotato della struttura di spazio vettoriale ottenuta operando componente per componente:
+    \begin{align}
+        &(w_j)_{j \in J} + (w_j')_{j \in J} = (w_j + w_j')_{j \in J} & &\lambda(w_j)_{j \in J} = (\lambda w_j)_{j \in J},
+    \end{align}
+    dove chiaramente $(w_j)_{j \in J}, (w_j')_{j \in J} \in \prod_{j \in J} W_j$ e $\lambda \in \mathbb{K}$. 
+\end{definition}
+\begin{definition}[proiettore]
+    Diremo che $\pi_i : \prod_{j \in J} W_j \to W_i$ è la proiezione sull'$i-$esimo fattore. Se invece $W_j = W \, \forall j \in J,$ scriveremo $W^J$. 
+\end{definition}
+Si può verificare la \emph{proprietà universale del prodotto diretto}\footnote{in teoria delle categorie, una proprietà universale è una proprietà che identifica univocamente una classe di oggetti: in questo caso, se verifichiamo che un dato insieme soddisfa la proprietà, allora abbiamo che è un prodotto diretto di spazi},
+\begin{prop}[proprietà universale del prodotto diretto]
+    Sia $\prod_j W_j$ un prodotto diretto di spazi e siano $\pi_j : \prod_j W_j \to W_j$ dei proiettori, allora per ogni $V$ spazio vettoriale sul campo $\mathbb{K}$ e una famiglia di applicazioni lineari $L_j: V \to W_j$ esiste un'unica applicazione lineare $L: V \to \prod_j W_j$ tale che $L_j = \pi_j \circ L$ per ogni $j \in J$, tale che per ogni $j \in J$ il diagramma
+    \begin{figure}[H]
+        \centering
+        \begin{tikzcd}[row sep=large, column sep=large]
+            V \arrow[r, "L"] \arrow[d, "L_j"'] & \prod_j W_j \arrow[dl, "\pi_j"] \\
+            W_j & 
+        \end{tikzcd}
+    \end{figure}
+    risulti commutativo. 
+\end{prop} 
+\begin{proof}
+    Dimostriamo l'esistenza di questa applicazione: per farlo osserviamo che possiamo definire questa $L$ prendendo il vettore $v \in V$ e osservando che
+    \begin{align}
+        L(v) = [L_j(v)]_{j \in J},
+    \end{align}
+    da cui è evidente che $\pi_j \circ L = L_j$. Dobbiamo mostrare che è lineare: per farlo si osserva che presi $v, w \in V$, allora si ha che
+    \begin{align}
+        L(v + w) = [L_j(v + w)]_{j \in J} = [L_j(v) + L_j(w)]_{j \in J} = [L_j(v)]_{j \in J} + [L_j(w)]_{j \in J} = L(v) + L(w),
+    \end{align}
+    e chiaramente preso $\lambda \in \mathbb{K}$ si ha che
+    \begin{align}
+        L(\lambda v) = [L_j(\lambda v)]_{j \in J} = [\lambda L_j(v)]_{j \in J} = \lambda[L_j(v)]_{j \in J} = \lambda L(v).
+    \end{align}
+    Supponiamo per assurdo che non sia unica: allora esistono $L, L': V \to \prod_{j \to J} W_j$ con $L \neq L'$ tali per cui
+    \begin{align}
+        \pi_j \circ L = \pi_j \circ L' = L_j,
+    \end{align}
+    ma allora preso un vettore $v \in V$, si ha che
+    \begin{align}
+        &\pi_j(L(v)) = (\pi_j \circ L)(v) = L_j(v), \\
+        &\pi_j(L'(v)) = (\pi_j \circ L')(v) = L_j(v),
+    \end{align}
+    ma poiché vale $\forall j \in J$, allora le due applicazioni devono necessariamente coincidere, in quanto tutte le loro componenti sono identiche per l'arbitrarietà di $v$, dunque $L = L'$.
+\end{proof}
+\begin{cor}
+    Se $\hat{\prod}$ è uno spazio vettoriale dotato di una famiglia di applicazioni lineari $\hat{\pi}_j: \hat{\prod} \to W_j$ che soddisfano la proprietà universale, esiste un unico isomorfismo $\psi: \hat{\prod} \to \prod_j W_j$ tale che $\hat{\pi}_j = \pi_j \circ \psi$ per ogni $j \in J$.
+\end{cor}
+\begin{proof}
+    Sappiamo per ipotesi dalla precedente proposizione che $\prod_{j} W_j$, essendo un prodotto diretto, soddisfa la proprietà universale. Abbiamo, quindi, che esiste un'unica applicazione lineare $\psi: \hat{\prod} \to \prod_{j \in J} W_j$ tale per cui $\pi_j \circ \psi = \hat{\pi}_j$, ovvero rifacendosi al diagramma commutativo seguente
+    \begin{figure}[H]
+        \centering
+        \begin{tikzcd}[row sep=large, column sep=large]
+                \hat{\prod} \arrow[r, "\psi"] \arrow[d, "\hat{\pi}_j"'] & \prod_j W_j \arrow[dl, "\pi_j"] \\
+                W_j & 
+        \end{tikzcd}.
+    \end{figure}
+    D'altra parte, sappiamo pure, per ipotesi, che $\hat{\prod}$ e le sue $\hat{\pi}_j : \hat{\prod} \to W_j$ soddisfano la proprietà universale. Quindi prendendo le proiezioni canoniche $\pi_j : \prod_j W_j \to W_j$ abbiamo che queste formano una buona famiglia di applicazioni lineari con cui usare la definizione della proprietà; si ha perciò che esiste un'applicazione lineare $\phi: \prod_j W_j \to \hat{\prod}$ tale che $\hat{\pi}_j \circ \phi = \pi_j$.
+    \begin{figure}[H]
+        \centering
+        \begin{tikzcd}[row sep=large, column sep=large]
+                \prod_j W_j \arrow[r, "\phi"] \arrow[d, "\pi_j"'] & \hat{\prod} \arrow[dl, "\hat{\pi}_j"] \\
+                W_j & 
+        \end{tikzcd}.
+    \end{figure}
+    Vogliamo mostrare a questo punto che la composizione $\psi \circ \phi: \prod_j W_j \to \prod_j W_j$ e $\phi \circ \psi: \hat{\prod} \to \hat{\prod}$ dà l'identità, rispettivamente, dei due spazi, mostrando così che una è l'inversa dell'altra (dunque sono isomorfismi). Per farlo si osserva che proiettando $\psi \circ \phi$ tramite $\pi_j$ si ottiene che
+    \begin{align}
+        \pi_j \circ (\psi \circ \phi) = (\pi_j \circ \psi) \circ \phi = \hat{\pi}_j \circ \phi = \pi_j.
+    \end{align}
+    Poiché banalmente anche l'identità $\text{id}_{\prod_j W_j}$ soddisfa l'equazione $\pi_j \circ \text{id} = \pi_j$, per l'unicità garantita dalla proprietà universale le due applicazioni devono necessariamente coincidere, ovvero $\psi \circ \phi = \text{id}_{\prod_j W_j}$. D'altra parte si ha che
+    \begin{align}
+        \hat{\pi}_j \circ (\phi \circ \psi) = (\hat{\pi}_j \circ \phi) \circ \psi = \pi_j \circ \psi = \hat{\pi}_j,
+    \end{align}
+    da cui segue, sempre per l'unicità della proprietà universale su $\hat{\prod}$, che $\phi \circ \psi = \text{id}_{\hat{\prod}}$.
+\end{proof}

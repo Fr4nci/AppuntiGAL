@@ -547,7 +547,7 @@ una condizione che imporremo è che l'endomorfismo sia diagonalizzabile, tuttavi
     \begin{align}
         (W \cap V_{\lambda_1}) \oplus \ldots \oplus (W \cap V_{\lambda_k}) \subseteq W,
     \end{align}
-    quindi è sufficiente andare al mostrare la $\boxed{\supseteq}$: per farlo si procede facendo vedere che se $\underline{w} \in W \implies \exists \underline{w_1}, \ldots, \underline{w_k} \in V: \underline{w} = \underline{w_1} + \ldots + \underline{w_k}$ con $\underline{w_i} \in W \cap V_{\lambda_i}$. Si mostra, per induzione su $m$, che se $\underline{w}$ è somma di $m$ autovettori
+    quindi è sufficiente andare a mostrare la $\boxed{\supseteq}$: per farlo si procede facendo vedere che se $\underline{w} \in W \implies \exists \underline{w_1}, \ldots, \underline{w_k} \in V: \underline{w} = \underline{w_1} + \ldots + \underline{w_k}$ con $\underline{w_i} \in W \cap V_{\lambda_i}$. Si mostra, per induzione su $m$, che se $\underline{w}$ è somma di $m$ autovettori
     relativi ad autovalori distinti, allora tali vettori stanno tutti in $W$: è chiaro che il caso di $m=1$ è banale e dobbiamo far vedere che $m \implies m+1$, quindi si consideri $\underline{w} \in W$ tali che
     \begin{align}
         \underline{w} = \underline{v_1} + \ldots + \underline{v_{m+1}} \implies f(\underline{w}) \stackrel{\text{per lin.}}{=} f(\underline{v_1}) + \ldots + f(\underline{v_{m+1}}) = \lambda_1 \underline{v_1} + \ldots + \lambda_{m+1} \underline{v_{m+1}},
@@ -587,26 +587,95 @@ avranno forma diagonale, dunque commutano. Si può mostrare che queste due condi
         &= \alpha_1 \beta_1 f(\underline{v_1}) + \ldots + \alpha_n \beta_n f(\underline{v_n}) = \alpha_1 g(f(\underline{v_1})) + \ldots + \alpha_n g(f(\underline{v_n})) = g(f(\underline{v})),
     \end{align}
     dove si è fatto uso della linearità. Per arbitrarietà di $\underline{v} \in V$, si ha che $[f, g] = \hat{0}$. \\
-    $\boxed{\Leftarrow}$: osserviamo che, se $\underline{v}$ è autovettore di $f$ relativo a $\lambda$, allora $g(\underline{v})$ è ancora autovettore di $f$ relativo a $\lambda$, poiché
-    \begin{align}
-        f(g(\underline{v})) = g(f(\underline{v})) = g(\lambda \underline{v}) = \lambda g(\underline{v}),
-    \end{align}
-    quindi, se abbiamo che $f$ è diagonalizzabile, allora
-    \begin{align}
-        V = (V \cap V_{\lambda_1}) \oplus \ldots \oplus (V \cap V_{\lambda_k}),
-    \end{align}
-    quindi, preso $\underline{v} \in V$ sappiamo che esistono, includendo possibili degenerazioni, $\alpha_{11}, \ldots, \alpha_{kn}$ tali che
-    \begin{align}
-        \underline{v} = \alpha_{11} \underline{v_{11}} + \ldots + \alpha_k \underline{v_{kn}},
-    \end{align}
-    dove abbiamo indicato $\underline{v}_{ij} \in V \cap V_{\lambda_j}$ (si indica l'autovalore col secondo pedice in pratica).
-    Applicandovi $g$ abbiamo che
-    \begin{align}
-        g(\underline{v}) = \alpha_{11} g(\underline{v_{11}}) + \ldots \alpha_k g(\underline{v_{kn}}), 
-    \end{align}
-    tuttavia $g(\underline{v}) \in V \implies \exists \beta_{11}, \ldots, \beta_{kn}$ tali che
-    \begin{align}
-        g(\underline{v}) = \beta_{11} \underline{v_{11}} + \ldots + \beta_{kn} \underline{v_{kn}},
-    \end{align}
-    da cui ho che 
+
+    $\boxed{\Leftarrow}$: Supponiamo che $f, g$ siano diagonalizzabili e che $[f, g] = \hat{0}$.
+    Sia $\lambda$ un autovalore di $f$ e $V_\lambda = \{ \underline{v} \in V \mid f(\underline{v}) = \lambda \underline{v} \}$ il relativo autospazio. Osserviamo che $V_\lambda$ è \textbf{invariante} rispetto a $g$. Infatti, se $\underline{v} \in V_\lambda$:
+    \begin{equation}
+    f(g(\underline{v})) = g(f(\underline{v})) = g(\lambda \underline{v}) = \lambda g(\underline{v})
+    \end{equation}
+    Questo mostra che $g(\underline{v}) \in V_\lambda$. Possiamo quindi considerare la restrizione dell'endomorfismo $g$ all'autospazio: $g|_{V_\lambda}: V_\lambda \to V_\lambda$.
+
+    Poiché $g$ è diagonalizzabile su $V$, la sua restrizione a un sottospazio invariante $V_\lambda$ è ancora diagonalizzabile. Esiste quindi una base $\mathcal{B}_\lambda$ di $V_\lambda$ costituita da autovettori di $g|_{V_\lambda}$.
+    Tali vettori sono, per costruzione autovettori di $f$, poiché appartengono a $V_\lambda$ e autovettori di $g$, essendo la base di $g|_{V_\lambda}$.
+    Poiché $f$ è diagonalizzabile per ipotesi, $V$ è decomponibile nella somma diretta dei suoi autospazi: $V = V_{\lambda_1} \oplus \dots \oplus V_{\lambda_k}$. Unendo le basi $\mathcal{B}_{\lambda_i}$ ottenute per ogni autospazio, otteniamo una base $\mathcal{B}$ di $V$ formata da autovettori comuni a entrambi gli endomorfismi.
 \end{proof}
+
+\section{Polinomio minimo}
+
+Vogliamo, adesso, introdurre il polinomio minimo di una matrice $A$: questo polinomio è il più ``piccolo'' polinomio dove, se gli viene inserita la matrice $A$, allora questo polinomio si annulla. Si osserva, tuttavia, che preso un polinomio minimo, allora moltiplicarlo per un altro polinomio ci fa ottenere un nuovo polinomio che si annulla sulla matrice: ciò induce la struttura,
+nello spazio dei polinomi, di \emph{ideale}. Attacchiamo il problema con calma: si consideri $A \in \mathcal{M}_n(\mathbb{K})$ e la mappa $\sigma_A: \mathbb{K}[x] \to \mathcal{M}_n(A)$ che, ad ogni polinomio $p(x) \in \mathbb{K}[x]$, associa il polinomio $p$ valutato in $A$, da cui si osserva che se ci restringiamo a $\mathbb{K}_{< m}[x]$ con $m > n^2$, allora, dalla formula delle dimensioni, si vede che
+\begin{align}
+    \text{dim}(\mathbb{K}_{< m}[x]) &= m^2 = \text{dim}(\text{Im}(\sigma_A)) + \text{dim}(\text{Ker}(\sigma_A)) < n + \text{dim}(\text{Ker}(\sigma_A)) \implies \\
+    &\implies \text{dim}(\text{Ker}(\sigma_A)) > m^2 - n > 0,
+\end{align}  
+ovvero la mappa ha kernel non banale. Ragionando come spiegato sopra, se $p(x) \in \text{Ker}(\sigma_A), q(x) \in \mathbb{K}[x], p(A)q(A) \in \text{Ker}(\sigma_A)$ poiché $p(A) = 0$. Nonostante la complicatezza apparente, è facile dimostrare il seguente risultato:
+\begin{theorem}[esistenza e unicità del polinomio minimo]
+    Sia $A \in \mathcal{M}_n(\mathbb{K})$, allora
+    $$
+        \exists! \varphi(x) \neq 0 \in \text{Ker}(\sigma_A) : \forall p(x) \in \text{Ker}(\sigma_A), \varphi(x) \, | \, p(x),  
+    $$
+    e diremo che questo $\varphi(x)$ è il polinomio minimo di $A$.
+\end{theorem}
+\begin{proof}
+    Prendiamo $\varphi(x) \in \text{Ker}(\sigma_A)$ di grado minimo e diverso da zero, allora preso $p(x) \in \text{Ker}(\sigma_A)$ si ha che, se per assurdo, esiste $p(x) \in \text{Ker}(\sigma_A)$ tale che $\varphi(x)$ non divide $p(x)$ allora, per le regole di divisione fra polinomi, esiste $q(x), r(x)$ con $\deg{r} < \deg{\varphi}$ tale che
+    \begin{align}
+        p(x) = \varphi(x) q(x) + r(x) \implies p(x) - q(x) \varphi(x) = r(x),
+    \end{align}
+    ma allora si ha che $r(x) \in \text{Ker}(\sigma_A)$, in quanto
+    \begin{align}
+        r(A) = p(A) - q(A) p(A) = 0,
+    \end{align}
+    ma ciò è un assurdo, poiché $\deg{r(x)} < \deg{\varphi(x)}$ e questo va contro l'ipotesi che si sia preso $\varphi$ di grado minimo possibile. L'unicità è garantita similmente: se per assurdo esistessero $\varphi_1(x)$ e $\varphi_2(x)$ entrambi polinomi minimi, allora
+    \begin{align}
+        a(x) = \varphi_1(x) - \varphi_2(x) \in \text{Ker}(\sigma_A),
+    \end{align}
+    ma per quanto visto prima, si deve avere che $\varphi_1$ e $\varphi_2$ devono avere lo stesso grado e, aggiustando il coefficiente di grado più alto, si ottiene che
+    \begin{align}
+        \deg{a} < \deg{\varphi_1}, \deg{\varphi_2},
+    \end{align}
+    e questa va contro l'ipotesi che $\varphi_1, \varphi_2$ fossero di grado minimo.
+\end{proof}
+
+Questo teorema, se ci assicura da una parte l'esistenza e l'unicità del polinomio minimo, purtroppo non ci fornisce un algoritmo sistematico per determinarlo: si osserva, tuttavia, nel caso di endomorfismi diagonalizzabili che questo è abbastanza facile da determinare, in quanto il polinomio minimo è ovviamente invariante per cambio di base: se $A$ è la matrice associata ad $f$
+in una certa base $\mathcal{B}$ e $B = P^{-1} A P$ è la matrice associata ad $f$ in base $\mathcal{B}'$, allora poiché si ha che 
+\begin{align}
+(P^{-1} A P)^i = P^{-1} A \underbrace{P P^{-1}}_{\mathbb{1}} A P \ldots P^{-1} A P = P^{-1} A^i P,
+\end{align}
+allora è chiaro che se $p(x)$ è il polinomio minimo di $A$, dunque $p(x) = \sum\limits_{k=0}^n c_k x^k \implies p(B) = p(P^{-1} A P) = \sum\limits_{k=0}^n c_k (P^{-1} A P)^k = \sum\limits_{k=0}^n c_k (P^{-1} A^k P) = P^{-1} p(A) P = 0$, il che
+ci dimostra che per cambio di base il polinomio minimo è un invariante.
+Sfruttiamo questo fatto, osservando che se mi mettiamo nella base in cui l'endomorfismo è diagonalizzato ed è rappresentato da una matrice $D$ della forma
+\begin{align}
+    D = \begin{pmatrix}
+        \lambda_1 & 0 & 0 & \ldots & 0 \\
+        0 & \lambda_{2} & 0 & \ldots & 0 \\
+        \vdots & \vdots & \ddots & \vdots & \vdots \\
+        0 & 0 & 0 & \lambda_{n-1} & 0 \\
+        0 & 0 & 0 & 0 & \lambda_n
+    \end{pmatrix} \implies p(D) = \begin{pmatrix}
+        p(\lambda_1) & 0 & 0 & \ldots & 0 \\
+        0 & p(\lambda_{2}) & 0 & \ldots & 0 \\
+        \vdots & \vdots & \ddots & \vdots & \vdots \\
+        0 & 0 & 0 & p(\lambda_{n-1}) & 0 \\
+        0 & 0 & 0 & 0 & p(\lambda_n)
+    \end{pmatrix},
+\end{align}
+allora il polinomio minimo è dato semplicemente dal polinomio che annulla ogni entrata sulla diagonale, ovvero un polinomio che ha come radice gli autovalori $\lambda_i$: se supponiamo che gli autovalori siano tutti distinti, allora si ha che
+\begin{align}
+    p(x) = (x - \lambda_1) \ldots (x - \lambda_n),
+\end{align}
+altrimenti, se abbiamo degenerazione, per esempio per l'autovalore $k-$esimo con $k < n$ dobbiamo considerare nel polinomio minimo un solo fattore, poiché le entrate multiple sulla diagonale sono già annullate dalla presenza di $(x - \lambda_k)$ nel polinomio $p(x)$: se tenessimo conto della molteplicità
+dell'autovalore otterremo il polinomio caratteristico e non quello minimo. Da queste considerazioni si è dimostrato che
+\begin{prop}
+    Se $f : V \to V$ è un endomorfismo diagonalizzabile, allora abbiamo che se $f$ è diagonalizzabile allora $p_M(f)$, dove con $p_M(f)$ indichiamo il polinomio minimo di $f$, è prodotto di termini lineari.
+\end{prop}
+Le questioni che ci poniamo, riflettendo ulteriormente su quanto abbiamo fatto, sono le seguenti:
+\begin{enumerate}[label=\protect\circled{\arabic*}]
+    \item abbiamo dimostrato che se $f$ diagonalizzabile, allora il polinomio minimo è fattorizzabile come prodotti di termini lineari. Ma vale il viceversa? Ovvero se il polinomio minimo di un certo endomorfismo è prodotto di termini lineari, allora l'endomorfismo è diagonalizzabile?
+    \item abbiamo visto, nel caso di endomorfismo diagonalizzabile, che il polinomio caratteristico è multiplo di quello minimo, dunque se $p_f$ è il polinomio caratteristico di $f$ abbiamo che in una qualunque base $p_f(A) = 0$. Ciò vale per qualunque endomorfismo?
+\end{enumerate}
+Sorprendentemente, per entrambe le domande, la risposta è affermativa: per rispondere alla prima dobbiamo, tuttavia, dimostrare un lemma; tuttavia, a parte questo piccolo prezzo che dobbiamo pagare per dimostrare, abbiamo ottenuto un ulteriore criterio per verificare se un endomorfismo è diagonalizzabile, sebbene l'identificazione
+del polinomio minimo spesso è non banale. Per quanto riguarda la seconda, dovremmo avvalerci del teorema di triangolarizzazione, che dimostreremo e costituisce un grandissimo strumento, in quanto ha delle ipotesi \emph{abbastanza} generali (per i nostri scopi da Fisici).
+
+\subsection{Criterio di diagonalizzabilità col polinomio minimo}
+
+Abbiamo già dimostrato un verso, per fare l'altro si osserva nella dimostrazione che si crea una successione di spazi vettoriali tramite $f : V \to V$, in cui siamo interessati a calcolare le dimensioni del kernel di $f^k$ man mano che aumentiamo $k$. 
